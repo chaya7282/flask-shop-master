@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 class LocalConfig:
-    db_uri = "mysql+pymysql://root:chaya@127.0.0.1:3306/chayadb?charset=utf8mb4"
+    db_uri = "mysql+pymysql://b324d43fae3328:6a840f0b@us-cdbr-east-04.cleardb.com/heroku_4eb285c15a64ed7?reconnect=true"
     redis_uri = "redis://localhost:6379"
     esearch_uri = "localhost"
 class Config:
@@ -27,9 +27,10 @@ class Config:
     ES_HOSTS = [
         os.getenv("ESEARCH_URI", LocalConfig.esearch_uri),
     ]
+    db_uri = "mysql+pymysql://b324d43fae3328:6a840f0b@us-cdbr-east-04.cleardb.com/heroku_4eb285c15a64ed7?reconnect=true"
 
     # SQLALCHEMY
-    SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
+    SQLALCHEMY_DATABASE_URI = db_uri
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_QUERY_TIMEOUT = 0.1  # log the slow database query, and unit is second
     SQLALCHEMY_RECORD_QUERIES = True
