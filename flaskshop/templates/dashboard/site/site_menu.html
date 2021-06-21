@@ -1,0 +1,47 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends 'dashboard/layout.html' %}
+
+{% block body %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">{% if 'edit' in request.path %}Edit{% else %}Create{% endif %} Site Menu
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="POST" action="">
+                        <div class="card-body">
+
+                            {{ form.hidden_tag() }}
+                            {{ vendor.render_field(form.title) }}
+                            {{ vendor.render_field(form.order) }}
+                            {{ vendor.render_field(form.url_) }}
+                            {{ vendor.render_field(form.position) }}
+                            {{ macros.render_select_field(form.parent_id, parents) }}
+                            {{ macros.render_select_field(form.category_id, categories) }}
+                            {{ macros.render_select_field(form.collection_id, collections) }}
+                            {{ macros.render_select_field(form.page_id, pages) }}
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            {{ macros.render_submit(form.submit) }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block tail_js %}
+<script src="{{ url_for('static', filename='build/dashboard/select.js') }}"></script>
+{% endblock %}

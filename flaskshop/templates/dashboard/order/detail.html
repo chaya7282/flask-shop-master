@@ -1,0 +1,136 @@
+{% import 'dashboard/_vendor.html' as vendor %}
+{% extends 'dashboard/layout.html' %}
+{% block body %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="invoice p-3 mb-3">
+                    <!-- title row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>
+                                <i class="fa fa-globe"></i> {{order.token}}
+                                <small class="float-right">Created At: {{order.created_at}}</small>
+                            </h4>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- info row -->
+                    <div class="row invoice-info">
+                        <div class="col-sm-4 invoice-col">
+                            <b>Status:</b> {{order.status_human}}<br>
+                            <b>Payment Status:</b> {{order.payment.status_human}}<br>
+                            <b>Payment Due:</b> {{order.payment.paid_at}}<br>
+                            <b>Account:</b> {{order.user}}
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 invoice-col">
+                            <strong>Shipping Address</strong>
+                            <address>
+                                {{order.shipping_address | safe}}
+                            </address>
+                        </div>
+                        <div class="col-sm-4 invoice-col">
+                            <strong>Shipping Method</strong>
+                            <address>
+                                {{order.shipping_method_name}} (${{order.shipping_price_net}})
+                            </address>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Qty</th>
+                                        <th>Product</th>
+                                        <th>SKU</th>
+                                        <th>Unit Price</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.lines %}
+                                    <tr>
+                                        <td>{{item.quantity}}</td>
+                                        <td>
+                                            <a href="{{url_for('dashboard.product_detail', id=item.product_id)}}"
+                                                target="_blank">
+                                                {{item.product_name}}
+                                            </a>
+                                        </td>
+                                        <td>{{item.product_sku}}</td>
+                                        <td>${{item.unit_price_net}}</td>
+                                        <td>${{item.quantity * item.unit_price_net}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-6">
+                            <p class="lead">Payment Method: {{order.payment.payment_method}}</p>
+                            <p class="lead">Order Note:</p>
+                            <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                {{order.note}}
+                            </p>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr>
+                                        <th style="width:50%">Subtotal:</th>
+                                        <td>${{order.total_net}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping:</th>
+                                        <td>${{order.shipping_price_net}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Discount:</th>
+                                        <td>-${{ order.discount_amount  }}({{ order.discount_name }})</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Total:</th>
+                                        <td>${{order.total}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row no-print">
+                        <div class="col-12">
+                            {% if order.status_human == "fulfilled" %}
+                            <a class="btn btn-success float-right"
+                                href="{{url_for('dashboard.send_order', id=order.id)}}">
+                                <i class="fa fa-credit-card"></i> Send Order
+                            </a>
+                            {% elif order.status_human == "unfulfilled" %}
+                            <a class="btn btn-danger float-right"
+                                href="{{url_for('dashboard.draft_order', id=order.id)}}">
+                                <i class="fa fa-ban"></i> Draft Order
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "checkout/details.html" %}
+{% import '_macros.html' as macros %}
+{% block forms %}
+<form method="post" novalidate class="checkout__shipping">
+  <div class="row">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel-head">
+        <h2>Shipping address</h2>
+        <br>
+      </div>
+      {% for address in current_user.addresses %}
+      <div class="radio address_hide col-6 float-left">
+        <label>
+          <input type="radio" name="address_sel" value="{{ address.id }}" id="address_{{ address.id }}"
+            {% if loop.first %}checked{%endif%}>
+          <div class="address-details">
+            {{ macros.format_address(address) }}
+          </div>
+        </label>
+      </div>
+      {% endfor %}
+
+      <div class="radio address_show col-12 float-left">
+        <label>
+          <input type="radio" name="address_sel" value="new" id="address_new">
+          Enter a new address
+        </label>
+      </div>
+
+
+      <div class="checkout__new-address">
+        {% include "account/partials/address_form.html" %}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="width: 100%;">
+      <div>
+        <h2>Shipping method</h2>
+        <br>
+      </div>
+      {% for method in shipping_methods %}
+      <div class="radio col-6 float-left">
+        <label>
+          <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}"
+            {% if loop.first %}checked{%endif%}>
+          <div class="address-details">
+            {{ method }}
+          </div>
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <p class="text-md-right">
+    <button type="submit" class="btn btn-primary">
+      Continue
+    </button>
+  </p>
+</form>
+{% endblock %}

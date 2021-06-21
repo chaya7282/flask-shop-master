@@ -1,0 +1,32 @@
+{% extends "no_nav_base.html" %}
+{% from '_macros.html' import navlink %}
+{% block breadcrumb %}
+<ul class="breadcrumbs list-unstyled">
+  <li>
+    <a href="{{ url_for('public.home') }}">
+      Home
+    </a>
+  </li>
+  <li>Private Message</li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+    <div class="row container">
+        <div class="col-sm-3">
+            <div class="card">
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><a href="{{url_for('conversations_bp.new_conversation')}}" class="btn btn-primary narrow">New Message</a></li>
+                    {{ navlink('conversations_bp.inbox', 'Inbox') }}
+                    {{ navlink('conversations_bp.sent', 'Sent') }}
+                    {{ navlink('conversations_bp.trash', 'Trash') }}
+                </ul>
+            </div><!--/.sidebar -->
+        </div><!--/.col-sm-3 -->
+        <div class="col-sm-9">
+            {% block message_content %}
+            {% endblock %}
+        </div><!--/.col-sm-9 -->
+    </div><!--/.row -->
+{% endblock %}

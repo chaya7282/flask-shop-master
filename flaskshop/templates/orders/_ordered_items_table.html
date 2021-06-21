@@ -1,0 +1,144 @@
+{% import '_macros.html' as macros %}
+
+<div class="table__header order-details__table-header d-none d-sm-block">
+    <div class="row">
+        <div class="col-md-8">
+            <small>
+                Product
+            </small>
+        </div>
+        <div class="col-md-2 text-right">
+            <small>
+                Quantity
+            </small>
+        </div>
+        <div class="col-md-2 text-right">
+            <small>
+                Price
+            </small>
+        </div>
+    </div>
+</div>
+
+{% for line in order.lines %}
+<div class="table__row order-details__product{% if loop.last %} order-details__last-row{% endif %}">
+    <div class="row">
+        <div class="col-md-8">
+            <a class="link--clean" href="{% if line.variant %}{{ line.variant.get_absolute_url() }}{% endif %}">
+                <img class="float-left lazyload lazypreload" src="{{ line.variant.product.first_img }}" width="60">
+                <span class="order-details__product__description">{{ line.product_name }}</span>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <p class="float-right">x {{ line.quantity }}</p>
+                </div>
+                <div class="col-md-6 col-12">
+                    <p class="float-right">
+                        ${{ line.get_total() }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="table__row">
+    <div class="row">
+        <div class="col-8 order-details__table-footer">
+            <p>
+                Subtotal
+            </p>
+        </div>
+        <div class="col-4">
+            <p class="float-right">
+                ${{ order.total_net }}
+            </p>
+            <br>
+        </div>
+    </div>
+</div>
+
+{% if order.is_shipping_required %}
+<div class="table__row">
+    <div class="row">
+        <div class="col-8 order-details__table-footer">
+            <p>
+                Shipping
+                ({{ order.shipping_method_name}})
+            </p>
+        </div>
+        <div class="col-4">
+            <p class="float-right">
+                ${{ order.shipping_price_net }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if order.discount_amount %}
+<div class="table__row">
+    <div class="row">
+        <div class="col-8 order-details__table-footer">
+            <p>{{ order.discount_name }}</p>
+        </div>
+        <div class="col-4">
+            <p class="float-right">
+                -${{ order.discount_amount  }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="order-details__total">
+    <div class="row">
+        <div class="col-8 order-details__table-footer">
+            <div class="total">
+                <h3>Total</h3>
+            </div>
+        </div>
+        <div class="col-4">
+            <p class="float-right">
+                ${{ order.total  }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="order-details__addresses">
+    <div class="row">
+        <div class="col-6">
+            {% if order.is_shipping_required %}
+            <h3>
+                Shipping address
+            </h3>
+            {{ order.shipping_address | safe }}
+            {% endif %}
+        </div>
+        {% if order.status_human == "unfulfilled" %}
+        <div class="col-6">
+            <span class="float-right">Please pay before 00:30, else the order will auto closed</span>
+            <a href="{{ url_for('order.ali_pay', token=order.token) }}" class="btn btn-primary float-right">
+                Alipay
+            </a>
+            <a href="{{ url_for('order.test_pay', token=order.token) }}" class="btn secondary float-right">
+                Pay for test
+            </a>
+            <a href="{{ url_for('order.cancel_order', token=order.token) }}" class="btn danger float-right">
+                Cancel Order
+            </a>
+        </div>
+        {% elif order.status_human == "shipped" %}
+        <div class="col-6">
+            <span class="float-right">this order will auto received after 1 day</span>
+            <a href="{{ url_for('order.receive', token=order.token) }}" class="btn btn-primary float-right">
+                Confirm receipt
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>

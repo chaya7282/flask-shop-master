@@ -1,0 +1,21 @@
+{% for product in products %}
+<div class="col-6 col-lg-3 product-list">
+  <a href="{{ url_for("product.show", id=product.id) }}" class="link--clean">
+    <div class="text-center">
+      <div>
+        <img class="img-responsive lazyload lazypreload" alt="" src="{{ product.first_img }}">
+        <span class="product-list-item-name" title="{{ product.title }}">{{ product.title }}</span>
+      </div>
+      <div class="panel-footer">
+        ${{product.price}}
+        {% if product.is_discounted %}
+        <div class="product-list__sale">
+          <svg data-src="{{ url_for('static', filename='img/sale-bg.svg')}}"></svg>
+          <span class="product-list__sale__text">Sale</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>
+{% endfor %}

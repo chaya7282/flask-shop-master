@@ -1,0 +1,39 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends 'dashboard/layout.html' %}
+{% block body %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">{% if 'edit' in request.path %}Edit{% else %}Create{% endif %}
+                            Sale</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        <div class="card-body">
+                            {{ form.hidden_tag() }}
+                            {{ vendor.render_field(form.title) }}
+                            {{ macros.render_select_field(form.discount_value_type, discount_types, has_zero=false) }}
+                            {{ vendor.render_field(form.discount_value) }}
+                            {{ macros.render_select_multi_field(form.categories, categories) }}
+                            {{ macros.render_select_multi_field(form.products, products) }}
+                            <div class="card-footer">
+                                {{ macros.render_submit(form.submit) }}
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block tail_js %}
+<script src="{{ url_for('static', filename='build/dashboard/select.js') }}"></script>
+{% endblock %}

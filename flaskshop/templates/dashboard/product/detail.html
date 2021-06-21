@@ -1,0 +1,129 @@
+{% import 'dashboard/_macros.html' as macros %}
+{% extends 'dashboard/layout.html' %}
+{% block body %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <a href="{{url_for('product.show', id=product.id)}}" target="_blank">{{product.title}}</a>
+                        </h3>
+                        <div class="card-tools" style="display: flex;">
+                            <div class="input-group input-group-sm">
+                                <a href="{{url_for('dashboard.product_edit', id=product.id)}}"
+                                    class="btn btn-primary btn-sm" style="margin-right: 5px;">Edit</a>
+                                <a data-url="products/{{product.id}}/delete" data-redirect="1"
+                                    class="btn btn-danger btn-sm delete-btn">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="banner">
+                                    <ul>
+                                        {% for img in product.images %}
+                                        <li><img src="{{img}}" class="loop-image"></li>
+                                        {% endfor %}
+                                    </ul>
+                                    <span class="b-btn left">
+                                        < </span> <span class="b-btn right"> >
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item">
+                                        <b>On Sale</b> <span
+                                            class="float-right">{{macros.render_boolean(product.on_sale)}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Price</b> <span class="float-right">${{product.price}} /
+                                            ${{product.basic_price}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Rating</b> <span class="float-right">{{product.rating}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Sold Count</b> <span class="float-right">{{product.sold_count}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Review Count</b> <span class="float-right">{{product.review_count}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Category</b> <span class="float-right">{{product.category}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>ProductType</b> <span class="float-right">{{product.product_type}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Created</b> <span class="float-right">{{product.created_at}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p class="lead">Product Description:</p>
+                            <p class="text-muted well well-sm no-shadow">
+                                {{product.description}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">Variants</h5>
+                        <div class="card-tools" style="display: flex;">
+                            <div class="input-group input-group-sm">
+                                <a href="{{url_for('dashboard.variant_manage', product_id=product.id)}}"
+                                    class="btn btn-success btn-sm">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>ID</th>
+                                <th>SKU</th>
+                                <th>Title</th>
+                                <th>Quantity</th>
+                                <th>PriceOverride</th>
+                                <th>Operation</th>
+                            </tr>
+                            {% for item in product.variant %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.sku}}</td>
+                                <td>{{item.title}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.price_override}}</td>
+                                <td>
+                                    <a href="{{url_for('dashboard.variant_manage', id=item.id)}}"
+                                        class="btn btn-primary btn-sm">Edit</a>
+                                    <a data-url="variants/{{item.id}}/delete"
+                                        class="btn btn-danger btn-sm delete-btn">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock %}
+
+{% block tail_js %}
+<script src="{{ url_for('static', filename='build/dashboard/product_detail.js') }}"></script>
+{% endblock %}
