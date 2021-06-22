@@ -29,8 +29,8 @@ class Config:
         os.getenv("ESEARCH_URI", LocalConfig.esearch_uri),
     ]
 
-    # SQLALCHEMY
-    SQLALCHEMY_DATABASE_URI ="mysql://bcfdg4tjvjgh4k1m:i2ktthn65fssg9jf@qz8si2yulh3i7gl3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qb21tsn0443f9qzn"
+    # SQLALCHEMY"
+    SQLALCHEMY_DATABASE_URI ="mysql+pymysql://t165ie12h8gw65tx:jty23hwy76q7y275@ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hxg4ezjfrkkztwyc"
    # SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
