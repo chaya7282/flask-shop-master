@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 class LocalConfig:
-    db_uri = "mysql+pymysql://root:chaya@127.0.0.1:3306/chayadb?charset=utf8mb4"
+    db_uri = "mysql+pymysql://zf6jgi9jejd6dcnz:idjmykvoed6ii5q4@hwr4wkxs079mtb19.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y5ss45voa07s01a9"
     redis_uri = "redis://localhost:6379"
     esearch_uri = "localhost"
 class Config:
@@ -29,7 +29,7 @@ class Config:
     ]
 
     # SQLALCHEMY
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://b324d43fae3328:6a840f0b@us-cdbr-east-04.cleardb.com/heroku_4eb285c15a64ed7"
+ #   SQLALCHEMY_DATABASE_URI = "mysql+pymysql://b324d43fae3328:6a840f0b@us-cdbr-east-04.cleardb.com/heroku_4eb285c15a64ed7"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_QUERY_TIMEOUT = 0.1  # log the slow database query, and unit is second
     SQLALCHEMY_RECORD_QUERIES = True
