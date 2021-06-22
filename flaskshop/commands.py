@@ -164,7 +164,7 @@ def seed(type):
     if type == "default":
         place_holder = Path("placeholders")
         create_products_by_schema(
-            placeholder_dir=place_holder, how_many=3, create_images=True
+            placeholder_dir=place_holder, how_many=10, create_images=True
         )
         create_generator = chain(
             create_collections_by_schema(place_holder),
