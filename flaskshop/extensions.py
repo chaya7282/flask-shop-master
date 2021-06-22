@@ -143,7 +143,7 @@ class UnLockedAlchemy(SQLAlchemy):
 
     def apply_driver_hacks(self, app, info, options):
         if "isolation_level" not in options:
-            options["isolation_level"] = "READ COMMITTED"
+            options["isolation_level"] = "READ UNCOMMITTED"
         return super().apply_driver_hacks(app, info, options)
 
 
