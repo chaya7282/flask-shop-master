@@ -29,7 +29,7 @@ class Config:
     ]
 
     # SQLALCHEMY
- #   SQLALCHEMY_DATABASE_URI = "mysql+pymysql://b324d43fae3328:6a840f0b@us-cdbr-east-04.cleardb.com/heroku_4eb285c15a64ed7"
+    SQLALCHEMY_DATABASE_URI = "mysql://zf6jgi9jejd6dcnz:idjmykvoed6ii5q4@hwr4wkxs079mtb19.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y5ss45voa07s01a9"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_QUERY_TIMEOUT = 0.1  # log the slow database query, and unit is second
     SQLALCHEMY_RECORD_QUERIES = True
