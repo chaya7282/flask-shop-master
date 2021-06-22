@@ -150,7 +150,9 @@ def urls(url, order):
 def createdb():
     """ create database tables
     """
+    db.drop_all()
     db.create_all()
+
 
 
 @click.command()
