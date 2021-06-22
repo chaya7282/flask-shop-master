@@ -32,7 +32,7 @@ from .dashboard_api.api_app import dashboard_api
 
 
 def create_app(config_object=Config):
-    app = Flask(__name__.split(".")[0])
+
     app.config.from_object(config_object)
     app.pluggy = manager.FlaskshopPluginManager("flaskshop")
     register_extensions(app)
