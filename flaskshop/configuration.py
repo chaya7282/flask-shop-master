@@ -3,7 +3,7 @@
 import sys
 
 from flask import Flask, render_template
-from werkzeug.wsgi import DispatcherMiddleware
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from flaskshop import commands
 from flaskshop.extensions import (
@@ -31,10 +31,11 @@ from .api import api as api_view
 from .dashboard_api.api_app import dashboard_api
 
 
-def create_app(app):
-    config_object = Config
+def create_app(app,config_object = Config):
+
     app.config.from_object(config_object)
     app.pluggy = manager.FlaskshopPluginManager("flaskshop")
+
     register_extensions(app)
     load_plugins(app)
     register_blueprints(app)
