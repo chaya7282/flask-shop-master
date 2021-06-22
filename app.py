@@ -3,6 +3,8 @@
 from flaskshop.app import create_app
 from flaskshop.app import commands
 
-app = create_app()
-app.run()
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run()
 
