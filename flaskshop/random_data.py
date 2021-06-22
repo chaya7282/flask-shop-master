@@ -3,9 +3,9 @@ import random
 import unicodedata
 from uuid import uuid4
 
-from faker import Factory
 from faker.providers import BaseProvider
 from sqlalchemy.sql.expression import func
+from faker import Factory
 
 from flaskshop.product.models import (
     Category,
@@ -412,6 +412,7 @@ def create_roles():
 
 # step17
 def create_admin():
+
     user = User.create(
         username="admin", email="admin@163.com", password="admin", is_active=True
     )
@@ -427,6 +428,7 @@ def create_admin():
         username="editor", email="editor@163.com", password="editor", is_active=True
     )
     UserRole.create(user_id=user.id, role_id=2)
+    print("admin")
     yield f"Admin {user.username} created"
 
 
