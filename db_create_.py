@@ -1,3 +1,4 @@
-import flaskshop.commands
 
-flaskshop.commands.seed()
+import flaskshop.commands
+flaskshop.commands.createdb
+
