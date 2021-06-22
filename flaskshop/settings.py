@@ -30,7 +30,7 @@ class Config:
     ]
 
     # SQLALCHEMY
-    SQLALCHEMY_DATABASE_URI = "mysql://md494k06q6z8w86e:tzpbn7ygu6wllcy4@un0jueuv2mam78uv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/l5sx298ycm853nnm"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://md494k06q6z8w86e:tzpbn7ygu6wllcy4@un0jueuv2mam78uv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/l5sx298ycm853nnm"
    # SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
