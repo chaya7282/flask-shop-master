@@ -30,7 +30,7 @@ class Config:
     ]
 
     # SQLALCHEMY
-    SQLALCHEMY_DATABASE_URI = "redis://default:sG6mswudqt6v3jKNdTmWUDmmc6cnuaa4@redis-13354.c275.us-east-1-4.ec2.cloud.redislabs.com:13354"
+    SQLALCHEMY_DATABASE_URI = "redshift+psycopg2://default:sG6mswudqt6v3jKNdTmWUDmmc6cnuaa4@redis-13354.c275.us-east-1-4.ec2.cloud.redislabs.com:13354"
    # SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
