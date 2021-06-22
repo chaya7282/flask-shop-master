@@ -31,8 +31,9 @@ from .api import api as api_view
 from .dashboard_api.api_app import dashboard_api
 
 
-def create_app(config_object=Config):
-    app=Flask(__name__)
+def create_app(app):
+
+    config_object = Config
     app.config.from_object(config_object)
     app.pluggy = manager.FlaskshopPluginManager("flaskshop")
     register_extensions(app)
