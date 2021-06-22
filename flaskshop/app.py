@@ -48,7 +48,6 @@ def create_app(app):
 
 
 
-
 def register_extensions(app):
     bcrypt.init_app(app)
     db.init_app(app)
