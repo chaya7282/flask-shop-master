@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 class LocalConfig:
-    db_uri = "mysql+pymysql://zf6jgi9jejd6dcnz:idjmykvoed6ii5q4@hwr4wkxs079mtb19.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y5ss45voa07s01a9"
+    db_uri = "mysql://zf6jgi9jejd6dcnz:idjmykvoed6ii5q4@hwr4wkxs079mtb19.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y5ss45voa07s01a9"
     redis_uri = "redis://localhost:6379"
     esearch_uri = "localhost"
 class Config:
