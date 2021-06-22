@@ -32,7 +32,6 @@ from .dashboard_api.api_app import dashboard_api
 
 
 def create_app(app):
-
     config_object = Config
     app.config.from_object(config_object)
     app.pluggy = manager.FlaskshopPluginManager("flaskshop")
@@ -47,7 +46,7 @@ def create_app(app):
 
     app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/dashboard_api": dashboard_api})
 
-    return app
+
 
 
 def register_extensions(app):
