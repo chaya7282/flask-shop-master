@@ -1,6 +1,5 @@
 from flask import Flask
-from flaskshop.app import create_app
+from flaskshop.configuration import create_app
 
-app = Flask(__name__)
-
+app = Flask(__name__.split(".")[0])
 create_app(app)
