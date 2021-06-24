@@ -48,7 +48,7 @@ SiteDefaultSettings = {
         "description": "A short description of the project.",
     },
     "project_copyright": {
-        "value": "COPYRIGHT © 2009–2019 MIRUMEE SOFTWARE",
+        "value": "COPYRIGHT © 2021-2022 CHAYA SOFTWARE",
         "value_type": SettingValueType.string,
         "name": "Project Copyright",
         "description": "Copyright notice of the Project like '&copy; 2019 FlaskShop'. ",
