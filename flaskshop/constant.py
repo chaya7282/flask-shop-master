@@ -42,7 +42,7 @@ SiteDefaultSettings = {
         "description": "The title of the project.",
     },
     "project_subtitle": {
-        "value": "A lightweight e-commerce software in Flask",
+        "value": "E-commerce Fast and Easy",
         "value_type": SettingValueType.string,
         "name": "Project subtitle",
         "description": "A short description of the project.",

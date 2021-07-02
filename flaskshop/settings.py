@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 class LocalConfig:
-    db_uri = "mysql+pymysql://root:chaya@127.0.0.1:3306/chayadb?charset=utf8mb4"
+    db_uri = "mysql+pymysql://root:chaya@127.0.0.1:3306/chayadb2?charset=utf8mb4"
 
     redis_uri = "redis://localhost:6379"
     esearch_uri = "localhost"
@@ -31,7 +31,7 @@ class Config:
 
     # SQLALCHEMY"
     SQLALCHEMY_DATABASE_URI ="mysql://t165ie12h8gw65tx:jty23hwy76q7y275@ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hxg4ezjfrkkztwyc"
-   # SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
+    SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_QUERY_TIMEOUT = 0.1  # log the slow database query, and unit is second
@@ -41,13 +41,14 @@ class Config:
     APP_DIR = Path(__file__).parent  # This directory
     PROJECT_ROOT = APP_DIR.parent
     STATIC_DIR = APP_DIR / "static"
-    UPLOAD_FOLDER = "upload"
-    UPLOAD_DIR = STATIC_DIR / UPLOAD_FOLDER
+    UPLOAD_FOLDER = STATIC_DIR /"uploads"
+
+    UPLOAD_DIR = STATIC_DIR /"uploads"
     DASHBOARD_TEMPLATE_FOLDER = APP_DIR / "templates" / "dashboard"
 
     BCRYPT_LOG_ROUNDS = 13
     DEBUG_TB_ENABLED = os.getenv("FLASK_DEBUG", False)  # Disable Debug toolbar
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     DEBUG_TB_PROFILER_ENABLED = True
-
+    TEMPLATES_AUTO_RELOAD = True
     MESSAGE_QUOTA = 10

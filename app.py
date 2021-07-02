@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Create an application instance."""
+import flaskshop
 
-from flaskshop import app
-
+app=flaskshop.create_app()
 if __name__ == '__main__':
 
     app.run(debug=True)

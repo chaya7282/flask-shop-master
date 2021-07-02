@@ -124,22 +124,19 @@ COLLECTIONS_SCHEMA = [
 ]
 
 DASHBOARD_MENUS = [
-    {"title": "CATALOG", "icon_cls": "fa-bandcamp"},
-    {"title": "ORDERS", "endpoint": "orders", "icon_cls": "fa-cart-arrow-down"},
-    {"title": "CUSTOMERS", "endpoint": "users", "icon_cls": "fa-user"},
-    {"title": "DISCOUNTS", "icon_cls": "fa-gratipay"},
+    {"title": "מוצרים-קטלוג", "icon_cls": "fa-bandcamp"},
+    {"title": "הזמנות", "endpoint": "orders", "icon_cls": "fa-cart-arrow-down"},
+    {"title": "לקוחות", "endpoint": "users", "icon_cls": "fa-user"},
+    {"title": "הנחות", "icon_cls": "fa-gratipay"},
     {"title": "CONFIGURATION", "endpoint": "config_index", "icon_cls": "fa-cog"},
-    {"title": "Products", "endpoint": "products", "parent_id": 1},
-    {"title": "Categories", "endpoint": "categories", "parent_id": 1},
-    {"title": "Collections", "endpoint": "collections", "parent_id": 1},
-    {"title": "Sales", "endpoint": "sales", "parent_id": 4},
-    {"title": "Vouchers", "endpoint": "vouchers", "parent_id": 4},
+    {"title": "רשימת-מוצרים", "endpoint": "products", "parent_id": 1},
+    {"title": "קבוצה", "endpoint": "categories", "parent_id": 1},
+    {"title": "אוספים", "endpoint": "collections", "parent_id": 1},
+    {"title": "סוגים", "endpoint": "product_types", "parent_id": 1},
+    {"title": "תכונות ", "endpoint": "attributes", "parent_id": 1},
+    {"title": "מכירות", "endpoint": "sales", "parent_id": 4},
+    {"title": "קופונים", "endpoint": "vouchers", "parent_id": 4},
 ]
-
-"""
-Utils function
-"""
-
 
 def get_variant_combinations(product):
     # Returns all possible variant combinations

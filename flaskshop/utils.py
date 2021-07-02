@@ -12,6 +12,7 @@ from flaskshop.checkout.models import Cart
 from flaskshop.dashboard.models import Setting
 from flaskshop.plugin.utils import template_hook
 from flaskshop.constant import SiteDefaultSettings
+from flaskshop.create_menus import create_menus
 
 
 def flash_errors(form, category="warning"):
@@ -42,7 +43,14 @@ def log_slow_queries(app):
                     f"Parameters: {query.parameters}\n"
                     f"Duration: {query.duration}"
                 )
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Expires'] = '0'
+        response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
         return response
+
+
+
 
 
 def jinja_global_varibles(app):
@@ -55,6 +63,7 @@ def jinja_global_varibles(app):
 
     @app.context_processor
     def inject_menus():
+        create_menus()
         top_menu = (
             MenuItem.query.filter(MenuItem.position == 1)
             .filter(MenuItem.parent_id == 0)

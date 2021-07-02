@@ -3,6 +3,10 @@
 {% extends 'dashboard/layout.html' %}
 
 {% block body %}
+
+<span class="align-middle">
+<img class="rounded-circle account-img" src= "{{ url_for('static', filename='uploads/'+ product.first_img) }}">
+</span>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -15,9 +19,10 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="POST" action="">
+                     <form method="POST" action="" enctype='multipart/form-data'>
                         <div class="card-body">
                             {{ form.hidden_tag() }}
+                             <div class="content-section">
                             <label>Type:</label> {{product.product_type}}
                             {{ vendor.render_field(form.title) }}
                             {{ vendor.render_field(form.basic_price) }}
@@ -28,13 +33,14 @@
                             {{ vendor.render_field(form.review_count) }}
                             {{ macros.render_select_field(form.category_id, categories) }}
                             {{ vendor.render_field(form.description) }}
-                            {{ macros.render_multi_img(form.images) }}
+                            {{ macros.render_multi_img(form) }}
                             {{ macros.render_attribute_field(form.attributes, product.product_type.product_attributes) }}
-
+                        </div>
+                        </div>
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
                             </div>
-                    </form>
+                     </form>
                 </div>
             </div>
         </div>

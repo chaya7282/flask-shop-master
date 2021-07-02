@@ -22,7 +22,7 @@
                             </div>
                             <div class="input-group input-group-sm" style="width:auto;margin-left: 10px;">
                                 <a href="{{url_for('dashboard.{}_manage'.format(identity))}}"
-                                    class="btn btn-success btn-sm">Create</a>
+                                    class="btn btn-success btn-sm">צור</a>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                                 {% for th in props.values() %}
                                 <th>{{th}}</th>
                                 {% endfor %}
-                                <th>Operation</th>
+                                <th>פעולה</th>
                             </tr>
                             {% for item in items %}
                             <tr>
@@ -42,9 +42,9 @@
                                 {% endfor %}
                                 <td>
                                     <a href="{{url_for('dashboard.{}_manage'.format(identity), id=item.id)}}"
-                                        class="btn btn-primary btn-sm">Edit</a>
-                                    <a data-url="{{identity}}/{{item.id}}/delete"
-                                        class="btn btn-danger btn-sm delete-btn">Delete</a>
+                                        class="btn btn-primary btn-sm">שנה</a>
+
+                                    <a data-url="{{identity}}/{{item.id}}/delete" class="btn btn-danger btn-sm delete-btn">Delete</a>
                                 </td>
                             </tr>
                             {% endfor %}

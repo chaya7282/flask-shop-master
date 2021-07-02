@@ -3,6 +3,7 @@
 {% extends 'dashboard/layout.html' %}
 
 {% block body %}
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -11,7 +12,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Create Product Step 2</h3>
                     </div>
-                    <form method="POST" action="">
+                    <form method="POST" action="" enctype='multipart/form-data'>
                         <div class="card-body">
                             {{ form.hidden_tag() }}
                             <label>Type:</label> {{product_type}}
@@ -24,8 +25,9 @@
                             {{ vendor.render_field(form.review_count) }}
                             {{ macros.render_select_field(form.category_id, categories) }}
                             {{ vendor.render_field(form.description) }}
-                            {{ macros.render_multi_img(form.images) }}
+                            {{ macros.render_multi_img(form) }}
                             {{ macros.render_attribute_field(form.attributes, product_type.product_attributes) }}
+                        </div>
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
                             </div>

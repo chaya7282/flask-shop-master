@@ -8,7 +8,7 @@ from flaskshop.database import Column, Model, db
 from flaskshop.corelib.mc import cache, cache_by_args, rdb
 from flaskshop.corelib.db import PropsItem
 from flaskshop.settings import Config
-
+import os
 
 MC_KEY_FEATURED_PRODUCTS = "product:featured:{}"
 MC_KEY_PRODUCT_IMAGES = "product:product:{}:images"
@@ -53,7 +53,9 @@ class Product(Model):
     @property
     def first_img(self):
         if self.images:
-            return str(self.images[0])
+            im=self.images[0].image
+            return str(self.images[0].image)
+
         return ""
 
     @property
@@ -113,12 +115,15 @@ class Product(Model):
     def get_featured_product(cls, num=8):
         return cls.query.filter_by(is_featured=True).limit(num).all()
 
-    def update_images(self, new_images):
+    @classmethod
+    def update_images(cls, new_images,product_id):
+
         origin_ids = (
-            ProductImage.query.with_entities(ProductImage.product_id)
-            .filter_by(product_id=self.id)
+            ProductImage.query.with_entities(ProductImage.id)
+            .filter_by(product_id=product_id)
             .all()
         )
+
         origin_ids = set(i for i, in origin_ids)
         new_images = set(int(i) for i in new_images)
         need_del = origin_ids - new_images
@@ -127,7 +132,7 @@ class Product(Model):
             ProductImage.get_by_id(id).delete(commit=False)
         for id in need_add:
             image = ProductImage.get_by_id(id)
-            image.product_id = self.id
+            image.product_id = product_id
             image.save(commit=False)
         db.session.commit()
 
@@ -161,8 +166,10 @@ class Product(Model):
             self.images, self.variant, need_del_collection_products
         ):
             item.delete(commit=False)
+
         db.session.delete(self)
         db.session.commit()
+        i=8
 
     @staticmethod
     def clear_mc(target):
@@ -210,7 +217,7 @@ class Product(Model):
         super().__flush_delete_event__(target)
         target.clear_mc(target)
         target.clear_category_cache(target)
-        Item.delete(target)
+ #       Item.delete(target) ******TO DO- Chaya
 
 
 class Category(Model):
@@ -233,6 +240,8 @@ class Category(Model):
     def products(self):
         all_category_ids = [child.id for child in self.children] + [self.id]
         return Product.query.filter(Product.category_id.in_(all_category_ids)).all()
+
+
 
     @property
     @cache(MC_KEY_CATEGORY_CHILDREN.format("{self.id}"))
@@ -277,6 +286,8 @@ class Category(Model):
             db.session.add(product)
         db.session.delete(self)
         db.session.commit()
+
+
         if self.background_img:
             image = current_app.config["STATIC_DIR"] / self.background_img
             if image.exists():
@@ -304,7 +315,7 @@ class ProductTypeAttributes(Model):
     """存储的产品的属性是包括用户可选和不可选"""
 
     __tablename__ = "product_type_attribute"
-    product_type_id = Column(db.Integer())
+    product_type_id = Column(db.Integer(),default=0)
     product_attribute_id = Column(db.Integer())
 
 
@@ -497,6 +508,7 @@ class ProductVariant(Model):
 
 class ProductAttribute(Model):
     __tablename__ = "product_attribute"
+
     title = Column(db.String(255), nullable=False)
 
     def __str__(self):
@@ -544,6 +556,8 @@ class ProductAttribute(Model):
             new = AttributeChoiceValue(title=value, attribute_id=self.id)
             db.session.add(new)
         db.session.commit()
+
+
 
     def update_types(self, new_types):
         origin_ids = (
@@ -612,8 +626,11 @@ class ProductImage(Model):
     order = Column(db.Integer())
     product_id = Column(db.Integer())
 
+
     def __str__(self):
         return url_for("static", filename=self.image, _external=True)
+
+
 
     @staticmethod
     def clear_mc(target):
@@ -628,9 +645,10 @@ class ProductImage(Model):
     def __flush_delete_event__(cls, target):
         super().__flush_delete_event__(target)
         target.clear_mc(target)
-        image_file = current_app.config["STATIC_DIR"] / target.image
+        image_file = current_app.config["UPLOAD_FOLDER"] / target.image
         if image_file.exists():
-            image_file.unlink()
+            os.remove(image_file)
+
 
 
 class Collection(Model):

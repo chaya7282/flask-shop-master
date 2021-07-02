@@ -1,4 +1,6 @@
 from flask_wtf import FlaskForm as _FlaskForm
+from flask_wtf import validators
+from flask_wtf.file import FileField, FileAllowed,  FileRequired
 from wtforms import (
     StringField,
     IntegerField,
@@ -138,13 +140,13 @@ class ProductForm(FlaskForm):
     review_count = IntegerField(default=0)
     category_id = SelectField()
     description = TextAreaField()
-    images = FieldList(StringField())  # TODO 限制图片数量
+    images = FileField("Upload")
     attributes = FieldList(SelectField())
     submit = SubmitField()
 
 
 class ProductCreateForm(FlaskForm):
-    product_type_id = SelectField("Choose A Product Type", default=1)
+    product_type_id = SelectField("בחר סוג מוצר", default=1)
     submit = SubmitField()
 
 

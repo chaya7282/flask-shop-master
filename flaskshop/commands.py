@@ -8,6 +8,7 @@ from werkzeug.exceptions import MethodNotAllowed, NotFound
 from pathlib import Path
 from itertools import chain
 
+
 from flaskshop.random_data import (
     create_users,
     create_menus,
@@ -145,19 +146,34 @@ def urls(url, order):
         click.echo(str_template.format(*row[:column_length]))
 
 
-@click.command()
-@with_appcontext
 def createdb():
     """ create database tables
     """
-
     db.create_all()
 
+def destroydb():
+    """ destory database tables
+    """
+    db.drop_all()
+
+def create_admin_cmd():
+    create_generator = chain(
+        create_roles(),
+        create_admin(),
+    )
+    for msg in create_generator:
+        click.echo(msg)
+
+def  create_dashboard_menus_cmd():
+
+    create_generator = chain(
+
+        create_dashboard_menus(),
+    )
+    for msg in create_generator:
+        click.echo(msg)
 
 
-@click.command()
-@click.option("--type", default="default", help="which type to seed")
-@with_appcontext
 def seed(type):
     """ Generate random data for test.
     """

@@ -14,18 +14,22 @@
                             <div class="input-group input-group-sm">
                                 <a href="{{url_for('dashboard.product_edit', id=product.id)}}"
                                     class="btn btn-primary btn-sm" style="margin-right: 5px;">Edit</a>
-                                <a data-url="products/{{product.id}}/delete" data-redirect="1"
-                                    class="btn btn-danger btn-sm delete-btn">Delete</a>
+                                11111
+                                <a href="{{url_for('dashboard.product_del', id=product.id)}}"
+                                    class="btn btn-primary btn-sm" style="margin-right: 5px;">Delete</a>
+
                             </div>
                         </div>
                     </div>
+
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div id="banner">
                                     <ul>
                                         {% for img in product.images %}
-                                        <li><img src="{{img}}" class="loop-image"></li>
+                                        <li><img src="{{ url_for('static', filename='uploads/'+ img.image) }}" class="loop-image"></li>
+                                        {{img.image}}
                                         {% endfor %}
                                     </ul>
                                     <span class="b-btn left">
@@ -36,15 +40,15 @@
                             <div class="col-md-6">
                                 <ul class="list-group mb-3">
                                     <li class="list-group-item">
-                                        <b>On Sale</b> <span
+                                        <b>On Sale (במבצע)</b> <span
                                             class="float-right">{{macros.render_boolean(product.on_sale)}}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Price</b> <span class="float-right">${{product.price}} /
+                                        <b>Price(מחיר)</b> <span class="float-right">${{product.price}} /
                                             ${{product.basic_price}}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Rating</b> <span class="float-right">{{product.rating}}</span>
+                                        <b>Rating (דרוג)</b> <span class="float-right">{{product.rating}}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <b>Sold Count</b> <span class="float-right">{{product.sold_count}}</span>
@@ -53,13 +57,13 @@
                                         <b>Review Count</b> <span class="float-right">{{product.review_count}}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Category</b> <span class="float-right">{{product.category}}</span>
+                                        <b>Category (קטגוריה)</b> <span class="float-right">{{product.category}}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>ProductType</b> <span class="float-right">{{product.product_type}}</span>
+                                        <b>ProductType (סוג המוצר)</b> <span class="float-right">{{product.product_type}}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Created</b> <span class="float-right">{{product.created_at}}</span>
+                                        <b>Created (תאריך יצירה)</b> <span class="float-right">{{product.created_at}}</span>
                                     </li>
                                 </ul>
                             </div>

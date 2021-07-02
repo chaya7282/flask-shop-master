@@ -1,6 +1,12 @@
 from datetime import datetime
-
+from flaskshop.public.models import MenuItem
 from flask import request, render_template, redirect, url_for, current_app
+from flaskshop import utils
+from flaskshop.settings import Config
+import os
+import secrets
+from werkzeug import secure_filename
+from PIL import Image
 from flaskshop.product.models import (
     ProductAttribute,
     ProductType,
@@ -9,6 +15,7 @@ from flaskshop.product.models import (
     Category,
     ProductType,
     ProductVariant,
+    ProductImage,
 )
 from flaskshop.dashboard.forms import (
     AttributeForm,
@@ -50,13 +57,14 @@ def attributes_manage(id=None):
         if not id:
             attr = ProductAttribute()
         attr.title = form.title.data
+        attr.save()
         attr.update_types(form.types.data)
         attr.update_values(form.values.data)
         attr.save()
         return redirect(url_for("dashboard.attributes"))
-    product_types = ProductType.query.all()
+
     return render_template(
-        "product/attribute.html", form=form, product_types=product_types
+        "product/attribute.html", form=form,
     )
 
 
@@ -94,6 +102,7 @@ def collections_manage(id=None):
                 current_app.config["UPLOAD_FOLDER"] + "/" + background_img
             )
         collection.save()
+
         return redirect(url_for("dashboard.collections"))
     products = Product.query.all()
     return render_template("product/collection.html", form=form, products=products)
@@ -138,6 +147,8 @@ def categories_manage(id=None):
                 current_app.config["UPLOAD_FOLDER"] + "/" + background_img
             )
         category.save()
+
+
         return redirect(url_for("dashboard.categories"))
     parents = Category.first_level_items()
     return render_template("product/category.html", form=form, parents=parents)
@@ -172,6 +183,8 @@ def product_types_manage(id=None):
     if form.validate_on_submit():
         if not id:
             product_type = ProductType()
+            product_type.title= form.title.data
+            product_type.save()
         product_type.update_product_attr(form.product_attributes.data)
         product_type.update_variant_attr(form.variant_attr_id.data)
         del form.product_attributes
@@ -208,11 +221,11 @@ def products():
     pagination = query.paginate(page, 10)
     props = {
         "id": "ID",
-        "title": "Title",
-        "on_sale_human": "On Sale",
-        "sold_count": "Sold Count",
-        "price_human": "Price",
-        "category": "Category",
+        "title": "כותרת",
+        "on_sale_human": "בסייל",
+        "sold_count": "כמות שנמכרה",
+        "price_human": "מחיר",
+        "category": "קטגוריה",
     }
     context = {
         "items": pagination.items,
@@ -228,24 +241,36 @@ def product_detail(id):
     return render_template("product/detail.html", product=product)
 
 
+
 def _save_product(product, form):
-    product.update_images(form.images.data)
+   # product.update_images(form.images.data)
     product.update_attributes(form.attributes.data)
     del form.images
     del form.attributes
     form.populate_obj(product)
     product.save()
     return product
-
+def product_del(id):
+    product = Product.get_by_id(id)
+    if product:
+        product.delete()
+    return redirect(url_for('dashboard.products'))
 
 def product_edit(id):
     product = Product.get_by_id(id)
     form = ProductForm(obj=product)
     if form.validate_on_submit():
+        f = request.files['imgdata']
+        if f:
+            image_name = secure_filename(f.filename)
+            f.save(os.path.join(Config.UPLOAD_FOLDER, image_name))
+            new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
+            Product.update_images([new_img[0].id],product.id)
+
         _save_product(product, form)
         return redirect(url_for("dashboard.product_detail", id=product.id))
     categories = Category.query.all()
-    context = {"form": form, "categories": categories, "product": product}
+    context = {"form": form, "categories": categories, "product": product }
     return render_template("product/product_edit.html", **context)
 
 
@@ -263,23 +288,29 @@ def product_create_step1():
         "product/product_create_step1.html", form=form, product_types=product_types
     )
 
-
 def product_create_step2():
     form = ProductForm()
     product_type_id = request.args.get("product_type_id", 1, int)
     product_type = ProductType.get_by_id(product_type_id)
     categories = Category.query.all()
     if form.validate_on_submit():
+        f = request.files['imgdata']
+
         product = Product(product_type_id=product_type_id)
         product = _save_product(product, form)
+        if f:
+            image_name= secure_filename(f.filename)
+            f.save(os.path.join(Config.UPLOAD_FOLDER,image_name))
+            ProductImage.get_or_create(image=image_name , product_id=product.id)
         product.generate_variants()
         return redirect(url_for("dashboard.product_detail", id=product.id))
+
     return render_template(
         "product/product_create_step2.html",
         form=form,
         product_type=product_type,
-        categories=categories,
-    )
+        categories=categories
+   )
 
 
 def variant_manage(id=None):

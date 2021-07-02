@@ -5,6 +5,7 @@
 {% else %}
 {% set type = 'text' %}
 {% endif %}
+<form action = "" method = "POST" enctype = "multipart/form-data">
 <div class="form-group">
     <label for="{{label_id}}">{{ field.label.text }}</label>
     <input type="{{type}}" class="form-control" id="{{label_id}}" name="{{label_id}}"
@@ -127,15 +128,22 @@
 </div>
 {% endmacro %}
 
-{% macro render_multi_img(field) %}
+{% macro render_multi_img(form) %}
+<div class="form-group">
+  {{ form.images.label() }}
+    <input type="file" name="imgdata" id="imgdata">
+</div>
+{% endmacro %}
+
+{% macro render_multi_img2(field) %}
 <div class="form-group">
     <label>{{ field.label.text }}</label>
-    <div id="field_list" class="img_field">
+    <div id="field_list_" class="img_field">
         {% for subfield in field %}
         <div class="img_block">
             <img class="" src="{{ subfield.data }}">
             <input type="hidden" name="{{subfield.label.field_id}}" value="{{ subfield.data.id }}">
-            <button type="button" class="btn btn-info btn-sm" id="item_del">Remove</button>
+            <button type="button" class="btn btn-info btn-sm" id="item_del_">Remove</button>
         </div>
         {% endfor %}
     </div>
@@ -160,7 +168,7 @@
     <p>
         {% for attr in attributes %}
         <label>{{attr.title}}</label>
-        <select class="form-control select2" style="width: 100%;" name="attributes-{{loop.index}}">
+        <select class="form-control select" style="width: 100%;" name="attributes-{{loop.index}}">
             <option value="0">None</option>
             {% for item in attr.values %}
             {% set attr_id = attr.id|string %}
@@ -190,3 +198,4 @@
     </div>
 </div>
 {% endmacro %}
+</form>>

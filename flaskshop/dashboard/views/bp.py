@@ -44,6 +44,7 @@ from .product import (
     product_create_step1,
     product_create_step2,
     variant_manage,
+    product_del,
 )
 from .order import orders, order_detail, send_order, draft_order
 from .discount import vouchers, vouchers_manage, sales, sales_manage
@@ -178,7 +179,8 @@ def flaskshop_load_blueprints(app):
     )
     bp.add_url_rule(
         "/product_types/<id>/edit",
-        view_func=product_types_manage,
+        view_func=
+        product_types_manage,
         methods=["GET", "POST"],
     )
     bp.add_url_rule("/shipping_methods", view_func=shipping_methods)
@@ -194,6 +196,7 @@ def flaskshop_load_blueprints(app):
     )
     bp.add_url_rule("/products", view_func=products)
     bp.add_url_rule("/products/<id>", view_func=product_detail)
+    bp.add_url_rule("/product_del/<id>", view_func=product_del)
     bp.add_url_rule(
         "/products/create/step1",
         view_func=product_create_step1,

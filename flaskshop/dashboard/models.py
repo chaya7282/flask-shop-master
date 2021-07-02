@@ -36,6 +36,16 @@ class DashboardMenu(Model):
         if self.endpoint:
             return url_for("dashboard." + self.endpoint)
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def drop_all(cls):
+        items= cls.query.all()
+        for item in items:
+            item.delete()
+
 
 class Setting(Model):
     __tablename__ = "management_setting"

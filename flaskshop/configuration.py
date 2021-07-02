@@ -4,7 +4,7 @@ import sys
 
 from flask import Flask, render_template
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
-
+from flask_cli import FlaskCLI
 from flaskshop import commands
 from flaskshop.extensions import (
     bcrypt,
@@ -30,22 +30,6 @@ from .dashboard import views as dashboard_view
 from .api import api as api_view
 from .dashboard_api.api_app import dashboard_api
 
-
-def create_app(app,config_object = Config):
-
-    app.config.from_object(config_object)
-    app.pluggy = manager.FlaskshopPluginManager("flaskshop")
-
-    register_extensions(app)
-    load_plugins(app)
-    register_blueprints(app)
-    register_errorhandlers(app)
-    register_shellcontext(app)
-    register_commands(app)
-    jinja_global_varibles(app)
-    log_slow_queries(app)
-
-    app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/dashboard_api": dashboard_api})
 
 
 
@@ -93,8 +77,6 @@ def register_commands(app):
     app.cli.add_command(commands.lint)
     app.cli.add_command(commands.clean)
     app.cli.add_command(commands.urls)
-    app.cli.add_command(commands.createdb)
-    app.cli.add_command(commands.seed)
     app.cli.add_command(commands.flushrdb)
     app.cli.add_command(commands.reindex)
 

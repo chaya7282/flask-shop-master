@@ -2,7 +2,7 @@
 """Public section, including homepage and signup."""
 from flask import Blueprint, render_template, request, send_from_directory
 from pluggy import HookimplMarker
-
+from flaskshop import settings
 from flaskshop.extensions import login_manager
 from flaskshop.account.models import User
 from flaskshop.product.models import Product
@@ -20,6 +20,7 @@ def load_user(user_id):
 
 def home():
     products = Product.get_featured_product()
+
     return render_template("public/home.html", products=products)
 
 

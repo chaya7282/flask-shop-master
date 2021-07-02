@@ -35,8 +35,8 @@
       <div class="carousel-inner" role="listbox">
         {% for image in images %}
         <div class="carousel-item{% if loop.first %} active{% endif %}">
-          <img class="d-block img-fluid lazyload lazypreload" alt="" src="{{ image }}" data-src="{{ image }}"
-            width=255 />
+          <img class="d-block img-fluid lazyload lazypreload" alt="" src="{{ image }}"
+               data-src="{{ url_for('static', filename='uploads/'+ image.image) }}" width=255 />
         </div>
         {% endfor %}
       </div>
