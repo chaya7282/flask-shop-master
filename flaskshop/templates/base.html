@@ -1,11 +1,9 @@
 {% import '_macros.html' as macros %}
 <!DOCTYPE html>
 <html class="no-js">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+
   <head>
-    <title>{% block title %}עסק מקוון{% endblock %}</title>
+    <title>{% block title %}flask store{% endblock %}</title>
     {% block meta %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,30 +36,30 @@
 
                 <li>
                   <a href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-                    אזור מנהל
+                    Dashboard
                   </a>
                 </li>
                 {% endif %}
                 {{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
                 <li>
                   <a href="{{ url_for('account.index') }}">
-                   החשבון שלך</a>
+                    Your Account</a>
                 </li>
 
                 <li>
                   <a href="{{ url_for('account.logout') }}">
-                    התנתקות</a>
+                    Log Out</a>
                 </li>
 
                 {% else %}
                 <li>
                   <a rel="nofollow" href="{{ url_for('account.signup') }}">
-                    הרשמה
+                    Register
                   </a>
                 </li>
                 <li>
                   <a rel="nofollow" href="{{ url_for('account.login') }}">
-                    התחברות
+                    Log in
                   </a>
                 </li>
                 {% endif %}
@@ -78,10 +76,11 @@
                 <svg data-src="{{ url_for('static', filename='img/mobile-menu.svg') }}" width="28px"
                   height="20px"></svg>
               </div>
-                <img src="{{ url_for('static', filename='img/logoChaya.png') }}" width="50%" height="50%" />
-
-              <a href="{{ url_for('public.home') }}"> </a>
-              </div>
+              <a href="{{ url_for('public.home') }}">
+                <svg data-src="{{ url_for('static', filename='img/logo-document.svg') }}" width="176px"
+                  height="38px"></svg>
+              </a>
+            </div>
             <div class="col-2 col-md-5 navbar__search static">
               {% if current_app.config['USE_ES']  %}
               <div class="d-md-none mobile-search-icon">
@@ -103,7 +102,7 @@
               <div class="navbar__brand__cart float-right">
                 <a rel="nofollow" class="cart__icon" href="{{ url_for('checkout.cart_index') }}">
                   <span class="cart-label d-none d-md-inline-block">
-                   עגלה
+                    Your Cart
                   </span>
                   <div class="navbar__brand__cart__icon">
                     <svg data-src="{{ url_for('static', filename='img/cart.svg') }}" width="24" height="24"></svg>
@@ -162,43 +161,43 @@
                 <li class="nav-item__dropdown menu__item">
                   <a>
                     <strong>
-                      החשבון שלך
+                      Account
                     </strong>
                   </a>
                   <hr />
                 <li>
                   <a rel="nofollow" href="{{ url_for('checkout.cart_index') }}">
-                    עגלה
+                    Your Cart
                   </a>
                 </li>
                 {% if current_user.is_authenticated %}
                 {% if current_user.can_edit() %}
                 <li>
                   <a href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-                    אזור מנהל
+                    Dashboard
                   </a>
                 </li>
                 {% endif %}
                 <li>
                   <a href="{{ url_for('account.index') }}">
-                    החשבון שלך
+                    Your account
                   </a>
                 </li>
 
                 <li>
                   <a href="{{ url_for('account.logout') }}">
-                    התנתקות</a>
+                    Log out</a>
                 </li>
 
                 {% else %}
                 <li>
                   <a rel="nofollow" href="{{ url_for('account.signup') }}">
-                    הרשמה
+                    Register
                   </a>
                 </li>
                 <li>
                   <a rel="nofollow" href="{{ url_for('account.login') }}">
-                    התחברות
+                    Log in
                   </a>
                 </li>
                 {% endif %}
@@ -212,6 +211,7 @@
                       height="45px" />
                   </a>
                   <a target="_blank" rel="noopener" class="social-footer" href="https://github.com/mirumee/saleor">
+                   ddddd
                     <svg data-src="{{ url_for('static', filename='img/github-logo.svg') }}" width="45px"
                       height="45px" />
                   </a>
@@ -252,7 +252,7 @@
           <div class="row">
             <div class="col-4">
               <a href="{{ url_for('public.home') }}" class="footer__logo float-md-left">
-                <img src="{{ url_for('static', filename='img/logoChaya.png') }}" width='30%' height='30%' />
+                <svg data-src="{{ url_for('static', filename='img/logo-document.svg') }}" width='176px' height='38px' />
               </a>
             </div>
             <div class="col-8 footer__copy-text">{{ settings['project_copyright'].value }}</div>
@@ -262,9 +262,7 @@
     </footer>
     {% endblock %}
     {% block footer_scripts %}
-
-     <script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
-
+      <script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
     {% endblock footer_scripts %}
   </body>
 
