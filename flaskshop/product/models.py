@@ -143,7 +143,7 @@ class Product(Model):
 
     def generate_variants(self):
         if not self.product_type.has_variants:
-            ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id)
+            ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id, title= self.title)
         else:
             sku_id = 1337
             variant_attributes = self.product_type.variant_attributes[0]
