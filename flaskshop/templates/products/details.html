@@ -71,26 +71,19 @@
 
  {% if product.on_sale %}
     {% block orderform %}
-       <div class="row">
-         <div class="col text-center">
-             <h3>כמות</h3>
-         </div>
-       </div>
+
          <div class="row">
          <div class="col text-center">
 
             {{ render_field(form.quantity) }}
          </div>
        </div>
-         <div class="row">
-         <div class="col text-center">
-             <h3>סוג</h3>
-         </div>
-         </div>
+
      <div class="row">
          <div class="col text-center">
-          {% if form.variant.choices | length > 1 %}
-
+         {{ form.csrf_token }}
+      {% if form.variant.choices | length > 1 %}
+      <div class="variant-picker">
         <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
         <div class="btn-group" data-toggle="buttons">
           {% for item in form.variant -%}
@@ -103,7 +96,7 @@
         <div class="is-invalid "></div>
         <div class="invalid-feedback">Please choose a variant!</div>
         {% endif %}
-
+      </div>
       {% else %}
       {% for item in form.variant -%}
       <label class="btn btn-secondary variant-picker__option active" style="display: none">
