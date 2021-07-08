@@ -36,7 +36,6 @@
 <section class="mb-5">
 </section>
 <!--Section: Block Content-->
-<section class="mb-5">
 
   <div class="row">
     <div class="col-md-6 mb-4 mb-md-0">
@@ -50,7 +49,7 @@
           <div class="col-12 mb-0">
               <div class="container p-3 my-3 bg-primary ">
                 <div class="w-50">
-                    <img class="center-block img-fluid" src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
+                    <img class="center-block " src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
                  data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
                 </div>
                 </div>
@@ -74,17 +73,16 @@
       <h1 class="text-muted">{{product.title}}</h1>
       </div>
         <div class="row justify-content-center">
-      <p class="mb-2 text-muted text-uppercase small">{{ product.category }}</p>
+      <p class="mb-2 text-muted text-uppercase small">ש"ח{{product.price}}</p>
         </div>
+
+
+
+
       <div class="table-responsive">
         <table class="table table-sm table-borderless mb-1 table text-center">
           <tbody>
-            <tr class="table-primary">
 
-              <th class="pl-0 w-25" scope="row"><strong>מחיר</strong></th>
-
-              <td>{{product.price}}$</td>
-            </tr>
             {% if product.is_discounted %}
             <tr class="table-success">
               <th class="pl-0 w-25" scope="row"><strong>מבצע</strong></th>
@@ -101,55 +99,37 @@
     <form id="product-form" role="form" class="product-form1 clearfix" method="post"
       action="{{ url_for('product.product_add_to_cart', id=product.id) }}">
       {{ form.csrf_token }}
+         <div class="form-group">
 
+            {{ render_field(form.quantity) }}
+         </div>
+         <div class="form-group">
 
-        <div class="table-responsive">
-        <table class="table table-sm table-borderless mb-1 table text-center">
-          <tbody>
-            <tr class="table-primary">
+             {% if form.variant.choices | length > 1 %}
 
-              <th class="pl-0 w-25" scope="row"><strong>כמות</strong></th>
-
-              <td class="text-center"> {{ render_field(form.quantity) }}</td>
-            </tr>
-
-            <tr class="table-success">
-              <th class="pl-0 w-25" scope="row"><strong> הוסף לעגלה</strong></th>
-              <td><button class="btn btn-primary" type="submit">הוסף</button></td>
-            </tr>
- <tr class="table-info">
-    <th class="pl-0 w-25" scope="row"><strong> בחר וריאנט</strong></th>
-   <td>
-   {% if form.variant.choices | length > 1 %}
-      <div class="variant-picker">
-        <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
-        <div class="btn-group" data-toggle="buttons">
-          {% for item in form.variant -%}
-          <label class="btn btn-secondary variant-picker__option">
-            {{ item()|safe }} {{ item.label.text|safe }}
-          </label>
-          {% endfor %}
-        </div>
-         {% if form.variant.errors %}
-        <div class="is-invalid "></div>
-        <div class="invalid-feedback">Please choose a variant!</div>
-        {% endif %}
-      </div>
-      {% else %}
-      {% for item in form.variant -%}
-      <label class="btn btn-secondary variant-picker__option active" style="display: none">
-        {{ item(checked='checked')|safe }}
-      </label>
-      {% endfor %}
-      {% endif %}
-   </td>
- </tr>
-
-          </tbody>
-        </table>
-      </div>
-
-
+             <div class="variant-picker">
+            <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
+            <div class="btn-group" data-toggle="buttons">
+              {% for item in form.variant -%}
+              <label class="btn btn-secondary variant-picker__option">
+                {{ item()|safe }} {{ item.label.text|safe }}
+              </label>
+              {% endfor %}
+            </div>
+             {% if form.variant.errors %}
+            <div class="is-invalid "></div>
+            <div class="invalid-feedback">Please choose a variant!</div>
+            {% endif %}
+          </div>
+              {% else %}
+              {% for item in form.variant -%}
+              <label class="btn btn-secondary variant-picker__option active" style="display: none">
+                {{ item(checked='checked')|safe }}
+              </label>
+              {% endfor %}
+         {% endif %}
+         </div>
+    </form>
     {% endblock %}
     <div class="product__info__form-error">
       <small class="text-danger"></small>
@@ -176,5 +156,5 @@
     </table>
   </div>
 </div>
-</section>
+
  {% endblock content %}
