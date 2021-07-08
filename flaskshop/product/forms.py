@@ -13,9 +13,9 @@ class MyIntegerField(IntegerField):
 
 
 class AddCartForm(FlaskForm):
-    variant = RadioField("", validators=[DataRequired()], coerce=int)
+    variant = RadioField("סוג", validators=[DataRequired()], coerce=int)
     quantity = MyIntegerField(
-        "", validators=[DataRequired(), NumberRange(min=1)], default=1
+        "כמות", validators=[DataRequired(), NumberRange(min=1)], default=1
     )
 
     def __init__(self, *args, product=None, **kwargs):
