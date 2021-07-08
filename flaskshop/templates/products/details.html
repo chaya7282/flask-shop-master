@@ -34,7 +34,7 @@
 {% block content %}
 
 <!--Section: Block Content-->
-<div class="container p-3 my-3 bg-primary text-white">
+<div class="container p-3 my-3 bg-secondary ">
 
     <div class=" row ">
         <div class="col-md-auto text-center">
@@ -75,18 +75,19 @@
          <div class="col text-center">
              <h3>כמות</h3>
          </div>
-
-        <div class="col text-center">
-             <h3>סוג</h3>
-         </div>
-
        </div>
-       <div class="row">
+         <div class="row">
          <div class="col text-center">
 
             {{ render_field(form.quantity) }}
          </div>
-
+       </div>
+         <div class="row">
+         <div class="col text-center">
+             <h3>סוג</h3>
+         </div>
+         </div>
+     <div class="row">
          <div class="col text-center">
           {% if form.variant.choices | length > 1 %}
 
