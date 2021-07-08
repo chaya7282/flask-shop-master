@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% from 'bootstrap/form.html' import render_field %}
 
-<html lang="en">
+<html dir="rtl" lang="ar">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,12 +51,12 @@
             <h1 class="text-muted">{{product.title}}</h1>
          </div>
         </div>
-        <div class=" row">
+        <div class="row d-flex justify-content-center ">
              <div class="col text-center">
              <h2>ש"ח{{product.price}}</h2>
         </div>
         </div>
-        <div class ="row">
+        <div class=" row d-flex justify-content-center ">
             {% if product.is_discounted %}
             <tr class="table-success">
               <th class="pl-0 w-25" scope="row"><strong>מבצע</strong></th>
@@ -72,15 +73,17 @@
  {% if product.on_sale %}
     {% block orderform %}
 
-         <div class="row d-flex justify-content-left ">
+         <div class="row text-center my-4 bg-primary">
+         <div class=" col text-center">
+        <label >כמות</label>
+             {{ render_field(form.quantity) }}
+         </div>
+         </div>
 
+    <div class="row text-center bg-info">
+        <div class="col text-center">
 
-            {{ render_field(form.quantity) }}
-
-       </div>
-
-     <div class="row d-flex justify-content-left">
-
+      <label>סוג</label>
          {{ form.csrf_token }}
       {% if form.variant.choices | length > 1 %}
       <div class="variant-picker">
@@ -104,10 +107,11 @@
       </label>
       {% endfor %}
       {% endif %}
-
+      </div>
 
        </div>
-       <div class ="row">
+
+       <div class ="row my-4 ">
         <div class="col text-center">
        <button class="btn btn-primary" type="submit">
           Add to cart
@@ -147,3 +151,4 @@
     </div>
 
  {% endblock content %}
+</html>
