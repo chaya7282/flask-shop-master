@@ -48,15 +48,16 @@
         <div class="row product-gallery mx-1">
 
           <div class="col-12 mb-0">
-            <figure class="view overlay rounded z-depth-1 main-img">
-              <a href="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
-                data-size="710x823">
-                <img src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
-                 data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}" class="img-fluid z-depth-1">
-              </a>
+              <div class="container p-3 my-3 bg-primary ">
+                <div class="w-50">
+                    <img class="center-block img-fluid" src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
+                 data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
+                </div>
+                </div>
+            </div>
 
-            </figure>
-            
+
+
           </div>
           <div class="col-12">
             <div class="row">
