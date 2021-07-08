@@ -72,15 +72,15 @@
  {% if product.on_sale %}
     {% block orderform %}
 
-         <div class="row">
-         <div class="col text-center">
+         <div class="row d-flex justify-content-right ">
+
 
             {{ render_field(form.quantity) }}
-         </div>
+
        </div>
 
-     <div class="row">
-         <div class="col text-center">
+     <div class="row d-flex justify-content-right">
+
          {{ form.csrf_token }}
       {% if form.variant.choices | length > 1 %}
       <div class="variant-picker">
@@ -104,7 +104,7 @@
       </label>
       {% endfor %}
       {% endif %}
-        </div>
+
 
        </div>
        <div class ="row">
