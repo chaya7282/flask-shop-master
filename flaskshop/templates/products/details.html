@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 {% from 'bootstrap/form.html' import render_field %}
 
-{% block title %}
-{{ product.name }}
-{% endblock %}
-{{ bootstrap.load_css() }}
-
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Complete Bootstrap 4 Website Layout</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+</head>
 {% block breadcrumb %}
 <ul class="breadcrumbs list-unstyled">
   <li>
@@ -23,71 +31,95 @@
   </li>
 </ul>
 {% endblock breadcrumb %}
-
 {% block content %}
 
-<div class="row product">
+<section class="mb-5">
+</section>
+<!--Section: Block Content-->
+<section class="mb-5">
 
-  <div class="col-md-6 col-12 product__gallery">
-    {% with images=product.images %}
-    {% if images %}
-    <div id="carousel-example-generic" class="carousel slide">
-      <div class="carousel-inner" role="listbox">
-        {% for image in images %}
-        <div class="carousel-item{% if loop.first %} active{% endif %}">
-          <img class="d-block img-fluid lazyload lazypreload" alt="" src="{{ image }}"
-               data-src="{{ url_for('static', filename='uploads/'+ image.image) }}" width=255 />
+  <div class="row">
+    <div class="col-md-6 mb-4 mb-md-0">
+
+      <div id="mdb-lightbox-ui"></div>
+
+      <div class="mdb-lightbox">
+
+        <div class="row product-gallery mx-1">
+
+          <div class="col-12 mb-0">
+            <figure class="view overlay rounded z-depth-1 main-img">
+              <a href="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
+                data-size="710x823">
+                <img src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
+                 data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}" class="img-fluid z-depth-1">
+              </a>
+
+            </figure>
+            
+          </div>
+          <div class="col-12">
+            <div class="row">
+           </div>
+          </div>
         </div>
-        {% endfor %}
+
       </div>
-      {% if images|length > 1 %}
-      <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
-        <svg data-src="{{ url_for('static', filename='img/gallery-arrow.svg') }}"></svg>
-      </a>
-      <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
-        <svg data-src="{{ url_for('static', filename='img/gallery-arrow.svg') }}"></svg>
-      </a>
-      {% endif %}
-      <ol class="carousel-indicators d-none d-md-block">
-        {% for image in images %}
-        {% if images|length > 1 %}
-        <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index - 1 }}" {% if loop.first %}
-          class="active" {% endif %}>
-          <img class="lazyload lazypreload" src="{{ image }}" data-src="{{ image }}">
-        </li>
-        {% endif %}
-        {% endfor %}
-      </ol>
+
     </div>
-    {% else %}
-    <img alt="" class="img-fluid lazyload lazypreload">
-    {% endif %}
-    {% endwith %}
-  </div>
-  <div class="col-md-6 col-12 product__info">
-    <h1 class="product__info__name">
-      {{ product }}
-    </h1>
+    <div class="col-md-4">
+	
+      <div class="row justify-content-center">
+      <h1 class="text-muted">{{product.title}}</h1>
+      </div>
+        <div class="row justify-content-center">
+      <p class="mb-2 text-muted text-uppercase small">{{ product.category }}</p>
+        </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-borderless mb-1 table text-center">
+          <tbody>
+            <tr class="table-primary">
+
+              <th class="pl-0 w-25" scope="row"><strong>מחיר</strong></th>
+
+              <td>{{product.price}}$</td>
+            </tr>
+            {% if product.is_discounted %}
+            <tr class="table-success">
+              <th class="pl-0 w-25" scope="row"><strong>מבצע</strong></th>
+              <td>{{product.basic_price}}$</td>
+            </tr>
+            {%endif%}
+          </tbody>
+        </table>
+      </div>
 
 
-    <h2 class="product__info__price">
-      <span class="text-info">$ {{product.price}}</span>
-      {% if product.is_discounted %}
-      <small class="product__info__price__undiscounted">
-        {{product.basic_price}}
-      </small>
-      {% endif %}
-      <small class="stock">
-
-      </small>
-    </h2>
-
-    {% if product.on_sale %}
+ {% if product.on_sale %}
     {% block orderform %}
     <form id="product-form" role="form" class="product-form1 clearfix" method="post"
       action="{{ url_for('product.product_add_to_cart', id=product.id) }}">
       {{ form.csrf_token }}
-      {% if form.variant.choices | length > 1 %}
+
+
+        <div class="table-responsive">
+        <table class="table table-sm table-borderless mb-1 table text-center">
+          <tbody>
+            <tr class="table-primary">
+
+              <th class="pl-0 w-25" scope="row"><strong>כמות</strong></th>
+
+              <td class="text-center"> {{ render_field(form.quantity) }}</td>
+            </tr>
+
+            <tr class="table-success">
+              <th class="pl-0 w-25" scope="row"><strong> הוסף לעגלה</strong></th>
+              <td><button class="btn btn-primary" type="submit">הוסף</button></td>
+            </tr>
+ <tr class="table-info">
+    <th class="pl-0 w-25" scope="row"><strong> בחר וריאנט</strong></th>
+   <td>
+   {% if form.variant.choices | length > 1 %}
       <div class="variant-picker">
         <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
         <div class="btn-group" data-toggle="buttons">
@@ -109,17 +141,13 @@
       </label>
       {% endfor %}
       {% endif %}
+   </td>
+ </tr>
 
-      <div class="product__info__quantity">
-        {{ render_field(form.quantity) }}
+          </tbody>
+        </table>
       </div>
 
-      <div class="form-group product__info__button">
-        <button class="btn btn-primary" type="submit">
-          Add to cart
-        </button>
-      </div>
-    </form>
 
     {% endblock %}
     <div class="product__info__form-error">
@@ -132,7 +160,7 @@
     </p>
     {% endif %}
     <div class="product__info__description">
-      <h3>Description</h3>
+      <h3>תאור</h3>
       <hr>
       {{ product.description|safe }}
     </div>
@@ -147,5 +175,5 @@
     </table>
   </div>
 </div>
-{% endblock content %}
-
+</section>
+ {% endblock content %}
