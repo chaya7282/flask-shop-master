@@ -36,8 +36,8 @@
 <!--Section: Block Content-->
 <div class="container">
 
-    <div class=" row justify-content-md-center">
-        <div class="col-md-auto">
+    <div class=" row ">
+        <div class="col-md-auto text-center">
         <div class="w-50">
             <img class="center-block img-fluid" src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
          data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"/>
@@ -71,16 +71,25 @@
 
  {% if product.on_sale %}
     {% block orderform %}
-
        <div class="row">
          <div class="col text-center">
-          {{ form.csrf_token }}
+             <h3>כמות</h3>
+         </div>
+
+        <div class="col text-center">
+             <h3>סוג</h3>
+         </div>
+
+       </div>
+       <div class="row">
+         <div class="col text-center">
+
             {{ render_field(form.quantity) }}
          </div>
 
          <div class="col text-center">
           {% if form.variant.choices | length > 1 %}
-      <div class="variant-picker">
+
         <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
         <div class="btn-group" data-toggle="buttons">
           {% for item in form.variant -%}
@@ -93,7 +102,7 @@
         <div class="is-invalid "></div>
         <div class="invalid-feedback">Please choose a variant!</div>
         {% endif %}
-      </div>
+
       {% else %}
       {% for item in form.variant -%}
       <label class="btn btn-secondary variant-picker__option active" style="display: none">
@@ -105,12 +114,12 @@
 
        </div>
        <div class ="row">
-     <div class="col text-center">
+        <div class="col text-center">
        <button class="btn btn-primary" type="submit">
           Add to cart
         </button>
      </div>
- </div>
+     </div>
     </form>
     </div>
     </div>
