@@ -33,99 +33,88 @@
 {% endblock breadcrumb %}
 {% block content %}
 
-<section class="mb-5">
-</section>
 <!--Section: Block Content-->
+<div class="container">
 
-  <div class="row">
-    <div class="col-md-6 mb-4 mb-md-0">
-
-      <div id="mdb-lightbox-ui"></div>
-
-      <div class="mdb-lightbox">
-
-        <div class="row product-gallery mx-1">
-
-          <div class="col-12 mb-0">
-              <div class="container p-3 my-3 bg-primary ">
-                <div class="w-50">
-                    <img class="center-block img-fluid" src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
-                 data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
-                </div>
-                </div>
-            </div>
-
-
-
-          </div>
-          <div class="col-12">
-            <div class="row">
-           </div>
-          </div>
+    <div class=" row justify-content-md-center">
+        <div class="col-md-auto">
+        <div class="w-50">
+            <img class="center-block img-fluid" src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"
+         data-src="{{ url_for('static', filename='uploads/'+ product.images[0].image) }}"/>
         </div>
-
-      </div>
-
     </div>
-    <div class="col-md-4">
-	
-      <div class="row justify-content-center">
-      <h1 class="text-muted">{{product.title}}</h1>
-      </div>
-        <div class="row justify-content-center">
-      <p class="mb-2 text-muted text-uppercase small">ש"ח{{product.price}}</p>
-        </div>
-      <div class="table-responsive">
-        <table class="table table-sm table-borderless mb-1 table text-center">
-          <tbody>
 
+    <div  class="col ">
+        <div class ="row">
+            <div class="col text-center">
+            <h1 class="text-muted">{{product.title}}</h1>
+         </div>
+        </div>
+        <div class=" row">
+             <div class="col text-center">
+             <h2>ש"ח{{product.price}}</h2>
+        </div>
+        </div>
+        <div class ="row">
             {% if product.is_discounted %}
             <tr class="table-success">
               <th class="pl-0 w-25" scope="row"><strong>מבצע</strong></th>
               <td>{{product.basic_price}}$</td>
             </tr>
             {%endif%}
-          </tbody>
-        </table>
-      </div>
+        </div>
+
+
+ <form  id="product-form" role="form" class="product-form1 clearfix" method="post"
+      action="{{ url_for('product.product_add_to_cart', id=product.id) }}">
 
 
  {% if product.on_sale %}
     {% block orderform %}
-    <form id="product-form" role="form" class="product-form1 clearfix" method="post"
-      action="{{ url_for('product.product_add_to_cart', id=product.id) }}">
-      {{ form.csrf_token }}
-         <div class="form-group">
 
+       <div class="row">
+         <div class="col text-center">
+          {{ form.csrf_token }}
             {{ render_field(form.quantity) }}
          </div>
-         <div class="form-group">
 
-             {% if form.variant.choices | length > 1 %}
+         <div class="col text-center">
+          {% if form.variant.choices | length > 1 %}
+      <div class="variant-picker">
+        <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
+        <div class="btn-group" data-toggle="buttons">
+          {% for item in form.variant -%}
+          <label class="btn btn-secondary variant-picker__option">
+            {{ item()|safe }} {{ item.label.text|safe }}
+          </label>
+          {% endfor %}
+        </div>
+         {% if form.variant.errors %}
+        <div class="is-invalid "></div>
+        <div class="invalid-feedback">Please choose a variant!</div>
+        {% endif %}
+      </div>
+      {% else %}
+      {% for item in form.variant -%}
+      <label class="btn btn-secondary variant-picker__option active" style="display: none">
+        {{ item(checked='checked')|safe }}
+      </label>
+      {% endfor %}
+      {% endif %}
+        </div>
 
-             <div class="variant-picker">
-            <div class="variant-picker__label">{{ form.variant.label.text|safe }}</div>
-            <div class="btn-group" data-toggle="buttons">
-              {% for item in form.variant -%}
-              <label class="btn btn-secondary variant-picker__option">
-                {{ item()|safe }} {{ item.label.text|safe }}
-              </label>
-              {% endfor %}
-            </div>
-             {% if form.variant.errors %}
-            <div class="is-invalid "></div>
-            <div class="invalid-feedback">Please choose a variant!</div>
-            {% endif %}
-          </div>
-              {% else %}
-              {% for item in form.variant -%}
-              <label class="btn btn-secondary variant-picker__option active" style="display: none">
-                {{ item(checked='checked')|safe }}
-              </label>
-              {% endfor %}
-         {% endif %}
-         </div>
+       </div>
+       <div class ="row">
+     <div class="col text-center">
+       <button class="btn btn-primary" type="submit">
+          Add to cart
+        </button>
+     </div>
+ </div>
     </form>
+    </div>
+    </div>
+
     {% endblock %}
     <div class="product__info__form-error">
       <small class="text-danger"></small>
@@ -151,6 +140,7 @@
       {% endfor %}
     </table>
   </div>
-</div>
+
+    </div>
 
  {% endblock content %}
