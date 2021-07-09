@@ -23,8 +23,8 @@ def home():
     featured_product=Product.get_all()
   #  sale_products= Product.get_on_sale()
     sale_products =Product.get_all()
-    form = AddCartForm()
-    return render_template("public/home.html", featured_product=featured_product,sale_products=sale_products, form=form)
+
+    return render_template("public/home.html", featured_product=featured_product,sale_products=sale_products)
 
 
 def style():
