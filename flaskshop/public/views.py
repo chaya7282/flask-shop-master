@@ -8,7 +8,7 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product
 from .models import Page
 from .search import Item
-
+from flaskshop.product.forms import AddCartForm
 impl = HookimplMarker("flaskshop")
 
 
@@ -19,9 +19,12 @@ def load_user(user_id):
 
 
 def home():
-    products = Product.get_featured_product()
-
-    return render_template("public/home.html", products=products)
+ #   featured_product = Product.get_featured_product()
+    featured_product=Product.get_all()
+  #  sale_products= Product.get_on_sale()
+    sale_products =Product.get_all()
+    form = AddCartForm()
+    return render_template("public/home.html", featured_product=featured_product,sale_products=sale_products, form=form)
 
 
 def style():
