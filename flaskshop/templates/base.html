@@ -13,6 +13,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="og:type" content="website">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {% endblock meta %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
@@ -23,7 +24,7 @@
 
   <body>
     {% block header %}
-    <header class="navbar" role="navigation">
+  <header class="navbar" role="navigation">
       <div class="navbar__login container-fluid">
         <div class=" d-none d-md-block container">
           <div class="row">
@@ -78,8 +79,7 @@
                   height="20px"></svg>
               </div>
               <a href="{{ url_for('public.home') }}">
-                <svg data-src="{{ url_for('static', filename='img/logo-document.svg') }}" width="176px"
-                  height="38px"></svg>
+
               </a>
             </div>
             <div class="col-2 col-md-5 navbar__search static">
@@ -134,6 +134,7 @@
       </div>
       {% endblock %}
     </header>
+
     {% endblock %}
     <div class="container maincontent">
       {% block topcontent %}{% endblock topcontent %}
@@ -212,7 +213,7 @@
                       height="45px" />
                   </a>
                   <a target="_blank" rel="noopener" class="social-footer" href="https://github.com/mirumee/saleor">
-                   ddddd
+
                     <svg data-src="{{ url_for('static', filename='img/github-logo.svg') }}" width="45px"
                       height="45px" />
                   </a>
