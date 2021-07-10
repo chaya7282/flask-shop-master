@@ -1,271 +1,239 @@
-{% import '_macros.html' as macros %}
-<!DOCTYPE html>
-<html class="no-js">
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="keywords" content="htmlcss bootstrap, multi level menu, submenu, treeview nav menu examples" />
+<meta name="description" content="Bootstrap 5 navbar multilevel treeview examples for any type of project, Bootstrap 5" />
 
-  <head>
-    <title>{% block title %}flask store{% endblock %}</title>
-    {% block meta %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Saleor">
-    <meta name="theme-color" content="#333333">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="og:type" content="website">
+<title>Demo - Bootstrap 5 multilevel dropdown submenu sample</title>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    {% endblock meta %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 
-    {% block stylesheet %}{% endblock stylesheet %}
+<style type="text/css">
 
-  </head>
+/* ============ desktop view ============ */
+@media all and (min-width: 992px) {
 
-  <body>
-    {% block header %}
-  <header class="navbar" role="navigation">
-      <div class="navbar__login container-fluid">
-        <div class=" d-none d-md-block container">
-          <div class="row">
-            <div class="col-6">
-              <p class="text-left">{{ settings['project_title'].value }} - {{ settings['project_subtitle'].value }}</p>
-            </div>
-            <div class="col-6">
-              <ul class="float-right">
-                {% if current_user.is_authenticated %}
-                {% if current_user.can_edit() %}
+	.dropdown-menu li{
+		position: relative;
+	}
+	.dropdown-menu .submenu{
+		display: none;
+		position: absolute;
+		left:100%; top:-7px;
+	}
+	.dropdown-menu .submenu-left{
+		right:100%; left:auto;
+	}
 
-                <li>
-                  <a href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-                    Dashboard
-                  </a>
-                </li>
-                {% endif %}
-                {{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
-                <li>
-                  <a href="{{ url_for('account.index') }}">
-                    Your Account</a>
-                </li>
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{
+		display: block;
+	}
+}
+/* ============ desktop view .end// ============ */
 
-                <li>
-                  <a href="{{ url_for('account.logout') }}">
-                    Log Out</a>
-                </li>
+/* ============ small devices ============ */
+@media (max-width: 991px) {
 
-                {% else %}
-                <li>
-                  <a rel="nofollow" href="{{ url_for('account.signup') }}">
-                    Register
-                  </a>
-                </li>
-                <li>
-                  <a rel="nofollow" href="{{ url_for('account.login') }}">
-                    Log in
-                  </a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar__brand container-fluid d-block">
-        <div class="container">
-          <div class="row no-gutters" style="width:100%">
-            <div class="col-8 col-md-4 navbar__logo">
-              <div class="menu-icon-mobile d-md-none navbar__brand__menu-toggle closed open">
-                <svg data-src="{{ url_for('static', filename='img/mobile-menu.svg') }}" width="28px"
-                  height="20px"></svg>
-              </div>
-              <a href="{{ url_for('public.home') }}">
+.dropdown-menu .dropdown-menu{
+		margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+}
 
-              </a>
-            </div>
-            <div class="col-2 col-md-5 navbar__search static">
-              {% if current_app.config['USE_ES']  %}
-              <div class="d-md-none mobile-search-icon">
-                <svg data-src="{{ url_for('static', filename='img/search.svg') }}" width="30" height="30"></svg>
-              </div>
-              <form class="form-inline search-form" action="/search">
-                <div class="mobile-close-search d-md-none">
-                  <svg data-src="{{ url_for('static', filename='img/close.svg') }}" width="30" height="30"></svg>
-                </div>
-                <input class="form-control" type="text" name="q" value="{{request.args.get('q', '')}}"
-                  placeholder="Search for product" required>
-                <button class="btn btn-primary" type="submit" style="padding-top: 0px;padding-bottom: 0px">
-                  Search<svg data-src="{{ url_for('static', filename='img/search.svg') }}" width="18" height="18"></svg>
-                </button>
-              </form>
-              {% endif %}
-            </div>
-            <div class="col-2 col-md-3">
-              <div class="navbar__brand__cart float-right">
-                <a rel="nofollow" class="cart__icon" href="{{ url_for('checkout.cart_index') }}">
-                  <span class="cart-label d-none d-md-inline-block">
-                    Your Cart
-                  </span>
-                  <div class="navbar__brand__cart__icon">
-                    <svg data-src="{{ url_for('static', filename='img/cart.svg') }}" width="24" height="24"></svg>
-                  </div>
-                  {% if current_user.is_authenticated and current_user_cart.quantity %}
-                  <span class="badge ">
-                    {{ current_user_cart.quantity }}
-                  </span>
-                  {% else %}
-                  <span class="badge empty">
-                    0
-                  </span>
-                  {% endif %}
-                </a>
-                <div class="cart-dropdown d-none">
-                  {% include "public/cart_dropdown.html" %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% block navigation %}
-      <div class="navbar__menu container d-block">
-        <nav class="navigation">
-          {{ macros.menu(top_menu) }}
-        </nav>
-      </div>
-      {% endblock %}
-    </header>
+}
+/* ============ small devices .end// ============ */
 
-    {% endblock %}
-    <div class="container maincontent">
-      {% block topcontent %}{% endblock topcontent %}
+</style>
 
-      {% for message in get_flashed_messages(with_categories=True) %}
-      <br>
-      <div class="alert alert-{{ message[0] }}">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {{ message[1] }}
-      </div>
-      {% endfor %}
 
-      {% block breadcrumb %}
-      {% endblock breadcrumb %}
-      {% block content %}
-      {% endblock content %}
-    </div>
-    {% block footer %}
-    <footer class="footer">
-      <div class="footer__menus">
-        <div class="container">
-          <div class="row">
-            {{ macros.footer_menu(bottom_menu) }}
-            <div class="col-md-2 col-6">
-              <ul class="menu">
-                <li class="nav-item__dropdown menu__item">
-                  <a>
-                    <strong>
-                      Account
-                    </strong>
-                  </a>
-                  <hr />
-                <li>
-                  <a rel="nofollow" href="{{ url_for('checkout.cart_index') }}">
-                    Your Cart
-                  </a>
-                </li>
-                {% if current_user.is_authenticated %}
-                {% if current_user.can_edit() %}
-                <li>
-                  <a href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-                    Dashboard
-                  </a>
-                </li>
-                {% endif %}
-                <li>
-                  <a href="{{ url_for('account.index') }}">
-                    Your account
-                  </a>
-                </li>
+<script type="text/javascript">
+//	window.addEventListener("resize", function() {
+//		"use strict"; window.location.reload();
+//	});
 
-                <li>
-                  <a href="{{ url_for('account.logout') }}">
-                    Log out</a>
-                </li>
 
-                {% else %}
-                <li>
-                  <a rel="nofollow" href="{{ url_for('account.signup') }}">
-                    Register
-                  </a>
-                </li>
-                <li>
-                  <a rel="nofollow" href="{{ url_for('account.login') }}">
-                    Log in
-                  </a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
-            <div class="offset-md-2 col-md-4 col-12">
-              <div class="footer__menus__social-container">
-                <div class="footer__menus__social">
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://www.facebook.com/mirumeelabs/">
-                    <svg data-src="{{ url_for('static', filename='img/facebook-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://github.com/mirumee/saleor">
+	document.addEventListener("DOMContentLoaded", function(){
 
-                    <svg data-src="{{ url_for('static', filename='img/github-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://twitter.com/getsaleor">
-                    <svg data-src="{{ url_for('static', filename='img/twitter-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://plus.google.com/+Mirumee">
-                    <svg data-src="{{ url_for('static', filename='img/google-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://www.meetup.com/Mirumee-Talks/">
-                    <svg data-src="{{ url_for('static', filename='img/meetup-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer"
-                    href="https://linkedin.com/company/mirumee-software">
-                    <svg data-src="{{ url_for('static', filename='img/linkedin-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://dribbble.com/mirumee">
-                    <svg data-src="{{ url_for('static', filename='img/dribbble-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer"
-                    href="https://www.instagram.com/explore/tags/mirumee/">
-                    <svg data-src="{{ url_for('static', filename='img/instagram-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer__copy">
-        <div class="container">
-          <div class="row">
-            <div class="col-4">
-              <a href="{{ url_for('public.home') }}" class="footer__logo float-md-left">
-                <svg data-src="{{ url_for('static', filename='img/logo-document.svg') }}" width='176px' height='38px' />
-              </a>
-            </div>
-            <div class="col-8 footer__copy-text">{{ settings['project_copyright'].value }}</div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    {% endblock %}
-    {% block footer_scripts %}
-      <script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
-    {% endblock footer_scripts %}
-  </body>
 
+    	/////// Prevent closing from click inside dropdown
+		document.querySelectorAll('.dropdown-menu').forEach(function(element){
+			element.addEventListener('click', function (e) {
+			  e.stopPropagation();
+			});
+		})
+
+
+
+		// make it as accordion for smaller screens
+		if (window.innerWidth < 992) {
+
+			// close all inner dropdowns when parent is closed
+			document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+				everydropdown.addEventListener('hidden.bs.dropdown', function () {
+					// after dropdown is hidden, then find all submenus
+					  this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+					  	// hide every submenu as well
+					  	everysubmenu.style.display = 'none';
+					  });
+				})
+			});
+
+			document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+				element.addEventListener('click', function (e) {
+
+				  	let nextEl = this.nextElementSibling;
+				  	if(nextEl && nextEl.classList.contains('submenu')) {
+				  		// prevent opening link if link needs to open dropdown
+				  		e.preventDefault();
+				  		console.log(nextEl);
+				  		if(nextEl.style.display == 'block'){
+				  			nextEl.style.display = 'none';
+				  		} else {
+				  			nextEl.style.display = 'block';
+				  		}
+
+				  	}
+				});
+			})
+		}
+		// end if innerWidth
+
+	});
+	// DOMContentLoaded  end
+</script>
+
+</head>
+<body>
+
+<header class="section-header py-4">
+<div class="container">
+	<h2>Demo page </h2>
+</div>
+</header> <!-- section-header.// -->
+
+
+
+<div class="container">
+
+<!-- ============= COMPONENT ============== -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+ <div class="container-fluid">
+ 	 <a class="navbar-brand" href="#">Brand</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+
+
+	<ul class="navbar-nav">
+		<li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
+		<li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Treeview menu  </a>
+		    <ul class="dropdown-menu">
+			  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+				    	<ul class="submenu dropdown-menu">
+						    <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+						    <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+						</ul>
+				    </li>
+				    <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+				 </ul>
+			  </li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
+		    </ul>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  More items  </a>
+		    <ul class="dropdown-menu">
+			  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 3</a></li>
+				 </ul>
+			  </li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 3 &raquo; </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">Another submenu 1</a></li>
+				    <li><a class="dropdown-item" href="#">Another submenu 2</a></li>
+				    <li><a class="dropdown-item" href="#">Another submenu 3</a></li>
+				    <li><a class="dropdown-item" href="#">Another submenu 4</a></li>
+				 </ul>
+			  </li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 4 &raquo;</a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">Another submenu 1</a></li>
+				    <li><a class="dropdown-item" href="#">Another submenu 2</a></li>
+				    <li><a class="dropdown-item" href="#">Another submenu 3</a></li>
+				    <li><a class="dropdown-item" href="#">Another submenu 4</a></li>
+				 </ul>
+			  </li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 5 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
+		    </ul>
+		</li>
+	</ul>
+
+	<ul class="navbar-nav ms-auto">
+		<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>
+		<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>
+		<li class="nav-item dropdown">
+			<a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Dropdown right </a>
+		    <ul class="dropdown-menu dropdown-menu-right">
+			  <li><a class="dropdown-item" href="#"> Dropdown item 1</a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 3 &raquo; </a>
+			  	 <ul class="submenu submenu-left dropdown-menu">
+				    <li><a class="dropdown-item" href="">Submenu item 1</a></li>
+				    <li><a class="dropdown-item" href="">Submenu item 2</a></li>
+				    <li><a class="dropdown-item" href="">Submenu item 3</a></li>
+				    <li><a class="dropdown-item" href="">Submenu item 4</a></li>
+				 </ul>
+			  </li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li>
+		    </ul>
+		</li>
+	</ul>
+
+  </div> <!-- navbar-collapse.// -->
+ </div> <!-- container-fluid.// -->
+</nav>
+
+<!-- ============= COMPONENT END// ============== -->
+
+<section class="section-content py-5">
+
+		<h6>Demo for Bootstrap multi level dropdown menu <br> Based on Bootstrap 5 CSS framework.  </h6>
+        <p>For this demo page you should connect to the internet to receive files from CDN  like Bootstrap5 CSS, Bootstrap5 JS</p>
+
+		<p class="text-muted"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+
+		<a href="https://bootstrap-menu.com/detail-multilevel.html" class="btn btn-success"> &laquo Back to tutorial or Download code</a>
+
+</section>
+
+</div><!-- container //  -->
+
+</body>
 </html>
