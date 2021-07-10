@@ -1,3 +1,5 @@
+{% import '_macros.html' as macros %}
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -10,8 +12,10 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
 
-<style type="text/css">
+	<style type="text/css">
 
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
@@ -107,126 +111,203 @@
 </head>
 <body>
 
-<header class="section-header py-4">
-<div class="container">
-	<h2>Demo page </h2>
-</div>
-</header> <!-- section-header.// -->
-
-
-
 <div class="container">
 
 <!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
  <div class="container-fluid">
- 	 <a class="navbar-brand" href="#">Brand</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  <div class="collapse navbar-collapse" id="main_nav">
+ 	 <a class="navbar-brand" href="#"> {{ settings['project_title'].value }} - {{ settings['project_subtitle'].value }}</a>
+	     <a class="navbar-brand" rel="nofollow"  href="{{ url_for('checkout.cart_index') }}">
 
+			<i class="fa" style="font-size:24px">&#xf07a;</i>
 
-	<ul class="navbar-nav ms-auto">
+			 {% if current_user.is_authenticated and current_user_cart.quantity %}
+				<span >{{ current_user_cart.quantity }}</span>
+			 {% else %}
+				<span >0</span>
+			 {% endif %}
+   		</a>
+		<div class="cart-dropdown d-none">
+                  {% include "public/cart_dropdown.html" %}
+         </div>
+	 <div class="collapse navbar-collapse" id="main_nav">
+		  <ul class="navbar-nav ms-auto">
 
-		<li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
-		<li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-         {% if current_user.is_authenticated %}
-          {% if current_user.can_edit() %}
-			<li class="nav-item">
-              <a class="nav-link" href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-                    Dashboard
-			  </a>
+			<li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
+			<li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+			 {% if current_user.is_authenticated %}
+			  {% if current_user.can_edit() %}
+				<li class="nav-item">
+				  <a class="nav-link" href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
+						Dashboard
+				  </a>
+				</li>
+					{% endif %}
+					{{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
+				   <li class="nav-item">
+					  <a class="nav-link" href="{{ url_for('account.index') }}">
+						Your Account</a>
+					</li>
+
+					<li class="nav-item">
+					  <a class="nav-link" href="{{ url_for('account.logout') }}">
+						Log Out</a>
+					</li>
+
+					{% else %}
+					<li class="nav-item">
+					  <a class="nav-link" rel="nofollow" href="{{ url_for('account.signup') }}">
+						Register
+					  </a>
+					</li>
+				   <li class="nav-item">
+					  <a class="nav-link" rel="nofollow" href="{{ url_for('account.login') }}">
+						Log in
+					  </a>
+					</li>
+					{% endif %}
+
 			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Product Categories  </a>
+				  {{ macros.menu_home(top_menu) }}
+			</li>
+		</ul>
+	  </div> <!-- navbar-collapse.// -->
+	 </div> <!-- container-fluid.// -->
+	</nav>
+	</div><!-- container //  -->
+
+<div class="container maincontent">
+      {% block topcontent %}{% endblock topcontent %}
+
+      {% for message in get_flashed_messages(with_categories=True) %}
+      <br>
+      <div class="alert alert-{{ message[0] }}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ message[1] }}
+      </div>
+      {% endfor %}
+
+      {% block breadcrumb %}
+      {% endblock breadcrumb %}
+      {% block content %}
+      {% endblock content %}
+    </div>
+ {% block footer %}
+    <footer class="footer">
+      <div class="footer__menus">
+        <div class="container">
+          <div class="row">
+            {{ macros.footer_menu(bottom_menu) }}
+            <div class="col-md-2 col-6">
+              <ul class="menu">
+                <li class="nav-item__dropdown menu__item">
+                  <a>
+                    <strong>
+                      Account
+                    </strong>
+                  </a>
+                  <hr />
+                <li>
+                  <a rel="nofollow" href="{{ url_for('checkout.cart_index') }}">
+                    Your Cart
+                  </a>
+                </li>
+                {% if current_user.is_authenticated %}
+                {% if current_user.can_edit() %}
+                <li>
+                  <a href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
+                    Dashboard
+                  </a>
+                </li>
                 {% endif %}
-                {{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('account.index') }}">
-                    Your Account</a>
+                <li>
+                  <a href="{{ url_for('account.index') }}">
+                    Your account
+                  </a>
                 </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('account.logout') }}">
-                    Log Out</a>
+                <li>
+                  <a href="{{ url_for('account.logout') }}">
+                    Log out</a>
                 </li>
 
                 {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" rel="nofollow" href="{{ url_for('account.signup') }}">
+                <li>
+                  <a rel="nofollow" href="{{ url_for('account.signup') }}">
                     Register
                   </a>
                 </li>
-               <li class="nav-item">
-                  <a class="nav-link" rel="nofollow" href="{{ url_for('account.login') }}">
+                <li>
+                  <a rel="nofollow" href="{{ url_for('account.login') }}">
                     Log in
                   </a>
                 </li>
                 {% endif %}
+              </ul>
+            </div>
+            <div class="offset-md-2 col-md-4 col-12">
+              <div class="footer__menus__social-container">
+                <div class="footer__menus__social">
+                  <a target="_blank" rel="noopener" class="social-footer" href="https://www.facebook.com/mirumeelabs/">
+                    <svg data-src="{{ url_for('static', filename='img/facebook-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer" href="https://github.com/mirumee/saleor">
 
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  More items  </a>
-		    <ul class="dropdown-menu">
-			  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
-				    <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
-				    <li><a class="dropdown-item" href="#">Submenu item 3</a></li>
-				 </ul>
-			  </li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 3 &raquo; </a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">Another submenu 1</a></li>
-				    <li><a class="dropdown-item" href="#">Another submenu 2</a></li>
-				    <li><a class="dropdown-item" href="#">Another submenu 3</a></li>
-				    <li><a class="dropdown-item" href="#">Another submenu 4</a></li>
-				 </ul>
-			  </li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 4 &raquo;</a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">Another submenu 1</a></li>
-				    <li><a class="dropdown-item" href="#">Another submenu 2</a></li>
-				    <li><a class="dropdown-item" href="#">Another submenu 3</a></li>
-				    <li><a class="dropdown-item" href="#">Another submenu 4</a></li>
-				 </ul>
-			  </li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 5 </a></li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
-		    </ul>
-		</li>
-	</ul>
+                    <svg data-src="{{ url_for('static', filename='img/github-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer" href="https://twitter.com/getsaleor">
+                    <svg data-src="{{ url_for('static', filename='img/twitter-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer" href="https://plus.google.com/+Mirumee">
+                    <svg data-src="{{ url_for('static', filename='img/google-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer" href="https://www.meetup.com/Mirumee-Talks/">
+                    <svg data-src="{{ url_for('static', filename='img/meetup-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer"
+                    href="https://linkedin.com/company/mirumee-software">
+                    <svg data-src="{{ url_for('static', filename='img/linkedin-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer" href="https://dribbble.com/mirumee">
+                    <svg data-src="{{ url_for('static', filename='img/dribbble-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                  <a target="_blank" rel="noopener" class="social-footer"
+                    href="https://www.instagram.com/explore/tags/mirumee/">
+                    <svg data-src="{{ url_for('static', filename='img/instagram-logo.svg') }}" width="45px"
+                      height="45px" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__copy">
+        <div class="container">
+          <div class="row">
+            <div class="col-4">
+              <a href="{{ url_for('public.home') }}" class="footer__logo float-md-left">
+                <svg data-src="{{ url_for('static', filename='img/logo-document.svg') }}" width='176px' height='38px' />
+              </a>
+            </div>
+            <div class="col-8 footer__copy-text">{{ settings['project_copyright'].value }}</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    {% endblock %}
+    {% block footer_scripts %}
+      <script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
+    {% endblock footer_scripts %}
+  </body>
 
-	<ul class="navbar-nav ms-auto">
-		<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>
-		<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>
-		<li class="nav-item dropdown">
-			<a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Dropdown right </a>
-		    <ul class="dropdown-menu dropdown-menu-right">
-			  <li><a class="dropdown-item" href="#"> Dropdown item 1</a></li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 3 &raquo; </a>
-			  	 <ul class="submenu submenu-left dropdown-menu">
-				    <li><a class="dropdown-item" href="">Submenu item 1</a></li>
-				    <li><a class="dropdown-item" href="">Submenu item 2</a></li>
-				    <li><a class="dropdown-item" href="">Submenu item 3</a></li>
-				    <li><a class="dropdown-item" href="">Submenu item 4</a></li>
-				 </ul>
-			  </li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li>
-		    </ul>
-		</li>
-	</ul>
-
-  </div> <!-- navbar-collapse.// -->
- </div> <!-- container-fluid.// -->
-</nav>
-
-<!-- ============= COMPONENT END// ============== -->
-
-
-
-</div><!-- container //  -->
-
-</body>
 </html>
