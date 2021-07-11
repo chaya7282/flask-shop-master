@@ -6,8 +6,12 @@
         <div class="top d-flex flex-row align-items-center">
          {%if product.get_is_featured%}
         <h6 class="mb-0 mr-2">Special Product</h6><i class="fa-thumbs-o-up "></i>
-        {%elif product.get_is_on_sale%}
+        <div class="badge bg-dark text-white position-absolute" style="top: 1rem; right: 1rem">מיוחד</div>
+
+            {%elif product.get_is_on_sale%}
          <h6 class="mb-0 mr-2">Product on sale</h6><i class="fa fa-opencart"></i>
+
+            <div class="badge bg-dark text-white position-absolute" style="top: 1rem; right: 1rem">במבצע</div>
         {%else%}
         <h6 class="mb-0 mr-2"></h6>
 
