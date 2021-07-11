@@ -13,9 +13,13 @@
 
        {%endif%}
         </div>
-    <div class="middle"> <img  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}"height="300px" class="mt-3">
-        <h5>{{ product.title }}</h5> <span></span>
-    </div>
+
+         <div class="middle">
+          <a href="{{ url_for('product.show', id=product.id)}}"  target="_blank">
+             <img   src="{{ url_for('static', filename='uploads/'+ product.first_img) }}"height="300px" class="mt-3">
+          </a>
+            <h5>{{ product.title }}</h5> <span></span>
+        </div>
     <div class="bottom d-flex flex-row justify-content-center">
         <div class="input-group mb-3"> <span class="input-group-text">+</span> <input type="text" class="form-control" value="1"> <span class="input-group-text">-</span> </div> <button class="btn btn-success btn-sm add">Add For <b>${{product.price}}</b></button>
     </div>
