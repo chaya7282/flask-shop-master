@@ -1,5 +1,5 @@
 .card {
-    width: 350px;
+    width: 320px;
     border: none;
     border-radius: 5px
 }
@@ -40,7 +40,7 @@
 .add {
     height: 38px;
     border-radius: 4px;
-    margin-left: 40px;
+    margin-left: 30px;
     padding-right: 22px;
     padding-left: 20px
 }
