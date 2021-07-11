@@ -1,0 +1,52 @@
+.card {
+    width: 350px;
+    border: none;
+    border-radius: 5px
+}
+
+.container {
+    height: 100vh
+}
+
+.top {
+    padding: 18px;
+    background-color: #ff8900;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff
+}
+
+.middle {
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column !important;
+    padding: 10px
+}
+
+.bottom {
+    padding: 10px;
+    background: #eee;
+    padding-top: 30px
+}
+
+.input-group {
+    width: 109px
+}
+
+.add {
+    height: 38px;
+    border-radius: 4px;
+    margin-left: 40px;
+    padding-right: 22px;
+    padding-left: 20px
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #8bbafe;
+    outline: 0;
+    box-shadow: none
+}
