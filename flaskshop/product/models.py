@@ -71,6 +71,19 @@ class Product(Model):
         return ProductType.get_by_id(self.product_type_id)
 
     @property
+    def get_is_featured(self):
+        if self.is_featured:
+            return True
+        return False
+
+    @property
+    def get_is_on_sale(self):
+        if self.on_sale:
+            return True
+        return False
+
+
+    @property
     def is_discounted(self):
         if float(self.discounted_price) > 0:
             return True
