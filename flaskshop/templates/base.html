@@ -112,7 +112,18 @@
 <body>
 
 <div class="container">
-
+<div class="header-firstnav">
+    <nav class="navbar navbar-expand-lg">
+        Shopping Cart
+        <a href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+        {% if current_user.is_authenticated and current_user_cart.quantity %}
+        <span >{{ current_user_cart.quantity }}</span>
+        {% else %}
+        <span >0</span>
+        {% endif %}
+        </a>
+    </nav>
+</div>
 <!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-primary">
 
@@ -166,16 +177,7 @@
 	</nav>
 </div>
 
-<div class="container">
-Shopping Cart
-  <a href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
-   {% if current_user.is_authenticated and current_user_cart.quantity %}
-               <span >{{ current_user_cart.quantity }}</span>
-                 {% else %}
-                    <span >0</span>
-                 {% endif %}
-         </a>
-    </div>
+
 
 <div class="container maincontent">
       {% block topcontent %}{% endblock topcontent %}
