@@ -1,6 +1,6 @@
 {% import '_macros.html' as macros %}
 
-
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -14,8 +14,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+ <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/product_card/product_card3.css') }}">
 
-	<style type="text/css">
+<style type="text/css">
 
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
@@ -110,7 +113,7 @@
 
 </head>
 <body>
-
+{% block header %}
 <header class="sticky-top">
 <!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -163,19 +166,20 @@
 	  </div> <!-- navbar-collapse.// -->
 	 </div> <!-- container-fluid.// -->
 	</nav>
-<div class="container">
+<div class="container-fluid">
 Shopping Cart
   <a href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
    {% if current_user.is_authenticated and current_user_cart.quantity %}
-               <span >{{ current_user_cart.quantity }}</span>
-                 {% else %}
-                    <span >0</span>
-                 {% endif %}
+      <span >{{ current_user_cart.quantity }}</span>
+         {% else %}
+            <span >0</span>
+          {% endif %}
          </a>
     </div>
 </header>
+{% endblock %}
 <div class="container maincontent">
-      {% block topcontent %}{% endblock topcontent %}
+      {% block topcontent %} {% endblock topcontent %}
 
       {% for message in get_flashed_messages(with_categories=True) %}
       <br>
@@ -188,6 +192,7 @@ Shopping Cart
       {% block breadcrumb %}
       {% endblock breadcrumb %}
       {% block content %}
+
       {% endblock content %}
     </div>
  {% block footer %}
