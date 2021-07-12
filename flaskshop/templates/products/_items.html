@@ -17,12 +17,12 @@
 
          <div class="middle">
           <a href="{{ url_for('product.show', id=product.id)}}"  target="_blank">
-             <img   src="{{ url_for('static', filename='uploads/'+ product.first_img) }}"height="280px" class="mt-3">
+             <img   src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="img_card">
           </a>
             <h5>{{ product.title }}</h5> <span></span>
         </div>
     <div class="bottom d-flex flex-row justify-content-center">
-        <div class="input-group mb-3"> <span class="input-group-text">+</span> <input type="text" class="form-control" value="1"> <span class="input-group-text">-</span> </div> <button class="btn btn-success btn-sm add">Add For <b>${{product.price}}</b></button>
+        <div class="input-group mb-3"> <span class="input-group-text">+</span> <input type="text" class="form-control" value="1"> <span class="input-group-text">-</span> </div> <button class="btn btn-success btn-sm btn-outline btn-wrap-text reducefontsize">Add For <b>${{product.price}}</b></button>
     </div>
 </div>
 
