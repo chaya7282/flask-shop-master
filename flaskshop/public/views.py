@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
 from flask import Blueprint, render_template, request, send_from_directory
+from sqlalchemy.sql import or_
+
 from pluggy import HookimplMarker
 from flaskshop import settings
+
 from flaskshop.extensions import login_manager
 from flaskshop.account.models import User
 from flaskshop.product.models import Product
@@ -19,10 +22,8 @@ def load_user(user_id):
 
 
 def home():
- #   featured_product = Product.get_featured_product()
-    featured_product=Product.get_featured_product()
-    sale_products= Product.get_on_sale()
-    return render_template("public/home.html", featured_product=featured_product,sale_products=sale_products)
+    products= Product.query.filter(or_( Product.is_featured== True, Product.on_sale== True)).all()
+    return render_template("public/home.html", products= products)
 
 
 def style():
