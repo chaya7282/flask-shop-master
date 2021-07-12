@@ -17,7 +17,7 @@
 }
 
 .middle {
-    height: 350px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,4 +51,13 @@
     border-color: #8bbafe;
     outline: 0;
     box-shadow: none
+}
+
+.img_card {
+
+  max-width:70%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
