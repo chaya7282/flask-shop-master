@@ -238,6 +238,7 @@ def products():
 
 def product_detail(id):
     product = Product.get_by_id(id)
+    variant= product.variant
     return render_template("product/detail.html", product=product)
 
 
