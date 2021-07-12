@@ -168,7 +168,7 @@
 	  </div> <!-- navbar-collapse.// -->
 	 </div> <!-- container-fluid.// -->
 	</nav>
-<div class="container-fluid">
+<div class="container-fluid mb-2">
 Shopping Cart
   <a href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
    {% if current_user.is_authenticated and current_user_cart.quantity %}
