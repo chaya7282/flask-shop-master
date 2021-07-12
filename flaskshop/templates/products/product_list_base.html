@@ -3,20 +3,12 @@
 {% from 'bootstrap/pagination.html' import render_pagination %}
 
 
-
-{% block title %}
-{{ object.name }}
-{% endblock %}
-
-
 {% block breadcrumb %}
-<div class="row">
-    <div class="col-md-7">
-        <ul class="breadcrumbs list-unstyled d-none d-md-block">
-            {% block breadcrumb_part %}{% endblock %}
-        </ul>
-    </div>
-</div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+      {% block breadcrumb_part %}{% endblock %}
+  </ol>
+</nav>
 {% endblock %}
 
 {% block topcontent %}
