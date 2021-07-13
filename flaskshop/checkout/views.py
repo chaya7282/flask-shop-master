@@ -50,7 +50,7 @@ def update_cart(id):
     else:
         line.quantity = int(request.form["id_quantity"])
         line.save()
-    return redirect(url_for("checkout.cart_index"))
+    return redirect(request.referrer)
 
 def checkout_shipping():
     form = AddressForm(request.form)
