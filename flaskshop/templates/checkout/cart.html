@@ -36,7 +36,9 @@
         <div class="row">
             <div class="col-7 cart__line__product">
                 <a class="link--clean" href="{{ line.product.get_absolute_url() }}">
-                    <img class="lazyload lazypreload" data-src="{{ line.product.first_img }}" width="60" />
+
+
+                    <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
                     <p>{{ line.product }}<br>
                         <small>{{ line.variant }}</small>
                     </p>
