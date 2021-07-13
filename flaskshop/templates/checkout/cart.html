@@ -46,7 +46,7 @@
                 <div class="row" >
                <div class="cart__line__quantity col-md-7 col-12">
                   <form method = "post" action="{{ url_for('checkout.update_cart', id=line.id) }}" class="form-cart">
-                   <input type="number" onchange="submit()"   value="{{ line.quantity }}" min="1" max="50"  name="id_quantity" id="id_quantity">
+                   <input type="number" onchange="submit()"   value="{{ line.quantity }}" min="1" max="50"  name="id_quantity"  id="line.id">
                         <span class="cart-item-delete">
                             <a href="{{ url_for('checkout.delete_item', id=line.id) }}"><i class="fa fa-trash fa-lg" style='font-size:36px' aria-hidden="true"></i></a>
                         </span>

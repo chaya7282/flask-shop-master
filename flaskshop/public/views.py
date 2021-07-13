@@ -11,7 +11,7 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product
 from .models import Page
 from .search import Item
-
+from flaskshop.product.forms import AddCartForm
 impl = HookimplMarker("flaskshop")
 
 
