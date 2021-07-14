@@ -44,7 +44,8 @@
     </a>
   </li>
     {% if children %}
-      <ul class="submenu dropdown-menu">
+  <a class="dropdown-item" href="{{item.get_url()}}" class="nav-link {%- if item.is_active() %} active{% endif %}"></a>
+
           {% for child in children %}
           <li>
             <a class="dropdown-item" href="{{ child.url }}">

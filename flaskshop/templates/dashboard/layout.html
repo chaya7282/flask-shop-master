@@ -18,8 +18,8 @@
 <header class="sticky-top">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
  <div class="container-fluid">
- 	 <span><a class="navbar-brand" href="{{url_for('dashboard.index')}}" class="nav-link">Dashboard</a></span>
-     <span><a class="navbar-brand" href="{{url_for('public.home')}}" class="nav-link" target="_blank">Front Site</a></span>
+ 	 <span><a class="navbar-brand" href="{{url_for('dashboard.index')}}" >Dashboard<i class="fa fa-tachometer" aria-hidden="true"></i></a></span>
+     <span><a class="navbar-brand" href="{{url_for('public.home')}}" >Front Site<i class="fa fa-home" aria-hidden="true"></i></a></span>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,8 +31,8 @@
                {%- for item in menus %}
                 <li>
 			    <a class="dropdown-item" href="{{item.get_url()}}" class="nav-link {%- if item.is_active() %} active{% endif %}">
-                       {%- if item.children %}<i class="right fa fa-angle-left"></i>{% endif %}
-
+                       {%- if item.children %}
+                    <i class="right fa fa-angle-left"></i>{% endif %}
                     {{ item.title }}
                     <i class="fa nav-icon {{ item.icon_cls }}"> </i>
 
