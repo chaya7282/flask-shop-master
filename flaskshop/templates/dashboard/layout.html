@@ -38,7 +38,7 @@
                       <i class="fa nav-icon {{ item.icon_cls }}"> </i>
                 </a>
                  {% if item.children %}
-                   <ul class="submenu submenu-left dropdown-menu navbar-dark bg-primary">
+                   <ul class="submenu submenu-right dropdown-menu navbar-dark bg-primary">
                         {% for child in item.children %}
                         <li >
                             <a class="dropdown-item" href="{{ child.get_url() }}">
