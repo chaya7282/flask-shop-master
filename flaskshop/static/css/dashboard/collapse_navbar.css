@@ -1,5 +1,3 @@
-/* ============ desktop view ============ */
-@media all and (min-width: 992px) {
 
 	.dropdown-menu li{
 		position: relative;
@@ -21,11 +19,10 @@
 /* ============ desktop view .end// ============ */
 
 /* ============ small devices ============ */
-@media (max-width: 991px) {
+
 
 .dropdown-menu .dropdown-menu{
 		margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
-}
+
 
 }
-/* ============ small devices .end// ============ */
