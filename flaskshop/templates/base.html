@@ -125,23 +125,8 @@
                 Dashboard
              <i class="fa fa-tachometer" aria-hidden="true"></i>
            </a>
-            <a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}">Shopping Cart<i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
-   {% if current_user.is_authenticated and current_user_cart.quantity %}
-      <span >{{ current_user_cart.quantity }}</span>
-         {% else %}
-            <span >0</span>
-          {% endif %}
-  </a>
-        {% endif %}
-  			<a class="navbar-brand" href="{{ url_for('account.logout') }}">Log Out
-		         <i class="fa fa-sign-out" aria-hidden="true"></i>
-            </a>
-        {% else %}
-            <a class="navbar-brand" rel="nofollow" href="{{ url_for('account.login') }}">Log in
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-            </a>
-         {% endif %}
-
+            {% endif %}
+    {% endif %}
  	 <div class="collapse navbar-collapse navbar-dark bg-primary" id="main_nav">
   <ul class="navbar-nav ms-auto">
 		<li class="nav-item dropdown">
@@ -170,8 +155,25 @@
 	 </div> <!-- container-fluid.// -->
 	</nav>
 <div class="container-fluid mb-2">
+   {% if current_user.is_authenticated %}
+    <div><a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}">Shopping Cart<i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+   {% if current_user.is_authenticated and current_user_cart.quantity %}
+      <span >{{ current_user_cart.quantity }}</span>
+         {% else %}
+            <span >0</span>
+          {% endif %}
+ </a>
+    <a class="navbar-brand" href="{{ url_for('account.logout') }}">Log Out
+		         <i class="fa fa-sign-out" aria-hidden="true"></i>
+  </a></div>
 
-    </div>
+    {% else %}
+    <a class="navbar-brand" rel="nofollow" href="{{ url_for('account.login') }}">Log in
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </a></div>
+    {% endif %}
+
+</div>
 </header>
 {% endblock %}
 <div class="container maincontent">
