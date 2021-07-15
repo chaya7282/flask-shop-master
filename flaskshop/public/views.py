@@ -23,6 +23,7 @@ def load_user(user_id):
 
 def home():
     products= Product.query.filter(or_( Product.is_featured== True, Product.on_sale== True)).all()
+
     return render_template("public/home.html", products= products)
 
 

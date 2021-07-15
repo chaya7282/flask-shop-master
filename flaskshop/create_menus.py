@@ -3,9 +3,11 @@ from flaskshop.product.models import (
     Collection,
     ProductCollection,
 )
+from flaskshop.database import Column, Model, db
 from flaskshop.public.models import MenuItem, Page
 from flaskshop.dashboard.models import DashboardMenu
 from flaskshop.account.models import User, UserAddress, Role, UserRole
+
 DASHBOARD_MENUS = [
     {"title": "קטלוג", "icon_cls": "fa-bandcamp"},
     {"title": "הזמנות", "endpoint": "orders", "icon_cls": "fa-cart-arrow-down"},
@@ -30,11 +32,11 @@ def generate_menu_items(category: Category, menu_id=None, parent_id=None):
         title=category.title,
         category_id=category.id,
         position=menu_id,
-        parent_id=category.parent_id,
-    )
+        parent_id=parent_id,
 
+    )
     for child in category.children:
-         generate_menu_items(child, parent_id=menu_item.id)
+         generate_menu_items(child, parent_id=category.id, menu_id=2)
 
 
 def create_menus():
@@ -44,7 +46,9 @@ def create_menus():
     categories = Category.query.all()
     for category in categories:
         if not category.parent_id:
-             generate_menu_items(category, menu_id=1)
+             generate_menu_items(category, menu_id=1,parent_id=0)
+
+
 
     collection = Collection.query.first()
     item, _ = MenuItem.get_or_create(title="Collections", position=2)

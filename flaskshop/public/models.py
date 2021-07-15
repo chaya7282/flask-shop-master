@@ -5,7 +5,6 @@ from flaskshop.corelib.mc import cache, rdb
 from flaskshop.corelib.db import PropsItem
 from flaskshop.settings import Config
 
-
 MC_KEY_MENU_ITEMS = "public:site:{}:{}"
 MC_KEY_MENU_ITEM_CHILDREN = "public:menuitem:{}:children"
 MC_KEY_PAGE_ID = "public:page:{}"
@@ -29,16 +28,19 @@ class MenuItem(Model):
     def parent(self):
         return MenuItem.get_by_id(self.parent_id)
 
+
+
     @property
     @cache(MC_KEY_MENU_ITEM_CHILDREN.format("{self.id}"))
     def children(self):
-        return (
-            MenuItem.query.filter(MenuItem.parent_id == self.id).order_by("order").all()
-        )
+        return MenuItem.query.filter(MenuItem.parent_id == self.category_id).all()
+
+
 
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
 
     @property
     def linked_object_url(self):
@@ -68,6 +70,9 @@ class MenuItem(Model):
         for category in categories:
             if not category.parent_id:
                 generate_menu_items(category, menu_id=1)
+            else:
+                generate_menu_items(category, menu_id=0)
+
 
         collection = Collection.query.first()
         item, _ = MenuItem.get_or_create(title="Collections", position=2)
