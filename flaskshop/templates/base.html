@@ -152,7 +152,7 @@
                   {% with children=item.children %}
                      <li><a class="dropdown-item" href="#">  {{ item }} </a>
 
-                            <ul class="submenu dropdown-menu" ">
+                            <ul class="submenu dropdown-menu">
                                  {% for child in children %}
                                   <li>{{child}}</li>
                                 {% endfor %}
@@ -162,7 +162,9 @@
            {% endfor %}
              </ul>
 
- </div> <!-- container-fluid.// -->
+  </ul>
+  </div>
+  </div> <!-- container-fluid.// -->
 </nav>
 
 
