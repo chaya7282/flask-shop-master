@@ -1,6 +1,6 @@
 {% import '_macros.html' as macros %}
 
-<!doctype html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -55,8 +55,7 @@
 </style>
 
 
-<script type="text
-/javascript">
+<script type="text/javascript">
 //	window.addEventListener("resize", function() {
 //		"use strict"; window.location.reload();
 //	});
@@ -116,59 +115,97 @@
 <body>
 {% block header %}
 <header class="sticky-top">
+
+<!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-<div class="container-fluid">
-
-   {% if current_user.is_authenticated %}
-        {% if current_user.can_edit() %}
-           <a class="navbar-brand"  href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-                Dashboard
-             <i class="fa fa-tachometer" aria-hidden="true"></i>
-           </a>
-            {% endif %}
-    {% endif %}
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
+ <div class="container-fluid">
+ 	 <a class="navbar-brand" href="#">Brand</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
- 	 <div class="collapse navbar-collapse navbar-dark bg-primary" id="main_nav">
-  <ul class="navbar-nav ms-auto">
+   <div class="collapse navbar-collapse" id="main_nav">
 
-			<a class="nav-link  dropown-toggle" href="#" data-bs-toggle="dropdown">  </a>
-		    <ul class="dropdown-menu dropdown-menu-right bg-primary">
-        	 {% if current_user.is_authenticated %}
-					{{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
-				   <li >
-					  <a class="dropdown-item" href="{{ url_for('account.index') }}">
-						Your Account</a>
-					</li>
-				{% else %}
-					<li>
-					  <a class="dropdown-item" rel="nofollow" href="{{ url_for('account.signup') }}">
-						Register
-					  </a>
-					</li>
+	<ul class="navbar-nav">
+		{% if current_user.is_authenticated %}
 
-				{% endif %}
-                {{ macros.menu_home(top_menu) }}
+		{{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
+		    <li >
+              <a class="navbar-brand" href="{{ url_for('account.index') }}">
+                Your Account</a>
+            </li>
+         {% else %}
+		    <li>
+              <a class="navbar-brand" rel="nofollow" href="{{ url_for('account.signup') }}">
+                Register
+              </a>
+            </li>
+           <li><a class="navbar-brand" rel="nofollow" href="{{ url_for('account.login') }}">Log in
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </a></li>
+        {% endif %}
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Products  </a>
+		    <ul class="dropdown-menu">
+                {% for item in top_menu %}
+                 {% with children=item.children %}
 
-		</ul>
-        </li>
-  </ul>
-	  </div> <!-- navbar-collapse.// -->
-	 </div> <!-- container-fluid.// -->
-	</nav>
+                <li ><a class="dropdown-item" href="{{ item.url }}">{{ item }}</a>
+                {% if children %}
+                 <ul class="submenu dropdown-menu">
+                      {% for child in children %}
+                        <li><a class="dropdown-item" href="{{ child.url }}">{{ child }}</a></li>
+                     {% endfor %}
+                 </ul>
+                 {% endif %}
+                </li>
+              {% endwith %}
+              {% endfor %}
+			  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+				    	<ul class="submenu dropdown-menu">
+						    <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+						    <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+						</ul>
+				    </li>
+				    <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+				    <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+				 </ul>
+			  </li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+			  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
+		    </ul>
+		</li>
+
+	</ul>
+    </div> <!-- navbar-collapse.// -->
+ </div> <!-- container-fluid.// -->
+</nav>
 <div class="container-fluid mb-2">
    {% if current_user.is_authenticated %}
-    <div><a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}">Shopping Cart<i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+   <a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}">Shopping Cart<i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
    {% if current_user.is_authenticated and current_user_cart.quantity %}
       <span >{{ current_user_cart.quantity }}</span>
          {% else %}
             <span >0</span>
           {% endif %}
- </a>
+    </a>
+
     <a class="navbar-brand" href="{{ url_for('account.logout') }}">Log Out
 		         <i class="fa fa-sign-out" aria-hidden="true"></i>
-  </a></div>
+
+  </a>
+     {% if current_user.can_edit() %}
+     <a clas="navbar-brand" href="{{ url_for('dashboard.index') }}">
+                Dashboard
+              <i class="fa fa-tachometer" aria-hidden="true"></i>
+          </a>
+      {% endif %}
+
+
 
     {% else %}
     <a class="navbar-brand" rel="nofollow" href="{{ url_for('account.login') }}">Log in
@@ -176,10 +213,12 @@
             </a></div>
     {% endif %}
 
-</div>
+
+
 </header>
 {% endblock %}
-<div class="container maincontent">
+
+    <div class="container maincontent">
       {% block topcontent %} {% endblock topcontent %}
 
       {% for message in get_flashed_messages(with_categories=True) %}
