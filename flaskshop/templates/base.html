@@ -1,24 +1,19 @@
 {% import '_macros.html' as macros %}
+  <head>
+    <title>{% block title %}flask store{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/product_card/product_card3.css') }}">
 
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="keywords" content="htmlcss bootstrap, multi level menu, submenu, treeview nav menu examples" />
-<meta name="description" content="Bootstrap 5 navbar multilevel treeview examples for any type of project, Bootstrap 5" />
-
-<title>Demo - Bootstrap 5 multilevel dropdown submenu sample</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
- <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/product_card/product_card3.css') }}">
-
-<style type="text/css">
+    {% block stylesheet %}{% endblock stylesheet %}
+    <style type="text/css">
 
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
@@ -111,21 +106,32 @@
 	// DOMContentLoaded  end
 </script>
 
-</head>
+  </head>
+
 <body>
 {% block header %}
 <header class="sticky-top">
 
 <!-- ============= COMPONENT ============== -->
+
+
+ <!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
  <div class="container-fluid">
  	 <a class="navbar-brand" href="#">Brand</a>
-      {% if current_user.can_edit() %}
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+<ul class="navbar-nav">
+    {% if current_user.is_authenticated %}
+     {% if current_user.can_edit() %}
      <a clas="navbar-brand" href="{{ url_for('dashboard.index') }}">
                 Dashboard
               <i class="fa fa-tachometer" aria-hidden="true"></i>
           </a>
       {% endif %}
+     {% endif %}
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -136,60 +142,45 @@
 
 		{{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
 		    <li >
-              <a class="navbar-brand" href="{{ url_for('account.index') }}">
+              <a class="nav-item" href="{{ url_for('account.index') }}">
                 Your Account</a>
             </li>
          {% else %}
 		    <li>
-              <a class="navbar-brand" rel="nofollow" href="{{ url_for('account.signup') }}">
+              <a class="nav-item" rel="nofollow" href="{{ url_for('account.signup') }}">
                 Register
               </a>
             </li>
-           <li><a class="navbar-brand" rel="nofollow" href="{{ url_for('account.login') }}">Log in
+           <li><a class="nav-item" rel="nofollow" href="{{ url_for('account.login') }}">Log in
             <i class="fa fa-sign-in" aria-hidden="true"></i>
             </a></li>
         {% endif %}
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Products  </a>
-		    <ul class="dropdown-menu">
-                {% for item in top_menu %}
-                 {% with children=item.children %}
 
-                <li ><a class="dropdown-item" href="{{ item.url }}">{{ item }}</a>
-                {% if children %}
-                 <ul class="submenu dropdown-menu">
-                      {% for child in children %}
-                        <li><a class="dropdown-item" href="{{ child.url }}">{{ child }}</a></li>
-                     {% endfor %}
-                 </ul>
-                 {% endif %}
-                </li>
-              {% endwith %}
-              {% endfor %}
-			  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
-				    <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
-				    <li><a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
-				    	<ul class="submenu dropdown-menu">
-						    <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-						    <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-						</ul>
-				    </li>
-				    <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-				    <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-				 </ul>
-			  </li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
-			  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
-		    </ul>
-		</li>
 
-	</ul>
-    </div> <!-- navbar-collapse.// -->
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  חנות </a>
+             <ul class="dropdown-menu">
+             {% for item in top_menu %}
+                  {% with children=item.children %}
+                     <li><a class="dropdown-item" href="#">  {{ item }} </a>
+
+                            <ul class="submenu dropdown-menu">
+                                 {% for child in children %}
+                                  <li>{{child}}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                {% endwith %}
+           {% endfor %}
+             </ul>
+
+
+
+    </ul>
+  </div> <!-- navbar-collapse.// -->
  </div> <!-- container-fluid.// -->
 </nav>
+
+
 <div class="container-fluid mb-2">
    {% if current_user.is_authenticated %}
    <a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}">Shopping Cart<i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
@@ -197,24 +188,16 @@
       <span >{{ current_user_cart.quantity }}</span>
          {% else %}
             <span >0</span>
-          {% endif %}
+     {% endif %}
     </a>
 
     <a class="navbar-brand" href="{{ url_for('account.logout') }}">Log Out
-		         <i class="fa fa-sign-out" aria-hidden="true"></i>
-
-  </a>
-
-
-
-
-    {% else %}
+		         <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
+   {% else %}
     <a class="navbar-brand" rel="nofollow" href="{{ url_for('account.login') }}">Log in
             <i class="fa fa-sign-in" aria-hidden="true"></i>
             </a></div>
     {% endif %}
-
-
 
 </header>
 {% endblock %}
@@ -352,4 +335,3 @@
     {% endblock footer_scripts %}
   </body>
 
-</html>
