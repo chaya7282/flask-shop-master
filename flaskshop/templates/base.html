@@ -120,6 +120,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
  <div class="container-fluid">
  	 <a class="navbar-brand" href="#">Brand</a>
+      {% if current_user.can_edit() %}
+     <a clas="navbar-brand" href="{{ url_for('dashboard.index') }}">
+                Dashboard
+              <i class="fa fa-tachometer" aria-hidden="true"></i>
+          </a>
+      {% endif %}
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -198,12 +204,7 @@
 		         <i class="fa fa-sign-out" aria-hidden="true"></i>
 
   </a>
-     {% if current_user.can_edit() %}
-     <a clas="navbar-brand" href="{{ url_for('dashboard.index') }}">
-                Dashboard
-              <i class="fa fa-tachometer" aria-hidden="true"></i>
-          </a>
-      {% endif %}
+
 
 
 
