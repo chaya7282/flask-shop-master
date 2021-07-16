@@ -147,32 +147,34 @@
       {% endif %}
         {% if current_user.is_authenticated %}
        {% if current_user.can_edit() %}
-            <a class="nav-link"  href="{{ url_for('dashboard.index') }}">
+             <li class="nav-item"> <a class="nav-link"  href="{{ url_for('dashboard.index') }}">
                 Dashboard
-              <i class="fa fa-tachometer" aria-hidden="true"></i>
-      </a>
+                 <i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
           {% endif %}
          {% endif %}
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  חנות </a>
-             <ul class="dropdown-menu" style="right:auto; left: auto;" >
-             {% for item in top_menu %}
-                  {% with children=item.children %}
-                     <li> <a  href="{{ item.url }}">  {{ item }} </a>
 
-                            <ul class="submenu dropdown-menu">
+             {% for item in top_menu %}
+                            {% with children=item.children %}
+                             {% if children %}
+                            <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="{{ item.url }}"  id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{item.title }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
                                  {% for child in children %}
-                                  <li><a href="{{ child.url }}">{{child}}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                {% endwith %}
+                                   <a class="dropdown-item"  href="{{ child.url }}">{{child}}</a>
+                                 {% endfor %}
+                             </div>
+                            </li>
+                             {% else %}
+                             <li class="nav-item"> <a class="nav-link"  href="{{ url_for('dashboard.index') }}">
+                                 {{item.title }}</a></li>
+                            {% endif %}
+                            {% endwith %}
            {% endfor %}
              </ul>
-        </li>
-
-  </ul>
-  </div>
+    </div>
   </div> <!-- container-fluid.// -->
 </nav>
 
