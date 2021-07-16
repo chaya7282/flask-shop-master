@@ -34,40 +34,19 @@
 {% endmacro %}
 
 {% macro menu_home(menu_items, horizontal=true) %}
+ {% for item in menu_items %}
 
-<ul class="dropdown-menu">
-  {% for item in menu_items %}
-  {% with children=item.children %}
-  <li >
-    <a class="dropdown-item" href="{{ item.url }}">
-      {{ item }}
-    </a>
-  </li>
-    {% if children %}
-  <a class="dropdown-item" href="{{item.get_url()}}" class="nav-link {%- if item.is_active() %} active{% endif %}"></a>
+   <li ><a class="dropdown-item" href="{{ item.url }}">{{ item }} </a></li>
+ {% endfor %}
 
-          {% for child in children %}
-          <li>
-            <a class="dropdown-item" href="{{ child.url }}">
-            {{ child }}
-
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-
-
-    {% endif %}
-  </li>
-  {% endwith %}
-  {% endfor %}
-</ul>
 {% endmacro %}
 
 
 
 
 {% macro menu(menu_items, horizontal=true) %}
+
+
 <ul class="menu {% if horizontal %}nav mb-4 mb-md-0{% endif %}">
   {% for item in menu_items %}
   {% with children=item.children %}
@@ -79,7 +58,7 @@
     <div class="{% if horizontal %}nav-item__dropdown-content{% else %}nav-item__submenu{% endif %}">
       <div class="container">
         <ul>
-          {% for child in children %}
+          {% for child in item.children %}
           <li>
             <a href="{{ child.url }}">
               {% if horizontal %}
