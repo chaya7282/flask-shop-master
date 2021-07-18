@@ -28,13 +28,13 @@
 {% set label_id = field.label.field_id %}
 <div class="form-group">
     <label>{{ field.label.text }}</label>
-    <select class="form-control select2" style="width: 100%;" name="{{ label_id }}">
+    <select class="form-control select" style="width: 100%;" name="{{ label_id }}">
         {% if has_zero %}
         <option value="0">None</option>
         {% endif %}
         {% for item in items %}
-        <option value="{{ item.id }}" {% if item.id==field.data|int %} selected {% endif %}>
-            {{ item.title }}
+        <option value="{{ item.id }}" {% if item.id==field.data|int %} selection {% endif %}>
+          {{ item.title }}
         </option>
         {% endfor %}
     </select>
@@ -48,7 +48,7 @@
 {% set label_id = field.label.field_id %}
 <div class="form-group">
     <label>{{ field.label.text }}</label>
-    <select class="form-control select2" style="width: 100%;" name="{{ label_id }}" multiple="multiple">
+    <select class="form-control select" style="width: 100%;" name="{{ label_id }}" multiple="multiple">
         {% for item in items %}
         <option value="{{ item.id }}" {% if field.data and item.title in field.data %} selected {% endif %}>
             {{ item.title }}
