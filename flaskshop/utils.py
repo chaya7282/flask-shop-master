@@ -49,6 +49,7 @@ def log_slow_queries(app):
         response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
         return response
 
+
 def jinja_global_varibles(app):
     """Register global varibles for jinja2"""
 

@@ -7,6 +7,7 @@ from flaskshop.plugin.models import PluginRegistry
 from flaskshop.settings import Config
 from flaskshop.plugin import spec, manager
 
+
 def create_app():
     app = Flask(__name__)
     app.config['UPLOAD_FOLDER']=settings.Config.UPLOAD_FOLDER
