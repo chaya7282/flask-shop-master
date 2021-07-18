@@ -18,7 +18,7 @@ from flaskshop.extensions import (
 from flaskshop.settings import Config
 from flaskshop.plugin import spec, manager
 from flaskshop.plugin.models import PluginRegistry
-from flaskshop.utils import log_slow_queries, jinja_global_varibles
+import flaskshop.utils
 
 from .account import views as account_view
 from .checkout import views as checkout_view
@@ -42,6 +42,11 @@ def register_extensions(app):
     migrate.init_app(app, db)
     bootstrap.init_app(app)
 
+def log_slow_queries(app):
+    flaskshop.utils.log_slow_queries(app)
+
+def jinja_global_varibles(app):
+    flaskshop.utils.jinja_global_varibles(app)
 
 def register_blueprints(app):
     app.pluggy.hook.flaskshop_load_blueprints(app=app)
