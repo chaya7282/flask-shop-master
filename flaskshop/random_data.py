@@ -50,7 +50,17 @@ fake.add_provider(SaleorProvider)
 
 GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "groceries.jpg"}
 
-DEFAULT_SCHEMA = {
+DEFAULT_SCHEMA_ = {
+    "Generic": {
+        "category": {"name": "Generic", "image_name": "apparel.jpg"},
+        "product_attributes": {
+         "Generic": ["Defauls"],
+     },
+        "variant_attributes": {"Generic": ["Default"]},
+        "images_dir": "t-shirts/",
+        "is_shipping_required": False,
+    },
+
     "T-Shirt": {
         "category": {"name": "Apparel", "image_name": "apparel.jpg"},
         "product_attributes": {
@@ -118,6 +128,18 @@ DEFAULT_SCHEMA = {
         "is_shipping_required": True,
     },
 }
+DEFAULT_SCHEMA = {
+    "General": {
+        "category": {"name": "General", "image_name": "None"},
+        "product_attributes": {
+            "General": ["Default"],
+           },
+        "variant_attributes": {"General": ["default"]},
+        "images_dir": "t-shirts/",
+        "is_shipping_required": True,
+    },
+}
+
 COLLECTIONS_SCHEMA = [
     {"name": "Summer collection", "image_name": "summer.jpg"},
     {"name": "Winter sale", "image_name": "sale.jpg"},
@@ -202,7 +224,6 @@ def create_products_by_schema(
             how_many=how_many,
             create_images=create_images,
         )
-
 
 # step2
 def create_product_types_by_schema(root_schema):

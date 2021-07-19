@@ -1,7 +1,17 @@
  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/product_card/product_card3.css') }}">
-
+<head>
+    <style>
+        .button_quantity {
+           width: 5px;
+            max-width: 5px;
+            background-color: #8064A2;
+       }
+    </style>
+</head>
 <div class="card">
         <div class="top d-flex flex-row align-items-center">
+
+
          {%if product.get_is_featured%}
         <h6 class="mb-0 mr-2">Special Product</h6><i class="fa-thumbs-o-up "></i>
         <div class="badge bg-dark text-white position-absolute" style="top: 1rem; right: 1rem">מיוחד</div>
@@ -24,29 +34,44 @@
         </div>
 
     <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}">
-        <div class="bottom d-flex flex-row justify-content-center">
-             <div class="form-group">
-                {% if product.on_sale %}
-                    <div class="input-group mb-3"> <span class="input-group-text">+</span> <input type="text" name="id_quantity" class="form-control" value="1"> <span class="input-group-text">-</span>
+        <div class="container-fluid bottom justify-content-center">
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                 {% if product.on_sale %}
+                 <div class="input-group mb-3"> <input type="number" name="id_quantity" class="form-control" value="1"> </div>
+             {% endif %}
+         </div>
+
+            </div>
+            <div class="col-sm">
+                <div class="form-group mb-0.5">
+        <select class="form-select" id="validationDefault04" required>
+             <option selected disabled value="">Choose Variant</option>
+                    {% if product.variant| length < 2 %}
+                        {% set var_default= product.variant[0] %}
+                        <option value={{var_default.id}} selected disabled hidden>{{var_default.title}}</option>
+                    {% else %}
+                    {% for var in  product.variant %}
+                           {%if var.is_in_stock %}
+                                <option value={{var.id}}>{{var.title}}</option>
+                        {% endif %}
+                   {% endfor %}
                 {% endif %}
-             </div>
+                </select>
+           <label for="validationDefault04" class="form-label">Variant</label>
+        </div>
+            </div>
+           </div>
+           <div class="row align-items-center ">
+           <button  type="submit" class="btn btn-success btn-xsm btn-outline btn-wrap-text reducefontsize ">Add For <b>${{product.price}}</b></button>
+                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+           </div>
+       </div>
 
-                <div class="form-group">
-                   <select class="form-select" id="validationCustom04" name="id_variant">
-                        <option disabled selected>Choose Variant</option>
-                          {% for var in  product.variant %}
-                                {%if var.is_in_stock %}
-                                        <option value={{var.id}}>{{var.title}}</option>
-                                {% endif %}
-                           {% endfor %}
-                    </select>
-
-                </div>
-            </div> <span> <button  type="submit" class="btn btn-success btn-sm btn-outline btn-wrap-text reducefontsize">Add For <b>${{product.price}}</b></button></span>
-             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-    </div>
-    </form>
+</form>
 </div>
+
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
@@ -69,8 +94,14 @@
     })
 })()
 
-</script>
+$('.add').click(function () {
+    $(this).prev().val(+$(this).prev().val() + 1);
+});
+$('.sub').click(function () {
+    if ($(this).next().val() > 0) $(this).next().val(+$(this).next().val() - 1);
+});
 
+</script>
 
 
 
