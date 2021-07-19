@@ -29,7 +29,7 @@
   <body>
 {% block header %}
 
-<header class="sticky-top">
+<header class="sticky-top mb-3">
 
 <!-- ============= COMPONENT ============== -->
 
@@ -101,27 +101,25 @@
   </div> <!-- navbar-collapse.// -->
  </div> <!-- container-fluid.// -->
 </nav>
-   <div class="container-fluid mb-2">
+   <div class="container-fluid mb-2" >
+   <div class="row mr-3">
    {% if current_user.is_authenticated %}
-   <a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+     <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
    {% if current_user.is_authenticated and current_user_cart.quantity %}
       <span >{{ current_user_cart.quantity }}</span>
          {% else %}
             <span >0</span>
      {% endif %}
-    </a>
+     </a></div>
 
    {% if current_user.can_edit() %}
-
-    <a  href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
-      <i class="icon-dashboard"></i></a>
-
+       <div class="col px-md-3"> <a  href="{{ url_for('dashboard.index') }}" ><i class="fa fa-tachometer" style='font-size:36px' aria-hidden="true"></i></a></div>
     {% endif %}
      {% endif %}
-    <a class="navbar-brand" href="{{ url_for('public.home') }}"> <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a>
+    <div class="col px-md-3"> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a></div>
 
    </div>
-
+   </div>
  <!-- ============= COMPONENT ============== -->
 </header>
 {% endblock %}
