@@ -101,7 +101,6 @@
   </div> <!-- navbar-collapse.// -->
  </div> <!-- container-fluid.// -->
 </nav>
-
    <div class="container-fluid mb-2">
    {% if current_user.is_authenticated %}
    <a class="navbar-brand" href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
@@ -128,6 +127,10 @@
 {% endblock %}
 
     <div class="container maincontent">
+        {% block breadcrumb %}
+      {% endblock breadcrumb %}
+      {% block content %}
+      {% endblock content %}
       {% block topcontent %}{% endblock topcontent %}
 
       {% for message in get_flashed_messages(with_categories=True) %}
@@ -138,10 +141,7 @@
       </div>
       {% endfor %}
 
-      {% block breadcrumb %}
-      {% endblock breadcrumb %}
-      {% block content %}
-      {% endblock content %}
+
     </div>
     {% block footer %}
     <footer class="footer">
