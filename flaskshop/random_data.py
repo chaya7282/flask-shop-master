@@ -55,8 +55,22 @@ DEFAULT_SCHEMA_ = {
         "category": {"name": "Generic", "image_name": "apparel.jpg"},
         "product_attributes": {
          "Generic": ["Defauls"],
+        "Color": ["Blue", "White"],
+        "Collar": ["Round", "V-Neck", "Polo"],
+        "Coffee Genre": ["Arabica", "Robusta"],
+        "Brand": ["Saleor"],
+        "Coffee Genre": ["Arabica", "Robusta"],
+        "Author": ["John Doe", "Milionare Pirate"],
+        "Publisher": ["Mirumee Press", "Saleor Publishing"],
+        "Language": ["English", "Pirate"],
+
      },
-        "variant_attributes": {"Generic": ["Default"]},
+        "variant_attributes": {"Generic": ["Default"],
+                               "Size": ["XS", "S", "M", "L", "XL", "XXL"],
+                                "Box Size": ["100g", "250g", "500g", "1kg"],
+                               "Candy Box Size": ["100g", "250g", "500g"],
+                                "Color": ["Blue", "White","red"],\
+                                 },
         "images_dir": "t-shirts/",
         "is_shipping_required": False,
     },
@@ -129,14 +143,28 @@ DEFAULT_SCHEMA_ = {
     },
 }
 DEFAULT_SCHEMA = {
-    "General": {
-        "category": {"name": "General", "image_name": "None"},
+     "Generic": {
+        "category": {"name": "Generic", "image_name": "apparel.jpg"},
         "product_attributes": {
-            "General": ["Default"],
-           },
-        "variant_attributes": {"General": ["default"]},
+         "Generic": ["Defauls"],
+        "Color": ["Blue", "White"],
+        "Collar": ["Round", "V-Neck", "Polo"],
+        "Coffee Genre": ["Arabica", "Robusta"],
+        "Brand": ["Saleor"],
+        "Coffee Genre": ["Arabica", "Robusta"],
+        "Author": ["John Doe", "Milionare Pirate"],
+        "Publisher": ["Mirumee Press", "Saleor Publishing"],
+        "Language": ["English", "Pirate"],
+
+     },
+        "variant_attributes": {"Generic": ["Default"],
+           "Size": ["XS", "S", "M", "L", "XL", "XXL"],
+            "Box Size": ["100g", "250g", "500g", "1kg"],
+           "Candy Box Size": ["100g", "250g", "500g"],
+            "Color": ["Blue", "White","red"],
+        },
         "images_dir": "t-shirts/",
-        "is_shipping_required": True,
+        "is_shipping_required": False,
     },
 }
 

@@ -39,8 +39,7 @@ class Product(Model):
     def __str__(self):
         return self.title
 
-    def __iter__(self):
-        return iter(self.variants)
+
 
     def get_absolute_url(self):
         return url_for("product.show", id=self.id)
@@ -164,12 +163,12 @@ class Product(Model):
         attributes = dict(zip(attr_entries, attr_values))
         self.attributes = attributes
 
-    def generate_variants(self):
+    def generate_variants(self, attributes):
         if not self.product_type.has_variants:
             ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id, title= self.title)
         else:
             sku_id = 1337
-            variant_attributes = self.product_type.variant_attributes[0]
+            variant_attributes = attributes
             for value in variant_attributes.values:
                 sku = str(self.id) + "-" + str(sku_id)
                 attributes = {str(variant_attributes.id): str(value.id)}
@@ -359,6 +358,9 @@ class ProductType(Model):
     def __str__(self):
         return self.title
 
+    def get_by_name(cls,title):
+        return cls.query.filter_by(title=title)
+
     @property
     def product_attributes(self):
         at_ids = (
@@ -457,6 +459,7 @@ class ProductVariant(Model):
 
     def __str__(self):
         return self.title or self.sku
+
 
     def display_product(self):
         return f"{self.product} ({str(self)})"

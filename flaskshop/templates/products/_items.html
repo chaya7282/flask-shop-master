@@ -45,8 +45,11 @@
 
             </div>
             <div class="col-sm">
+               {% if product.variant %}
                 <div class="form-group mb-0.5">
+
         <select class="form-select" id="validationDefault04" required>
+
              <option selected disabled value="">Choose Variant</option>
                     {% if product.variant| length < 2 %}
                         {% set var_default= product.variant[0] %}
@@ -61,6 +64,7 @@
                 </select>
            <label for="validationDefault04" class="form-label">Variant</label>
         </div>
+            {% endif %}
             </div>
            </div>
            <div class="row align-items-center ">

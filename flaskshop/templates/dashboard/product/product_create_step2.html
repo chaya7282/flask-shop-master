@@ -2,7 +2,18 @@
 {% import 'dashboard/_vendor.html' as vendor%}
 {% extends 'dashboard/layout.html' %}
 
+
+
 {% block body %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ url_for('static', filename='build/dashboard/product_edit.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/dashboard/bootstrap-select.js') }}"></script>
 
 <section class="content">
     <div class="container-fluid">
@@ -20,14 +31,19 @@
                             {{ vendor.render_field(form.basic_price) }}
                             {{ vendor.render_field(form.on_sale) }}
                             {{ vendor.render_field(form.is_featured) }}
-                            {{ vendor.render_field(form.rating) }}
+
+                           {{ vendor.render_field(form.rating) }}
                             {{ vendor.render_field(form.sold_count) }}
                             {{ vendor.render_field(form.review_count) }}
+
                             {{ macros.render_select_field(form.category_id, categories) }}
                             {{ vendor.render_field(form.description) }}
                             {{ macros.render_multi_img(form) }}
-                            {{ macros.render_attribute_field(form.attributes, product_type.product_attributes) }}
-                        </div>
+                            {{ macros.render_select_multi_field(form.attributes, product_type.product_attributes) }}
+                            {{ macros.render_select_multi_field(form.variants, product_type.product_attributes) }}
+
+
+                  </div>
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
                             </div>
@@ -36,9 +52,12 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
+
 {% endblock %}
 
 {% block tail_js %}
-<script src="{{ url_for('static', filename='build/dashboard/product_edit.js') }}"></script>
+
 {% endblock %}
+

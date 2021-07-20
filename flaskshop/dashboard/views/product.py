@@ -267,7 +267,7 @@ def product_edit(id):
             f.save(os.path.join(Config.UPLOAD_FOLDER, image_name))
             new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
             Product.update_images([new_img[0].id],product.id)
-
+        variant= form.variants.data
         _save_product(product, form)
         return redirect(url_for("dashboard.product_detail", id=product.id))
     categories = Category.query.all()
@@ -285,6 +285,7 @@ def product_create_step1():
             )
         )
     product_types = ProductType.query.all()
+
     return render_template(
         "product/product_create_step1.html", form=form, product_types=product_types
     )
@@ -294,6 +295,7 @@ def product_create_step2():
     product_type_id = request.args.get("product_type_id", 1, int)
     product_type = ProductType.get_by_id(product_type_id)
     categories = Category.query.all()
+
     if form.validate_on_submit():
         f = request.files['imgdata']
 
@@ -303,6 +305,7 @@ def product_create_step2():
             image_name= secure_filename(f.filename)
             f.save(os.path.join(Config.UPLOAD_FOLDER,image_name))
             ProductImage.get_or_create(image=image_name , product_id=product.id)
+        varints=  form.variants.data
         product.generate_variants()
         return redirect(url_for("dashboard.product_detail", id=product.id))
 

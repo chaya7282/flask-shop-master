@@ -1,3 +1,5 @@
+
+
 from flaskshop.product.models import (
     Category,
     Collection,
@@ -19,13 +21,30 @@ DASHBOARD_MENUS = [
     {"title": "אוספים", "endpoint": "collections", "parent_id": 1},
     {"title": "מכירות", "endpoint": "sales", "parent_id": 4},
     {"title": "קופונים", "endpoint": "vouchers", "parent_id": 4},
+    {"title": "וריאנטים", "endpoint": "variant_manage", "parent_id": 1},
 ]
+DEFAULT_SCHEMA = {
+    "General": {
+        "category": {"name": "Apparel", "image_name": "apparel.jpg"},
+        "product_attributes": {
+            "Color": ["Blue", "White","red","pink"],
+            "טעם": ["מוקה", "תות", "וניל"],
+            "תכולת גלוטו": ["עם גלוטן", "ללא גלוטן"],
+            "ברירת מחדל": ["ריק", ],
+        },
+        "variant_attributes": {"ברירת מחדל": ["ריק"]},
+        "images_dir": "t-shirts/",
+        "is_shipping_required": True,
+    },
+}
+
+def add_default_product():
+    create_products_by_schema(DEFAULT_SCHEMA)
 
 def create_dashboard_menus():
     DashboardMenu.drop_all()
     for item in DASHBOARD_MENUS:
         DashboardMenu.create(**item)
-
 
 def generate_menu_items(category: Category, menu_id=None, parent_id=None):
     menu_item, created = MenuItem.get_or_create(
