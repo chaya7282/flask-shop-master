@@ -142,6 +142,7 @@ class ProductForm(FlaskForm):
     description = TextAreaField()
     images = FileField("Upload")
     attributes = FieldList(SelectField())
+    variants= FieldList(SelectField())
     submit = SubmitField()
 
 
