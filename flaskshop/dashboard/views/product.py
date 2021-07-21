@@ -16,6 +16,8 @@ from flaskshop.product.models import (
     ProductType,
     ProductVariant,
     ProductImage,
+    ProductTypeAttributes,
+    ProductTypeVariantAttributes
 )
 from flaskshop.dashboard.forms import (
     AttributeForm,
@@ -182,16 +184,26 @@ def product_types_manage(id=None):
         form = ProductTypeForm()
     if form.validate_on_submit():
         if not id:
-            product_type = ProductType()
-            product_type.title= form.title.data
+            request.form.getlist('usergroups')
+            product_type = ProductType.get_or_create(
+                title=form.title.data, is_shipping_required=form.is_shipping_required.data
+            )[0]
             product_type.save()
-        product_type.update_product_attr(form.product_attributes.data)
-        product_type.update_variant_attr(form.variant_attr_id.data)
-        del form.product_attributes
-        del form.variant_attr_id
-        form.populate_obj(product_type)
-        product_type.save()
-        return redirect(url_for("dashboard.product_types"))
+            for attr in form.product_attributes.data:
+                ProductTypeAttributes.get_or_create(
+                    product_type_id=product_type.id, product_attribute_id=int(attr)
+                )
+            for attr in form.variant_attributes.data:
+                ProductTypeVariantAttributes.get_or_create(
+                    product_type_id=product_type.id, product_attribute_id=int(attr)
+                )
+
+            product_type.save()
+
+            return  redirect(url_for(
+                    "dashboard.product_create_step2",
+                    product_type_id=product_type.id
+                ))
     attributes = ProductAttribute.query.all()
     return render_template(
         "product/product_type.html", form=form, attributes=attributes
@@ -245,12 +257,14 @@ def product_detail(id):
 
 def _save_product(product, form):
    # product.update_images(form.images.data)
+
     product.update_attributes(form.attributes.data)
     del form.images
     del form.attributes
     form.populate_obj(product)
     product.save()
     return product
+
 def product_del(id):
     product = Product.get_by_id(id)
     if product:
@@ -275,37 +289,62 @@ def product_edit(id):
     return render_template("product/product_edit.html", **context)
 
 
-def product_create_step1():
-    form = ProductCreateForm()
-    if form.validate_on_submit():
-        return redirect(
-            url_for(
-                "dashboard.product_create_step2",
-                product_type_id=form.product_type_id.data,
-            )
-        )
-    product_types = ProductType.query.all()
 
+
+def product_create_step1(id=None):
+    if id:
+        product_type = ProductType.get_by_id(id)
+        form = ProductTypeForm(obj=product_type)
+    else:
+        form = ProductTypeForm()
+    if form.validate_on_submit():
+        if not id:
+            request.form.getlist('usergroups')
+            product_type = ProductType.get_or_create(
+                title=form.title.data, is_shipping_required=form.is_shipping_required.data
+            )[0]
+            product_type.save()
+
+            for attr in form.product_attributes.data:
+                ProductTypeAttributes.get_or_create(
+                    product_type_id=product_type.id, product_attribute_id=int(attr)
+                )
+            for attr in form.variant_attributes.data:
+                ProductTypeVariantAttributes.get_or_create(
+                    product_type_id=product_type.id, product_attribute_id=int(attr)
+                )
+
+            product_type.save()
+
+            return  redirect(url_for(
+                    "dashboard.product_create_step2",
+                    product_type_id=product_type.id
+                ))
+    attributes = ProductAttribute.query.all()
     return render_template(
-        "product/product_create_step1.html", form=form, product_types=product_types
+        "product/product_create_step1.html", form=form, attributes=attributes
     )
+
 
 def product_create_step2():
     form = ProductForm()
+
     product_type_id = request.args.get("product_type_id", 1, int)
     product_type = ProductType.get_by_id(product_type_id)
     categories = Category.query.all()
-
+    form.title.data = product_type.title
     if form.validate_on_submit():
+        arg = request.args.get("Test")
         f = request.files['imgdata']
 
         product = Product(product_type_id=product_type_id)
+        product.title= product_type.title
         product = _save_product(product, form)
         if f:
             image_name= secure_filename(f.filename)
             f.save(os.path.join(Config.UPLOAD_FOLDER,image_name))
             ProductImage.get_or_create(image=image_name , product_id=product.id)
-        varints=  form.variants.data
+
         product.generate_variants()
         return redirect(url_for("dashboard.product_detail", id=product.id))
 
@@ -313,7 +352,7 @@ def product_create_step2():
         "product/product_create_step2.html",
         form=form,
         product_type=product_type,
-        categories=categories
+        categories=categories,
    )
 
 
