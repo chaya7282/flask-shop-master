@@ -14,7 +14,7 @@
                             <div class="input-group input-group-sm">
                                 <a href="{{url_for('dashboard.product_edit', id=product.id)}}"
                                     class="btn btn-primary btn-sm" style="margin-right: 5px;">Edit</a>
-                                11111
+
                                 <a href="{{url_for('dashboard.product_del', id=product.id)}}"
                                     class="btn btn-primary btn-sm" style="margin-right: 5px;">Delete</a>
 
@@ -62,6 +62,13 @@
                                     <li class="list-group-item">
                                         <b>ProductType (סוג המוצר)</b> <span class="float-right">{{product.product_type}}</span>
                                     </li>
+                                     <li class="list-group-item">
+                                        {% for attribute, value in product.attribute_map.items() %}
+
+                                            <strong>{{ value }}</strong>
+
+                                        {% endfor %}
+                                     </li>
                                     <li class="list-group-item">
                                         <b>Created (תאריך יצירה)</b> <span class="float-right">{{product.created_at}}</span>
                                     </li>
