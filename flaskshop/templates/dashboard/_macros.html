@@ -26,7 +26,7 @@
 <button onclick="window.history.go(-1); return false;" class="btn btn-default float-right">Cancel</button>
 {% endmacro %}
 
-{% macro render_select_field(field, items, has_zero=true) %}
+{% macro render_select_field__(field, items, has_zero=true) %}
 {% set label_id = field.label.field_id %}
 <div class="form-group">
     <label>{{ field.label.text }}</label>
@@ -50,10 +50,7 @@
 {% set label_id = field.label.field_id %}
 <div class="form-group">
     <label >{{ field.label.text }}</label>
-   <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" multiple>
-         <option value="none" selected >
-           None
-        </option>
+   <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required multiple>
 
          {% for item in items %}
           <option value={{item.id}}>{{ item.title }}</option>
@@ -61,6 +58,25 @@
    </select>
  </div>
 {% endmacro %}
+
+{% macro render_select_field(field, items, has_zero=true) %}
+{% set label_id = field.label.field_id %}
+<div class="form-group">
+    <label>{{ field.label.text }}</label>
+
+      <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required >
+
+         {% for item in items %}
+          <option value={{item.id}}>{{ item.title }}</option>
+         {% endfor %}
+   </select>
+
+    {% if field.description %}
+    <small class="form-text text-muted">{{ field.description|safe }}</small>
+    {% endif %}
+</div>
+{% endmacro %}
+
 
 {% macro render_radio_field(field) %}
 {% set label_id = field.label.field_id %}
