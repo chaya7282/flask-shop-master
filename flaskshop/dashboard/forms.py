@@ -125,7 +125,9 @@ class ProductTypeForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
     has_variants = BooleanField(default=True)
     is_shipping_required = BooleanField(default=True)
-    product_attributes = SelectMultipleField()
+    product_attributes =SelectMultipleField(validators=[DataRequired()])
+    variant_attributes = SelectMultipleField(validators=[DataRequired()])
+
     variant_attr_id = SelectField("Variant Attributes")
     submit = SubmitField()
 
@@ -141,7 +143,7 @@ class ProductForm(FlaskForm):
     category_id = SelectField()
     description = TextAreaField()
     images = FileField("Upload")
-    attributes = FieldList(SelectField())
+    attributes = FieldList(SelectField(),validators=[DataRequired()])
     variants= FieldList(SelectField())
     submit = SubmitField()
 
