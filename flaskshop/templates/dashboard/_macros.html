@@ -48,14 +48,18 @@
 
 {% macro render_select_multi_field(field, items) %}
 {% set label_id = field.label.field_id %}
-<div class="form-group row">
-    <label for="maxOption2" class="col-lg-2 control-label">{{ field.label.text }}</label>
-   <select id="maxOption2" class="selectpicker show-menu-arrow form-control" multiple data-max-options="2">
-          {% for item in items %}
+<div class="form-group">
+    <label >{{ field.label.text }}</label>
+   <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" multiple>
+         <option value="none" selected >
+           None
+        </option>
+
+         {% for item in items %}
           <option value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
    </select>
-  </div>
+ </div>
 {% endmacro %}
 
 {% macro render_radio_field(field) %}
