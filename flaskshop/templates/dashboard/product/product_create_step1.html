@@ -1,4 +1,4 @@
-% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_macros.html' as macros%}
 {% import 'dashboard/_vendor.html' as vendor%}
 {% extends 'dashboard/layout.html' %}
 
@@ -43,9 +43,7 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
 {% endblock %}
 
-{% block tail_js %}
-<script src="{{ url_for('static', filename='build/dashboard/select.js') }}"></script>
-{% endblock %}
