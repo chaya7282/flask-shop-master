@@ -122,6 +122,14 @@ class Product(Model):
         }
         return items
 
+    @property
+
+    def attribute_values(self):
+        items = {
+            ProductAttribute.get_by_id(k): AttributeChoiceValue.get_by_id(v)
+            for k, v in self.attributes.items()
+        }
+        return items
     @classmethod
     @cache(MC_KEY_FEATURED_PRODUCTS.format("{num}"))
     def get_featured_product(cls, num=8):
@@ -163,12 +171,12 @@ class Product(Model):
         attributes = dict(zip(attr_entries, attr_values))
         self.attributes = attributes
 
-    def generate_variants(self, attributes):
+    def generate_variants(self):
         if not self.product_type.has_variants:
             ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id, title= self.title)
         else:
             sku_id = 1337
-            variant_attributes = attributes
+            variant_attributes = self.product_type.variant_attributes[0]
             for value in variant_attributes.values:
                 sku = str(self.id) + "-" + str(sku_id)
                 attributes = {str(variant_attributes.id): str(value.id)}
@@ -394,7 +402,7 @@ class ProductType(Model):
         else:
             return None
 
-    def update_product_attr(self, new_attrs):
+    def  update_product_attr(self, new_attrs):
         origin_ids = (
             ProductTypeAttributes.query.with_entities(
                 ProductTypeAttributes.product_attribute_id
