@@ -39,11 +39,10 @@
                             {{ macros.render_select_field(form.category_id, categories) }}
                             {{ vendor.render_field(form.description) }}
                             {{ macros.render_multi_img(form) }}
-                            {{ macros.render_select_multi_field(form.attributes, product_type.product_attributes) }}
-                            {{ macros.render_select_multi_field(form.variants, product_type.product_attributes) }}
 
+                            {{ macros.render_attribute_field(form.attributes, product_type.product_attributes) }}
 
-                  </div>
+                             </div>
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
                             </div>
