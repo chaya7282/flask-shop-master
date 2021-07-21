@@ -35,6 +35,11 @@
                             {{ vendor.render_field(form.has_variants) }}
                             {{ vendor.render_field(form.is_shipping_required) }}
                             {{ macros.render_select_multi_field(form.product_attributes, attributes) }}
+                            {% for item in attributes %}
+                            {{item }}
+                            {% endfor %}
+
+
                             {{ macros.render_select_multi_field(form.variant_attributes, attributes) }}
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
