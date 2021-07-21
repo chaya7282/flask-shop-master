@@ -173,6 +173,17 @@ def  create_dashboard_menus_cmd():
     for msg in create_generator:
         click.echo(msg)
 
+def create_products_by_schema_cmd():
+    place_holder = Path("placeholders")
+    create_generator = chain(
+
+        create_products_by_schema(
+            placeholder_dir=place_holder, how_many=1, create_images=False
+        )
+    )
+    for msg in create_generator:
+        click.echo(msg)
+
 
 def seed(type):
     """ Generate random data for test.
@@ -180,7 +191,7 @@ def seed(type):
     if type == "default":
         place_holder = Path("placeholders")
         create_products_by_schema(
-            placeholder_dir=place_holder, how_many=10, create_images=True
+            placeholder_dir=place_holder, how_many=1, create_images=True
         )
         create_generator = chain(
             create_collections_by_schema(place_holder),
@@ -200,7 +211,7 @@ def seed(type):
     elif type == "product":
         place_holder = Path("placeholders")
         create_products_by_schema(
-            placeholder_dir=place_holder, how_many=10, create_images=True
+            placeholder_dir=place_holder, how_many=1, create_images=True
         )
     else:
         create_dict = {

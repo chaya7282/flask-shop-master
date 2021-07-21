@@ -24,6 +24,8 @@ def create_dashboard_menus():
     commands.create_dashboard_menus_cmd()
 
 
+
+
 if __name__ == "__main__":
 
     manager.run()
@@ -31,4 +33,6 @@ if __name__ == "__main__":
     manager.add_command('destroydb', destroydb())
     manager.add_command('create_admin', create_admin())
     manager.add_command('create_dashboard_menus', create_dashboard_menus())
+
+
     manager.add_command('seed', seed())
