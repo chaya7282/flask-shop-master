@@ -48,19 +48,16 @@
                {% if product.variant %}
                 <div class="form-group mb-0.5">
 
-        <select class="form-select" id="validationDefault04" required>
+        <select name= "id_variant" class="form-select" id="validationDefault04" required>
 
              <option selected disabled value="">Choose Variant</option>
-                    {% if product.variant| length < 2 %}
-                        {% set var_default= product.variant[0] %}
-                        <option value={{var_default.id}} selected disabled hidden>{{var_default.title}}</option>
-                    {% else %}
+
                     {% for var in  product.variant %}
                            {%if var.is_in_stock %}
                                 <option value={{var.id}}>{{var.title}}</option>
                         {% endif %}
                    {% endfor %}
-                {% endif %}
+
                 </select>
            <label for="validationDefault04" class="form-label">Variant</label>
         </div>
