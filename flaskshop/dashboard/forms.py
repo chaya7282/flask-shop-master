@@ -22,6 +22,7 @@ from wtforms.validators import DataRequired, optional, NumberRange, Length
 from flaskshop.constant import SettingValueType
 
 
+
 class FlaskForm(_FlaskForm):
     def validate(self, extra_validators=None):
         self._errors = None
@@ -123,10 +124,10 @@ class CategoryForm(FlaskForm):
 
 class ProductTypeForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
-    has_variants = BooleanField(default=True)
+    has_variants = BooleanField(default=False)
+    has_attributes= BooleanField(default=False)
     is_shipping_required = BooleanField(default=True)
-    product_attributes =SelectMultipleField(validators=[DataRequired()])
-    variant_attributes = SelectMultipleField(validators=[DataRequired()])
+    product_attributes =SelectMultipleField()
 
     variant_attr_id = SelectField("Variant Attributes")
     submit = SubmitField()
@@ -144,7 +145,7 @@ class ProductForm(FlaskForm):
     description = TextAreaField()
     images = FileField("Upload")
     attributes = FieldList(SelectField(),validators=[DataRequired()])
-    variants= FieldList(SelectField())
+    variant_attributes = SelectMultipleField()
     submit = SubmitField()
 
 
