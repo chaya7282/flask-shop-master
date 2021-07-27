@@ -48,12 +48,14 @@
 
 {% macro render_select_multi_field(field, items) %}
 {% set label_id = field.label.field_id %}
-<div class="form-group">
+
+
+<div class="form-group" >
     <label >{{ field.label.text }}</label>
    <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required multiple>
 
          {% for item in items %}
-          <option value={{item.id}}>{{ item.title }}</option>
+                <option value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
    </select>
  </div>
