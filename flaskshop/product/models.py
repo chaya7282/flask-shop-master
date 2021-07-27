@@ -39,8 +39,6 @@ class Product(Model):
     def __str__(self):
         return self.title
 
-
-
     def get_absolute_url(self):
         return url_for("product.show", id=self.id)
 
@@ -360,7 +358,8 @@ class ProductTypeVariantAttributes(Model):
 class ProductType(Model):
     __tablename__ = "product_type"
     title = Column(db.String(255), nullable=False)
-    has_variants = Column(db.Boolean(), default=True)
+    has_variants = Column(db.Boolean(), default=False)
+    has_attributes= Column(db.Boolean(), default=False)
     is_shipping_required = Column(db.Boolean(), default=False)
 
     def __str__(self):
@@ -548,6 +547,9 @@ class ProductAttribute(Model):
     def __str__(self):
         return self.title
 
+    def get_by_name(cls, title):
+        return cls.query.filter_by(title=title)
+
     @property
     @cache(MC_KEY_ATTRIBUTE_VALUES.format("{self.id}"))
     def values(self):
@@ -663,8 +665,6 @@ class ProductImage(Model):
 
     def __str__(self):
         return url_for("static", filename=self.image, _external=True)
-
-
 
     @staticmethod
     def clear_mc(target):
