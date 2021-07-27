@@ -40,8 +40,23 @@
                             {{ vendor.render_field(form.description) }}
                             {{ macros.render_multi_img(form) }}
 
-                            {{ macros.render_attribute_field(form.attributes, product_type.product_attributes) }}
 
+
+                            {% if product_type.has_variants %}
+                            {% set label_id = form.variant_attributes.label.field_id %}
+
+                              <div class="form-group" id ="select_attributes" >
+                                    <label >Variant Attributes</label>
+                                   <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required  multiple>
+                                        {% for item in variant_attributes %}
+                                                <option value={{item.id}}>{{ item.title }}</option>
+                                         {% endfor %}
+                                   </select>
+                                </div>
+                             {% endif %}
+                            {% if product_type.has_attributes %}
+                                 {{ macros.render_attribute_field(form.attributes, product_type.product_attributes) }}
+                            {% endif %}
                              </div>
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
