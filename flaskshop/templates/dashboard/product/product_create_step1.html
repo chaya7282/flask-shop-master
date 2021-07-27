@@ -13,6 +13,35 @@
 <script src="{{ url_for('static', filename='build/dashboard/product_edit.js') }}"></script>
 
 <script src="{{ url_for('static', filename='js/dashboard/bootstrap-select.js') }}"></script>
+<script>
+
+function hide()
+{
+  if (document.getElementById('HasAttributes').checked)
+  {
+    document.getElementById("select_attributes").hidden = false;
+     $("#select1").attr('required', 'required');
+  } else {
+     document.getElementById("select_attributes").hidden = true;
+     $("#select1").removeAttr('required');
+  }
+}
+
+function manage_variants()
+{
+  if (document.getElementById('HasVariants').checked)
+  {
+    document.getElementById("select_variants").hidden = false;
+     $("#select2").attr('required', 'required');
+  } else {
+     document.getElementById("select_attributes").hidden = true;
+     $("#select2").removeAttr('required');
+  }
+}
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 <section class="content">
     <div class="container-fluid">
@@ -22,7 +51,9 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Create Product Step First</h3>
+                         <div class="card-header">
+                             <h3 class="card-title">Create Product Step First--</h3>
+                         </div>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -30,20 +61,60 @@
                         <div class="card-body">
                             {{ form.hidden_tag() }}
                             {{ vendor.render_field(form.title) }}
-                            {{ vendor.render_field(form.has_variants) }}
-                            {{ vendor.render_field(form.is_shipping_required) }}
-                            {{ macros.render_select_multi_field(form.product_attributes, attributes) }}
-                            {{ macros.render_select_multi_field(form.variant_attributes, attributes) }}
-                            <div class="card-footer">
-                                {{ macros.render_submit(form.submit) }}
+
+                            {% set label_id = form.has_attributes.label.field_id %}
+                               <div class="form-group">
+                                <div class="form-check">
+                                  <input name="HasAttributes"  class="form-check-input"  type="checkbox" id="HasAttributes" onclick="hide()" value="false"  >
+                                  <label class="form-check-label" >
+                                    Has Attributes
+                                  </label>
+                                </div>
+                               </div>
+                                 {% set label_id = form.has_variants.label.field_id %}
+                               <div class="form-group">
+                                <div class="form-check">
+                                  <input name="HasVariants"  class="form-check-input"  type="checkbox" id="HasVariants" onclick="manage_variants()" value="false"  >
+                                  <label class="form-check-label" >
+                                    Has Variants
+                                  </label>
+                                </div>
+                               </div>
+
+
+
+
+                                 {{ vendor.render_field(form.is_shipping_required) }}
+
+
+                                {% set label_id = form.product_attributes.label.field_id %}
+                                <div class="form-group" id ="select_attributes"  hidden="true">
+                                    <label >Product Attributes</label>
+                                   <select  id="select1" name="{{ label_id }}"  class="selectpicker form-control" hidden = "true" data-live-search="true" multiple>
+                                        {% for item in attributes %}
+                                                <option value={{item.id}}>{{ item.title }}</option>
+                                         {% endfor %}
+                                   </select>
+                                </div>
+
+                                <div class="card-footer">
+                                    {{ macros.render_submit(form.submit) }}
+                                </div>
                             </div>
-                        </div>
                     </form>
+
 
             </div>
         </div>
     </div>
     </div>
+
+<script>
+
+
+
+</script>
 </section>
+
 {% endblock %}
 
