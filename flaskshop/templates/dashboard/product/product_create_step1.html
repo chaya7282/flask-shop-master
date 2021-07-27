@@ -90,7 +90,7 @@ function manage_variants()
                                 {% set label_id = form.product_attributes.label.field_id %}
                                 <div class="form-group" id ="select_attributes"  hidden="true">
                                     <label >Product Attributes</label>
-                                   <select  id="select1" name="{{ label_id }}"  class="selectpicker form-control" hidden = "true" data-live-search="true" multiple>
+                                   <select  id="select1" name="{{ label_id }}"  class="selectpicker form-control" data-max-options="2" hidden = "true" data-live-search="true" multiple>
                                         {% for item in attributes %}
                                                 <option value={{item.id}}>{{ item.title }}</option>
                                          {% endfor %}
