@@ -300,22 +300,27 @@ def product_create_step1(id=None):
     if form.validate_on_submit():
         if not id:
             request.form.getlist('usergroups')
+            isChecked = request.form.getlist("HasAttributes")
+            has_attributes = False
+            if isChecked:
+                has_attributes= True
+            isChecked = request.form.getlist("HasVariants")
+            has_variants = False
+            if isChecked:
+                has_variants = True
+
+
             product_type = ProductType.get_or_create(
-                title=form.title.data, is_shipping_required=form.is_shipping_required.data
-            )[0]
-            product_type.save()
+                has_attributes=has_attributes, title=form.title.data, is_shipping_required=form.is_shipping_required.data, has_variants = has_variants)[0]
 
-            for attr in form.product_attributes.data:
-                ProductTypeAttributes.get_or_create(
-                    product_type_id=product_type.id, product_attribute_id=int(attr)
-                )
-            for attr in form.variant_attributes.data:
-                ProductTypeVariantAttributes.get_or_create(
-                    product_type_id=product_type.id, product_attribute_id=int(attr)
-                )
+            if product_type.has_attributes:
+                for attr in form.product_attributes.data:
+                    ProductTypeAttributes.get_or_create(
+                        product_type_id=product_type.id, product_attribute_id=int(attr)
+                    )
+
 
             product_type.save()
-
             return  redirect(url_for(
                     "dashboard.product_create_step2",
                     product_type_id=product_type.id
@@ -328,7 +333,6 @@ def product_create_step1(id=None):
 
 def product_create_step2():
     form = ProductForm()
-
     product_type_id = request.args.get("product_type_id", 1, int)
     product_type = ProductType.get_by_id(product_type_id)
     categories = Category.query.all()
@@ -340,19 +344,27 @@ def product_create_step2():
         product = Product(product_type_id=product_type_id)
         product.title= product_type.title
         product = _save_product(product, form)
+
         if f:
             image_name= secure_filename(f.filename)
             f.save(os.path.join(Config.UPLOAD_FOLDER,image_name))
             ProductImage.get_or_create(image=image_name , product_id=product.id)
 
+        if product_type.has_variants:
+            for attr in form.variant_attributes.data:
+                ProductTypeVariantAttributes.get_or_create(product_type_id=product_type.id,
+                                                           product_attribute_id=int(attr))
+
         product.generate_variants()
         return redirect(url_for("dashboard.product_detail", id=product.id))
 
+    attributes = ProductAttribute.query.all()
     return render_template(
         "product/product_create_step2.html",
         form=form,
         product_type=product_type,
         categories=categories,
+        variant_attributes= attributes
    )
 
 
