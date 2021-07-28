@@ -34,6 +34,7 @@ class Cart(Model):
 
     @property
     def lines(self):
+        cart= CartLine.query.filter(CartLine.cart_id == self.id).all()
         return CartLine.query.filter(CartLine.cart_id == self.id).all()
 
     @classmethod
@@ -114,6 +115,7 @@ class Cart(Model):
 
     def update_quantity(self):
         self.quantity = sum(line.quantity for line in self)
+
         if self.quantity == 0:
             self.delete()
         else:
@@ -133,6 +135,8 @@ class Cart(Model):
     def __flush_delete_event__(cls, target):
         super().__flush_delete_event__(target)
         rdb.delete(MC_KEY_CART_BY_USER.format(current_user.id))
+
+MC_KEY_LINE_BY_VAR = "checkout:cartline:variant_id:{}"
 
 
 class CartLine(Model):
@@ -163,6 +167,12 @@ class CartLine(Model):
     @property
     def subtotal(self):
         return self.variant.price * self.quantity
+
+
+
+
+
+
 
 
 class ShippingMethod(Model):

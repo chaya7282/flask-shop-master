@@ -79,6 +79,10 @@ class Product(Model):
             return True
         return False
 
+    @property
+    def get_has_variants(self):
+        product_type = ProductType.get_by_id(self.product_type_id)
+        return product_type
 
     @property
     def is_discounted(self):
@@ -98,6 +102,7 @@ class Product(Model):
         if self.is_discounted:
             return self.basic_price - self.discounted_price
         return self.basic_price
+
 
     @property
     def price_human(self):

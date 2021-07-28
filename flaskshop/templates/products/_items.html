@@ -33,24 +33,23 @@
             <h5>{{ product.title }}</h5> <span></span>
         </div>
 
-    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}">
+    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
         <div class="container-fluid bottom justify-content-center">
           <div class="row">
             <div class="col-sm">
               <div class="form-group">
                  {% if product.on_sale %}
-                 <div class="input-group mb-3"> <input type="number" name="id_quantity" class="form-control" value="1"> </div>
+                    <div class="input-group mb-3"> <input type="number" name="id_quantity" class="form-control" value="1"> </div>
              {% endif %}
          </div>
 
             </div>
             <div class="col-sm">
-               {% if product.variant %}
+               {% if product.get_has_variants %}
                 <div class="form-group mb-0.5">
+                   <select name= "id_variant" class="form-select" id="validationDefault04" required>
 
-        <select name= "id_variant" class="form-select" id="validationDefault04" required>
-
-             <option selected disabled value="">Choose Variant</option>
+                    <option selected disabled value="">Choose Variant</option>
 
                     {% for var in  product.variant %}
                            {%if var.is_in_stock %}

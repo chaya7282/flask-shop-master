@@ -1,3 +1,4 @@
+
 <div class="container">
   {% if current_user.is_authenticated and current_user_cart and current_user_cart.quantity > 0 %}
   <div id="cart-dropdown-list"
@@ -52,6 +53,7 @@
   </div>
   {% else %}
   <div class="text-md-center cart-dropdown__empty">
+    111
     <h3>There are no products in your shopping cart.</h3>
     <img src="{{ url_for('static', filename='img/empty-cart-bg.png') }}" class="lazyload lazypreload">
     <a href="" class="btn btn-primary">Check out our sales</a>

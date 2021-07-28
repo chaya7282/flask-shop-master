@@ -185,10 +185,34 @@ def create_products_by_schema_cmd():
         click.echo(msg)
 
 
+
+
+
 def seed(type):
     """ Generate random data for test.
     """
-    if type == "default":
+    if type == "limited":
+        db.drop_all()
+        db.create_all()
+
+        place_holder = Path("placeholders")
+        create_products_by_schema(
+            placeholder_dir=place_holder, how_many=1, create_images=True
+        )
+        create_generator = chain(
+            create_collections_by_schema(place_holder),
+
+            create_roles(),
+            create_admin(),
+
+
+            create_dashboard_menus(),
+
+        )
+        for msg in create_generator:
+            click.echo(msg)
+
+    elif type == "default":
         place_holder = Path("placeholders")
         create_products_by_schema(
             placeholder_dir=place_holder, how_many=1, create_images=True

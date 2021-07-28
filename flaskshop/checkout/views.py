@@ -17,40 +17,32 @@ impl = HookimplMarker("flaskshop")
 def cart_index():
     return render_template("checkout/cart.html")
 
-def cart_response(id):
+
+def update_cart(id):
+    # TODO when not enough stock, response ajax error
     line = CartLine.get_by_id(id)
+
     response = {
         "variantId": line.variant_id,
         "subtotal": 0,
         "total": 0,
         "cart": {"numItems": 0, "numLines": 0},
     }
+
+    if request.form["quantity_"] == "0":
+        line.delete()
+    else:
+        line.quantity = int(request.form["quantity_"])
+        line.save()
     cart = Cart.query.filter(Cart.user_id == current_user.id).first()
+
     response["cart"]["numItems"] = cart.update_quantity()
     response["cart"]["numLines"] = len(cart)
     response["subtotal"] = "$" + str(line.subtotal)
     response["total"] = "$" + str(cart.total)
-    return jsonify(response)
-
-
-def delete_item(id):
-    line = CartLine.get_by_id(id)
-    line.delete()
-    cart = Cart.query.filter(Cart.user_id == current_user.id).first()
-    cart.update_quantity()
+    jsonify(response)
     return redirect(url_for("checkout.cart_index"))
 
-
-def update_cart(id):
-    # TODO when not enough stock, response ajax error
-    line = CartLine.get_by_id(id)
-
-    if request.form["id_quantity"] == "0":
-        line.delete()
-    else:
-        line.quantity = int(request.form["id_quantity"])
-        line.save()
-    return redirect(request.referrer)
 
 def checkout_shipping():
     form = AddressForm(request.form)
@@ -155,10 +147,9 @@ def flaskshop_load_blueprints(app):
 
     bp.add_url_rule("/cart", view_func=cart_index)
     bp.add_url_rule(
-        "/update_cart/<int:id>", view_func=update_cart,methods=["GET", "POST"]
+        "/update_cart/<int:id>", view_func=update_cart, methods=["POST"]
     )
-    bp.add_url_rule(
-        "/delete_item/<int:id>", view_func=delete_item)
+
     bp.add_url_rule("/shipping", view_func=checkout_shipping, methods=["GET", "POST"])
     bp.add_url_rule("/note", view_func=checkout_note, methods=["GET", "POST"])
     bp.add_url_rule("/voucher", view_func=checkout_voucher, methods=["POST"])
