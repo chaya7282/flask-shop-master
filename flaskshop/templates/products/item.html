@@ -1,16 +1,20 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
 
-  <a href="#"><img class="product-image" src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" &amp;alt=""></a>
-  <h4>{{product.title}}</h4>
+<div class="card border-light mb-3 bg-light mb-3  justify-content:center" style="max-width: 18rem;">
+    <div class="card-header">
+    Featured
+  </div>
+   <img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{product.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{product.price}}</h6>
 
-   <div class="price">{{product.price}}</div>
-  <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+   <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
-   <p> <div class="input-group mb-3"> <input type="number" name="id_quantity" class="form-control" value="1"> </div></p>
-   <span>
-      {% if product.get_has_variants %}
-                <div class="form-group mb-0.5">
-                   <select name= "id_variant" class="form-select" id="validationDefault04" required>
+     <div class="card-link">
+         {% if product.get_has_variants %}
+
+             <select name= "id_variant" class="form-select mb-2" id="validationDefault04" required>
 
                     <option selected disabled value="">Choose Variant</option>
 
@@ -22,16 +26,15 @@
 
                 </select>
 
-        </div>
-      {% endif %}
-  </span>
-  <hr>
-  <button type="submit" class="btn btn-default btn-xs pull-right" type="button">
-      <i class="fa fa-cart-arrow-down"></i> Add To Cart
-  </button>
-  <button   class="btn btn-default btn-xs pull-left" type="button">
-      <i class="fa fa-eye"></i> Details
-  </button>
- <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
-  </form>
+      {% endif %}</div>
+     <div class="card-link"><button type="submit" class="btn btn-default btn-xs pull-right" type="button">
+            <i class="fa fa-cart-arrow-down"></i> Add To Cart</button>
+
+    <input type="number" name="id_quantity" class="form-control" value="1" style="width: 4em" ></div>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+   </form>
+  </div>
+</div>
+
+
