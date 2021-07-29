@@ -10,8 +10,6 @@
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/navigation_bar.css') }}">
 
-  <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
-
 
 {% endblock %}
 <body>
@@ -87,7 +85,12 @@
 
             {% block body %} {% endblock %}
         </div>
-  {% block tail_js %} {% endblock %}
+  {% block tail_js %}
+
+  <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
+
+
+{% endblock %}
 
 </body>
 {% endblock %}
