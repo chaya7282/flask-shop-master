@@ -91,7 +91,7 @@ export default $(document).ready((e) => {
                     } else {
                         $subtotal.html(response.subtotal);
                     }
-                    $total.html(response.total);
+                    $total.html('chaya');
                     $cartBadge.html(response.cart.numItems);
                     $qunatityError.html('');
                 },
