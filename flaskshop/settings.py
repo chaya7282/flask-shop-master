@@ -37,8 +37,10 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DATABASE_QUERY_TIMEOUT = 0.1  # log the slow database query, and unit is second
     SQLALCHEMY_RECORD_QUERIES = True
-    SQLALCHEMY_POOL_RECYCLE =1
-    SQLALCHEMY_POOL_TIMEOUT= 1000
+
+    SQLALCHEMY_POOL_SIZE= 100
+    SQLALCHEMY_POOL_RECYCLE= 280
+    SQLALCHEMY_POOL_TIMEOUT= 3600
     # Dir
     APP_DIR = Path(__file__).parent  # This directory
     PROJECT_ROOT = APP_DIR.parent
