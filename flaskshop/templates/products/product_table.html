@@ -1,6 +1,6 @@
 
 
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
 
 
 <!-- Modal -->
@@ -14,16 +14,17 @@
     <div class="grid">
 
         <div class="content">
-          {% if products %}
-            <ul class="rig  col-md-offset-2">
-                {% for product in products %}
+
+            <ul class="rig columns-6 mt-2">
+
+               {% for product in products %}
                 <li>
-                      {% include('products/_items.html') %}
-                </li>
-                {% endfor %}
+                {% include('products/item.html') %}
+                 </li>
+            {% endfor %}
             </ul>
         </div>
-        {% endif %}
+
 
     </div>
     <!-- /.container class with content as the id-->
