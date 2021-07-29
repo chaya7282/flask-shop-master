@@ -1,92 +1,9 @@
+
+
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
 
 
 <!-- Modal -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-
-            <div class="modal-header">
-
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-
-                <h2 class="modal-title" id="myModalLabel">Sign In <i class="fa fa-arrow-circle-right"></i></h2>
-
-            </div>
-
-            <div class="modal-body">
-
-                <form class="form-signin" role="form">
-
-                    <h3 class="form-signin-heading">Sign In</h3>
-
-                    <div class="form-group">
-
-                        <input type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <input type="password" class="form-control" placeholder="Password" required="">
-
-                    </div>
-
-                    <div class="checkbox">
-
-                        <label>
-
-                            <input type="checkbox" value="remember-me"> Remember me
-
-                        </label>
-
-                    </div>
-
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In <i class="fa fa-arrow-circle-right"></i></button>
-
-                </form>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-xs-3">
-
-                    <a href="#" class="btn btn-facebook btn-large btn-caps btn-block">Facebook <span class="icon-facebook"><i class="fa fa-facebook-square"></i></span></a>
-
-                </div>
-
-                <div class="col-xs-3">
-
-                    <a href="" class="btn btn-twitter btn-large btn-caps btn-block">Twitter <span class="icon-twitter"><i class="fa fa-twitter-square"></i></span></a>
-
-                </div>
-
-                <div class="col-xs-3">
-
-                    <a href="" class="btn btn-twitter btn-large btn-caps btn-block">Instagram <span class="icon-instagram"><i class="fa fa-camera-retro"></i></span></a>
-
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- Modal End -->
-<hr>
-<!-- Page Content Starts -->
-
 
 <!-- /.container class with content as the id -->
 
@@ -97,130 +14,16 @@
     <div class="grid">
 
         <div class="content">
-            <ul class="rig columns-4">
+          {% if products %}
+            <ul class="rig  col-md-offset-2">
+                {% for product in products %}
                 <li>
-                    <a href="#"><img class="product-image" src="https://www.usa.canon.com/internet/wcm/connect/us/dba3e27c-5e21-4810-96b6-45e92985dcd5/me200ssh-3q-300x300.png?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE.Z18_P1KGHJ01L85180AUEPQQJ53034-dba3e27c-5e21-4810-96b6-45e92985dcd5-lgfJMsd&amp;&amp;alt="></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="active fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
+                      {% include('products/_items.html') %}
                 </li>
-                <li>
-                    <a href="#"><img src="https://www.usa.canon.com/internet/wcm/connect/us/14dc2051-1e57-4b0c-88c4-fd9ac0731203/lide110-300x300.jpg?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE.Z18_P1KGHJ01L85180AUEPQQJ53034-14dc2051-1e57-4b0c-88c4-fd9ac0731203-l5Fo1Si&amp;&amp;alt="></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
-                <li>
-                    <a href="#"><img src="http://images.frys.com/art/product/300x300/8789771.01.prod.jpg"></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
-                <li>
-                    <a href="#"><img src="http://images.frys.com/art/product/300x300/8891512.01.prod.jpg"></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
-                <li>
-                    <a href="#"><img src="http://images.frys.com/art/product/300x300/8331267.06.prod.jpg"></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
-                <li>
-                    <a href="#"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ5ZyysxCXBjRrvOwDDO34f6lrHGpACo6zOEJGxx3iy_lKfcTuO1g"></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
-                <li>
-                    <a href="#"><img src="http://images.frys.com/art/product/300x300/8331257.04.prod.jpg"></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
-                <li>
-                    <a href="#"><img src="https://www.usa.canon.com/internet/wcm/connect/us/b7729990-dc2b-4609-b469-9661e0fa7af2/eos-c300pl-cinema-camera-300x300-v2.jpg?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE.Z18_P1KGHJ01L85180AUEPQQJ53034-b7729990-dc2b-4609-b469-9661e0fa7af2-l1HTMdl&amp;&amp;alt="></a>
-                    <h4>Image Title</h4>
-                    <i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star-half-o fa-2x"></i><i class="fa fa-star-o fa-2x"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                    <div class="price"> $999.99</div>
-                    <span style="text-decoration: line-through; color:red;">$1,399.99</span>
-                    <hr>
-                    <button class="btn btn-default btn-xs pull-right" type="button">
-                        <i class="fa fa-cart-arrow-down"></i> Add To Cart
-                    </button>
-                    <button class="btn btn-default btn-xs pull-left" type="button">
-                        <i class="fa fa-eye"></i> Details
-                    </button>
-                </li>
+                {% endfor %}
             </ul>
         </div>
-
+        {% endif %}
 
     </div>
     <!-- /.container class with content as the id-->
