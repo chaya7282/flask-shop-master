@@ -21,62 +21,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type="text/javascript">
-//	window.addEventListener("resize", function() {
-//		"use strict"; window.location.reload();
-//	});
+     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
 
-
-	document.addEventListener("DOMContentLoaded", function(){
-
-
-    	/////// Prevent closing from click inside dropdown
-		document.querySelectorAll('.dropdown-menu').forEach(function(element){
-			element.addEventListener('click', function (e) {
-			  e.stopPropagation();
-			});
-		})
-
-
-
-		// make it as accordion for smaller screens
-		if (window.innerWidth < 992) {
-
-			// close all inner dropdowns when parent is closed
-			document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
-				everydropdown.addEventListener('hidden.bs.dropdown', function () {
-					// after dropdown is hidden, then find all submenus
-					  this.querySelectorAll('.submenu').forEach(function(everysubmenu){
-					  	// hide every submenu as well
-					  	everysubmenu.style.display = 'none';
-					  });
-				})
-			});
-
-			document.querySelectorAll('.dropdown-menu a').forEach(function(element){
-				element.addEventListener('click', function (e) {
-
-				  	let nextEl = this.nextElementSibling;
-				  	if(nextEl && nextEl.classList.contains('submenu')) {
-				  		// prevent opening link if link needs to open dropdown
-				  		e.preventDefault();
-				  		console.log(nextEl);
-				  		if(nextEl.style.display == 'block'){
-				  			nextEl.style.display = 'none';
-				  		} else {
-				  			nextEl.style.display = 'block';
-				  		}
-
-				  	}
-				});
-			})
-		}
-		// end if innerWidth
-
-	});
-	// DOMContentLoaded  end
-</script>
 
   </head>
 
@@ -165,16 +112,27 @@
             <span >0</span>
      {% endif %}
      </a></div>
-
-   {% if current_user.can_edit() %}
+     {% if current_user.can_edit() %}
        <div class="col px-md-3"> <a  href="{{ url_for('dashboard.index') }}" ><i class="fa fa-tachometer" style='font-size:36px' aria-hidden="true"></i></a></div>
     {% endif %}
      {% else %}
     <div class="col px-md-3"> <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in" aria-hidden="true"></i></a></div>
       {% endif %}
+    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.search') }}"  enctype="multipart/form-data">
+
+     <div class="col px-md-3">
+        <input class="form-control rounded-0 py-2" type="search" value="search" id="example-search-input">
+    </div>
+     <button  type="submit" class="btn btn-success btn-xsm btn-outline btn-wrap-text reducefontsize "></button>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+ </form>
+
     <div class="col px-md-3"> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a></div>
 
    </div>
+
+
    </div>
  <!-- ============= COMPONENT ============== -->
 </header>

@@ -139,6 +139,11 @@ class Product(Model):
         return cls.query.filter_by(is_featured=True).limit(num).all()
 
     @classmethod
+
+    def search_product(cls, num=8):
+        return cls.query.filter_by(is_featured=True).limit(num).all()
+
+    @classmethod
     @cache(MC_KEY_FEATURED_PRODUCTS.format("{num}"))
     def get_on_sale(cls, num=8):
         return cls.query.filter_by(on_sale=True).limit(num).all()

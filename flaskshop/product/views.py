@@ -46,6 +46,10 @@ def show_collection(id):
     ctx = ProductCollection.get_product_by_collection(id, page)
     return render_template("category/index.html", **ctx)
 
+def search():
+    keyword = request.args.get('keyword')
+    results = Product.query.msearch(keyword, fields=['title'])
+    return render_template("search/index.html",title='Searching..' + keyword,products=results)
 
 @impl
 def flaskshop_load_blueprints(app):
@@ -55,5 +59,5 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/<int:id>/add", view_func=product_add_to_cart, methods=["POST"])
     bp.add_url_rule("/category/<int:id>", view_func=show_category)
     bp.add_url_rule("/collection/<int:id>", view_func=show_collection)
-
+    bp.add_url_rule("/search", view_func=search)
     app.register_blueprint(bp, url_prefix="/products")
