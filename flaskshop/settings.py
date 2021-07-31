@@ -35,6 +35,7 @@ class Config:
 
     JSONIFY_PRETTYPRINT_REGULAR = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
     DATABASE_QUERY_TIMEOUT = 10  # log the slow database query, and unit is second
     SQLALCHEMY_RECORD_QUERIES = True
 
