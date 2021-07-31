@@ -97,39 +97,10 @@
 		</li>
 
 	</ul>
-    </nav>
-   <div class="container-fluid mb-2" >
-   <div class="row mr-3  bg-secondary">
-       {% if current_user.is_authenticated %}
-         <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
-       {% if current_user.is_authenticated and current_user_cart.quantity %}
-          <span >{{ current_user_cart.quantity }}</span>
-             {% else %}
-                <span >0</span>
-         {% endif %}
-         </a></div>
-         {% if current_user.can_edit() %}
-           <div class="col px-md-3"> <a  href="{{ url_for('dashboard.index') }}" ><i class="fa fa-tachometer" style='font-size:36px' aria-hidden="true"></i></a></div>
-        {% endif %}
-         {% else %}
-        <div class="col px-md-3"> <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in" aria-hidden="true"></i></a></div>
-          {% endif %}
-         <div class="col px-md-3"> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a></div>
-   </div>
-       <div class="row mr-3  bg-dark">
-           <div class="input-group">
-            <input class="form-control border-end-0 border rounded-pill" type="text" value="search" id="example-search-input">
-            <span class="input-group-append">
-                <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
-     </div>
-     </div>
+ </nav>
 
-   </div>
  <!-- ============= COMPONENT ============== -->
-   </div>
+
 </header>
 {% endblock %}
 
@@ -203,47 +174,7 @@
                 {% endif %}
               </ul>
             </div>
-            <div class="offset-md-2 col-md-4 col-12">
-              <div class="footer__menus__social-container">
-                <div class="footer__menus__social">
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://www.facebook.com/mirumeelabs/">
-                    <svg data-src="{{ url_for('static', filename='img/facebook-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://github.com/mirumee/saleor">
-                   ddddd
-                    <svg data-src="{{ url_for('static', filename='img/github-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://twitter.com/getsaleor">
-                    <svg data-src="{{ url_for('static', filename='img/twitter-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://plus.google.com/+Mirumee">
-                    <svg data-src="{{ url_for('static', filename='img/google-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://www.meetup.com/Mirumee-Talks/">
-                    <svg data-src="{{ url_for('static', filename='img/meetup-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer"
-                    href="https://linkedin.com/company/mirumee-software">
-                    <svg data-src="{{ url_for('static', filename='img/linkedin-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer" href="https://dribbble.com/mirumee">
-                    <svg data-src="{{ url_for('static', filename='img/dribbble-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                  <a target="_blank" rel="noopener" class="social-footer"
-                    href="https://www.instagram.com/explore/tags/mirumee/">
-                    <svg data-src="{{ url_for('static', filename='img/instagram-logo.svg') }}" width="45px"
-                      height="45px" />
-                  </a>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
