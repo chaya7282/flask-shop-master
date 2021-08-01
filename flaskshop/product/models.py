@@ -273,7 +273,7 @@ class Category(Model):
     @property
     def background_img_url(self):
         src = "{{ url_for('static', filename='uploads/'+ product.first_img) }}"
-        return url_for('static', filename='uploads/'+ self.background_img)
+        return url_for('static', filename='uploads/'+ self.get_background_img())
 
 
     def get_background_img(self):
