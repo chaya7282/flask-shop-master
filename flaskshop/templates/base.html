@@ -81,13 +81,13 @@
 		    <ul class="dropdown-menu">
                 {% for item in top_menu %}
 
-			  <li><a class="dropdown-item" href="{{ item.url }}"> {{item.title}} &raquo; </a>
+			  <li> <a class="dropdown-item" href="{{ item.url }}"><img src="{{item.background_img }}" width="20" height="15">{{item.title}}</a>
                   {% with children=item.children %}
                    {% if children %}
 
 			  	 <ul class="submenu dropdown-menu">
                       {%for child in children%}
-				    <li><a class="dropdown-item" href="{{ child.url }}">{{child.title}}</a><li>
+				    <li><a class="dropdown-item" href="{{ child.url }}"><img src="{{child.background_img }}" width="20" height="15">{{child.title}}</a><li>
 				   {% endfor %}
                  </ul>
                   {% endif %}
