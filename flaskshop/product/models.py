@@ -262,7 +262,7 @@ class Category(Model):
     __tablename__ = "product_category"
     title = Column(db.String(255), nullable=False)
     parent_id = Column(db.Integer(), default=0)
-    background_img = Column(db.String(255))
+    background_img = Column(db.String(255),nullable=True,default=None)
 
     def __str__(self):
         return self.title
@@ -272,7 +272,15 @@ class Category(Model):
 
     @property
     def background_img_url(self):
-        return url_for("static", filename=self.background_img)
+        src = "{{ url_for('static', filename='uploads/'+ product.first_img) }}"
+        return url_for('static', filename='uploads/'+ self.background_img)
+
+
+    def get_background_img(self):
+        if self.background_img:
+           return self.background_img
+
+        return ""
 
     @property
     def products(self):

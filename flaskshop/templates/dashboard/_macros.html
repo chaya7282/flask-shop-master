@@ -10,7 +10,7 @@
 <form action = "" method = "POST" enctype = "multipart/form-data">
 <div class="form-group">
     <label for="{{label_id}}">{{ field.label.text }}</label>
-    <input type="{{type}}" class="form-control" id="{{label_id}}" name="{{label_id}}"
+    <input type="{{type}}" class="form-control" id="{{label_id}}" name="InputFile"
         value="{% if field.data %}{{ field.data }}{% elif field.default is not none %}{{field.default}}{% endif %}">
     {% if field.errors %}
     <div class="invalid-feedback" style="display:block">
@@ -53,7 +53,9 @@
 <div class="form-group" >
     <label >{{ field.label.text }}</label>
    <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required multiple>
-
+        {% if has_zero %}
+        <option value="0">None</option>
+        {% endif %}
          {% for item in items %}
                 <option value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
@@ -66,8 +68,10 @@
 <div class="form-group">
     <label>{{ field.label.text }}</label>
 
-      <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required >
-
+      <select  name="{{ label_id }}" id="{{ label_id }}" class="selectpicker form-control"  data-live-search="true" required >
+        {% if has_zero %}
+        <option value="0">None</option>
+        {% endif %}
          {% for item in items %}
           <option value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
@@ -143,11 +147,13 @@
     <label>{{ file_field.label.text }}</label>
     <div class="input-group">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="{{label_id}}" name="{{label_id}}">
-            <label class="custom-file-label" for="{{label_id}}">{{path_field.data}}</label>
+            <input type="file" class="custom-file-input" id="{{ label_id }}" name="{{ label_id }}">
+            <label id="labelFile" class="custom-file-label" >{{path_field.data}}</label>
         </div>
     </div>
 </div>
+
+
 {% endmacro %}
 
 {% macro render_multi_img(form) %}

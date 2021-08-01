@@ -141,16 +141,15 @@ def categories_manage(id=None):
         category.title = form.title.data
         category.parent_id = form.parent_id.data
         image = form.bgimg_file.data
-        if image:
-            background_img = image.filename
-            upload_file = current_app.config["UPLOAD_DIR"] / background_img
-            upload_file.write_bytes(image.read())
-            category.background_img = (
-                current_app.config["UPLOAD_FOLDER"] + "/" + background_img
-            )
+        f = request.files["bgimg_file"]
+
+        if f:
+            image_name = secure_filename(f.filename)
+            f.save(os.path.join(Config.UPLOAD_FOLDER, f.filename))
+            category.background_img = f.filename
+        else:
+            category.background_img = None
         category.save()
-
-
         return redirect(url_for("dashboard.categories"))
     parents = Category.first_level_items()
     return render_template("product/category.html", form=form, parents=parents)

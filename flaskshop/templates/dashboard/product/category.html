@@ -3,6 +3,20 @@
 {% extends 'dashboard/layout.html' %}
 
 {% block body %}
+<head>
+<script>
+$(document).ready(function(){
+  $('.custom-file-input').on('change',function(){
+  var id= document.getElementById("formInputId").value;
+  alert(id)
+  var fileName =  document.getElementById(id).files[0].name;
+
+  document.getElementById("labelFile").innerHTML=fileName
+});
+});
+</script>
+</head>
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -21,7 +35,9 @@
                             {{ form.hidden_tag() }}
                             {{ vendor.render_field(form.title) }}
                             {{ macros.render_select_field(form.parent_id, parents) }}
+                              <input type="text" id ="formInputId" value={{form.bgimg_file.label.field_id}} hidden="true">
                             {{ macros.render_file_field(form.bgimg_file, form.background_img) }}
+
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
                             </div>
@@ -35,5 +51,6 @@
 {% endblock %}
 
 {% block tail_js %}
+
 <script src="{{ url_for('static', filename='build/dashboard/select.js') }}"></script>
 {% endblock %}

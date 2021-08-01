@@ -52,8 +52,8 @@ def generate_menu_items(category: Category, menu_id=None, parent_id=None):
         category_id=category.id,
         position=menu_id,
         parent_id=parent_id,
-
-    )
+        background_img=category.background_img_url
+ )
     for child in category.children:
          generate_menu_items(child, parent_id=category.id, menu_id=2)
 

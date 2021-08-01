@@ -20,7 +20,7 @@ class MenuItem(Model):
     position = Column(db.Integer(), default=0)  # item在site中的位置, 1是top，2是bottom
     page_id = Column(db.Integer(), default=0)
     parent_id = Column(db.Integer(), default=0)
-
+    background_img=Column(db.String(255), nullable=True)
     def __str__(self):
         return self.title
 
