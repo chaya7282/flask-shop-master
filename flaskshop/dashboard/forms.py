@@ -144,6 +144,7 @@ class ProductForm(FlaskForm):
     category_id = SelectField()
     description = TextAreaField()
     images = FileField("Upload")
+
     attributes = FieldList(SelectField(),validators=[DataRequired()])
     variant_attributes = SelectMultipleField()
     submit = SubmitField()
