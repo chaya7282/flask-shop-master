@@ -143,7 +143,7 @@ def categories_manage(id=None):
         image = form.bgimg_file.data
         if image:
             background_img = image.filename
-            upload_file = Config.UPLOAD_DIR / background_img
+            upload_file = os.path.join(Config.UPLOAD_FOLDER, background_img)
             upload_file.write_bytes(image.read())
             category.background_img=background_img
 
