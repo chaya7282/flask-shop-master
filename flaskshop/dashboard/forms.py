@@ -143,8 +143,8 @@ class ProductForm(FlaskForm):
     review_count = IntegerField(default=0)
     category_id = SelectField()
     description = TextAreaField()
+    background_img = StringField("Current Image")
     images = FileField("Upload")
-
     attributes = FieldList(SelectField(),validators=[DataRequired()])
     variant_attributes = SelectMultipleField()
     submit = SubmitField()
