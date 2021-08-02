@@ -149,8 +149,8 @@ def categories_manage(id=None):
         if image:
 
             filename = secure_filename(image.filename)
-            upload_file = os.path.join("static/uploads", filename)
-            image.save(upload_file)
+
+            image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
 
             category.background_img=filename
 
