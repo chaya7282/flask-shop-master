@@ -142,12 +142,11 @@
 
     {% if path_field.data %}
     <label>{{ path_field.label.text }}</label>
-    <img class="" style="width: 900px;" src="{{ url_for('static', filename=path_field.data) }}">
+    <img class="" style="width: 900px;" src="{{ url_for('static', filename='uploads/'+path_field.data) }}">
     {% endif %}
 
 
     <label>{{ file_field.label.text }}</label>
-    {{ label_id }}
 
     <div class="input-group">
         <div class="custom-file">
