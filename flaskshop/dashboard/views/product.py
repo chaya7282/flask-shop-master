@@ -140,12 +140,13 @@ def categories_manage(id=None):
             category = Category()
         category.title = form.title.data
         category.parent_id = form.parent_id.data
-        archivo = form.bgimg_file.data
-        if archivo:
-            image_name = secure_filename(archivo.filename)
-            full_dir = os.path.join(Config.UPLOAD_FOLDER,image_name)
-            archivo.save(full_dir)
-          
+        image = form.bgimg_file.data
+        if image:
+            background_img = image.filename
+            upload_file = Config.UPLOAD_DIR / background_img
+            upload_file.write_bytes(image.read())
+            category.background_img=background_img
+
         else:
             category.background_img = None
         category.save()
