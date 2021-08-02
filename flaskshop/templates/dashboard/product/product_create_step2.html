@@ -14,7 +14,15 @@
 <script src="{{ url_for('static', filename='build/dashboard/product_edit.js') }}"></script>
 
 <script src="{{ url_for('static', filename='js/dashboard/bootstrap-select.js') }}"></script>
-
+<script>
+$(document).ready(function(){
+  $('.custom-file-input').on('change',function(){
+  var id= document.getElementById("formInputId").value;
+  var fileName =  document.getElementById(id).files[0].name;
+  document.getElementById("labelFile").innerHTML=fileName;
+});
+});
+</script>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -38,8 +46,9 @@
 
                             {{ macros.render_select_field(form.category_id, categories) }}
                             {{ vendor.render_field(form.description) }}
-                            {{form.images.label.field_id}}
-                            {{ macros.render_multi_img(form) }}
+                           <input type="text" id ="formInputId" value={{form.images.label.field_id}} hidden="true">
+
+                            {{ macros.render_file_field(form.images, form.background_img) }}
                             {% if product_type.has_variants %}
                             {% set label_id = form.variant_attributes.label.field_id %}
 
