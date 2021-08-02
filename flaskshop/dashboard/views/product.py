@@ -145,7 +145,7 @@ def categories_manage(id=None):
             image_name = secure_filename(archivo.filename)
             full_dir = os.path.join(Config.UPLOAD_FOLDER,image_name)
             archivo.save(full_dir)
-            category.background_img = image_name
+          
         else:
             category.background_img = None
         category.save()
