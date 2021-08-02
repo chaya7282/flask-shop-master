@@ -151,11 +151,8 @@ def categories_manage(id=None):
         category.parent_id = form.parent_id.data
         image = form.bgimg_file.data
         if image:
-
             filename = secure_filename(image.filename)
-
             image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
-
             category.background_img=filename
 
         else:
@@ -260,7 +257,7 @@ def products():
 
 def product_detail(id):
     product = Product.get_by_id(id)
-    variant= product.variant
+
     return render_template("product/detail.html", product=product)
 
 
@@ -269,6 +266,8 @@ def _save_product(product, form):
    # product.update_images(form.images.data)
 
     product.update_attributes(form.attributes.data)
+
+
     del form.images
     del form.attributes
     form.populate_obj(product)
@@ -291,6 +290,7 @@ def product_edit(id):
             f.save(os.path.join(Config.UPLOAD_FOLDER, image_name))
             new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
             Product.update_images([new_img[0].id],product.id)
+
         variant= form.variants.data
         _save_product(product, form)
         return redirect(url_for("dashboard.product_detail", id=product.id))
@@ -348,18 +348,16 @@ def product_create_step2():
     categories = Category.query.all()
     form.title.data = product_type.title
     if form.validate_on_submit():
-        arg = request.args.get("Test")
-        f = request.files['imgdata']
-
         product = Product(product_type_id=product_type_id)
         product.title= product_type.title
+
+        image= form.images.data
         product = _save_product(product, form)
+        if image:
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
 
-        if f:
-            image_name= secure_filename(f.filename)
-            f.save(os.path.join(Config.UPLOAD_FOLDER,image_name))
-            ProductImage.get_or_create(image=image_name , product_id=product.id)
-
+            ProductImage.get_or_create(image=filename , product_id=product.id)
         if product_type.has_variants:
             for attr in form.variant_attributes.data:
                 ProductTypeVariantAttributes.get_or_create(product_type_id=product_type.id,
