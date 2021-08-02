@@ -69,9 +69,7 @@
     <label>{{ field.label.text }}</label>
 
       <select  name="{{ label_id }}" id="{{ label_id }}" class="selectpicker form-control"  data-live-search="true" required >
-        {% if has_zero %}
-        <option value="0">None</option>
-        {% endif %}
+
          {% for item in items %}
           <option value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
@@ -139,15 +137,19 @@
 {% macro render_file_field(file_field, path_field) %}
 {% set label_id = file_field.label.field_id %}
 <div class="form-group">
+
     {% if path_field.data %}
     <label>{{ path_field.label.text }}</label>
     <img class="" style="width: 900px;" src="{{ url_for('static', filename=path_field.data) }}">
     {% endif %}
+
     <p></p>
     <label>{{ file_field.label.text }}</label>
+    {{ label_id }}
+
     <div class="input-group">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="{{ label_id }}" name="{{ label_id }}">
+            <input type="file"  id="{{label_id}}" name="{{label_id}}">
             <label id="labelFile" class="custom-file-label" >{{path_field.data}}</label>
         </div>
     </div>
