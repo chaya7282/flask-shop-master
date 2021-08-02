@@ -33,6 +33,7 @@ class Product(Model):
     product_type_id = Column(db.Integer())
     attributes = Column(MutableDict.as_mutable(db.JSON()))
     description = Column(db.Text())
+    background_img = Column(db.String(255), nullable=True, default=None)
     if Config.USE_REDIS:
         description = PropsItem("description")
 
@@ -83,6 +84,11 @@ class Product(Model):
     def get_has_variants(self):
         product_type = ProductType.get_by_id(self.product_type_id)
         return product_type
+
+    @property
+    def get_has_attributes(self):
+        product_type = ProductType.get_by_id(self.product_type_id)
+        return product_type.has_attributes
 
     @property
     def is_discounted(self):
@@ -175,6 +181,7 @@ class Product(Model):
         db.session.commit()
 
     def update_attributes(self, attr_values):
+
         attr_entries = [str(item.id) for item in self.product_type.product_attributes]
         attributes = dict(zip(attr_entries, attr_values))
         self.attributes = attributes
