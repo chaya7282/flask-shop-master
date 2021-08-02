@@ -97,6 +97,11 @@ def collections_manage(id=None):
         collection.update_products(form.products.data)
         image = form.bgimg_file.data
         if image:
+            filename = secure_filename(form.file.data.filename)
+            form.file.data.save('uploads/' + filename)
+            filename = secure_filename(form.file.data.filename)
+            form.file.data.save('uploads/' + filename)
+
             background_img = image.filename
             upload_file = current_app.config["UPLOAD_DIR"] / background_img
             upload_file.write_bytes(image.read())
@@ -142,10 +147,12 @@ def categories_manage(id=None):
         category.parent_id = form.parent_id.data
         image = form.bgimg_file.data
         if image:
-            background_img = image.filename
-            upload_file = os.path.join(Config.UPLOAD_FOLDER, background_img)
-            upload_file.write_bytes(image.read())
-            category.background_img=background_img
+
+            filename = secure_filename(image.filename)
+            upload_file = os.path.join(Config.UPLOAD_FOLDER, filename)
+            image.save(upload_file)
+
+            category.background_img=filename
 
         else:
             category.background_img = None
