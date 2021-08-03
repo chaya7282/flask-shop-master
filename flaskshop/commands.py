@@ -16,6 +16,7 @@ from flaskshop.random_data import (
     create_products_by_schema,
     create_page,
     create_collections_by_schema,
+    create_categories_by_schema,
     create_admin,
     create_orders,
     create_product_sales,
@@ -199,9 +200,10 @@ def seed(type):
         create_products_by_schema(
             placeholder_dir=place_holder, how_many=1, create_images=True
         )
+
         create_generator = chain(
             create_collections_by_schema(place_holder),
-
+            create_categories_by_schema(placeholder_dir=place_holder),
             create_roles(),
             create_admin(),
 

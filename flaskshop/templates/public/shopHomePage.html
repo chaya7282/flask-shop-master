@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+{% extends "base.html" %}
+{% block content %}
 
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, shrink-to-fit=9">
 		<meta name="description" content="Gambolthemes">
-		<meta name="author" content="Gambolthemes">		
-		<title>Gambo - Index</title>
+		<title>Chaya Tech - Index</title>
 		
 		<!-- Favicon Icon -->
 		<link rel="icon" type="image/png" href="images/fav.png">
@@ -28,11 +28,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/semantic/semantic.min.css') }}">
 
-			<!-- Javascripts -->
-
 	</head>
-
-<body>
 
 	<div class="wrapper">
 		<!-- Offers Start -->
@@ -52,94 +48,17 @@
 					</div>
 					<div class="col-md-12">
 						<div class="owl-carousel cate-slider owl-theme">
+							{% for item in top_menu %}
 							<div class="item">
 								<a href="#" class="category-item">
 									<div class="cate-img">
-										<img src="{{ url_for('static', filename='arrow-select.svg') }}" alt="...">
+										<img src="{{item.background_img }}" alt="...">
 									</div>
-									<h4>Vegetables & Fruits</h4>
+									<h4>{{item.title}}</h4>
 								</a>
 							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-2.svg" alt="">
-									</div>
-									<h4> Grocery & Staples </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-3.svg" alt="">
-									</div>
-									<h4> Dairy & Eggs </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-4.svg" alt="">
-									</div>
-									<h4> Beverages </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-5.svg" alt="">
-									</div>
-									<h4> Snacks </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-6.svg" alt="">
-									</div>
-									<h4> Home Care </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-7.svg" alt="">
-									</div>
-									<h4> Noodles & Sauces </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-8.svg" alt="">
-									</div>
-									<h4> Personal Care </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-9.svg" alt="">
-									</div>
-									<h4> Pet Care </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-10.svg" alt="">
-									</div>
-									<h4> Meat & Seafood </h4>
-								</a>
-							</div>
-							<div class="item">
-								<a href="#" class="category-item">
-									<div class="cate-img">
-										<img src="images/category/icon-11.svg" alt="">
-									</div>
-									<h4> Electronics </h4>
-								</a>
-							</div>
+							{% endfor %}
+
 						</div>
 					</div>
 				</div>
@@ -838,6 +757,4 @@
 <script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
 <script src="{{ url_for('static', filename='js/shopHomePage/offset_overlay.js') }}"></script>
 <script src="{{ url_for('static', filename='js/shopHomePage/night-mode.js') }}"></script>
-
-</body>
-</html>
+{% endblock content %},
