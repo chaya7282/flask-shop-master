@@ -92,9 +92,10 @@ def index():
         "activity": activity,
         "order_events": OrderEvents,
     }
-    return render_template("index.html", **context)
+    return render_template("AdminLTE.html", **context)
 
-
+def Catalog():
+    return render_template("Catalog.html")
 @impl
 def flaskshop_load_blueprints(app):
     bp = Blueprint(
@@ -114,6 +115,7 @@ def flaskshop_load_blueprints(app):
         pass
 
     bp.add_url_rule("/", view_func=index)
+    bp.add_url_rule("/Catalog", view_func=Catalog)
     bp.add_url_rule("/site_menus", view_func=site_menus)
     bp.add_url_rule(
         "/site_menus/create", view_func=site_menus_manage, methods=["GET", "POST"]
