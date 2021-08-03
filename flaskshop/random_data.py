@@ -81,7 +81,7 @@ COLLECTIONS_SCHEMA = [
     {"name": "Summer collection", "image_name": "summer.jpg"},
     {"name": "Winter sale", "image_name": "sale.jpg"},
 ]
-CATEGORY_SCHEMA=[{"name": "Groceries", "image_name": "groceries.jpg"},
+CATEGORY_SCHEMA=[{"name": "Groceries", "image_name":"icon-11.svg"},
                  {"name": "Fruits and Vegetables", "image_name":"icon-1.svg"},
                  {"name": "Grocery & Staples ", "image_name": "icon-2.svg"},
                  {"name": "Dairy & Eggs ", "image_name": "icon-3.svg"},

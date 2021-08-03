@@ -4,7 +4,7 @@ from flaskshop.database import Column, Model, db
 from flaskshop.corelib.mc import cache, rdb
 from flaskshop.corelib.db import PropsItem
 from flaskshop.settings import Config
-
+from flaskshop.product.models import Category
 MC_KEY_MENU_ITEMS = "public:site:{}:{}"
 MC_KEY_MENU_ITEM_CHILDREN = "public:menuitem:{}:children"
 MC_KEY_PAGE_ID = "public:page:{}"

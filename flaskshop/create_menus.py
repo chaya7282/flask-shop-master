@@ -65,7 +65,9 @@ def create_menus():
     categories = Category.query.all()
     for category in categories:
         if not category.parent_id:
-             generate_menu_items(category, menu_id=1,parent_id=0)
+            generate_menu_items(category, menu_id=1)
+        else:
+            generate_menu_items(category, menu_id=0)
 
 
 

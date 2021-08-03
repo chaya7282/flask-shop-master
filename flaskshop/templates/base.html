@@ -80,18 +80,21 @@
          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> חנות</a>
 		    <ul class="dropdown-menu">
                 {% for item in top_menu %}
-
+                {{item.children }}
 			  <li> <a class="dropdown-item" href="{{ item.url }}"><img src="{{item.background_img }}" width="20" height="15">{{item.title}}</a>
+                  {% if item.children %}
                   {% with children=item.children %}
-                   {% if children %}
+
+                  111111111111
 
 			  	 <ul class="submenu dropdown-menu">
                       {%for child in children%}
 				    <li><a class="dropdown-item" href="{{ child.url }}"><img src="{{child.background_img }}" width="20" height="15">{{child.title}}</a><li>
 				   {% endfor %}
                  </ul>
-                  {% endif %}
+
                  {% endwith %}
+                   {% endif %}
 			  </li>
                 {% endfor %}
 
