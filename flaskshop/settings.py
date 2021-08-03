@@ -47,7 +47,7 @@ class Config:
     PROJECT_ROOT = APP_DIR.parent
     STATIC_DIR = APP_DIR / "static"
     UPLOAD_FOLDER = STATIC_DIR /"uploads"
-
+    CATEGORY_IMAGES= STATIC_DIR /"uploads/category"
     UPLOAD_DIR = STATIC_DIR /"uploads"
     DASHBOARD_TEMPLATE_FOLDER = APP_DIR / "templates" / "dashboard"
 
