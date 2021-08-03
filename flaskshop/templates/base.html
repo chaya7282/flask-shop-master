@@ -34,7 +34,7 @@
 
 <!-- ============= COMPONENT ============== -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
 
  	 <a class="navbar-brand" href="#">Brand</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +105,7 @@
 
 
    <div class="container-fluid mb-2" >
-   <div class="row   bg-secondary">
+   <div class="row">
        {% if current_user.is_authenticated %}
          <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
        {% if current_user.is_authenticated and current_user_cart.quantity %}
