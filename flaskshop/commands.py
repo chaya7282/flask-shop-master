@@ -239,6 +239,7 @@ def seed(type):
         create_products_by_schema(
             placeholder_dir=place_holder, how_many=1, create_images=True
         )
+        create_categories_by_schema(placeholder_dir=place_holder)
     else:
         create_dict = {
             "user": create_users,
