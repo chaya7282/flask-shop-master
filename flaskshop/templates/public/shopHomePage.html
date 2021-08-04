@@ -42,14 +42,14 @@
 
 <span>Shop By</span> <h2>Categories</h2>
    <div class="row mx-auto my-auto justify-content-center">
-        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="recipeCarousel" class="carousel slide" >
             <div class="carousel-inner" role="listbox">
 
                 {% if top_menu %}
                    {% set item= top_menu[0] %}
                   <div class="carousel-item active">
                     <div class="col-md-3">
-                            <div class="card" style="width: 130rem;">
+                            <div class="card" style="width: 13rem;">
                             <img height="60px" width="auto" class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
                                   <div class="card-body">
                                     <h5 class="card-title">{{item.title}}</h5>
