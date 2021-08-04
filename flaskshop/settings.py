@@ -39,7 +39,7 @@ class Config:
     DATABASE_QUERY_TIMEOUT = 10  # log the slow database query, and unit is second
 
 
-    SQLALCHEMY_POOL_RECYCLE=299
+    SQLALCHEMY_POOL_RECYCLE=3600
     SQLALCHEMY_POOL_TIMEOUT= 20
     # Dir
     APP_DIR = Path(__file__).parent  # This directory
