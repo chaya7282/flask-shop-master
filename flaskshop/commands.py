@@ -241,6 +241,7 @@ def seed(type):
             placeholder_dir=place_holder, how_many=2, create_images=True
         )
         create_categories_by_schema(placeholder_dir=place_holder)
+        print("hello")
         create_dashboard_menus()
         create_admin()
 
