@@ -198,7 +198,7 @@ def seed(type):
 
         place_holder = Path("placeholders")
         create_products_by_schema(
-            placeholder_dir=place_holder, how_many=1, create_images=True
+            placeholder_dir=place_holder, how_many=5, create_images=False
         )
 
         create_generator = chain(

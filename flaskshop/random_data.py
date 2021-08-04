@@ -48,12 +48,79 @@ class SaleorProvider(BaseProvider):
 
 fake.add_provider(SaleorProvider)
 
-GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "groceries.jpg"}
+GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "icon-11.svg"}
 
-
+DEFAULT_SCHEMA2 = {
+    "T-Shirt": {
+        "category": {"name": "Apparel", "image_name": "icon-1.svg"},
+        "product_attributes": {
+            "Color": ["Blue", "White"],
+            "Collar": ["Round", "V-Neck", "Polo"],
+            "Brand": ["Saleor"],
+        },
+        "variant_attributes": {"Size": ["XS", "S", "M", "L", "XL", "XXL"]},
+        "images_dir": "t-shirts/",
+        "is_shipping_required": True,
+    },
+    "Mugs": {
+        "category": {"name": "Accessories", "image_name": "icon-1.svg"},
+        "product_attributes": {"Brand": ["Saleor"]},
+        "variant_attributes": {},
+        "images_dir": "mugs/",
+        "is_shipping_required": True,
+    },
+    "Coffee": {
+        "category": {
+            "name": "Coffees",
+            "image_name": "coffees.jpg",
+            "parent": GROCERIES_CATEGORY,
+        },
+        "product_attributes": {
+            "Coffee Genre": ["Arabica", "Robusta"],
+            "Brand": ["Saleor"],
+        },
+        "variant_attributes": {"Box Size": ["100g", "250g", "500g", "1kg"]},
+        "different_variant_prices": True,
+        "images_dir": "coffee/",
+        "is_shipping_required": True,
+    },
+    "Candy": {
+        "category": {
+            "name": "Candies",
+            "image_name": "candies.jpg",
+            "parent": GROCERIES_CATEGORY,
+        },
+        "product_attributes": {"Flavor": ["Sour", "Sweet"], "Brand": ["Saleor"]},
+        "variant_attributes": {"Candy Box Size": ["100g", "250g", "500g"]},
+        "images_dir": "candy/",
+        "is_shipping_required": True,
+    },
+    "E-books": {
+        "category": {"name": "Books", "image_name": "icon-1.svg"},
+        "product_attributes": {
+            "Author": ["John Doe", "Milionare Pirate"],
+            "Publisher": ["Mirumee Press", "Saleor Publishing"],
+            "Language": ["English", "Pirate"],
+        },
+        "variant_attributes": {},
+        "images_dir": "books/",
+        "is_shipping_required": False,
+    },
+    "Books": {
+        "category": {"name": "Books", "image_name": "icon-1.svg"},
+        "product_attributes": {
+            "Author": ["John Doe", "Milionare Pirate"],
+            "Publisher": ["Mirumee Press", "Saleor Publishing"],
+            "Language": ["English", "Pirate"],
+        },
+        "variant_attributes": {"Cover": ["Soft", "Hard"]},
+        "images_dir": "books/",
+        "is_shipping_required": True,
+    },
+}
 DEFAULT_SCHEMA = {
      "Generic": {
-        "category": {"name": "Generic", "image_name": "apparel.jpg"},
+        "category": {"name": "Generic", "image_name": "icon-1.svg"},
         "product_attributes": {
          "Generic": ["Defauls"],
         "Color": ["Blue", "White"],
@@ -81,7 +148,7 @@ COLLECTIONS_SCHEMA = [
     {"name": "Summer collection", "image_name": "summer.jpg"},
     {"name": "Winter sale", "image_name": "sale.jpg"},
 ]
-CATEGORY_SCHEMA=[{"name": "Groceries", "image_name":"icon-11.svg"},
+CATEGORY_SCHEMA=[
                  {"name": "Fruits and Vegetables", "image_name":"icon-1.svg"},
                  {"name": "Grocery & Staples ", "image_name": "icon-2.svg"},
                  {"name": "Dairy & Eggs ", "image_name": "icon-3.svg"},
@@ -162,7 +229,7 @@ Fake for products data
 
 # step1
 def create_products_by_schema(
-    placeholder_dir, how_many, create_images, schema=DEFAULT_SCHEMA
+    placeholder_dir, how_many, create_images, schema=DEFAULT_SCHEMA2
 ):
     for product_type, type_schema in create_product_types_by_schema(schema):
         create_products_by_type(
