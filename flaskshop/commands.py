@@ -236,6 +236,7 @@ def seed(type):
             placeholder_dir=place_holder, how_many=5, create_images=False
         )
         create_categories_by_schema(placeholder_dir=place_holder),
+
         create_generator = chain(
             create_roles(),
             create_admin(),
