@@ -200,16 +200,11 @@ def seed(type):
         create_products_by_schema(
             placeholder_dir=place_holder, how_many=5, create_images=False
         )
-
+        create_categories_by_schema(placeholder_dir=place_holder),
         create_generator = chain(
-            create_collections_by_schema(place_holder),
-            create_categories_by_schema(placeholder_dir=place_holder),
             create_roles(),
             create_admin(),
-
-
-            create_dashboard_menus(),
-
+          create_dashboard_menus(),
         )
         for msg in create_generator:
             click.echo(msg)
