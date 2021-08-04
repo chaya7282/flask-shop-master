@@ -230,15 +230,19 @@ def seed(type):
         for msg in create_generator:
             click.echo(msg)
     elif type == "product":
-        db.create_all()
+
         place_holder = Path("placeholders")
         create_products_by_schema(
-            placeholder_dir=place_holder, how_many=2, create_images=True
+            placeholder_dir=place_holder, how_many=5, create_images=False
         )
-        create_categories_by_schema(placeholder_dir=place_holder)
-        print("hello")
-        create_dashboard_menus()
-        create_admin()
+        create_categories_by_schema(placeholder_dir=place_holder),
+        create_generator = chain(
+            create_roles(),
+            create_admin(),
+            create_dashboard_menus(),
+        )
+        for msg in create_generator:
+            click.echo(msg)
 
     else:
         create_dict = {
