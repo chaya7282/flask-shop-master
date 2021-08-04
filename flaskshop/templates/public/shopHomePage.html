@@ -42,70 +42,44 @@
 </head>
 
 <div class="container text-center my-3">
-    <h2 class="font-weight-light">Bootstrap Multi Slide Carousel</h2>
-    <div class="row mx-auto my-auto justify-content-center">
+
+<span>Shop By</span> <h2>Categories</h2>
+   <div class="row mx-auto my-auto justify-content-center">
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
+
+                {% if top_menu %}
+                   {% set item= top_menu[0] %}
+                  <div class="carousel-item active">
                     <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/31f?text=1" class="img-fluid">
-                            </div>
-                            <div class="card-img-overlay">Slide 1</div>
+                          <div class="card">
+                            <img class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{item.title}}</h5>
+                                     <a href="{{ item.url }}" class="btn btn-primary">Go somewhere</a>
+                                  </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
+                  {% endif %}
+                 {% for i in range(top_menu| length) %}
+                {% set item= top_menu[i] %}
+                 <div class="carousel-item">
                     <div class="col-md-3">
                         <div class="card">
-                            <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/e66?text=2" class="img-fluid">
-                            </div>
-                            <div class="card-img-overlay">Slide 2</div>
+                            <img class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{item.title}}</h5>
+                                     <a href="{{ item.url }}" class="btn btn-primary">Go somewhere</a>
+                                  </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/7d2?text=3" class="img-fluid">
-                            </div>
-                            <div class="card-img-overlay">Slide 3</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="//via.placeholder.com/500x400?text=4" class="img-fluid">
-                            </div>
-                            <div class="card-img-overlay">Slide 4</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/aba?text=5" class="img-fluid">
-                            </div>
-                            <div class="card-img-overlay">Slide 5</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="//via.placeholder.com/500x400/fc0?text=6" class="img-fluid">
-                            </div>
-                            <div class="card-img-overlay">Slide 6</div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+
+
             </div>
             <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
