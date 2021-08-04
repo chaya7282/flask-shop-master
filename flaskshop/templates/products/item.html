@@ -6,8 +6,8 @@
   </div>
 
      {{product.first_img}}
-    <img  img height="60px" width="auto"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="card-img-top" alt="...">
-  <div class="card-body" style="height: 13rem;">
+    <img  img height="80px" width="auto"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="card-img-top" alt="...">
+  <div class="card-body" style="height: 13rem; width:13">
     <h5 class="card-title">{{product.title}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{product.price}}</h6>
 
