@@ -15,7 +15,7 @@
         <div class="card-block bg-light">
             <table>
                 <tr>
-                    <td>
+                   <td colspan="3">
                       <img  height="2000px" width="200px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
 
                     </td>
@@ -40,7 +40,7 @@
 
                       <td></td>
                        <td></td>
-                      <td>
+                     <td colspan="3">
                       {% if product.get_has_variants %}
 
                            <select name= "id_variant" class="form-select mb-2" id="validationDefault04"  style="width: 7em" required>
