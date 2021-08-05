@@ -5,22 +5,20 @@
 
      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
-1111111111
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
+
+    <div class="card bg-secondary" style="width: 18rem;">
+        <div class="card-header bg-warning text-dark">
             {{product.title}}
         </div>
        <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
-        <div class="card-block">
+        <div class="card-block bg-light">
             <table>
                 <tr>
                     <td>
-                      <img  height="100px" width="100px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
+                      <img  height="150px" width="150px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
 
                     </td>
-
-
                     <td>
                          <input type="button" value="-" id="minus-button" for="quantity">
                     </td>
@@ -37,7 +35,11 @@
 
                 </tr>
                   <tr>
+                      <td></td>
+                       <td></td>
 
+                      <td></td>
+                       <td></td>
                       <td>
                       {% if product.get_has_variants %}
 
@@ -54,7 +56,6 @@
                 </select>
                    {% endif %}
                   </td>
-                      <td></td>
                     </tr>
             </table>
 
