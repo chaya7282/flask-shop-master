@@ -230,18 +230,17 @@ def seed(type):
         for msg in create_generator:
             click.echo(msg)
     elif type == "product":
-        db.drop_all()
-        db.create_all()
+
         place_holder = Path("placeholders")
         create_products_by_schema(
             placeholder_dir=place_holder, how_many=1, create_images=False
         )
-
+        create_admin(),
+        create_dashboard_menus(),
 
         create_generator = chain(
 
-            create_admin(),
-            create_dashboard_menus(),
+
         )
         for msg in create_generator:
             click.echo(msg)
