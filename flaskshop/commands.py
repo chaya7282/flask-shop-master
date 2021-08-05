@@ -233,13 +233,17 @@ def seed(type):
 
         place_holder = Path("placeholders"),
         create_generator = chain(
+            db.drop_all(),
+            db.create_all(),
 
-            create_products_by_schema(
-            placeholder_dir=place_holder, how_many=1, create_images=False),
             create_admin(),
             create_dashboard_menus(),
 
         )
+        create_products_by_schema(
+            placeholder_dir=place_holder, how_many=1, create_images=False)
+
+
         for msg in create_generator:
             click.echo(msg)
 
