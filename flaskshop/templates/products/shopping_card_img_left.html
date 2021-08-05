@@ -20,21 +20,28 @@
 
                     </td>
 
+
+                    <td>
+                         <input type="button" value="-" id="minus-button" for="quantity">
+                    </td>
+                    <td>
+                         <input type="number" name="id_quantity" class="form-control" value="1" style="width: 3em" >
+                     </td>
+                    <td>
+                        <input type="button" value="+" id="plus-button" for="quantity">
+                    </td>
                     <td>
                          <div class="card-link"><button type="submit" class="btn btn-default btn-xs pull-right" type="button">
-                     <i class="fa fa-cart-arrow-down"></i> Add </button></div>
+                     <i class="fa fa-cart-arrow-down fa-3x"></i>  </button></div>
                     </td>
-                    <td>
-                         <input type="number" name="id_quantity" class="form-control" value="1" style="width: 4em" >
 
-                    </td>
                 </tr>
                   <tr>
-                       <td></td>
+
                       <td>
                       {% if product.get_has_variants %}
 
-                           <select name= "id_variant" class="form-select mb-2" id="validationDefault04"  style="width: 4em" required>
+                           <select name= "id_variant" class="form-select mb-2" id="validationDefault04"  style="width: 7em" required>
 
                     <option selected disabled value="">Variant</option>
 
