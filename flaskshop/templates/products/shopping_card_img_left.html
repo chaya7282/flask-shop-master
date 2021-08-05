@@ -11,20 +11,20 @@
             {{product.title}}
         </div>
        <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
-11111111111111111
+
         <div class="card-block">
             <div class="row">
                 <div class="col-md-4">
                     <div class="photo-box">
-                        <img  img height="20px" width="20"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="card-img-top" alt="...">
+                        <img  height="50px" width="auto"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
 
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                    <input type="number" name="id_quantity" class="form-control" value="1" style="width: 4em" >
 
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                    {% if product.get_has_variants %}
 
                            <select name= "id_variant" class="form-select mb-2" id="validationDefault04" required>
@@ -40,7 +40,7 @@
                 </select>
                    {% endif %}
                 </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                    {{product.price}}
                 </div>
                  <div class="col-md-1">
