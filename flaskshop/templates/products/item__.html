@@ -1,5 +1,7 @@
-{% for product in products %}
-<div class="col-6 col-lg-3 product-list">
+
+
+<div class="card border-light mb-3 bg-light mb-3  justify-content:center" style="max-width: 18rem;">
+
   <a href="{{ url_for('product.show', id=product.id) }}" class="link--clean">
     <div class="text-center">
       <div>
@@ -19,4 +21,4 @@
     </div>
   </a>
 </div>
-{% endfor %}
+

@@ -51,6 +51,67 @@ fake.add_provider(SaleorProvider)
 GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "icon-11.svg"}
 
 DEFAULT_SCHEMA2 = {
+    "Milk": {
+        "category": {"name": "Dairy and Eggs", "image_name": "category/diary_andEggs.jpg"},
+         "images_dir": "products/milk.jpg",
+     },
+    "Eggs": {
+        "category": {"name": "Dairy and Eggs", "image_name": "category/diary_andEggs.jpg"},
+        "images_dir": "products/eggs.jpg",
+    },
+    "Bread": {
+        "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
+        "images_dir": "products/eggs.jpg",
+    },
+
+    "Cake": {
+        "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
+        "images_dir": "products/cake.jpg",
+    },
+    "Bread": {
+        "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
+        "images_dir": "products/bread.jpg",
+    },
+
+    "Cucumbers": {
+        "category": {"name": "Fruits & Vegtables", "image_name": "category/fruit_and_vegetables.jpg"},
+        "images_dir": "products/cucumbers.jpg",
+    },
+
+    "Tomatos": {
+        "category": {"name": "Fruits & Vegtables", "image_name": "category/fruit_and_vegetables.jpg"},
+        "images_dir": "products/tomatos.jpg",
+    },
+
+
+}
+DEFAULT_SCHEMA = {
+     "Generic": {
+        "category": {"name": "Generic", "image_name": "icon-1.svg"},
+        "product_attributes": {
+         "Generic": ["Defauls"],
+        "Color": ["Blue", "White"],
+        "Collar": ["Round", "V-Neck", "Polo"],
+        "Coffee Genre": ["Arabica", "Robusta"],
+        "Brand": ["Saleor"],
+        "Coffee Genre": ["Arabica", "Robusta"],
+        "Author": ["John Doe", "Milionare Pirate"],
+        "Publisher": ["Mirumee Press", "Saleor Publishing"],
+        "Language": ["English", "Pirate"],
+
+     },
+        "variant_attributes": {"Generic": ["Default"],
+           "Size": ["XS", "S", "M", "L", "XL", "XXL"],
+            "Box Size": ["100g", "250g", "500g", "1kg"],
+           "Candy Box Size": ["100g", "250g", "500g"],
+            "Color": ["Blue", "White","red"],
+        },
+        "images_dir": "t-shirts/",
+        "is_shipping_required": False,
+    },
+}
+
+DEFAULT_SCHEMA3 = {
     "T-Shirt": {
         "category": {"name": "Apparel", "image_name": "icon-1.svg"},
         "product_attributes": {
@@ -149,6 +210,7 @@ COLLECTIONS_SCHEMA = [
     {"name": "Winter sale", "image_name": "sale.jpg"},
 ]
 CATEGORY_SCHEMA=[
+
                  {"name": "Fruits and Vegetables", "image_name":"icon-1.svg"},
                  {"name": "Grocery & Staples ", "image_name": "icon-2.svg"},
                  {"name": "Dairy & Eggs ", "image_name": "icon-3.svg"},
@@ -288,14 +350,18 @@ def create_products_by_type(
 ):
     category = get_or_create_category(schema["category"], placeholder_dir)
 
-    for dummy in range(how_many):
+    for dummy in range(1):
         product = create_product(
-            product_type_id=product_type.id, category_id=category.id
+            product_type_id=product_type.id, category_id=category.id,title=product_type.title
         )
         set_product_attributes(product, product_type)
+
+
         if create_images:
             type_placeholders = placeholder_dir / schema["images_dir"]
             create_product_images(product, random.randrange(1, 5), type_placeholders)
+
+        ProductImage.get_or_create(image=schema["images_dir"], product_id=product.id)
         variant_combinations = get_variant_combinations(product)
 
         prices = get_price_override(schema, len(variant_combinations), product.price)
@@ -314,6 +380,8 @@ def create_products_by_type(
             create_variant(product, sku=sku)
 
 
+
+
 # step6
 def get_or_create_category(category_schema, placeholder_dir):
     if "parent" in category_schema:
@@ -324,8 +392,8 @@ def get_or_create_category(category_schema, placeholder_dir):
         parent_id = 0
     category_name = category_schema["name"]
     image_name = category_schema["image_name"]
-    image_dir = "category"
-    defaults = {"background_img": str(image_dir+ "/"+image_name)}
+
+    defaults = {"background_img": image_name}
     category, _ = Category.get_or_create(
         title=category_name, parent_id=parent_id, **defaults
     )
@@ -335,8 +403,9 @@ def get_or_create_category(category_schema, placeholder_dir):
 # step7
 def create_product(**kwargs):
     description = fake.paragraphs(5)
+    print(kwargs['title'])
     defaults = {
-        "title": fake.company(),
+        "title": kwargs['title'],
         "basic_price": fake.pydecimal(2, 2, positive=True),
         "description": "\n\n".join(description),
         "is_featured": random.choice([0, 1]),
@@ -387,7 +456,8 @@ def create_collections_by_schema(placeholder_dir, schema=COLLECTIONS_SCHEMA):
 
 
 # step11
-def create_categories_by_schema(placeholder_dir, schema=CATEGORY_SCHEMA):
+def create_categories_by_schema(placeholder_dir):
+    schema = CATEGORY_SCHEMA
     for category_data in schema:
         category = get_or_create_category(category_data,placeholder_dir )
         yield f"Category: {category}"
