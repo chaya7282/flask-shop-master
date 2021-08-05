@@ -231,15 +231,13 @@ def seed(type):
             click.echo(msg)
     elif type == "product":
 
-        place_holder = Path("placeholders")
-        create_products_by_schema(
-            placeholder_dir=place_holder, how_many=1, create_images=False
-        )
-        create_admin(),
-        create_dashboard_menus(),
-
+        place_holder = Path("placeholders"),
         create_generator = chain(
 
+            create_products_by_schema(
+            placeholder_dir=place_holder, how_many=1, create_images=False),
+            create_admin(),
+            create_dashboard_menus(),
 
         )
         for msg in create_generator:
