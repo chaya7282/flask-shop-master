@@ -85,9 +85,8 @@ h1{
 <div class="container text-center my-3">
 
 <div class="container-fluid">
-    <h1 class="mt-5">Bootstrap 4 Horizontal Scrolling</h1>
-		<p class="subtitle">Horizontal scrolling without CSS. Just copy scrolling wrapper classes</p>
-    <div class="scrolling-wrapper row flex-row flex-nowrap mt-12 pb-4 pt-2">
+    <h1 class="mt-5">Our Categories</h1>
+	    <div class="scrolling-wrapper row flex-row flex-nowrap mt-12 pb-4 pt-2">
             {% for item in top_menu %}
 			<div class="col-12">
 			       <div class="card" style="width: 18rem;">
@@ -104,57 +103,12 @@ h1{
 </div>
 
 
-   <div class="row mx-auto my-auto justify-content-center" data-bs-ride="carousel">
-        <div id="recipeCarousel" class="carousel slide" >
-            <div class="carousel-inner" role="listbox">
-
-                {% if top_menu %}
-                   {% set item= top_menu[0] %}
-                  <div class="carousel-item active">
-                    <div class="col-md-3">
-                            <div class="card" style="width: 18rem;">
-                            <img height="80px" width="auto" class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
-                                  <div class="card-body">
-                                    <h5 class="card-title">{{item.title}}</h5>
-                                     <a href="{{ item.url }}" class="btn btn-primary">Go somewhere</a>
-                                  </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                 {% for i in range(1, top_menu| length) %}
-                {% set item= top_menu[i] %}
-                 <div class="carousel-item">
-                    <div class="col-md-3">
-                        <div class="card" style="width: 18rem;" >
-                             <img height="80px" width="auto" class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
-                                   <div class="card-body">
-                                    <h5 class="card-title">{{item.title}}</h5>
-                                     <a href="{{ item.url }}" class="btn btn-primary">Go somewhere</a>
-                                  </div>
-
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            {% endif %}
-
-            </div>
-            <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </a>
-            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </a>
-        </div>
-    </div>
-</div>
+  </div>
 </section>
 <section>
 
 <div class="container text-center my-3">
-    <span>Our</span> <h2>Sales</h2>
+    <span>Our</span> <h1>Sales and Featured</h1>
     <div class="row mx-auto my-auto justify-content-center">
         <div id="recipeCarousel2" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
@@ -162,15 +116,15 @@ h1{
                    {% set product= products[0] %}
                   <div class="carousel-item active">
                     <div class="col-md-3">
-                            {% include('products/item.html') %}
+                           {% include('products/shopping_card_img_left.html') %}
                     </div>
                 </div>
 
                  {% for i in range(1, products| length) %}
                 {% set product= products[i] %}
                   <div class="carousel-item">
-                    <div class="col-md-3">
-                         {% include('products/item.html') %}
+                    <div class="col-md-4">
+                           {% include('products/shopping_card_img_left.html') %}
                     </div>
                 </div>
                 {% endfor %}
