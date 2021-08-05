@@ -6,7 +6,7 @@
      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
 
-    <div class="card bg-secondary" style="width: 18rem;">
+    <div class="card bg-secondary" >
         <div class="card-header bg-warning text-dark">
             {{product.title}}
         </div>
@@ -15,8 +15,8 @@
         <div class="card-block bg-light">
             <table>
                 <tr>
-                   <td colspan="5" rowspan="2">
-                      <img  height="2000px" width="200px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
+                   <td colspan="5" >
+                      <img  height="200px" width="200px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
 
                     </td>
                     <td>
@@ -40,7 +40,7 @@
 
                       <td></td>
                        <td></td>
-                     <td colspan="5" rowspan="2">
+                     <td colspan="5" >
                       {% if product.get_has_variants %}
 
                            <select name= "id_variant" class="form-select mb-2" id="validationDefault04"  style="width: 7em" required>
@@ -60,5 +60,14 @@
             </table>
 
         </div>
+        {%if product.on_sale  %}
+       <div class="card-footer text-muted bg-danger">
+          on sale
+       </div>
+       {% elif product.is_featured %}
+            <div class="card-footer text-muted  bg-info">
+        Is featured
+       </div>
+     {% endif %}
        </form>
     </div>
