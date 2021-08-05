@@ -239,7 +239,7 @@ def seed(type):
 
 
         create_generator = chain(
-            create_roles(),
+
             create_admin(),
             create_dashboard_menus(),
         )
