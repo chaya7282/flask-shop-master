@@ -16,7 +16,7 @@
             <table>
                 <tr>
                    <td colspan="5" >
-                      <img  height="200px" width="200px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
+                      <img  height="150px" width="150px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
 
                     </td>
                     <td>
@@ -41,7 +41,7 @@
                       <td></td>
                        <td></td>
                      <td colspan="5" >
-                      {% if product.get_has_variants %}
+                      {% if product.variant %}
 
                            <select name= "id_variant" class="form-select mb-2" id="validationDefault04"  style="width: 7em" required>
 
@@ -69,5 +69,6 @@
         Is featured
        </div>
      {% endif %}
+       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
        </form>
     </div>
