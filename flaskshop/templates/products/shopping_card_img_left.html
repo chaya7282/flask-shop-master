@@ -5,6 +5,34 @@
 
      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
+   <head>
+       <style>
+           .card-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.card-img-wrap:after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.3);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.card-img-wrap img {
+  transition: transform .25s;
+  width: 100%;
+}
+.card-img-wrap:hover img {
+  transform: scale(1.2);
+}
+.card-img-wrap:hover:after {
+  opacity: 1;
+}
+
+       </style>
+   </head>
+
 
     <div class="card bg-secondary mb-3"style="width: 18rem;">
          {%if product.on_sale  %}
@@ -24,7 +52,7 @@
             <table>
                 <tr>
                      <td colspan="5" >
-                     <img  height="150px" width="150px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}">
+                     <div class="card-img-wrap"><img  height="150px" width="150px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}"><div>
                      </td>
                       <td>
                          <input type="button" value="-" id="minus-button" for="quantity">
