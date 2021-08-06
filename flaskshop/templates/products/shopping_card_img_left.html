@@ -6,8 +6,16 @@
      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript'  href="{{ url_for('static', filename='js/dashboard/nav_bar.js') }}"></script>
 
-    <div class="card bg-secondary "style="width: 18rem;">
-        <div class="card-header bg-warning text-dark">
+    <div class="card bg-secondary mb-3"style="width: 18rem;">
+         {%if product.on_sale  %}
+
+            <h2 class="mb-0"><span class="badge badge-primary badge-pill badge-news">Sale</span></h2>
+       {% elif product.is_featured %}
+        <h2 class="mb-0"><span class="badge badge-success badge-pill badge-news">Is featured</span></h2>
+
+     {% endif %}
+
+         <div class="card-header bg-warning text-dark">
             {{product.title}}
         </div>
        <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
