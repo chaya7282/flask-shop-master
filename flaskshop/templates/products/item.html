@@ -14,7 +14,8 @@
    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
      <div class="card-link">
-         {% if product.get_has_variants %}
+         {% product.has_variants %}
+         {% if product.has_variants %}
 
              <select name= "id_variant" class="form-select mb-2" id="validationDefault04" required>
 
