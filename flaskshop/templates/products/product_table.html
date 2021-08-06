@@ -1,8 +1,5 @@
 
 
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
-
-
 <!-- Modal -->
 
 
@@ -15,14 +12,15 @@
 
         <div class="content">
 
-            <ul class="rig columns-6 mt-2">
+            <ul class="rig columns-2 mt-2">
+ {% for product in products %}
 
-               {% for product in products %}
                 <li>
                  {% include('products/shopping_card_img_left.html') %}
                  </li>
-            {% endfor %}
+{% endfor %}
             </ul>
+
         </div>
 
 

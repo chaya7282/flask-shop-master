@@ -141,7 +141,7 @@ class ProductForm(FlaskForm):
     rating = FloatField(default=0)
     sold_count = IntegerField(default=0)
     review_count = IntegerField(default=0)
-    category_id = SelectField()
+    category_id = SelectField(validators=[DataRequired()])
     description = TextAreaField()
     background_img = StringField("Current Image")
     images = FileField("Upload")

@@ -80,10 +80,11 @@ class Product(Model):
             return True
         return False
 
+
     @property
-    def get_has_variants(self):
+    def has_variants(self):
         product_type = ProductType.get_by_id(self.product_type_id)
-        return product_type
+        return product_type.has_variants
 
     @property
     def get_has_attributes(self):

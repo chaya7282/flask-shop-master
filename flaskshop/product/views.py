@@ -24,7 +24,12 @@ def show(id, form=None):
 def product_add_to_cart(id):
     """ this method return to the show method and use a form instance for display validater errors"""
     product = Product.get_by_id(id)
-    variant_id= request.form["id_variant"]
+
+    if product.has_variants:
+        variant_id= request.form["id_variant"]
+    else:
+        variant_id= product.variant[0].id
+
     quantity=request.form["id_quantity"]
     Cart.add_to_currentuser_cart(int(quantity), int(variant_id))
     return redirect(request.referrer)

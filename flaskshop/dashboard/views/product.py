@@ -291,7 +291,6 @@ def product_edit(id):
             new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
             Product.update_images([new_img[0].id],product.id)
 
-        variant= form.variants.data
         _save_product(product, form)
         return redirect(url_for("dashboard.product_detail", id=product.id))
     categories = Category.query.all()
