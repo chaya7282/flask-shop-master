@@ -8,7 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}">
 
 	<!-- Vendor Stylesheets -->
 
@@ -331,11 +333,17 @@
                 </footer>
             </div>
         </div>
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="vendor/chart/highcharts.js"></script>
-		<script src="vendor/chart/exporting.js"></script>
-		<script src="vendor/chart/export-data.js"></script>
-		<script src="vendor/chart/accessibility.js"></script>
+
+		 <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+		<script src="{{ url_for('static', filename='vendor/OwlCarousel/owl.carousel.js') }}"></script>
+		 <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/shopHomePage/jquery.countdown.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
+
+
+
         <script src="js/scripts.js"></script>
         <script src="js/chart.js"></script>
