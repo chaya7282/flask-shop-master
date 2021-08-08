@@ -1,126 +1,121 @@
 {% extends 'dashboard/layout.html' %}
-{% block body %}
+{% import 'dashboard/_macros.html' as macros%}
 
+
+{% block body %}
 <section class="content">
     <div class="container-fluid">
-        <!-- Main row -->
+        <h3>Product Settings</h3>
         <div class="row">
-            <!-- Left col -->
-            <div class="col-md-8">
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-success elevation-1"><i
-                                    class="fa fa-shopping-cart"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Sales</span>
-                                <span class="info-box-text"><b>{{orders_today}}</b> today and <b>{{orders_total}}</b>
-                                    total</span>
-                            </div>
-                            
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.attributes')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-braille"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Attributes</span>
+                            <span class="progress-description">
+                                Determine attributes used to create product types
+                            </span>
                         </div>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-md-6">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-users"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">Members</span>
-                                <span class="info-box-text"><b>{{users_today}}</b> new in <b>{{users_total}}</b>
-                                    accounts</span>
-                            </div>
-                            
+                </a>
+            </div>
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.product_types')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-delicious"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Product Types</span>
+                            <span class="progress-description">
+                                Define types of products you sell
+                            </span>
                         </div>
                     </div>
-                    <!-- /.col -->
-                </div>
-                <div class="card">
-                    <div class="card-body p-0">
-                        <ul class="navi-card">
-                            <li class="item">
-                                <a href="{{url_for('dashboard.orders', status=order_fulfill.kind)}}">
-                                    <span>{{order_fulfill.count}} Orders are ready to fulfill</span>
-                                    <span class="right">></span>
-                                </a>
-                            </li>
-                            <li class="item">
-                                <a href="{{url_for('dashboard.orders', status=order_unfulfill.kind)}}">
-                                    <span>{{order_unfulfill.count}} Payments to capture</span>
-                                    <span class="right">></span>
-                                </a>
-                            </li>
-                            <li class="item">
-                                <a href="{{url_for('dashboard.products', sale=True)}}">
-                                    <span>{{onsale_products_count}} products is on sale</span>
-                                    <span class="right">></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Top Products</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <ul class="products-list product-list-in-card pl-2 pr-2">
-                            {% for product in top_products %}
-                            <li class="item">
-                                <div class="product-img">
-                                    <img src="{{ product.first_img }}"
-                                        alt="Product Image" class="img-size-50">
-                                </div>
-                                <div class="product-info">
-                                    <a href="{{url_for('dashboard.product_detail', id=product.id)}}" class="product-title">{{product.title}}
-                                        <span class="badge badge-info float-right">{{product.price_human}}</span></a>
-                                    <span class="product-description">
-                                        {{product.description}}
-                                    </span>
-                                    <span class="product-description">
-                                        {{product.order_count}} Ordered
-                                    </span>
-                                </div>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+                </a>
             </div>
-            <!-- /.col -->
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Activity</h3>
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.shipping_methods')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-ambulance"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Shipping Methods</span>
+                            <span class="progress-description">
+                                Manage how you ship out orders
+                            </span>
+                        </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <ul class="activity product-list-in-card pl-2 pr-2">
-                            {% for a in activity %}
-                            <li class="item">
-                                <span class="activity-title">Order #{{a.order_id}} was {{order_events(a.type_).name}}</span>
-                                <span>{{a.created_at_human}}</span>
-                            </li>
-                            {% else %}
-                            <li class="item">
-                                <span class="activity-title">There is no recent activity </span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+                </a>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
+
+        <h3>Miscellaneous</h3>
+        <div class="row">
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.site_pages')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-sticky-note-o"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Pages</span>
+                            <span class="progress-description">
+                                Manage and add additional pages
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.site_menus')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-compass"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Navigations</span>
+                            <span class="progress-description">
+                                Define how users can navigate through your store
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.dashboard_menus')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-location-arrow"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Dashboard Navigations</span>
+                            <span class="progress-description">
+                                Define how managers can navigate dashboard
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.plugin_list')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-plug"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Plugins</span>
+                            <span class="progress-description">
+                                View and update your plugins and their settings.
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4">
+                <a class="info-box-config" href="{{url_for('dashboard.site_setting')}}">
+                    <div class="info-box">
+                        <span class="info-box-icon"><i class="fa fa-cogs"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Sites Settings</span>
+                            <span class="progress-description">
+                                View and update your site settings
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-    <!--/. container-fluid -->
 </section>
 {% endblock %}

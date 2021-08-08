@@ -1,6 +1,15 @@
-﻿{% extends "base.html" %}
+﻿
+ {% extends "base.html" %}
 {% block content %}
 <head>
+   <script src="{{ url_for('static', filename='js/shopHomePage/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/OwlCarousel/owl.carousel.js') }}"></script>
+ <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/shopHomePage/jquery.countdown.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
+
+
 	<style>
 	@media (max-width: 767px) {
     .carousel-inner .carousel-item > div {
@@ -75,8 +84,9 @@ h1{
 	}
 }
 
-.
+
 </style>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 </head>
 <section>
@@ -141,23 +151,5 @@ h1{
 
 </div>
 </section>
-<script>
-	let items = document.querySelectorAll('.carousel .carousel-item')
 
-items.forEach((el) => {
-    const minPerSlide = 4
-    let next = el.nextElementSibling
-    for (var i=1; i<minPerSlide; i++) {
-        if (!next) {
-            // wrap carousel by using first child
-        	next = items[0]
-      	}
-        let cloneChild = next.cloneNode(true)
-        el.appendChild(cloneChild.children[0])
-        next = next.nextElementSibling
-    }
-})
-
-
-</script>
 {% endblock %}
