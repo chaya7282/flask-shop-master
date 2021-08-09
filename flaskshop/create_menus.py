@@ -72,13 +72,13 @@ def create_menus():
 
 
     collection = Collection.query.first()
-    item, _ = MenuItem.get_or_create(title="Collections", position=2)
+    item, _ = MenuItem.get_or_create(title="Category", position=2)
     for collection in Collection.query.all():
         MenuItem.get_or_create(
             title=collection.title, collection_id=collection.id, parent_id=item.id
         )
 
-    item, _ = MenuItem.get_or_create(title="Saleor", position=2)
+
     page = Page.query.first()
     if page:
         MenuItem.get_or_create(title=page.title, page_id=page.id, parent_id=item.id)
