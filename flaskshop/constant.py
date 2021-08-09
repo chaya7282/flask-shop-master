@@ -36,7 +36,7 @@ class Permission:
 
 SiteDefaultSettings = {
     "project_title": {
-        "value": "FlaskShop",
+        "value": "bussiness in your hands",
         "value_type": SettingValueType.string,
         "name": "Project title",
         "description": "The title of the project.",
@@ -51,6 +51,6 @@ SiteDefaultSettings = {
         "value": "COPYRIGHT © 2021-2022 CHAYA SOFTWARE",
         "value_type": SettingValueType.string,
         "name": "Project Copyright",
-        "description": "Copyright notice of the Project like '&copy; 2019 FlaskShop'. ",
+        "description": "Copyright notice of the Project like '&copy'. ",
     },
 }
