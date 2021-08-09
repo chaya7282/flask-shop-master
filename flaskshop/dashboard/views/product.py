@@ -6,7 +6,7 @@ from flaskshop.settings import Config
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
-
+import datetime
 import os
 import secrets
 from werkzeug import secure_filename
@@ -151,7 +151,9 @@ def categories_manage(id=None):
         category.parent_id = form.parent_id.data
         image = form.bgimg_file.data
         if image:
-            filename = secure_filename(image.filename)
+            basename = secure_filename(image.filename)
+            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
+            filename = "_".join([basename, suffix])  # e.g. 'mylogfile_120508_171442'
             image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
             category.background_img=filename
 
@@ -353,7 +355,10 @@ def product_create_step2():
         image= form.images.data
         product = _save_product(product, form)
         if image:
-            filename = secure_filename(image.filename)
+            basename = secure_filename(image.filename)
+            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
+            filename = "_".join([basename, suffix])  # e.g. 'mylogfile_120508_171442'
+
             image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
 
             ProductImage.get_or_create(image=filename , product_id=product.id)
