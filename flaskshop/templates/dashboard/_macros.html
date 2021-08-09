@@ -68,7 +68,7 @@
 <div class="form-group">
     <label>{{ field.label.text }}</label>
 
-      <select  name="{{ label_id }}" id="{{ label_id }}" class="selectpicker form-control"  data-live-search="true" required >
+       <select class="form-control select2" style="width: 100%;" name="{{ label_id }}">
         {% if has_zero %}
         <option value="0">None</option>
         {% endif %}
