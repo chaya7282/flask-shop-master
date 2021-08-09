@@ -233,6 +233,8 @@ def seed(type):
 
         place_holder = Path("placeholders"),
         create_generator = chain(
+
+            create_roles(),
             create_admin(),
             create_dashboard_menus(),
         )
