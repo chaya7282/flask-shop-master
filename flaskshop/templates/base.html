@@ -33,6 +33,12 @@
 
 
 		<!-- Vendor Stylesheets -->
+ <script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	 <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
 
 
 
@@ -626,15 +632,9 @@
     </footer>
     {% endblock %}
     {% block footer_scripts %}
-      <script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
+
    		<!-- Javascripts -->
 
-    <script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-	 <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
 
 
 
