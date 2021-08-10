@@ -1,103 +1,56 @@
-﻿
- {% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% block content %}
-<head>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/unicons-2.0.1/css/unicons.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/responsive.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/night-mode.css') }}">
 
+	<!-- Vendor Stylesheets -->
+	 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
+	 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
 
-	<style>
-	@media (max-width: 767px) {
-    .carousel-inner .carousel-item > div {
-        display: none;
-    }
-    .carousel-inner .carousel-item > div:first-child {
-        display: block;
-    }
-}
-
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
-    display: flex;
-}
-
-/* medium and up screens */
-@media (min-width: 768px) {
-
-    .carousel-inner .carousel-item-end.active,
-    .carousel-inner .carousel-item-next {
-      transform: translateX(25%);
-    }
-
-    .carousel-inner .carousel-item-start.active,
-    .carousel-inner .carousel-item-prev {
-      transform: translateX(-25%);
-    }
-}
-
-.carousel-inner .carousel-item-end,
-.carousel-inner .carousel-item-start {
-  transform: translateX(0);
-}
-row > .col-xs-3 {
-    display:flex;
-    flex: 0 0 25%;
-    max-width: 25%
-}
-
-.scrolling-wrapper{
-	overflow-x: auto;
-}
-
-body{
-	background-color: black;
-	color: #fff;
-	font-family: 'system-ui';
-}
-
-h1{
-	font-weight: 800;
-	font-size: 3em;
-}
-
-.subtitle{
-	font-size: 1.25em;
-	opacity: 0.65;
-}
-
-.card-block{
-	height: 250px;
-	background-color: #fff;
-	border: none;
-	background-position: center;
-	background-size: cover;
-	transition: all 0.2s ease-in-out !important;
-	border-radius: 24px;
-	&:hover{
-		transform: translateY(-5px);
-		box-shadow: none;
-	}
-}
-
-
-</style>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-</head>
-<section>
-
-
-
-<div class="container text-center my-3">
-
-
-
-
-<div class="container-fluid">
+<div class="wrapper">
 <!-- Categories Start -->
-		<div class="section145">
-			<div class="container">
+	<div class="section145">
+		<div class="container">
 				<div class="row">
 					<div class="col-md-12">
+						<div class="owl-carousel offers-banner owl-theme">
+							{%for product in products %}
+							<div class="item">
+								<div class="offer-item">
+									<div class="offer-item-img">
+										<div class="gambo-overlay"></div>
+										<img  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
+									</div>
+									<div class="offer-text-dt">
+										<div class="offer-top-text-banner">
+											<p> off</p>
+											<div class="top-text-1">Buy More & Save More</div>
+											<span>{{product.category}}</span>
+										</div>
+										<a href="#" class="Offer-shop-btn hover-btn">Shop Now</a>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+
+
+	<div class="section145">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2">
 						<div class="main-title-tt">
 							<div class="main-title-left">
 								<span>Shop By</span>
@@ -109,9 +62,9 @@ h1{
 						<div class="owl-carousel cate-slider owl-theme">
 							 {% for item in top_menu %}
 							<div class="item">
-								<a href="#" class="category-item">
+								<a href="{{ item.url }}" class="category-item">
 									<div class="cate-img">
-										<img src="{{item.background_img }}" alt="">
+										<img src="{{item.background_img }}" >
 									</div>
 									<h4>{{item.title}}</h4>
 								</a>
@@ -121,23 +74,10 @@ h1{
 					</div>
 				</div>
 			</div>
-		</div>
+	</div>
 		<!-- Categories End -->
+		<!-- Featured Products Start -->
 
-
-
-</div>
-
-
-  </div>
-
-<section>
-
- <div class="container-fluid">
-
-    <h1 class="mt-5">Our Products</h1>
-<!-- Featured Products Start -->
-		<div class="section145">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -182,18 +122,65 @@ h1{
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Featured Products End -->
-</div>
- </div>
 
-</section>
-<!-- Javascripts -->
-	 <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-	 <script src="{{ url_for('static', filename='vendor/OwlCarousel/owl.carousel.js') }}"></script>
-     <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='js/jquery.countdown.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+		<!-- Featured Products End -->
+	<!-- Best Values Offers Start -->
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-title-tt">
+							<div class="main-title-left">
+								<span>For You</span>
+								<h2>Top Featured Products</h2>
+							</div>
+							<a href="#" class="see-more-btn">See All</a>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="owl-carousel featured-slider owl-theme">
+							{% for product in products %}
+							<div class="item">
+								<div class="product-item">
+									<a href="http://gambolthemes.net/html-items/gambo_supermarket_demo/single_product_view.html" class="product-img">
+										<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
+										<div class="product-absolute-options">
+											<span class="offer-badge-1"> off</span>
+											<span class="like-icon" title="wishlist"></span>
+										</div>
+									</a>
+									<div class="product-text-dt">
+										<p>Available<span>(In Stock)</span></p>
+										<h4>{{product.title}}</h4>
+										<div class="product-price">{{product.price}} </div>
+										<div class="qty-cart">
+											<div class="quantity buttons_added">
+												<input type="button" value="-" class="minus minus-btn">
+												<input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
+												<input type="button" value="+" class="plus plus-btn">
+											</div>
+											<span class="cart-icon"><i class="uil uil-shopping-cart-alt"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<!-- Best Values Offers End -->
+
+</div>
+
+
+	<script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	 <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
 
 {% endblock %}
