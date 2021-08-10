@@ -11,6 +11,8 @@ import os
 import secrets
 from werkzeug import secure_filename
 from PIL import Image
+
+from PIL import Image
 from flaskshop.product.models import (
     ProductAttribute,
     ProductType,
@@ -151,10 +153,7 @@ def categories_manage(id=None):
         category.parent_id = form.parent_id.data
         image = form.bgimg_file.data
         if image:
-            basename = secure_filename(image.filename)
-            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-            filename = "_".join([basename, suffix])  # e.g. 'mylogfile_120508_171442'
-            image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
+            filename=load_image(image)
             category.background_img=filename
 
         else:
@@ -288,8 +287,7 @@ def product_edit(id):
     if form.validate_on_submit():
         f = request.files['imgdata']
         if f:
-            image_name = secure_filename(f.filename)
-            f.save(os.path.join(Config.UPLOAD_FOLDER, image_name))
+            image_name= load_image(f.filename)
             new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
             Product.update_images([new_img[0].id],product.id)
 
@@ -340,7 +338,18 @@ def product_create_step1(id=None):
     return render_template(
         "product/product_create_step1.html", form=form, attributes=attributes
     )
-
+def load_image(image):
+    if image:
+        baseheight= 400
+        image.save(os.path.join(Config.UPLOAD_FOLDER, "tmp_file.jpg"))
+        im = Image.open(os.path.join(Config.UPLOAD_FOLDER, "tmp_file.jpg"))
+        wpercent = (baseheight / float(im.size[1]))
+        wsize = int((float(im.size[0]) * float(wpercent)))
+        im= im.resize((wsize,baseheight), Image.ANTIALIAS)
+        preffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
+        filename = "_".join(["a", preffix, image.filename])  # e.g. 'mylogfile_120508_171442'
+        im.save(os.path.join(Config.UPLOAD_FOLDER, filename))
+        return filename
 
 def product_create_step2():
     form = ProductForm()
@@ -355,12 +364,7 @@ def product_create_step2():
         image= form.images.data
         product = _save_product(product, form)
         if image:
-            basename = secure_filename(image.filename)
-            suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-            filename = "_".join([basename, suffix])  # e.g. 'mylogfile_120508_171442'
-
-            image.save(os.path.join(Config.UPLOAD_FOLDER, filename))
-
+            filename= load_image(image)
             ProductImage.get_or_create(image=filename , product_id=product.id)
         if product_type.has_variants:
             for attr in form.variant_attributes.data:
