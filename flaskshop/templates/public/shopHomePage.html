@@ -93,22 +93,39 @@ h1{
 
 
 <div class="container-fluid">
-
-    <h1 class="mt-5">Our Categories</h1>
-	    <div class="scrolling-wrapper row flex-row flex-nowrap mt-12 pb-4 pt-2">
-            {% for item in top_menu %}
-			<div class="col-12">
-			       <div class="card" style="width: 18rem;">
-                            <img height="80px" width="auto" class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
-                                  <div class="card-body">
-                                    <h5 class="card-title">{{item.title}}</h5>
-                                     <a href="{{ item.url }}" class="btn btn-primary">View</a>
-                                  </div>
-
-                        </div>
+<!-- Categories Start -->
+		<div class="section145">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-title-tt">
+							<div class="main-title-left">
+								<span>Shop By</span>
+								<h2>Categories</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="owl-carousel cate-slider owl-theme">
+							 {% for item in top_menu %}
+							<div class="item">
+								<a href="#" class="category-item">
+									<div class="cate-img">
+										<img src="{{item.background_img }}" alt="">
+									</div>
+									<h4>{{item.title}}</h4>
+								</a>
+							</div>
+						    {% endfor %}
+						</div>
+					</div>
+				</div>
 			</div>
-            {% endfor %}
-    </div>
+		</div>
+		<!-- Categories End -->
+
+
+
 </div>
 
 
