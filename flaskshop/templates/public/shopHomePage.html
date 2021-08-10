@@ -1,18 +1,5 @@
 ﻿{% extends "base.html" %}
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/unicons-2.0.1/css/unicons.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/responsive.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/night-mode.css') }}">
-
-	<!-- Vendor Stylesheets -->
-	 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
-	 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/front_shop/shop.css') }}">
 
 <div class="wrapper">
 <!-- Categories Start -->
@@ -174,13 +161,4 @@
 	<!-- Best Values Offers End -->
 
 </div>
-
-
-	<script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-	 <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
-     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
-
 {% endblock %}
