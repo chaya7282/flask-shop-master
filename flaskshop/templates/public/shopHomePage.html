@@ -21,7 +21,8 @@
 											<div class="top-text-1">Buy More & Save More</div>
 											<span>{{product.category}}</span>
 										</div>
-										<a href="#" class="Offer-shop-btn hover-btn">Shop Now</a>
+
+										<a href="{{product.category.get_absolute_url() }}"  class="Offer-shop-btn hover-btn">Shop Now</a>
 									</div>
 								</div>
 							</div>
@@ -49,7 +50,7 @@
 						<div class="owl-carousel cate-slider owl-theme">
 							 {% for item in top_menu %}
 							<div class="item">
-								{{ item.url }}
+
 								<a href="{{ item.url }}" class="category-item">
 									<div class="cate-img">
 										<img src="{{item.background_img }}"  width="auto" height="70px">
