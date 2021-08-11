@@ -1,0 +1,31 @@
+<div class="product-item">
+  <!-- To do referenc to product details-->
+            <a href="" class="product-img">
+                <img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" width="auto" height="300">
+                <div class="product-absolute-options">
+                    <span class="offer-badge-1"> off</span>
+                    <span class="like-icon" title="wishlist"></span>
+                </div>
+            </a>
+            <div class="product-text-dt">
+                <p>Available<span>(In Stock)</span></p>
+                <h4>{{product.title}}</h4>
+                <div class="product-price">{{product.price}} </div>
+                <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+
+                    <div class="qty-cart">
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus minus-btn">
+                            <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
+                            <input type="button" value="+" class="plus plus-btn">
+                        </div>
+                        <span class="cart-icon">
+                          <div class="card-link">
+                            <button type="submit" class="btn btn-default btn-xs pull-right" type="button"><i class="fa fa-cart-arrow-down"></i> </button>
+                          </div>
+                        </span>
+                    </div>
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                </form>
+        </div>
+</div>
