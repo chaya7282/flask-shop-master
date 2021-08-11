@@ -49,9 +49,10 @@
 						<div class="owl-carousel cate-slider owl-theme">
 							 {% for item in top_menu %}
 							<div class="item">
+								{{ item.url }}
 								<a href="{{ item.url }}" class="category-item">
 									<div class="cate-img">
-										<img src="{{item.background_img }}" >
+										<img src="{{item.background_img }}"  width="auto" height="70px">
 									</div>
 									<h4>{{item.title}}</h4>
 								</a>
@@ -80,28 +81,7 @@
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
 							<div class="item">
-								<div class="product-item">
-									<a href="http://gambolthemes.net/html-items/gambo_supermarket_demo/single_product_view.html" class="product-img">
-										<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
-										<div class="product-absolute-options">
-											<span class="offer-badge-1"> off</span>
-											<span class="like-icon" title="wishlist"></span>
-										</div>
-									</a>
-									<div class="product-text-dt">
-										<p>Available<span>(In Stock)</span></p>
-										<h4>{{product.title}}</h4>
-										<div class="product-price">{{product.price}} </div>
-										<div class="qty-cart">
-											<div class="quantity buttons_added">
-												<input type="button" value="-" class="minus minus-btn">
-												<input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
-												<input type="button" value="+" class="plus plus-btn">
-											</div>
-											<span class="cart-icon"><i class="uil uil-shopping-cart-alt"></i></span>
-										</div>
-									</div>
-								</div>
+								 {% include('products/item_front.html') %}
 							</div>
 							{% endfor %}
 
@@ -119,7 +99,7 @@
 						<div class="main-title-tt">
 							<div class="main-title-left">
 								<span>For You</span>
-								<h2>Top Featured Products</h2>
+								<h2>On Sale</h2>
 							</div>
 							<a href="#" class="see-more-btn">See All</a>
 						</div>
@@ -128,28 +108,7 @@
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
 							<div class="item">
-								<div class="product-item">
-									<a href="http://gambolthemes.net/html-items/gambo_supermarket_demo/single_product_view.html" class="product-img">
-										<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
-										<div class="product-absolute-options">
-											<span class="offer-badge-1"> off</span>
-											<span class="like-icon" title="wishlist"></span>
-										</div>
-									</a>
-									<div class="product-text-dt">
-										<p>Available<span>(In Stock)</span></p>
-										<h4>{{product.title}}</h4>
-										<div class="product-price">{{product.price}} </div>
-										<div class="qty-cart">
-											<div class="quantity buttons_added">
-												<input type="button" value="-" class="minus minus-btn">
-												<input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
-												<input type="button" value="+" class="plus plus-btn">
-											</div>
-											<span class="cart-icon"><i class="uil uil-shopping-cart-alt"></i></span>
-										</div>
-									</div>
-								</div>
+								 {% include('products/item_front.html') %}
 							</div>
 							{% endfor %}
 
