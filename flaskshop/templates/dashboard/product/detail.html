@@ -65,11 +65,13 @@
                                         <b>ProductType (סוג המוצר)</b> <span class="float-right">{{product.product_type}}</span>
                                     </li>
                                      <li class="list-group-item">
+                                         {% if product.attribute_map %}
                                         {% for attribute, value in product.attribute_map.items() %}
 
                                             <strong>{{ value }}</strong>
 
                                         {% endfor %}
+                                         {% endif %}
                                      </li>
                                     <li class="list-group-item">
                                         <b>Created (תאריך יצירה)</b> <span class="float-right">{{product.created_at}}</span>
