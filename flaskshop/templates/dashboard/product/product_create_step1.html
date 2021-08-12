@@ -48,27 +48,29 @@ function hide()
 
 
                             {% set label_id = form.has_attributes.label.field_id %}
+                            <ul class="add-menu-list">
+														<li>
+															<div class="form-group">
+																<label name="HasAttributes" id="HasAttributes"  onclick="hide()" value="false" class="control-label">
+																	<input type="checkbox" value="1">
+																	Has Attributes
+																</label>
+															</div>
+														</li>
+														<li>
+															<div class="form-group">
+																<label class="control-label">
+																	<input name="HasVariants" id="HasVariants"  type="checkbox" value="flase" onclick="manage_variants()" value="false"  >
+																	Has Variants
+																</label>
+															</div>
+														</li>
+
+													</ul>
 
 
-                               <div class="form-group">
-                                <div class="form-check">
-                                  <input name="HasAttributes"  class="form-check-input "  type="checkbox" id="HasAttributes" onclick="hide()" value="false"  >
-                                 <div class="mr-2">
-                                  <label class="form-check-label" >
-                                    Had Product
-                                  </label>
-                                    </div>
-                                </div>
-                               </div>
                                  {% set label_id = form.has_variants.label.field_id %}
-                               <div class="form-group">
-                                <div class="form-check mb-3 ">
-                                  <input name="HasVariants"  class="form-check-input"  type="checkbox" id="HasVariants" onclick="manage_variants()" value="false"  >
-                                  <label class="form-check-label" >
-                                    Has Variants
-                                  </label>
-                                </div>
-                               </div>
+
 
 
                                  {{ vendor.render_field(form.is_shipping_required) }}
