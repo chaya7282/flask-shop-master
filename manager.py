@@ -22,6 +22,13 @@ def create_admin():
 @manager.command
 def create_dashboard_menus():
     commands.create_dashboard_menus_cmd()
+
+
+@manager.command
+def seed(type):
+    commands.seed(type)
+
+
 @manager.command
 def inits():
     commands.destroydb()

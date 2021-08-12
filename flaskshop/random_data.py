@@ -54,33 +54,40 @@ DEFAULT_SCHEMA2 = {
     "Milk": {
         "category": {"name": "Dairy and Eggs", "image_name": "category/diary_andEggs.jpg"},
          "images_dir": "products/milk.jpg",
+
      },
     "Eggs": {
         "category": {"name": "Dairy and Eggs", "image_name": "category/diary_andEggs.jpg"},
         "images_dir": "products/eggs.jpg",
+
     },
     "Bread": {
         "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
         "images_dir": "products/eggs.jpg",
+
     },
 
     "Cake": {
         "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
         "images_dir": "products/cake.jpg",
+
     },
     "Bread": {
         "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
         "images_dir": "products/bread.jpg",
+
     },
 
     "Cucumbers": {
         "category": {"name": "Fruits & Vegtables", "image_name": "category/fruit_and_vegetables.jpg"},
         "images_dir": "products/cucumbers.jpg",
+
     },
 
     "Tomatos": {
         "category": {"name": "Fruits & Vegtables", "image_name": "category/fruit_and_vegetables.jpg"},
         "images_dir": "products/tomatos.jpg",
+
     },
 
 
@@ -300,6 +307,7 @@ def create_products_by_schema(
             placeholder_dir,
             how_many=how_many,
             create_images=create_images,
+
         )
 
 # step2
@@ -354,8 +362,6 @@ def create_products_by_type(
         product = create_product(
             product_type_id=product_type.id, category_id=category.id,title=product_type.title
         )
-        set_product_attributes(product, product_type)
-
 
         if create_images:
             type_placeholders = placeholder_dir / schema["images_dir"]
@@ -405,9 +411,11 @@ def create_product(**kwargs):
     description = fake.paragraphs(5)
     print(kwargs['title'])
     defaults = {
-        "title": kwargs['title'],
+        "title": fake.company(),
         "basic_price": fake.pydecimal(2, 2, positive=True),
-        "description": "\n\n".join(description),
+        "sale_price": fake.pydecimal(2, 2, positive=True),
+        "in_front_banner":random.choice([0, 1]),
+        "on_sale": random.choice([0, 1]),
         "is_featured": random.choice([0, 1]),
     }
     defaults.update(kwargs)

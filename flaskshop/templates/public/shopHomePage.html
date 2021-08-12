@@ -9,6 +9,7 @@
 					<div class="col-md-12">
 						<div class="owl-carousel offers-banner owl-theme">
 							{%for product in products %}
+							{% if product.in_front_banner %}
 							<div class="item">
 								<div class="offer-item">
 									<div class="offer-item-img">
@@ -26,6 +27,7 @@
 									</div>
 								</div>
 							</div>
+							{% endif %}
 							{% endfor %}
 
 						</div>
@@ -81,9 +83,11 @@
 					<div class="col-md-12">
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
+							{% if product.get_is_featured %}
 							<div class="item">
 								 {% include('products/item_front.html') %}
 							</div>
+							{% endif %}
 							{% endfor %}
 
 						</div>
@@ -108,9 +112,11 @@
 					<div class="col-md-12">
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
+							{% if product.is_on_sale %}
 							<div class="item">
 								 {% include('products/item_front.html') %}
 							</div>
+							{% endif %}
 							{% endfor %}
 
 						</div>

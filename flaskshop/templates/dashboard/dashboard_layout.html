@@ -1,28 +1,27 @@
 
 <head>
+	 {% block meta %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
+  {% endblock meta %}
+{% block header %}
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}">
 
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
 	<!-- Vendor Stylesheets -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
 
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-	
+
+{% endblock %}
 </head>
 
-    <body class="sb-nav-fixed">
+<body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
             <a class="navbar-brand logo-brand" href="index.html"></a>
 			<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-            <a href="{{url_for('public.home')}}" class="frnt-link"><i class="fas fa-external-link-alt"></i>Home</a>
+            <a href="{{url_for('public.home')}}" class="frnt-link"><i class="fa fa-home"></i>Home</a>
             <ul class="navbar-nav ml-auto mr-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -101,80 +100,15 @@
 					</div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
-                <body>
-                    <div class="container-fluid">
-                        <h2 class="mt-30 page-title">Dashboard</h2>
-                        <ol class="breadcrumb mb-30">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="dashboard-report-card purple">
-									<div class="card-content">
-										<span class="card-title">Order Pending</span>
-										<span class="card-count">{{order_unfulfill.count}}</span>
-									</div>
-									<div class="card-media">
-										<i class="fab fa-rev"></i>
-									</div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-								<div class="dashboard-report-card red">
-									<div class="card-content">
-										<span class="card-title">Payments to capture</span>
-										<span class="card-count">{{order_unfulfill.count}}</span>
-									</div>
-									<div class="card-media">
-										<i class="far fa-times-circle"></i>
-									</div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="dashboard-report-card info">
-									<div class="card-content">
-										<span class="card-title">Orders Today</span>
-										<span class="card-count">{{orders_today}}</span>
-									</div>
-									<div class="card-media">
-										<i class="fas fa-sync-alt rpt_icon"></i>
-									</div>
-                                </div>
-                            </div>
-							  <div class="col-xl-3 col-md-6">
-                                <div class="dashboard-report-card info">
-									<div class="card-content">
-										<span class="card-title">Accounts</span>
-										<span class="card-count"><b>{{users_today}}</b> new in <b>{{users_total}}</b></span>
-									</div>
-									<div class="card-media">
-										<i class="fa fa-users"></i>
-									</div>
-                                </div>
-                            </div>
-							<div class="col-xl-3 col-md-6">
-								<div class="dashboard-report-card info">
-									<div class="card-content">
-										<span class="card-title">products on sale</span>
-										<span class="card-count">{{onsale_products_count}}</span>
-									</div>
-
-                                </div>
-                            </div>
 
 
+		<div id="layoutSidenav_content">
 
-                <footer class="py-4 bg-footer mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted-1">{{ settings['project_title'].value }}</b>. by {{ settings['project_copyright'].value }}</div>
+         {% block content %}
 
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
+           {% endblock %}
+
+
 
 		 <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -186,3 +120,5 @@
 		<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
 
 
+</div>
+		</div>

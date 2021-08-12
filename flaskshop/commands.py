@@ -240,7 +240,7 @@ def seed(type):
         )
 
         create_products_by_schema(
-            placeholder_dir=place_holder, how_many=1, create_images=False)
+            placeholder_dir=place_holder, how_many=3, create_images=False)
 
 
         for msg in create_generator:

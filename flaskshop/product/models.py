@@ -23,17 +23,21 @@ MC_KEY_CATEGORY_CHILDREN = "product:category:{}:children"
 class Product(Model):
     __tablename__ = "product_product"
     title = Column(db.String(255), nullable=False)
-    on_sale = Column(db.Boolean(), default=True)
+    on_sale = Column(db.Boolean(), default=False)
+    is_featured = Column(db.Boolean())
+    in_front_banner= Column(db.Boolean(), default=False)
     rating = Column(db.DECIMAL(8, 2), default=5.0)
     sold_count = Column(db.Integer(), default=0)
     review_count = Column(db.Integer(), default=0)
     basic_price = Column(db.DECIMAL(10, 2))
+    sale_price = Column(db.DECIMAL(10, 2))
     category_id = Column(db.Integer())
-    is_featured = Column(db.Boolean(), default=False)
+
     product_type_id = Column(db.Integer())
     attributes = Column(MutableDict.as_mutable(db.JSON()))
     description = Column(db.Text())
     background_img = Column(db.String(255), nullable=True, default=None)
+
     if Config.USE_REDIS:
         description = PropsItem("description")
 
@@ -80,6 +84,11 @@ class Product(Model):
             return True
         return False
 
+    @property
+    def get_in_front_banner(self):
+        if self.in_front_banner:
+            return True
+        return False
 
     @property
     def has_variants(self):

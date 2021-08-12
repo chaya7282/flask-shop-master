@@ -8,7 +8,7 @@ from flaskshop import settings
 
 from flaskshop.extensions import login_manager
 from flaskshop.account.models import User
-from flaskshop.product.models import Product
+from flaskshop.product.models import Product, Category
 from .models import Page
 from .search import Item
 from flaskshop.product.forms import AddCartForm
@@ -22,9 +22,9 @@ def load_user(user_id):
 
 
 def home():
-    products= Product.query.filter(or_( Product.is_featured== True, Product.on_sale== True)).all()
-
-    return render_template("public/shopHomePage.html", products= products)
+    products= Product.query.all()
+    categories= Category.query.all()
+    return render_template("public/shopHomePage.html", products= products,categories=categories )
 
 
 def style():

@@ -135,13 +135,16 @@ class ProductTypeForm(FlaskForm):
 
 class ProductForm(FlaskForm):
     title = StringField()
-    basic_price = DecimalField()
-    on_sale = BooleanField(default=True)
-    is_featured = BooleanField(default=False)
+    basic_price = DecimalField("basic Price",validators=[DataRequired()])
+    sale_price = DecimalField("Sale Price")
+    on_sale = BooleanField("On Sale",default=False)
+    is_featured = BooleanField("Special", default=False)
+    in_front_banner=BooleanField("In front banner", default=False)
+
     rating = FloatField(default=0)
     sold_count = IntegerField(default=0)
     review_count = IntegerField(default=0)
-    category_id = SelectField(validators=[DataRequired()])
+    category_id = SelectField("choose category",validators=[DataRequired()])
     description = TextAreaField()
     background_img = StringField("Current Image")
     images = FileField("Upload")

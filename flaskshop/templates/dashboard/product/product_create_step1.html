@@ -1,9 +1,9 @@
 {% import 'dashboard/_macros.html' as macros%}
 {% import 'dashboard/_vendor.html' as vendor%}
-{% extends 'dashboard/layout.html' %}
+{% extends 'dashboard/dashboard_layout.html' %}
 
 
-{% block body %}
+ {% block content %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
@@ -15,29 +15,21 @@
 <script src="{{ url_for('static', filename='js/dashboard/bootstrap-select.js') }}"></script>
 <script>
 
+
 function hide()
 {
+    alert(hello)
+
   if (document.getElementById('HasAttributes').checked)
   {
-    document.getElementById("select_attributes").hidden = false;
-     $("#select1").attr('required', 'required');
+
+    alert(hello)
+
   } else {
-     document.getElementById("select_attributes").hidden = true;
-     $("#select1").removeAttr('required');
+
   }
 }
 
-function manage_variants()
-{
-  if (document.getElementById('HasVariants').checked)
-  {
-    document.getElementById("select_variants").hidden = false;
-     $("#select2").attr('required', 'required');
-  } else {
-     document.getElementById("select_attributes").hidden = true;
-     $("#select2").removeAttr('required');
-  }
-}
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -50,7 +42,6 @@ function manage_variants()
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="card card-primary">
-                    <div class="card-header">
                          <div class="card-header">
                              <h3 class="card-title">Create Product Step First</h3>
                          </div>
@@ -62,25 +53,30 @@ function manage_variants()
                             {{ form.hidden_tag() }}
                             {{ vendor.render_field(form.title) }}
 
+
+
                             {% set label_id = form.has_attributes.label.field_id %}
+
+
                                <div class="form-group">
                                 <div class="form-check">
-                                  <input name="HasAttributes"  class="form-check-input"  type="checkbox" id="HasAttributes" onclick="hide()" value="false"  >
+                                  <input name="HasAttributes"  class="form-check-input "  type="checkbox" id="HasAttributes" onclick="hide()" value="false"  >
+                                 <div class="mr-2">
                                   <label class="form-check-label" >
-                                    Has Attributes
+                                    Had Product
                                   </label>
+                                    </div>
                                 </div>
                                </div>
                                  {% set label_id = form.has_variants.label.field_id %}
                                <div class="form-group">
-                                <div class="form-check">
+                                <div class="form-check mb-3 ">
                                   <input name="HasVariants"  class="form-check-input"  type="checkbox" id="HasVariants" onclick="manage_variants()" value="false"  >
                                   <label class="form-check-label" >
                                     Has Variants
                                   </label>
                                 </div>
                                </div>
-
 
 
                                  {{ vendor.render_field(form.is_shipping_required) }}
@@ -110,7 +106,29 @@ function manage_variants()
 
 <script>
 
+function hide()
+{
+  if (document.getElementById('HasAttributes').checked)
+  {
+    document.getElementById("select_attributes").hidden = false;
+     $("#select1").attr('required', 'required');
+  } else {
+     document.getElementById("select_attributes").hidden = true;
+     $("#select1").removeAttr('required');
+  }
+}
 
+function manage_variants()
+{
+  if (document.getElementById('HasVariants').checked)
+  {
+    document.getElementById("select_variants").hidden = false;
+     $("#select2").attr('required', 'required');
+  } else {
+     document.getElementById("select_attributes").hidden = true;
+     $("#select2").removeAttr('required');
+  }
+}
 
 </script>
 </section>

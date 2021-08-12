@@ -1,29 +1,7 @@
 {% import 'dashboard/_macros.html' as macros%}
 {% import 'dashboard/_vendor.html' as vendor%}
-{% extends 'dashboard/layout.html' %}
-
-
-
-{% block body %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
-
-<script src="{{ url_for('static', filename='build/dashboard/product_edit.js') }}"></script>
-
-<script src="{{ url_for('static', filename='js/dashboard/bootstrap-select.js') }}"></script>
-<script>
-$(document).ready(function(){
-  $('.custom-file-input').on('change',function(){
-  var id= document.getElementById("formInputId").value;
-  var fileName =  document.getElementById(id).files[0].name;
-  document.getElementById("labelFile").innerHTML=fileName;
-});
-});
-</script>
-<section class="content">
+{% extends 'dashboard/dashboard_layout.html' %}
+ {% block content %}
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -34,21 +12,66 @@ $(document).ready(function(){
                     <form method="POST" action="" enctype='multipart/form-data'>
                         <div class="card-body">
                             {{ form.hidden_tag() }}
-                            <label>Type:</label> {{product_type}}
-                            {{ vendor.render_field(form.title) }}
-                            {{ vendor.render_field(form.basic_price) }}
-                            {{ vendor.render_field(form.on_sale) }}
-                            {{ vendor.render_field(form.is_featured) }}
-
-                           {{ vendor.render_field(form.rating) }}
-                            {{ vendor.render_field(form.sold_count) }}
-                            {{ vendor.render_field(form.review_count) }}
-
-                            {{ macros.render_select_field(form.category_id, categories) }}
-                            {{ vendor.render_field(form.description) }}
-                           <input type="text" id ="formInputId" value={{form.images.label.field_id}} hidden="true">
-
-                            {{ macros.render_file_field(form.images, form.background_img) }}
+                            <label>Title:</label> {{product_type}}
+                              <div class="card">
+                  <div class="card-header">
+                   Price
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                       {{ vendor.render_field(form.basic_price) }}
+                        {{ vendor.render_field(form.sale_price) }}
+                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
+                    </blockquote>
+                  </div>
+                </div>
+                                <div class="card">
+                                  <div class="card-header">
+                                   Front Page
+                                  </div>
+                                  <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                      <p>{{ vendor.render_field(form.on_sale) }} </p>
+                                        <p>{{ vendor.render_field(form.is_featured) }}</p>
+                                        <p>{{vendor.render_field(form.in_front_banner)}}</p>
+                                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
+                                    </blockquote>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header">
+                                   Category
+                                  </div>
+                                  <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                      {{ macros.render_select_field(form.category_id, categories) }}
+                                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
+                                    </blockquote>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header">
+                                 Description
+                                  </div>
+                                  <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                      {{ vendor.render_field(form.description) }}
+                                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
+                                    </blockquote>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header">
+                                 Upload Image
+                                  </div>
+                                  <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                    <input type="text" id ="formInputId" value={{form.images.label.field_id}} hidden="true">
+                                    {{ macros.render_file_field(form.images, form.background_img) }}
+                                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
+                                    </blockquote>
+                                  </div>
+                                </div>
                             {% if product_type.has_variants %}
                             {% set label_id = form.variant_attributes.label.field_id %}
 
@@ -73,12 +96,8 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-    </div>
-</section>
 
-{% endblock %}
 
-{% block tail_js %}
 
 {% endblock %}
 

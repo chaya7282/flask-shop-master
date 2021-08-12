@@ -92,7 +92,7 @@ def index():
         "activity": activity,
         "order_events": OrderEvents,
     }
-    return render_template("AdminLTE.html", **context)
+    return render_template("index.html", **context)
 
 def Catalog():
     return render_template("Catalog.html")

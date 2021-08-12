@@ -1,9 +1,7 @@
 {% import 'dashboard/_macros.html' as macros%}
 {% import 'dashboard/_vendor.html' as vendor%}
-{% extends 'dashboard/layout.html' %}
-
-
-{% block body %}
+{% extends 'dashboard/dashboard_layout.html' %}
+ {% block content %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
