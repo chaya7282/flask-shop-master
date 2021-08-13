@@ -32,7 +32,7 @@ $(document).ready(function(){
                         <div class="card-body">
                             {{ form.hidden_tag() }}
                             {{ vendor.render_field(form.title) }}
-                            {{ macros.render_select_field(form.parent_id, parents) }}
+
                               <input type="text" id ="formInputId" value={{form.bgimg_file.label.field_id}} hidden="true">
                             {{ macros.render_file_field(form.bgimg_file, form.background_img) }}
 
