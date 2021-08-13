@@ -31,16 +31,21 @@
                                     <ul>
                                         {% for img in product.images %}
                                         <li><img src="{{ url_for('static', filename='uploads/'+ img.image) }}" class="loop-image"></li>
-                                       111 {{img.image}}
+
                                         {% endfor %}
                                     </ul>
                                     <span class="b-btn left">
-                                        < </span> <span class="b-btn right"> >
+                                       </span> <span class="b-btn right"> >
                                     </span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <ul class="list-group mb-3">
+                                    <li>
+                                        <h1>
+                                            {{product.title}}
+                                        </h1>
+                                    </li>
                                     <li class="list-group-item">
                                         <b>On Sale (במבצע)</b> <span
                                             class="float-right">{{macros.render_boolean(product.on_sale)}}</span>

@@ -2,6 +2,8 @@
 {% import 'dashboard/_vendor.html' as vendor%}
 {% extends 'dashboard/dashboard_layout.html' %}
  {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
     <div class="container-fluid">
         <div class="row  mt-30">
             <div class="col-md-12">
@@ -14,30 +16,43 @@
                             {{ form.hidden_tag() }}
                             <label>Title:</label> {{product_type}}
                               <div class="card">
-                  <div class="card-header">
-                   Price
-                  </div>
-                  <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                       {{ vendor.render_field(form.basic_price) }}
-                        {{ vendor.render_field(form.sale_price) }}
-                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
-                    </blockquote>
-                  </div>
-                </div>
-                                <div class="card">
-                                  <div class="card-header">
-                                   Front Page
-                                  </div>
-                                  <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                      <p>{{ vendor.render_field(form.on_sale) }} </p>
-                                        <p>{{ vendor.render_field(form.is_featured) }}</p>
-                                        <p>{{vendor.render_field(form.in_front_banner)}}</p>
-                                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
-                                    </blockquote>
-                                  </div>
-                                </div>
+                              <div class="card-header">
+                               Price
+                              </div>
+                              </div>
+
+                             <div class="panel-body">
+                              <ul class="add-menu-list">
+                                    <li>
+                                        {% set label_id = form.is_featured.label.field_id%}
+                                        <div class="form-group">
+                                            <label   class="control-label">
+                                                <input name={{label_id}} id={{label_id}}   class="form-control" onclick="hide()" value="false" type="checkbox" >
+                                               Is featured
+                                            </label>
+                                        </div>
+                                    </li>
+                                     <li>
+                                        {% set label_id_2 = form.on_sale.label.field_id%}
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                <input name={{label_id_2}} id={{label_id_2}} class="form-control"  type="checkbox"  value="false"  >
+                                                On Sale
+                                            </label>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        {% set label_id_3 = form.in_front_banner.label.field_id%}
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                <input name={{label_id_3}} id={{label_id_3}}  class="form-control" type="checkbox"  value="false"  >
+                                                Front banner
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                             </div>
                                 <div class="card">
                                   <div class="card-header">
                                    Category
@@ -64,13 +79,7 @@
                                   <div class="card-header">
                                  Upload Image
                                   </div>
-                                  <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                    <input type="text" id ="formInputId" value={{form.images.label.field_id}} hidden="true">
-                                    {{ macros.render_file_field(form.images, form.background_img) }}
-                                      <footer class="blockquote-footer"><cite title="Source Title"></cite></footer>
-                                    </blockquote>
-                                  </div>
+
                                 </div>
                             {% if product_type.has_variants %}
                             {% set label_id = form.variant_attributes.label.field_id %}

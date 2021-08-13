@@ -124,10 +124,10 @@ class CategoryForm(FlaskForm):
 
 class ProductTypeForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
-    has_variants = BooleanField(default=False)
-    has_attributes= BooleanField(default=False)
-    is_shipping_required = BooleanField(default=True)
-    product_attributes =SelectMultipleField()
+    has_variants = BooleanField("has_variants",default=False)
+    has_attributes= BooleanField("has_attributes",default=False)
+    is_shipping_required = BooleanField("is_shipping_required",default=True)
+    product_attributes =SelectMultipleField("product_attributes")
 
     variant_attr_id = SelectField("Variant Attributes")
     submit = SubmitField()
@@ -136,8 +136,9 @@ class ProductTypeForm(FlaskForm):
 class ProductForm(FlaskForm):
     title = StringField()
     basic_price = DecimalField("basic Price",validators=[DataRequired()])
-    sale_price = DecimalField("Sale Price")
+    discount_price = DecimalField("Sale Price")
     on_sale = BooleanField("On Sale",default=False)
+    status = BooleanField("Status", default=False)
     is_featured = BooleanField("Special", default=False)
     in_front_banner=BooleanField("In front banner", default=False)
 

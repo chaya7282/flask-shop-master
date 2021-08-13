@@ -353,12 +353,14 @@ def load_image(image):
 
 def product_create_step2():
     form = ProductForm()
-    product_type_id = request.args.get("product_type_id", 1, int)
-    product_type = ProductType.get_by_id(product_type_id)
+
     categories = Category.query.all()
-    form.title.data = product_type.title
+
     if form.validate_on_submit():
-        product = Product(product_type_id=product_type_id)
+        product_type = ProductType.get_or_create(
+            has_attributes=None, title=form.title.data, is_shipping_required=None,has_variants=None)[0]
+
+        product = Product(product_type_id=product_type.id)
         product.title= product_type.title
 
         image= form.images.data
@@ -376,11 +378,10 @@ def product_create_step2():
 
     attributes = ProductAttribute.query.all()
     return render_template(
-        "product/product_create_step2.html",
+        "product/add_product.html",
         form=form,
-        product_type=product_type,
         categories=categories,
-        variant_attributes= attributes
+
    )
 
 

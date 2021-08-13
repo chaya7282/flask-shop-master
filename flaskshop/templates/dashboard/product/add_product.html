@@ -1,0 +1,117 @@
+{% extends 'dashboard/dashboard_layout.html' %}
+
+
+{% block content %}
+
+
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Products</h2>
+
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Add New Product</h4>
+									</div>
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+											<div class="form-group">
+												<label class="form-label">Name*</label>
+												<input type="text" class="title" placeholder="title">
+											</div>
+
+							    <form method="POST" action="" enctype='multipart/form-data'>
+
+											<div class="form-group">
+												{% set label_id = form.category_id.field_id %}
+
+												<label class="form-label">Category*</label>
+												<select id="category_id" name="category_id" class="form-control">
+													<option selected>--Select Category--</option>
+														  {% for item in categories %}
+															<option value= {{item.id}} >
+															  {{item.title}}
+															</option>
+															{% endfor %}
+												</select>
+											</div>
+											<div class="form-group">
+												{% set  label_id_2 =form.basic_price.field_id %}
+												<label class="form-label">MRP*</label>
+												<input id="basic_price" name="basic_price" type="text" class="form-control" placeholder="$0">
+											</div>
+											<div class="form-group">
+
+												<label class="form-label">Discount MRP*</label>
+												<input type="text"  id="discount_price" name="discount_price" class="form-control" placeholder="$0">
+											</div>
+											<div class="form-group">
+
+												<label class="form-label">Status*</label>
+												<select id="status" name="status" class="form-control">
+													<option selected>Active</option>
+													<option value="1">Inactive</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Description*</label>
+												<div class="card card-editor">
+													<div class="content-editor">
+														 <div id='edit'></div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+
+												<label class="form-label">Product Image*</label>
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" name="images" id="images" aria-describedby="inputGroupFileAddon04">
+														<label class="custom-file-label" for="inputGroupFile04">Choose Image</label>
+													</div>
+												</div>
+												<div class="add-cate-img-1">
+													<img src="images/product/img-11.jpg" alt="">
+												</div>
+											</div>
+											  <div class="panel-body">
+                              <ul class="add-menu-list">
+                                    <li>
+
+                                        <div class="form-group">
+                                            <label   class="control-label">
+                                                <input name="on_sale" id="on_sale"   class="form-control" onclick="hide()" value="false" type="checkbox" >
+                                                On Sale
+                                            </label>
+                                        </div>
+                                    </li>
+                                     <li>
+                                         <div class="form-group">
+                                            <label class="control-label">
+                                                <input name="is_featured" id="is_featured" class="form-control"  type="checkbox"  value="false"  >
+                                               Is Featured
+                                            </label>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                <input name="in_front_banner" id="in_front_banner"  class="form-control" type="checkbox"  value="false"  >
+                                               Front Banner
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                             </div>
+								  			<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+											<button class="save-btn hover-btn" type="submit">Add New Product</button>
+										</form>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+
+        {% endblock %}

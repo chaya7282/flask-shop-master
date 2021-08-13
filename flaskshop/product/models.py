@@ -34,7 +34,7 @@ class Product(Model):
     category_id = Column(db.Integer())
 
     product_type_id = Column(db.Integer())
-    attributes = Column(MutableDict.as_mutable(db.JSON()))
+    attributes = Column(MutableDict.as_mutable(db.JSON()),nullable=True)
     description = Column(db.Text())
     background_img = Column(db.String(255), nullable=True, default=None)
 
