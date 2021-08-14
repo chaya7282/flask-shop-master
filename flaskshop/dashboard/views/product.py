@@ -253,7 +253,7 @@ def products():
         "pagination": pagination,
         "categories": Category.query.all(),
     }
-    return render_template("product/list.html", **context)
+    return render_template("product/shop_products.html", **context)
 
 
 def product_detail(id):
