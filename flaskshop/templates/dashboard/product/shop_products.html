@@ -3,70 +3,10 @@
 
  {% block content %}
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<link href="css/styles.css" rel="stylesheet">
-<link href="css/admin-style.css" rel="stylesheet">
 
 
-  <div class="container-fluid">
-                        <h2 class="mt-30 page-title">Shops</h2>
-                        <ol class="breadcrumb mb-30">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="shops.html">Shops</a></li>
-                            <li class="breadcrumb-item active">Shop Products</li>
-                        </ol>
-                        <div class="row">
-							<div class="col-lg-4 col-md-5">
-								<div class="card card-static-2 mb-30">
-									<div class="card-title-2">
-										<h4>Add New Product</h4>
-									</div>
-									<div class="card-body-table">
-										<div class="news-content-right pd-20">
-											<div class="form-group">
-												<label class="form-label">Product*</label>
-												<select id="categeory" name="categeory" class="form-control">
-													<option selected>--Please Product--</option>
-													<option value="1">Product Name 1</option>
-													<option value="2">Product Name 2</option>
-													<option value="3">Product Name 3</option>
-													<option value="4">Product Name 4</option>
-													<option value="5">Product Name 5</option>
-													<option value="6">Product Name 6</option>
-													<option value="7">Product Name 7</option>
-													<option value="8">Product Name 8</option>
-													<option value="9">Product Name 9</option>
-													<option value="10">Product Name 10</option>
-													<option value="11">Product Name 11</option>
-													<option value="12">Product Name 12</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label class="form-label">Price*</label>
-												<input type="text" class="form-control" placeholder="$0">
-											</div>
-											<div class="form-group">
-												<label class="form-label">Quantity*</label>
-												<input type="number" class="form-control" placeholder="0">
-											</div>
-											<div class="form-group mb-0">
-												<label class="form-label">Status*</label>
-												<select id="status" name="status" class="form-control">
-													<option selected>Active</option>
-													<option value="1">Inactive</option>
-												</select>
-											</div>
-											<button class="save-btn hover-btn" type="submit">Add New Product</button>
-										</div>
-									</div>
-								</div>
-							</div>
+  <div class="row">
+
 							<div class="col-lg-8 col-md-7">
 								<div class="all-cate-tags">
 									<div class="row justify-content-between">
@@ -172,36 +112,7 @@
 								</div>
 							</div>
                         </div>
-                    </div>
 
-<script>
-function searchTableColumns() {
-      // Declare variables
-      var input, filter, table, tr, i, j, column_length, count_td;
-      column_length = document.getElementById('myTable').rows[0].cells.length;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 1; i < tr.length; i++) { // except first(heading) row
-        count_td = 0;
-        for(j = 1; j < column_length-1; j++){ // except first column
-            td = tr[i].getElementsByTagName("td")[j];
-            /* ADD columns here that you want you to filter to be used on */
-            if (td) {
-              if ( td.innerHTML.toUpperCase().indexOf(filter) > -1)  {
-                count_td++;
-              }
-            }
-        }
-        if(count_td > 0){
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
-        }
-      }
 
-    }
-</script>
 
 {% endblock %}
