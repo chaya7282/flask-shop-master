@@ -17,9 +17,13 @@
 												<div class="card-title-2">
 													<h4>All Shop Products</h4>
 												</div>
+												<div class="card-title-2">
+													  <input type="text" id="myInput" onkeyup="searchTableColumns()" placeholder="Search Table.." title="Type in a name">
+
+												</div>
 												<div class="card-body-table">
 													<div class="table-responsive">
-														<table class="table ucp-table table-hover">
+														<table id="myTable" class="table ucp-table table-hover">
 															<thead>
 																<tr>
 																	<th style="width:60px"><input type="checkbox" class="check-all"></th>
@@ -92,6 +96,34 @@
 							</div>
                         </div>
 
+<script>
+function searchTableColumns() {
+      // Declare variables
+      var input, filter, table, tr, i, j, column_length, count_td;
+      column_length = document.getElementById('myTable').rows[0].cells.length;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 1; i < tr.length; i++) { // except first(heading) row
+        count_td = 0;
+        for(j = 1; j < column_length-1; j++){ // except first column
+            td = tr[i].getElementsByTagName("td")[j];
+            /* ADD columns here that you want you to filter to be used on */
+            if (td) {
+              if ( td.innerHTML.toUpperCase().indexOf(filter) > -1)  {
+                count_td++;
+              }
+            }
+        }
+        if(count_td > 0){
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+      }
 
+    }
+</script>
 
 {% endblock %}
