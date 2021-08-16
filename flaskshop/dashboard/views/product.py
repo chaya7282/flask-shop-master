@@ -238,7 +238,7 @@ def products():
         end_date = datetime.strptime(end_date.strip(), "%m/%d/%Y")
         query = query.filter(Product.created_at.between(start_date, end_date))
 
-    pagination = query.paginate(page, 10)
+    pagination = query.paginate(page, 2)
     props = {
         "id": "ID",
         "title": "title",
