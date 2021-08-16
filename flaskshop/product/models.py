@@ -24,6 +24,7 @@ class Product(Model):
     __tablename__ = "product_product"
     title = Column(db.String(255), nullable=False)
     on_sale = Column(db.Boolean(), default=False)
+    status = Column(db.Boolean(), default=False)
     is_featured = Column(db.Boolean())
     in_front_banner= Column(db.Boolean(), default=False)
     rating = Column(db.DECIMAL(8, 2), default=5.0)
@@ -32,6 +33,7 @@ class Product(Model):
     basic_price = Column(db.DECIMAL(10, 2))
     sale_price = Column(db.DECIMAL(10, 2))
     category_id = Column(db.Integer())
+
 
     product_type_id = Column(db.Integer())
     attributes = Column(MutableDict.as_mutable(db.JSON()),nullable=True)

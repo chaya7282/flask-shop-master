@@ -40,9 +40,9 @@ from .product import (
     product_types_manage,
     products,
     product_detail,
-    product_edit,
+    product_manage,
     product_create_step1,
-    product_create_step2,
+
     variant_manage,
     product_del,
 )
@@ -76,6 +76,7 @@ def index():
     for product_id, order_count in hot_product_ids[:5]:
         p = Product.get_by_id(product_id)
         p.order_count = order_count
+
         top5_products.append(p)
 
     activity = OrderEvent.query.order_by(OrderEvent.id.desc()).limit(10)
@@ -201,12 +202,10 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule( "/products/create/step1",view_func=product_create_step1,methods=["GET", "POST"],
     )
     bp.add_url_rule(
-        "/products/create/step2",
-        view_func=product_create_step2,
-        methods=["GET", "POST"],
+        "/products/create/step2",view_func=product_manage, methods=["GET", "POST"],
     )
     bp.add_url_rule(
-        "/products/<id>/edit", view_func=product_edit, methods=["GET", "POST"]
+        "/products/<id>/edit", view_func= product_manage, methods=["GET", "POST"]
     )
     bp.add_url_rule(
         "/products/variant/create", view_func=variant_manage, methods=["GET", "POST"]
