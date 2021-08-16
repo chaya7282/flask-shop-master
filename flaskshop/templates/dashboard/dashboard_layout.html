@@ -15,6 +15,27 @@
 	<link href="{{ url_for('static', filename='Frontend/css/styles.css') }}"   rel="stylesheet">
 	<link href="{{ url_for('static', filename='Frontend/css/admin-style.css') }}"   rel="stylesheet">
 
+	<!-- Vendor Stylesheets -->
+	<!-- froala Editor Stylesheets -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/froala_editor.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/froala_style.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/code_view.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/colors.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/emoticons.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/image_manager.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/image.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/line_breaker.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/table.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/char_counter.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/video.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/fullscreen.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/file.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Frontend/vendor/froala_editor_3.1.1/css/plugins/file.css') }}"   rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+
+
 {% endblock %}
 </head>
 
@@ -101,19 +122,25 @@
 					</div>
                 </nav>
 
+</div>
 
 
-
+		<div id="layoutSidenav_content">
 
          {% block content %}
 
            {% endblock %}
-			</div>
-		</div>
 
+		</div>
 
 		 <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
+		<script src="{{ url_for('static', filename='vendor/OwlCarousel/owl.carousel.js') }}"></script>
+		 <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/shopHomePage/jquery.countdown.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
 
-</body>>
+		</div>
+</body>
