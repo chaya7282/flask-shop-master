@@ -24,69 +24,28 @@
 												<div class="card-body-table">
 													<div class="table-responsive">
 														<table id="myTable" class="table ucp-table table-hover">
-															<thead>
+															 <tr>
+															{% for th in props.values() %}
+																<th>{{th}}</th>
+																{% endfor %}
+															<th> Edit</th>
+															<th>Del </th>
+														</tr>
+													   <tbody id="myTableBody">
+															{% for item in items %}
 																<tr>
-																	<th style="width:60px"><input type="checkbox" class="check-all"></th>
-																	<th style="width:60px">ID</th>
-																	<th>Name</th>
-																	<th>Quantity</th>
-																	<th>Status</th>
-																	<th>Action</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td><input type="checkbox" class="check-item" name="ids[]" value="5"></td>
-																	<td>1</td>
-																	<td>Product Name Here</td>
-																	<td>250</td>
-																	<td><span class="badge-item badge-status">Active</span></td>
-																	<td class="action-btns">
-																		<a href="#" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
+																		{% for prop in props.keys() %}
+																					<td>{{ item | attr(prop) }}</td>
+																		{% endfor %}
+																	<td >
+																		<a href="{{url_for('dashboard.{}_manage'.format(identity), id=item.id)}}" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
+																	</td><td>
+																		<a href="{{url_for('dashboard.{}_del'.format(identity), id=item.id)}}"><i class="fas fa-trash"></i></a>
 																	</td>
 																</tr>
-																<tr>
-																	<td><input type="checkbox" class="check-item" name="ids[]" value="4"></td>
-																	<td>2</td>
-																	<td>Product Name Here</td>
-																	<td>100</td>
-																	<td><span class="badge-item badge-status">Active</span></td>
-																	<td class="action-btns">
-																		<a href="#" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td><input type="checkbox" class="check-item" name="ids[]" value="3"></td>
-																	<td>3</td>
-																	<td>Product Name Here</td>
-																	<td>300</td>
-																	<td><span class="badge-item badge-status">Active</span></td>
-																	<td class="action-btns">
-																		<a href="#" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td><input type="checkbox" class="check-item" name="ids[]" value="2"></td>
-																	<td>4</td>
-																	<td>Product Name Here</td>
-																	<td>500</td>
-																	<td><span class="badge-item badge-status">Active</span></td>
-																	<td class="action-btns">
-																		<a href="#" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td><input type="checkbox" class="check-item" name="ids[]" value="1"></td>
-																	<td>5</td>
-																	<td>Product Name Here</td>
-																	<td>200</td>
-																	<td><span class="badge-item badge-status">Active</span></td>
-																	<td class="action-btns">
-																		<a href="#" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
-																	</td>
-																</tr>
+															{% endfor %}
 															</tbody>
-														</table>
+													</table>
 													</div>
 												</div>
 											</div>
