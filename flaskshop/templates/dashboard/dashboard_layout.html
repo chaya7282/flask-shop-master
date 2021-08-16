@@ -121,18 +121,17 @@
 						</div>
 					</div>
                 </nav>
+			</div>
+1			<div id="layoutSidenav_content">
+				<main>
+                    <div class="container-fluid">
+					 {% block content %}
 
+					   {% endblock %}
 
-
-
-		<div id="layoutSidenav_content">
-
-         {% block content %}
-
-           {% endblock %}
-
-		</div>
-</div>
+					</div>
+				</main>
+			</div>
 		 <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
@@ -142,5 +141,5 @@
 		<script src="{{ url_for('static', filename='js/shopHomePage/jquery.countdown.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
 
-		</div>
+
 </body>
