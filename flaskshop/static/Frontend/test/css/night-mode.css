@@ -1091,12 +1091,7 @@ Night Mood
     border-top: 1px solid #242424;
 }
 
-.night-mode .custom-file-label {
-    color: #afafaf !important;
-    background-color: #000 !important;
-    border: 1px solid #242424 !important;
-    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.1) !important;
-}
+
 
 .night-mode .ques-142 {
     border-bottom: 1px solid #242424;

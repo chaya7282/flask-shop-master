@@ -1,119 +1,76 @@
+{% import 'dashboard/_macros.html' as macros%}
 {% extends 'dashboard/dashboard_layout.html' %}
 
 
 {% block content %}
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 
+</head>
 
 
                     <div class="container-fluid">
-                        <h2 class="mt-30 page-title">Products</h2>
+                        <h2 class="mt-30 page-title">Add New Product</h2>
 
                         <div class="row">
 							<div class="col-lg-6 col-md-6">
 								<div class="card card-static-2 mb-30">
 									<div class="card-title-2">
-										<h4>Add New Product</h4>
+
 									</div>
+									 <form method="POST" action="" enctype='multipart/form-data'>
+
 									<div class="card-body-table">
 										<div class="news-content-right pd-20">
-											<div class="form-group">
-												<label class="form-label">Name*</label>
-												<input type="text" class="title" placeholder="title">
-											</div>
+											{{macros.render_input_field(form.title,"text")}}
 
-							    <form method="POST" action="" enctype='multipart/form-data'>
+											{{macros.render_input_field(form.basic_price,"text")}}
+											{{macros.render_input_field(form.discount_price,"text")}}
+											{{macros.render_select_field(form.category_id,categories)}}
+                                            <div class="form-group">
+                                             {{ macros.render_file_field(form.images, image_path) }}
+                                              <div class="add-cate-img-1">
+												  {% if image_path %}
+                                                      <img src="{{ url_for('static', filename=image_path) }}" alt="">
+                                              		{% endif %}
+											  </div>
+                                            </div>
+                                       <table>
+										 <tr>
+											 <td>{{macros.render_boolean_field(form.on_sale)}}</td>
+												<td>{{macros.render_boolean_field(form.is_featured)}}</td>
+											 <td>{{macros.render_boolean_field(form.in_front_banner)}}</td>
+										 	 <td>{{macros.render_boolean_field(form.is_active)}}</td>
+										 </tr>
+									 </table>
 
-											<div class="form-group">
-												{% set label_id = form.category_id.field_id %}
+									 </div>
 
-												<label class="form-label">Category*</label>
-												<select id="category_id" name="category_id" class="form-control">
-													<option selected>--Select Category--</option>
-														  {% for item in categories %}
-															<option value= {{item.id}} >
-															  {{item.title}}
-															</option>
-															{% endfor %}
-												</select>
-											</div>
-											<div class="form-group">
-												{% set  label_id_2 =form.basic_price.field_id %}
-												<label class="form-label">MRP*</label>
-												<input id="basic_price" name="basic_price" type="text" class="form-control" placeholder="$0">
-											</div>
-											<div class="form-group">
 
-												<label class="form-label">Discount MRP*</label>
-												<input type="text"  id="discount_price" name="discount_price" class="form-control" placeholder="$0">
-											</div>
-											<div class="form-group">
 
-												<label class="form-label">Status*</label>
-												<select id="status" name="status" class="form-control">
-													<option selected>Active</option>
-													<option value="1">Inactive</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label class="form-label">Description*</label>
-												<div class="card card-editor">
-													<div class="content-editor">
-														 <div id='edit'></div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
 
-												<label class="form-label">Product Image*</label>
-												<div class="input-group">
-													<div class="custom-file">
-														<input type="file" class="custom-file-input" name="images" id="images" aria-describedby="inputGroupFileAddon04">
-														<label class="custom-file-label" for="inputGroupFile04">Choose Image</label>
-													</div>
-												</div>
-												<div class="add-cate-img-1">
-													<img src="images/product/img-11.jpg" alt="">
-												</div>
-											</div>
-											  <div class="panel-body">
-                              <ul class="add-menu-list">
-                                    <li>
+								<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+								<button class="save-btn hover-btn" type="submit">Add New Product</button>
+								</div>
 
-                                        <div class="form-group">
-                                            <label   class="control-label">
-                                                <input name="on_sale" id="on_sale"   class="form-control" onclick="hide()" value="false" type="checkbox" >
-                                                On Sale
-                                            </label>
-                                        </div>
-                                    </li>
-                                     <li>
-                                         <div class="form-group">
-                                            <label class="control-label">
-                                                <input name="is_featured" id="is_featured" class="form-control"  type="checkbox"  value="false"  >
-                                               Is Featured
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="form-group">
-                                            <label class="control-label">
-                                                <input name="in_front_banner" id="in_front_banner"  class="form-control" type="checkbox"  value="false"  >
-                                               Front Banner
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                             </div>
-								  			<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
-											<button class="save-btn hover-btn" type="submit">Add New Product</button>
-										</form>
+							</form>
 										</div>
 									</div>
 								</div>
 							</div>
-                        </div>
-                    </div>
 
-        {% endblock %}
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+
+{% endblock %}
+

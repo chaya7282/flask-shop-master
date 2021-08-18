@@ -80,7 +80,7 @@
                                  Upload Image
                                   </div>
 
-                                </div>
+                            {{ macros.render_file_field(form.images, form.background_img) }}
                             {% if product_type.has_variants %}
                             {% set label_id = form.variant_attributes.label.field_id %}
 

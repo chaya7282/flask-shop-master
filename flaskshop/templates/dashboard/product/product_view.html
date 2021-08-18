@@ -1,0 +1,71 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% extends 'dashboard/dashboard_layout.html' %}
+<head>
+
+</head>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Shops</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="shops.html">Shops</a></li>
+                            <li class="breadcrumb-item active">Shop view</li>
+                        </ol>
+                        <div class="row">
+							<div class="col-lg-5 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+											<div class="shop_img">
+												<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="loop-image">
+											</div>
+											<ul class="product-dt-purchases">
+												<li>
+													<div class="product-status">
+														Orders <span class="badge-item-2 badge-status"></span>
+													</div>
+												</li>
+												<li>
+													<div class="product-status">
+														Shop <span class="badge-item-2 badge-status"></span>
+													</div>
+												</li>
+											</ul>
+											<div class="shopowner-dts">
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Price</span>
+													<span class="right-dt">{{product.price}}</span>
+												</div>
+													<div class="shopowner-dt-list">
+													<span class="left-dt">Discount Price</span>
+													<span class="right-dt">{{product.discount_price}}</span>
+												</div>
+
+
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Status</span>
+													{% if product.is_active %}
+														<span class="right-dt">Active</span>
+													{% else %}
+														<span class="right-dt">Inactive</span>
+													{% endif %}
+
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Category</span>
+													<span class="right-dt">{{product.category_name}}</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+
+
+
+{% endblock %}
+

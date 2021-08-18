@@ -127,7 +127,8 @@ def categories():
     props = {
         "id": "ID",
         "title": "Title",
-        "parent": "Parent",
+        "is_active":"is_active",
+        "description": "description",
         "created_at": "Created At",
     }
     context = {
@@ -140,29 +141,42 @@ def categories():
     return render_template("list.html", **context)
 
 
+def categories_detail(id):
+    category = Category.get_by_id(id)
+
+    return render_template("product/category_view.html", category=category)
+
+def categories_del(id):
+    category = Category.get_by_id(id)
+    if category:
+        category.delete()
+
+    return redirect(url_for('dashboard.categories'))
+
+
 def categories_manage(id=None):
+    image_path = None
     if id:
         category = Category.get_by_id(id)
         form = CategoryForm(obj=category)
+        image_path=category.background_img
     else:
         form = CategoryForm()
     if form.validate_on_submit():
         if not id:
             category = Category()
-        category.title = form.title.data
-        category.parent_id = form.parent_id.data
         image = form.bgimg_file.data
+        form.populate_obj(category)
+
         if image:
             filename=load_image(image)
             category.background_img=filename
 
-        else:
-            category.background_img = None
+
         category.save()
         return redirect(url_for("dashboard.categories"))
     parents = Category.first_level_items()
-    return render_template("product/category.html", form=form, parents=parents)
-
+    return render_template("product/add_category.html", form=form, image_path=image_path, parents=parents)
 
 def product_types():
     page = request.args.get("page", type=int, default=1)
@@ -243,8 +257,8 @@ def products():
         "id": "ID",
         "title": "title",
         "basic_price": "Price",
-        "category_id":"category",
-        "status": "Status",
+        "is_active": "is_active",
+        "category_name":"Category"
     }
 
 
@@ -261,7 +275,7 @@ def products():
 def product_detail(id):
     product = Product.get_by_id(id)
 
-    return render_template("product/detail.html", product=product)
+    return render_template("product/product_view.html", product=product)
 
 
 
@@ -355,40 +369,43 @@ def load_image(image):
         return filename
 
 def product_manage(id= None):
-
+    image_path= None
     if id:
         product= Product.get_by_id(id)
         form = ProductForm(obj=product)
+        if product.first_img:
+            image_path='uploads/'+ product.first_img;
     else:
         form = ProductForm()
     if form.validate_on_submit():
-        product_type = ProductType.get_or_create(
-            has_attributes=None, title=form.title.data, is_shipping_required=None,has_variants=None)[0]
-
-        product = Product(product_type_id=product_type.id)
-        product.title= product_type.title
+        if not id:
+            product_type = ProductType.get_or_create(
+                has_attributes=None, title=form.title.data, is_shipping_required=None,has_variants=None)[0]
+            product = Product(product_type_id=product_type.id)
+            product.title= product_type.title
 
         image= form.images.data
         product = _save_product(product, form)
         if image:
             filename= load_image(image)
+            ProductImage.del_product_imgs(product.id)
             ProductImage.get_or_create(image=filename , product_id=product.id)
-        if product_type.has_variants:
-            for attr in form.variant_attributes.data:
-                ProductTypeVariantAttributes.get_or_create(product_type_id=product_type.id,
-                                                           product_attribute_id=int(attr))
+        if not id:
+            if product_type.has_variants:
+                for attr in form.variant_attributes.data:
+                    ProductTypeVariantAttributes.get_or_create(product_type_id=product_type.id,product_attribute_id=int(attr))
 
-        product.generate_variants()
-        category = Category.get_by_id(form.category_id)
-        product.category= category
-
+            product.generate_variants()
+        category = Category.get_by_id(int(form.category_id.data))
+        product.category_name= category
         return redirect(url_for("dashboard.product_detail", id=product.id))
 
     categories = Category.query.all()
     return render_template(
         "product/add_product.html",
         form=form,
-        categories=categories)
+        categories=categories,
+        image_path=image_path)
 
 
 

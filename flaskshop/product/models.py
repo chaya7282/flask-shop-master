@@ -3,7 +3,7 @@ import itertools
 from flask import url_for, request, current_app
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy import desc
-
+from wtforms import SelectField, RadioField
 from flaskshop.database import Column, Model, db
 from flaskshop.corelib.mc import cache, cache_by_args, rdb
 from flaskshop.corelib.db import PropsItem
@@ -20,20 +20,21 @@ MC_KEY_CATEGORY_PRODUCTS = "product:category:{}:products:{}"
 MC_KEY_CATEGORY_CHILDREN = "product:category:{}:children"
 
 
+
 class Product(Model):
     __tablename__ = "product_product"
     title = Column(db.String(255), nullable=False)
     on_sale = Column(db.Boolean(), default=False)
-    status = Column(db.Boolean(), default=False)
+    is_active  = Column(db.Boolean(), default=False)
     is_featured = Column(db.Boolean())
     in_front_banner= Column(db.Boolean(), default=False)
     rating = Column(db.DECIMAL(8, 2), default=5.0)
     sold_count = Column(db.Integer(), default=0)
     review_count = Column(db.Integer(), default=0)
     basic_price = Column(db.DECIMAL(10, 2))
-    sale_price = Column(db.DECIMAL(10, 2))
+    discount_price = Column(db.DECIMAL(10, 2))
     category_id = Column(db.Integer())
-
+    category_name = Column(db.String(255))
 
     product_type_id = Column(db.Integer())
     attributes = Column(MutableDict.as_mutable(db.JSON()),nullable=True)
@@ -107,6 +108,9 @@ class Product(Model):
         if float(self.discounted_price) > 0:
             return True
         return False
+
+
+
 
     @property
     @cache(MC_KEY_PRODUCT_DISCOUNT_PRICE.format("{self.id}"))
@@ -282,7 +286,8 @@ class Category(Model):
     title = Column(db.String(255), nullable=False)
     parent_id = Column(db.Integer(), default=0)
     background_img = Column(db.String(255),nullable=True,default=None)
-
+    is_active = Column(db.Boolean(), default=False)
+    description = Column(db.Text())
     def __str__(self):
         return self.title
 
@@ -699,6 +704,11 @@ class ProductImage(Model):
     order = Column(db.Integer())
     product_id = Column(db.Integer())
 
+    @classmethod
+    def del_product_imgs(cls,product_id):
+        items= cls.query.filter_by(product_id = product_id).all()
+        for item in items:
+            item.delete()
 
     def __str__(self):
         return url_for("static", filename=self.image, _external=True)

@@ -360,7 +360,7 @@ def create_products_by_type(
 
     for dummy in range(1):
         product = create_product(
-            product_type_id=product_type.id, category_id=category.id,title=product_type.title
+            product_type_id=product_type.id, category_id=category.id,title=product_type.title,category_name=category.title,
         )
 
         if create_images:
@@ -413,10 +413,13 @@ def create_product(**kwargs):
     defaults = {
         "title": fake.company(),
         "basic_price": fake.pydecimal(2, 2, positive=True),
-        "sale_price": fake.pydecimal(2, 2, positive=True),
+        "discount_price": fake.pydecimal(2, 2, positive=True),
         "in_front_banner":random.choice([0, 1]),
         "on_sale": random.choice([0, 1]),
         "is_featured": random.choice([0, 1]),
+        "is_active":random.choice([0, 1])
+
+
     }
     defaults.update(kwargs)
     return Product.create(**defaults)

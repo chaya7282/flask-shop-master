@@ -21,6 +21,7 @@ SettingValueType = enum.Enum(
 )
 
 
+
 class Permission:
     LOGIN = 0x01
     EDITOR = 0x02

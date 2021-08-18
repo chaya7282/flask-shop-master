@@ -1,0 +1,68 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% extends 'dashboard/dashboard_layout.html' %}
+
+
+{% block content %}
+<head>
+	<script>
+$(document).ready(function(){
+  $('custom-file-input').on('change',function(){
+  alert("hello")
+  var id= document.getElementById("formInputId").value;
+  var fileName =  document.getElementById(id).files[0].name;
+
+  document.getElementById("labelFile").innerHTML=fileName;
+});
+});
+</script>
+
+</head>
+
+
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Products</h2>
+
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Add New Product</h4>
+									</div>
+									 <form method="POST" action="" enctype='multipart/form-data'>
+
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+											{{macros.render_input_field(form.title,"text")}}
+
+											{{macros.render_input_field(form.basic_price,"text")}}
+											{{macros.render_input_field(form.discount_price,"text")}}
+											{{macros.render_select_field(form.category_id,categories)}}
+											{{ macros.render_file_field(form.images, form.background_img) }}
+									 <table>
+										 <tr>
+											 <td>{{macros.render_boolean_field(form.on_sale)}}</td>
+												<td>{{macros.render_boolean_field(form.is_featured)}}</td>
+											 <td>{{macros.render_boolean_field(form.in_front_banner)}}</td>
+										 	 <td>{{macros.render_boolean_field(form.is_active)}}</td>
+										 </tr>
+									 </table>
+
+									 </div>
+
+
+
+
+								<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+								<button class="save-btn hover-btn" type="submit">Add New Product</button>
+								</div>
+
+							</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+        {% endblock %}

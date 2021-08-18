@@ -116,9 +116,11 @@ class CollectionForm(FlaskForm):
 
 class CategoryForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
+    is_active = BooleanField("Is-Active", default=False)
     parent_id = SelectField("Parent")
     background_img = StringField("Current Image")
-    bgimg_file = FileField("Upload")
+    bgimg_file = FileField()
+    description = TextAreaField("Description")
     submit = SubmitField()
 
 
@@ -138,16 +140,17 @@ class ProductForm(FlaskForm):
     basic_price = DecimalField("basic Price",validators=[DataRequired()])
     discount_price = DecimalField("Sale Price")
     on_sale = BooleanField("On Sale",default=False)
-    status = BooleanField("Status", default=False)
+    is_active = BooleanField("Is-Active",default=False)
     is_featured = BooleanField("Special", default=False)
     in_front_banner=BooleanField("In front banner", default=False)
     active= BooleanField("", default=False)
     rating = FloatField(default=0)
     sold_count = IntegerField(default=0)
     review_count = IntegerField(default=0)
-    category_id = SelectField("choose category",validators=[DataRequired()])
+    category_id = SelectField("category",validators=[DataRequired()])
     description = TextAreaField()
     background_img = StringField("Current Image")
+
     images = FileField("Upload")
     attributes = FieldList(SelectField(),validators=[DataRequired()])
     variant_attributes = SelectMultipleField()
