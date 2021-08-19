@@ -13,9 +13,9 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {% endblock meta %}
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
 
    </head>
 
@@ -66,7 +66,7 @@
     Dropdown button
   </button>
 
-	<ul class="navbar-nav ml-1.5">
+	<ul class="dropdown-menu">
 		   {% if current_user.is_authenticated %}
                 {% if current_user.can_edit() %}
 
