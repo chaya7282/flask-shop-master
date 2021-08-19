@@ -325,7 +325,7 @@ def create_product_type_with_attributes(name, schema):
     variant_attributes_schema = schema.get("variant_attributes", {})
     is_shipping_required = schema.get("is_shipping_required", True)
     product_type = ProductType.get_or_create(
-        title=name, is_shipping_required=is_shipping_required
+        title=name, is_shipping_required=False
     )[0]
     product_attributes = create_attributes_and_values(product_attributes_schema)
     variant_attributes = create_attributes_and_values(variant_attributes_schema)

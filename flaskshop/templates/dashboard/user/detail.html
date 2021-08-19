@@ -1,79 +1,86 @@
 {% import 'dashboard/_macros.html' as macros %}
 {% extends 'dashboard/dashboard_layout.html' %}
  {% block content %}
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 
-                <!-- Profile Image -->
-                <div class="card card-primary card-outline">
-                    <div class="card-body box-profile">
-                        <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src="{{ user.avatar }}"
-                                alt="User profile picture">
+ <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Customers</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="customers.html">Customers</a></li>
+                            <li class="breadcrumb-item active">Customer View</li>
+                        </ol>
+                        <div class="row">
+							<div class="col-lg-5 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+											<div class="customer_img">
+												<img src="images/avatar/img-1.jpg" alt="">
+											</div>
+											<div class="shopowner-dt-left mt-4">
+												<h4>Joginder Singh</h4>
+												<span>Customer</span>
+											</div>
+											<ul class="product-dt-purchases">
+												<li>
+													<div class="product-status">
+														Purchased <span class="badge-item-2 badge-status">15</span>
+													</div>
+												</li>
+												<li>
+													<div class="product-status">
+														Rewards <span class="badge-item-2 badge-status">5</span>
+													</div>
+												</li>
+											</ul>
+											<div class="shopowner-dts">
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Name</span>
+													<span class="right-dt">{{user.username}}</span>
+												</div>
+                                                <div class="shopowner-dt-list">
+													<span class="left-dt">Email</span>
+													<span class="right-dt">{{user.email}}</span>
+												</div>
+
+                                                <div class="shopowner-dt-list">
+													<span class="left-dt">Is active</span>
+													<span class="right-dt">{{macros.render_boolean(user.is_active)}}</span>
+												</div>
+													<div class="shopowner-dt-list">
+													<span class="left-dt">Registed</span>
+													<span class="right-dt">{{user.created_at.strftime('%Y-%m-%d')}}</span>
+												</div>
+
+												<div class="shopowner-dt-list">
+
+													<span class="left-dt"><a href="#order_model" data-toggle="modal"> Orders<i class="fa fas-first-order" ></i></a></span>
+													<span class="right-dt"> <a href="#address_model" data-toggle="modal"> Adress<i class="fa fas-first-order" ></i></a></span>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                         </div>
-
-                        <h3 class="profile-username text-center">{{user.username}}</h3>
-
-                        <p class="text-muted text-center">{{user.email}}</p>
-
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <b>Is Active</b> <a class="float-right">{{macros.render_boolean(user.is_active)}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Registed</b> <a class="float-right">{{user.created_at.strftime('%Y-%m-%d')}}</a>
-                            </li>
-                        </ul>
-
-                        <a href="{{url_for('dashboard.user_edit', user_id=user.id)}}"
-                            class="btn btn-primary btn-block"><b>Edit</b></a>
-                        <a class="btn btn-danger btn-block delete-btn"
-                            data-url="users/{{user.id}}/delete"><b>Delete</b></a>
                     </div>
-                    <!-- /.card-body -->
+
+	  <div id="order_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+        <div class="modal-dialog category-area" role="document">
+            <div class="category-area-inner">
+                <div class="modal-header">
+                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="uil uil-multiply"></i>
+                    </button>
                 </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#address"
-                                    data-toggle="tab">Addresses</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#order" data-toggle="tab">Orders</a></li>
-                        </ul>
-                    </div><!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="active tab-pane" id="address">
-                                {% if addresses|list|length > 0 %}
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">ID</th>
-                                        <th>Contact Name</th>
-                                        <th>Contact Phone</th>
-                                        <th style="width: 40px">Operation</th>
-                                    </tr>
-                                    {% for address in addresses %}
-                                    <tr>
-                                        <td>{{address.id}}</td>
-                                        <td>{{address.contact_name}}</td>
-                                        <td>{{address.contact_phone}}</td>
-                                        <td style="text-align:center"><a
-                                                href="{{url_for('dashboard.address_edit', id=address.id)}}"
-                                                class="btn btn-primary btn-sm">Edit</a></td>
-                                    </tr>
-                                    {% endfor %}
-                                </table>
-                                {% else %}
-                                <h6 class="card-title">This user have not add address</h6>
-                                {% endif %}
-                            </div>
-                            <!-- /.tab-pane -->
-                            <div class="tab-pane" id="order">
+                <div class="category-model-content modal-content">
+					<div class="cate-header">
+						<h4>Current Orders</h4>
+					</div>
+                         <div class="tab-pane" id="order">
                                 {% if orders|list|length > 0 %}
                                 <table class="table table-bordered">
                                     <tr>
@@ -99,17 +106,53 @@
                                 <h6 class="card-title">This user have not create orders</h6>
                                 {% endif %}
                             </div>
-                            <!-- /.tab-pane -->
-                        </div>
-                        <!-- /.tab-content -->
-                    </div><!-- /.card-body -->
+					<a href="#" class="morecate-btn"><i class="uil uil-apps"></i>More Categories</a>
                 </div>
-                <!-- /.nav-tabs-custom -->
             </div>
-            <!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-</section>
+        </div>
+    </div>
+	  <div id="address_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+        <div class="modal-dialog category-area" role="document">
+            <div class="category-area-inner">
+                <div class="modal-header">
+                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="uil uil-multiply"></i>
+                    </button>
+                </div>
+                <div class="category-model-content modal-content">
+					<div class="cate-header">
+						<h4>Adress</h4>
+					</div>
+					  {% if addresses|list|length > 0 %}
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">ID</th>
+                                        <th>Contact Name</th>
+                                        <th>Contact Phone</th>
+                                        <th style="width: 40px">Operation</th>
+                                    </tr>
+                                    {% for address in addresses %}
+                                    <tr>
+                                        <td>{{address.id}}</td>
+                                        <td>{{address.contact_name}}</td>
+                                        <td>{{address.contact_phone}}</td>
+                                        <td style="text-align:center"><a
+                                                href="{{url_for('dashboard.address_edit', id=address.id)}}"
+                                                class="btn btn-primary btn-sm">Edit</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                                {% else %}
+                                <h6 class="card-title">This user have not add address</h6>
+                                {% endif %}
+                  </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
 
 {% endblock %}
 
