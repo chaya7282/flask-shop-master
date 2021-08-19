@@ -385,6 +385,8 @@ def product_manage(id= None):
             product.title= product_type.title
 
         image= form.images.data
+        category = Category.get_by_id(int(form.category_id.data))
+        product.category_name = category.title
         product = _save_product(product, form)
         if image:
             filename= load_image(image)
@@ -396,8 +398,7 @@ def product_manage(id= None):
                     ProductTypeVariantAttributes.get_or_create(product_type_id=product_type.id,product_attribute_id=int(attr))
 
             product.generate_variants()
-        category = Category.get_by_id(int(form.category_id.data))
-        product.category_name= category
+
         return redirect(url_for("dashboard.product_detail", id=product.id))
 
     categories = Category.query.all()

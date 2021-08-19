@@ -128,7 +128,7 @@
 					<div class="col-md-12">
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
-							{% if product.is_on_sale %}
+							{% if product.on_sale %}
 							<div class="item">
 								 {% include('products/item_front.html') %}
 							</div>
