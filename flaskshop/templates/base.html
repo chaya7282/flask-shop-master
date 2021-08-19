@@ -14,7 +14,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {% endblock meta %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -279,7 +278,7 @@
     </footer>
     {% endblock %}
     {% block footer_scripts %}
-    <script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
+
     <script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
