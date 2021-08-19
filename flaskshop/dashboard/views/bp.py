@@ -47,7 +47,7 @@ from .product import (
     variant_manage,
     product_del,
 )
-from .order import orders, order_detail, send_order, draft_order
+from .order import orders, order_detail, send_order, draft_order, order_edit,order_del
 from .discount import vouchers, vouchers_manage, sales, sales_manage
 
 impl = HookimplMarker("flaskshop")
@@ -217,9 +217,12 @@ def flaskshop_load_blueprints(app):
         "/products/variant/<id>/edit", view_func=variant_manage, methods=["GET", "POST"]
     )
     bp.add_url_rule("/orders", view_func=orders)
-    bp.add_url_rule("/orders/<id>", view_func=order_detail)
+    bp.add_url_rule("/orders/<id>/detail", view_func=order_detail)
+    bp.add_url_rule("/orders/<id>/edit", view_func=order_edit, methods=["GET", "POST"] )
     bp.add_url_rule("/orders/<id>/send", view_func=send_order)
     bp.add_url_rule("/orders/<id>/draft", view_func=draft_order)
+    bp.add_url_rule("/order_del/<id>", view_func=order_del)
+
     bp.add_url_rule("/vouchers", view_func=vouchers)
     bp.add_url_rule(
         "/vouchers/create", view_func=vouchers_manage, methods=["GET", "POST"]

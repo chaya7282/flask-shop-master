@@ -102,7 +102,6 @@ def cancel_order(token):
     order.cancel()
     return render_template("orders/details.html", order=order)
 
-
 @login_required
 def receive(token):
     order = Order.query.filter_by(token=token).first()

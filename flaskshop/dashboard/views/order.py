@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from flask import request, render_template
+from flask import request, render_template, redirect,url_for
 
 from flaskshop.order.models import Order
 from flaskshop.constant import OrderStatusKinds
-
+from flaskshop.dashboard.forms import OrderStatusForm
 
 def orders():
     page = request.args.get("page", type=int, default=1)
@@ -39,10 +39,25 @@ def orders():
     }
     return render_template("order/list.html", **context)
 
+def order_edit(id):
+    order = Order.get_by_id(id)
+    form = OrderStatusForm()
+    if form.validate_on_submit():
+        status = form.status.data
+        if status == OrderStatusKinds.canceled.value:
+            order.cancel()
+        elif  status == OrderStatusKinds.completed.value:
+             order.complete()
+        elif  status == OrderStatusKinds.shipped.value:
+            order.delivered()
+        return redirect(url_for('dashboard.orders'))
+
+    return render_template("order/order_edit.html",form=form, order=order,order_stats_kinds=OrderStatusKinds )
+
 
 def order_detail(id):
     order = Order.get_by_id(id)
-    return render_template("order/detail.html", order=order)
+    return render_template("order/order_view.html", order=order)
 
 
 def send_order(id):
@@ -55,3 +70,9 @@ def draft_order(id):
     order = Order.get_by_id(id)
     order.draft()
     return render_template("order/detail.html", order=order)
+
+def order_del(id):
+    order = Order.get_by_id(id)
+    if order:
+        order.cancel()
+    return redirect(url_for('dashboard.orders'))

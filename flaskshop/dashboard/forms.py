@@ -52,6 +52,9 @@ class DashboardMenuForm(FlaskForm):
     parent_id = SelectField("Parent")
     submit = SubmitField()
 
+class OrderStatusForm(FlaskForm):
+    status= SelectField("Status")
+
 
 class SiteMenuForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
