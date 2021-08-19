@@ -61,15 +61,10 @@
 
 <!-- ============= COMPONENT ============== -->
 
-<nav class="navbar navbar-expand-sm bg-light navbar-light justify-content-center">
-
- 	 <a class="navbar-brand" href="#"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
   </button>
-
-   <div  class="collapse navbar-collapse  justify-content-center" id="collapsibleNavbar">
-
 
 	<ul class="navbar-nav ml-1.5">
 		   {% if current_user.is_authenticated %}
@@ -132,8 +127,6 @@
 	</ul>
 
   </div>
-</nav>
-
 
    <div class="container-fluid mb-2" >
    <div class="row">
