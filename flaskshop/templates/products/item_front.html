@@ -3,7 +3,12 @@
             <a href="" class="product-img">
                 <img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" width="auto" height="250">
                 <div class="product-absolute-options">
-                    <span class="offer-badge-1"> off</span>
+                    {% if product.on_sale %}
+                    <span class="offer-badge-1"> Sale</span>
+                    {% elif product.is_featured %}
+                    <span class="offer-badge-2"> Special</span>
+                    {% endif %}
+
                     <span class="like-icon" title="wishlist"></span>
                 </div>
             </a>
