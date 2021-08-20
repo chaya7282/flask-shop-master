@@ -39,30 +39,17 @@
                     Your Account</a>
                 </li>
 
-                <li >
-                  <a  href="{{ url_for('account.logout') }}">
-                    Log Out</a>
-                </li>
-
-                {% else %}
-               <li >
-                  <a  rel="nofollow" href="{{ url_for('account.signup') }}">
-                    Register
-                  </a>
-                </li>
-               <li >
-                  <a  rel="nofollow" href="{{ url_for('account.login') }}">
-                    Log in
-                  </a>
-                </li>
-                {% endif %}
+          {% endif %}
 
 
 	</ul>
       <ul class="nav navbar-nav navbar-right">
-
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         {% if not current_user.is_authenticated %}
+           <li><a href="{{ url_for('account.login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+             <li><a href="{{ url_for('account.signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+         {% else %}
+             <li ><a  href="{{ url_for('account.logout') }}">Log Out</a></li>
+          {% endif %}
       </ul>
     </div>
   </div>
