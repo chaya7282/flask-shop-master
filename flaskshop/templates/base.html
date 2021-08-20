@@ -13,9 +13,19 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {% endblock meta %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/unicons-2.0.1/css/unicons.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/responsive.css') }}">
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/night-mode.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
+ 		  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+	   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
 
    </head>
 
@@ -96,31 +106,7 @@
                   </a>
                 </li>
                 {% endif %}
-            <li class="nav-item"><a href="#category_model" data-toggle="modal"> Categories</a></li>
-         <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> חנות</a>
-		    <ul class="dropdown-menu">
-                {% for item in top_menu %}
-                {{item.children }}
-			  <li> <a class="dropdown-item" href="{{ item.url }}"><img src="{{item.background_img }}" width="20" height="15">{{item.title}}</a>
-                  {% if item.children %}
-                  {% with children=item.children %}
 
-
-
-			  	 <ul class="submenu dropdown-menu">
-                      {%for child in children%}
-				    <li><a class="dropdown-item" href="{{ child.url }}"><img src="{{child.background_img }}" width="20" height="15">{{child.title}}</a><li>
-				   {% endfor %}
-                 </ul>
-
-                 {% endwith %}
-                   {% endif %}
-			  </li>
-                {% endfor %}
-
-		    </ul>
-		</li>
 
 	</ul>
 
@@ -253,6 +239,12 @@
     </footer>
     {% endblock %}
     {% block footer_scripts %}
+ <script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
 
 
 {% endblock footer_scripts %}
