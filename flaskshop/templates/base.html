@@ -22,66 +22,45 @@
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-     <ul class="navbar-nav">
+     <ul class=" nav navbar-nav">
+
+
 		   {% if current_user.is_authenticated %}
                 {% if current_user.can_edit() %}
 
-                <li class="nav-item"><a class="nav-link"  href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
+                <li ><a  href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
                     Dashboard
                   </a>
                 </li>
                 {% endif %}
                 {{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
-               <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('account.index') }}">
+               <li >
+                  <a  href="{{ url_for('account.index') }}">
                     Your Account</a>
                 </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('account.logout') }}">
+                <li >
+                  <a  href="{{ url_for('account.logout') }}">
                     Log Out</a>
                 </li>
 
                 {% else %}
-               <li class="nav-item">
-                  <a class="nav-link" rel="nofollow" href="{{ url_for('account.signup') }}">
+               <li >
+                  <a  rel="nofollow" href="{{ url_for('account.signup') }}">
                     Register
                   </a>
                 </li>
-               <li class="nav-item">
-                  <a class="nav-link" rel="nofollow" href="{{ url_for('account.login') }}">
+               <li >
+                  <a  rel="nofollow" href="{{ url_for('account.login') }}">
                     Log in
                   </a>
                 </li>
                 {% endif %}
-            <li class="nav-item"><a href="#category_model" data-toggle="modal"> Categories</a></li>
-         <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> חנות</a>
-		    <ul class="dropdown-menu">
-                {% for item in top_menu %}
-                {{item.children }}
-			  <li> <a class="dropdown-item" href="{{ item.url }}"><img src="{{item.background_img }}" width="20" height="15">{{item.title}}</a>
-                  {% if item.children %}
-                  {% with children=item.children %}
 
-
-
-			  	 <ul class="submenu dropdown-menu">
-                      {%for child in children%}
-				    <li><a class="dropdown-item" href="{{ child.url }}"><img src="{{child.background_img }}" width="20" height="15">{{child.title}}</a><li>
-				   {% endfor %}
-                 </ul>
-
-                 {% endwith %}
-                   {% endif %}
-			  </li>
-                {% endfor %}
-
-		    </ul>
-		</li>
 
 	</ul>
       <ul class="nav navbar-nav navbar-right">
+
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
