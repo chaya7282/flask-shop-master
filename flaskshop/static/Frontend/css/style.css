@@ -252,9 +252,9 @@ h3 {
 /* ================ CROSS BROWSER COMPATABILITY =============== */
 
 .ask-question,
-nav,
+nav_,
 .notification-box.active,
-nav ul li a,
+nav_ ul li a,
 .user-account-settingss.active,
 .user-info a,
 .suggestion-usd > span i,
@@ -287,7 +287,7 @@ nav ul li a,
 .forum-links.active,
 .react-links li a,
 .next-prev > a,
-nav ul li:hover > ul,
+nav_ ul li:hover > ul,
 .user-pro-img > a i {
 -webkit-transition: all 0.4s ease-in;
 -moz-transition: all 0.4s ease-in;
@@ -865,26 +865,6 @@ i.icon1 {
 	width: 100%;
 	display: flex;
 	align-items: center;
-}
-
-.navbar-light .main_nav .nav-link {
-    color: #2b2f4c !important;
-}
-
-.main_nav .nav-link {
-    display: block;
-    padding: 10px 15px !important;
-	font-size: 14px;
-	cursor: pointer;
-	font-weight: 400;
-}
-
-.navbar-light .main_nav .nav-link.active {
-    color: #f55d2c !important;
-}
-
-.navbar-light .main_nav .nav-link:hover {
-    color: #f55d2c !important;	
 }
 
 .header_cart {
@@ -4665,7 +4645,7 @@ table {
     margin-bottom:  0 !important;
 }
 
-.default_tabs .nav-tabs .nav-item.show .nav-link, .default_tabs .nav-tabs .nav-link.active {
+.default_tabs    .default_tabs   {
     background: #f55d2c;
 	color: #fff !important;
 	transition: all .2s ease-in-out;
@@ -4687,7 +4667,7 @@ table {
     border-bottom: 0 !important;
 }
 
-.tab_default .nav-link {
+.tab_default .nav-link_ {
     border-top: 0 !important;
     border-bottom: 2px solid transparent !important;
     border-left: 0 !important;
@@ -4699,7 +4679,7 @@ table {
     font-family: 'Roboto', sans-serif !important;
 }
 
-.tab_default .nav-link {
+.tab_default .nav-link_ {
     padding: .5rem 1.5rem !important;
 }
 
