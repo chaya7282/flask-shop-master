@@ -11,6 +11,11 @@
   	<!-- Stylesheets -->
 
 
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
+
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
+
 
 </head>
 <body>
@@ -19,7 +24,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
+        <span class="icon-bar"><i class="fas fa-bars"></i></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
