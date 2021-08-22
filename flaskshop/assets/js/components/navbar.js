@@ -1,10 +1,10 @@
 const $toogleIcon = $('.navbar__brand__menu-toggle');
-const $mobileNav = $('nav');
+const $mobilenav = $('nav');
 const $searchIcon = $('.mobile-search-icon');
 const $closeSearchIcon = $('.mobile-close-search');
 const $searchForm = $('.search-form');
 
-const renderNavbar = () => {
+const rendernavbar = () => {
     const $desktopLinkBar = $('.navbar__login');
     const $mobileLinkBar = $('.navbar__menu__login');
     const windowWidth = window.innerWidth;
@@ -14,7 +14,7 @@ const renderNavbar = () => {
         const $desktopLinks = $desktopLinkBar.find('a').not('.dropdown-link');
         if ($desktopLinks.length) {
             $searchForm.addClass('search-form--hidden');
-            $mobileNav.append('<ul class="nav navbar-nav navbar__menu__login"></ul>');
+            $mobilenav.append('<ul class="nav navbar-nav navbar__menu__login"></ul>');
             $languagePicker.appendTo('.navbar__menu__login')
                 .wrap('<li class="nav-item login-item"></li>')
                 .addClass('nav-link');
@@ -44,10 +44,10 @@ const renderNavbar = () => {
 
 // -----
 
-renderNavbar();
+rendernavbar();
 $toogleIcon
     .on('click', (e) => {
-        $mobileNav.toggleClass('open');
+        $mobilenav.toggleClass('open');
         e.stopPropagation();
     });
 $(document)

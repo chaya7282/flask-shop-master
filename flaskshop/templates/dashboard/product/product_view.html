@@ -57,6 +57,33 @@
 													<span class="left-dt">Category</span>
 													<span class="right-dt">{{product.category_name}}</span>
 												</div>
+												<div class="shopowner-dt-list">
+													  <table class="table table-hover">
+                            <tr>
+                                <th>ID</th>
+                                <th>SKU</th>
+                                <th>Title</th>
+                                <th>Quantity</th>
+                                <th>PriceOverride</th>
+                                <th>Operation</th>
+                            </tr>
+                            {% for item in product.variant %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.sku}}</td>
+                                <td>{{item.title}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.price_override}}</td>
+                                <td>
+                                    <a href="{{url_for('dashboard.variant_manage', id=item.id)}}"
+                                        class="btn btn-primary btn-sm">Edit</a>
+                                    <a data-url="variants/{{item.id}}/delete"
+                                        class="btn btn-danger btn-sm delete-btn">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>		</div>
+
 											</div>
 										</div>
 									</div>

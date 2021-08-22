@@ -1,3 +1,7 @@
+<head>
+
+</head>
+
 <div class="product-item">
   <!-- To do referenc to product details-->
             <a href="" class="product-img">
@@ -6,7 +10,7 @@
                     {% if product.on_sale %}
                     <span class="offer-badge-1"> Sale</span>
                     {% elif product.is_featured %}
-                    <span class="offer-badge-2"> Special</span>
+                    <span class="offer-badge-1"> Special</span>
                     {% endif %}
 
                     <span class="like-icon" title="wishlist"></span>
@@ -15,7 +19,11 @@
             <div class="product-text-dt">
                 <p>Available<span>(In Stock)</span></p>
                 <h4>{{product.title}}</h4>
+                {% if product.on_sale %}
+                <div class="product-price">{{product.price}} <span>{{discount_price}}</span></div>
+                {% else %}
                 <div class="product-price">{{product.price}} </div>
+                {% endif %}
                 <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
                     <div class="qty-cart">

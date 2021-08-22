@@ -41,7 +41,7 @@
     z-index: 1039;
 }
 
-.fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed .sb-topnav {
+.fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenavnav, .sb-nav-fixed .sb-topnav {
     position: fixed;
     top: 0;
     right: 0;
@@ -49,7 +49,7 @@
     z-index: 1040;
 }
 
-.sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
+.sb-nav-fixed #layoutSidenav #layoutSidenavnav {
     width: 225px;
     height: 100vh;
     z-index: 1038;
