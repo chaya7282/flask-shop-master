@@ -1,13 +1,16 @@
 ﻿{% extends "base.html" %}
 {% block content %}
+<head>
+		<!-- Stylesheets -->
 
+</head>
 <div class="wrapper">
 <!-- Categories Start -->
 	<div class="section145">
 		<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="carousel slide offers-banner owl-theme">
+						<div class="owl-carousel offers-banner owl-theme">
 							{%for product in products %}
 							{% if product.in_front_banner %}
 							<div class="item">
@@ -49,7 +52,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<div class="carousel slide cate-slider owl-theme">
+						<div class="owl-carousel cate-slider owl-theme">
 							 {% for item in top_menu %}
 							<div class="item">
 
@@ -81,7 +84,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<div class="carousel slide featured-slider owl-theme">
+						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
 							{% if product.get_is_featured %}
 							<div class="item">
@@ -110,9 +113,9 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<div class="carousel slide featured-slider owl-theme">
+						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
-							{% if product.on_sale %}
+							{% if product.is_on_sale %}
 							<div class="item">
 								 {% include('products/item_front.html') %}
 							</div>
@@ -127,6 +130,4 @@
 	<!-- Best Values Offers End -->
 
 </div>
-
-
 {% endblock %}
