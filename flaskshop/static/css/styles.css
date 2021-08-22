@@ -691,14 +691,14 @@ body {
 #layoutSidenav {
   display: flex;
 }
-#layoutSidenav #layoutSidenavnav {
+#layoutSidenav #layoutSidenav_nav {
   flex-basis: 225px;
   flex-shrink: 0;
   transition: transform 0.15s ease-in-out;
   z-index: 1038;
   transform: translateX(-225px);
 }
-#layoutSidenav #layoutSidenavcontent {
+#layoutSidenav #layoutSidenav_content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -709,10 +709,10 @@ body {
   margin-left: -225px;
 }
 
-.sb-sidenav-toggled #layoutSidenav #layoutSidenavnav {
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
   transform: translateX(0);
 }
-.sb-sidenav-toggled #layoutSidenav #layoutSidenavcontent:before {
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
   content: "";
   display: block;
   position: absolute;
@@ -727,40 +727,40 @@ body {
 }
 
 @media (min-width: 992px) {
-  #layoutSidenav #layoutSidenavnav {
+  #layoutSidenav #layoutSidenav_nav {
     transform: translateX(0);
   }
-  #layoutSidenav #layoutSidenavcontent {
+  #layoutSidenav #layoutSidenav_content {
     margin-left: 0;
     transition: margin 0.15s ease-in-out;
   }
 
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenavnav {
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
     transform: translateX(-225px);
   }
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenavcontent {
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content {
     margin-left: -225px;
   }
-  .sb-sidenav-toggled #layoutSidenav #layoutSidenavcontent:before {
+  .sb-sidenav-toggled #layoutSidenav #layoutSidenav_content:before {
     display: none;
   }
 }
 .sb-nav-fixed .sb-topnav {
   z-index: 1039;
 }
-.sb-nav-fixed #layoutSidenav #layoutSidenavnav {
+.sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
   width: 225px;
   height: 100vh;
   z-index: 1038;
 }
-.sb-nav-fixed #layoutSidenav #layoutSidenavnav .sb-sidenav {
+.sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
   padding-top: 56px;
 }
-.sb-nav-fixed #layoutSidenav #layoutSidenavnav .sb-sidenav .sb-sidenav-menu {
+.sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav .sb-sidenav-menu {
   overflow-y: auto;
   padding-top: 10px;
 }
-.sb-nav-fixed #layoutSidenav #layoutSidenavcontent {
+.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
   padding-left: 225px;
   top: 56px;
   background-color: #f7f7f7 !important;
@@ -835,7 +835,7 @@ body {
   position: relative;
 }
 
-.sub_navlink {
+.sub_nav_link {
 	padding-top: 0.40rem !important;
 	padding-bottom: 0.40rem !important;
 }
