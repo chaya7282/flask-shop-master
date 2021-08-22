@@ -111,7 +111,7 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
-button {
+button__ {
 outline: none;
 }
 table {
@@ -129,7 +129,7 @@ a:focus {
 a:hover {
 	text-decoration: none !important;
 }
-button {
+button__ {
 	outline: none;
 }
 
@@ -271,7 +271,7 @@ nav_ ul li a,
 .sign_link > a,
 .post-popup,
 .post-project > a,
-.post-project-fields form ul li button,
+.post-project-fields form ul li button_,
 .post-project-fields form ul li a,
 .sign-control li a,
 .cover-sec > a,
@@ -283,7 +283,7 @@ nav_ ul li a,
 .overview-box,
 .skl-name,
 .conv-list,
-.save-stngs ul li button,
+.save-stngs ul li button_,
 .forum-links.active,
 .react-links li a,
 .next-prev > a,
@@ -4641,7 +4641,7 @@ table {
 	margin-top: 0;
 }
 
-.default_tabs .nav-item {
+.default_tabs .nav-item_ {
     margin-bottom:  0 !important;
 }
 
