@@ -111,7 +111,7 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
-button__ {
+button {
 outline: none;
 }
 table {
@@ -129,7 +129,7 @@ a:focus {
 a:hover {
 	text-decoration: none !important;
 }
-button__ {
+button {
 	outline: none;
 }
 
@@ -252,9 +252,9 @@ h3 {
 /* ================ CROSS BROWSER COMPATABILITY =============== */
 
 .ask-question,
-nav_,
+nav,
 .notification-box.active,
-nav_ ul li a,
+nav ul li a,
 .user-account-settingss.active,
 .user-info a,
 .suggestion-usd > span i,
@@ -271,7 +271,7 @@ nav_ ul li a,
 .sign_link > a,
 .post-popup,
 .post-project > a,
-.post-project-fields form ul li button_,
+.post-project-fields form ul li button,
 .post-project-fields form ul li a,
 .sign-control li a,
 .cover-sec > a,
@@ -283,11 +283,11 @@ nav_ ul li a,
 .overview-box,
 .skl-name,
 .conv-list,
-.save-stngs ul li button_,
+.save-stngs ul li button,
 .forum-links.active,
 .react-links li a,
 .next-prev > a,
-nav_ ul li:hover > ul,
+nav ul li:hover > ul,
 .user-pro-img > a i {
 -webkit-transition: all 0.4s ease-in;
 -moz-transition: all 0.4s ease-in;
@@ -866,6 +866,15 @@ i.icon1 {
 	display: flex;
 	align-items: center;
 }
+
+
+
+
+
+
+
+
+
 
 .header_cart {
     margin-left: auto;
@@ -4641,11 +4650,11 @@ table {
 	margin-top: 0;
 }
 
-.default_tabs .nav-item_ {
+.default_tabs .nav-item {
     margin-bottom:  0 !important;
 }
 
-.default_tabs    .default_tabs   {
+.default_tabs .nav-tabs .nav-item.show .nav-link, .default_tabs .nav-tabs .nav-link.active {
     background: #f55d2c;
 	color: #fff !important;
 	transition: all .2s ease-in-out;
@@ -4667,21 +4676,7 @@ table {
     border-bottom: 0 !important;
 }
 
-.tab_default .nav-link_ {
-    border-top: 0 !important;
-    border-bottom: 2px solid transparent !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-	color: rgba(255,255,255,0.7)!important;
-	font-weight: 500 !important;
-    font-family: 'Roboto', sans-serif !important;
-}
 
-.tab_default .nav-link_ {
-    padding: .5rem 1.5rem !important;
-}
 
 .title129 {
     text-align: center;
