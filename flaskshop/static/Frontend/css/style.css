@@ -2800,14 +2800,7 @@ span.save-icon {
 	transition: all 0.4s;
 }
 
-.icon-bar {
-  position: fixed;
-  top: 50%;
-  z-index: 2;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+
 
 .icon-bar a {
   display: block;
