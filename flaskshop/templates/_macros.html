@@ -123,10 +123,10 @@
 {% endmacro %}
 {% macro account_nav() %}
 <div class="left-side-tabs">
-  1111
+
 							<div class="dashboard-left-links">
-								<a href="dashboard_overview.html" class="user-item active"><i class="uil uil-apps"></i>Overview</a>
-								<a href="dashboard_my_orders.html" class="user-item"><i class="uil uil-box"></i>My Orders</a>
+								<a  class="user-item active"><i class="uil uil-apps"></i>Overview</a>
+								<a href="{{ url_for('account.user_orders') }}" class="user-item"><i class="uil uil-box"></i>My Orders</a>
 								<a href="dashboard_my_rewards.html" class="user-item"><i class="uil uil-gift"></i>My Rewards</a>
 								<a href="dashboard_my_wallet.html" class="user-item"><i class="uil uil-wallet"></i>My Wallet</a>
 								<a href="dashboard_my_wishlist.html" class="user-item"><i class="uil uil-heart"></i>Shopping Wishlist</a>
