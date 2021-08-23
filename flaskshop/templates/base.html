@@ -12,7 +12,6 @@
   	<!-- Stylesheets -->
 
 
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
 
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
 	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
@@ -24,8 +23,10 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></i></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
