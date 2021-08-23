@@ -47,7 +47,7 @@
 {% macro menu(menu_items, horizontal=true) %}
 
 
-<ul class="menu {% if horizontal %}nav mb-4 mb-md-0{% endif %}">
+<ul class="menu {% if horizontal %}nav_ mb-4 mb-md-0{% endif %}">
   {% for item in menu_items %}
   {% with children=item.children %}
   <li class="{% if horizontal %}nav-item{% endif %} {% if children %}nav-item__dropdown{% endif %} menu__item">
@@ -120,4 +120,18 @@
 <li class="list-group-item {% if endpoint == request.endpoint or endpoint == active or active == True %}active{% endif %}">
     <a href="{{ url_for(endpoint) }}">{{ name }}</a>
 </li>
+{% endmacro %}
+{% macro account_nav() %}
+<div class="left-side-tabs">
+  1111
+							<div class="dashboard-left-links">
+								<a href="dashboard_overview.html" class="user-item active"><i class="uil uil-apps"></i>Overview</a>
+								<a href="dashboard_my_orders.html" class="user-item"><i class="uil uil-box"></i>My Orders</a>
+								<a href="dashboard_my_rewards.html" class="user-item"><i class="uil uil-gift"></i>My Rewards</a>
+								<a href="dashboard_my_wallet.html" class="user-item"><i class="uil uil-wallet"></i>My Wallet</a>
+								<a href="dashboard_my_wishlist.html" class="user-item"><i class="uil uil-heart"></i>Shopping Wishlist</a>
+								<a href="dashboard_my_addresses.html" class="user-item"><i class="uil uil-location-point"></i>My Address</a>
+								<a href="sign_in.html" class="user-item"><i class="uil uil-exit"></i>Logout</a>
+							</div>
+						</div>
 {% endmacro %}
