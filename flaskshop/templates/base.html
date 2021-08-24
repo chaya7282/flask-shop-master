@@ -61,8 +61,7 @@
     </div>
 
 <col class=" container fixed-top">
-    <table>
-<row>
+
 <nav class="navbar navbar-expand navbar-light bg-clr">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -113,8 +112,8 @@
   </div>
 
 </nav>
-</row>
- <row>
+
+
        {% if current_user.is_authenticated %}
          <col><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i></col>
        {% if current_user.is_authenticated and current_user_cart.quantity %}
@@ -131,8 +130,7 @@
           {% endif %}
          <col> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a></col>
 
-</row>
-</table>
+
 </div>
 <body>
 <div class="container">
