@@ -11,14 +11,14 @@
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
 	<!-- Vendor Stylesheets -->
 
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
-	<link href="{{ url_for('static', filename='Frontend/css/styles.css') }}"   rel="stylesheet">
-	<link href="{{ url_for('static', filename='Frontend/css/admin-style.css') }}"   rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Admin/vendor/fontawesome-free/css/all.min.css') }}">
+	<link href="{{ url_for('static', filename='Admin/css/styles.css') }}"   rel="stylesheet">
+	<link href="{{ url_for('static', filename='Admin/css/admin-style.css') }}"   rel="stylesheet">
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 	<!-- Vendor Stylesheets -->
-	<link   href="{{ url_for('static', filename='Frontend/vendor/bootstrap/css/bootstrap.min.css') }}"  rel="stylesheet">
+	<link   href="{{ url_for('static', filename='Admin/vendor/bootstrap/css/bootstrap.min.css') }}"  rel="stylesheet">
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
 
@@ -42,7 +42,7 @@
             </ul>
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenavnav">
+            <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -59,8 +59,8 @@
 							</a>
                             <div class="collapse" id="collapseProducts" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-									<a class="nav-link sub_navlink" href="{{url_for('dashboard.products')}}">All Products</a>
-									<a class="nav-link sub_navlink" href="{{url_for('dashboard.product_manage')}}">Add Product</a>
+									<a class="nav-link sub_nav_link" href="{{url_for('dashboard.products')}}">All Products</a>
+									<a class="nav-link sub_nav_link" href="{{url_for('dashboard.product_manage')}}">Add Product</a>
 								</nav>
                             </div>
 
@@ -71,8 +71,8 @@
 							</a>
                             <div class="collapse" id="collapseCategories" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-									<a class="nav-link sub_navlink" href="{{url_for('dashboard.categories')}}">All Categories</a>
-									<a class="nav-link sub_navlink" href="{{url_for('dashboard.categories_manage')}}">Add Category</a>
+									<a class="nav-link sub_nav_link" href="{{url_for('dashboard.categories')}}">All Categories</a>
+									<a class="nav-link sub_nav_link" href="{{url_for('dashboard.categories_manage')}}">Add Category</a>
 								</nav>
                             </div>
 							<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttributes" aria-expanded="false" aria-controls="collapseAttributes">
@@ -82,8 +82,8 @@
 							</a>
                             <div class="collapse" id="collapseAttributes" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-									<a class="nav-link sub_navlink" href="{{url_for('dashboard.attributes')}}">All Attributes</a>
-									<a class="nav-link sub_navlink" href="{{url_for('dashboard.attributes_manage')}}">Add Attribute</a>
+									<a class="nav-link sub_nav_link" href="{{url_for('dashboard.attributes')}}">All Attributes</a>
+									<a class="nav-link sub_nav_link" href="{{url_for('dashboard.attributes_manage')}}">Add Attribute</a>
 								</nav>
                             </div>
 
@@ -109,7 +109,7 @@
 					</div>
                 </nav>
 			</div>
-1			<div id="layoutSidenavcontent">
+1			<div id="layoutSidenav_content">
 				<main>
                     <div class="container-fluid">
 					 {% block content %}
@@ -119,14 +119,14 @@
 					</div>
 				</main>
 			</div>
-		 <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+		 <script src="{{ url_for('static', filename='Admin/js/jquery-3.4.1.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='Admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='Admin/js/scripts.js') }}"></script>
  		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-		<script src="{{ url_for('static', filename='vendor/OwlCarousel/owl.carousel.js') }}"></script>
-		 <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/shopHomePage/jquery.countdown.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
+		<script src="{{ url_for('static', filename='Admin/vendor/OwlCarousel/owl.carousel.js') }}"></script>
+		 <script src="{{ url_for('static', filename='Admin/vendor/semantic/semantic.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='Admin/js/shopHomePage/jquery.countdown.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='Admin/js/shopHomePage/custom.js') }}"></script>
 
 
 </body>
