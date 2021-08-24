@@ -5,9 +5,9 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   	<!-- Stylesheets -->
 
@@ -60,41 +60,38 @@
         </div>
     </div>
 
-
-
-
-
-
-
-<nav class="navbar  navbar-fixed-top navbar-light bg-clr">
+<col class=" container fixed-top">
+    <table>
+<row>
+<nav class="navbar navbar-expand navbar-light bg-clr">
   <div class="container-fluid">
     <div class="navbar-header">
-       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <i class="fa fa-bars" aria-hidden="true"></i>
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+         <span class="navbar-toggler-icon"></span>
+        </button>
+      <a  class="navbar-brand" href="#">WebSiteName</a>
 
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{{url_for('public.home')}}"><span  class="glyphicon glyphicon-home">Home</span></a></li>
+      <ul class="navbar-nav">
+        <li class="active"><a class="nav-link" href="{{url_for('public.home')}}"><span  class="glyphicon glyphicon-home">Home</span></a></li>
 
            {% if current_user.is_authenticated %}
              {{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
-            <li><a href="{{ url_for('account.index') }}">Your Account</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('account.index') }}">Your Account</a></li>
 
               {% if current_user.can_edit() %}
-              <li><a  href="{{ url_for('dashboard.index') }}" >Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.index') }}" >Dashboard</a></li>
               {% endif %}
               {% else %}
-                <li><a href="{{ url_for('account.signup') }}">Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('account.signup') }}">Register</a></li>
 
                {% endif %}
           {% if current_user.is_authenticated %}
-          <li>
+          <li class="nav-item">
 
-                 <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+                 <div class="col px-md-3"><a class="nav-link" href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
                {% if current_user.is_authenticated and current_user_cart.quantity %}
                   <span >{{ current_user_cart.quantity }}</span>
                      {% else %}
@@ -103,23 +100,40 @@
                  </a></div>
           </li>
           {% endif %}
-           <li ><a href="#category_model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
-
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-       {% if current_user.is_authenticated %}
-        <li><a href="{{ url_for('account.logout') }}"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+           <li class="nav-item"><a class="nav-link" href="#category_model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
+          {% if current_user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('account.logout') }}"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
         {% else %}
-          <li><a href="{{ url_for('account.login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('account.login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         {% endif %}
+
       </ul>
+
     </div>
   </div>
 
 </nav>
+</row>
+ <row>
+       {% if current_user.is_authenticated %}
+         <col><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i></col>
+       {% if current_user.is_authenticated and current_user_cart.quantity %}
+          <span >{{ current_user_cart.quantity }}</span>
+             {% else %}
+                <span >0</span>
+         {% endif %}
+         </a></div>
+         {% if current_user.can_edit() %}
+           <col> <a  href="{{ url_for('dashboard.index') }}" ><i class="fas fa-tachometer-alt  fa-3x" aria-hidden="true"></i></a></col>
+        {% endif %}
+         {% else %}
+        <col> <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in fa-3x" aria-hidden="true"></i></a></col>
+          {% endif %}
+         <col> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a></col>
 
-
+</row>
+</table>
+</div>
 <body>
 <div class="container">
  {% block content %}
