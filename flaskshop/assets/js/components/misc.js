@@ -25,7 +25,7 @@ export default $(document).ready((e) => {
     // Open tab from the link
 
     let hash = window.location.hash;
-    $('.nav-tabs a[href="' + hash + '"]').tab('show');
+    $('.nav_-tabs a[href="' + hash + '"]').tab('show');
 
     // Preload all images
     window.lazySizesConfig.preloadAfterLoad = true;

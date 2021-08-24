@@ -56,7 +56,7 @@
   };
   var Selector = {
     DROPDOWN: '.dropdown',
-    nav_LIST_GROUP: '.nav, .list-group',
+    nav__LIST_GROUP: '.nav_, .list-group',
     ACTIVE: '.active',
     ACTIVE_UL: '> li > .active',
     DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
@@ -90,7 +90,7 @@
 
       var target;
       var previous;
-      var listElement = $(this._element).closest(Selector.nav_LIST_GROUP)[0];
+      var listElement = $(this._element).closest(Selector.nav__LIST_GROUP)[0];
       var selector = Util.getSelectorFromElement(this._element);
 
       if (listElement) {

@@ -39,16 +39,16 @@ $ (document).ready(function() {
 			document.documentElement.clientHeight - 8000
 		);
 	};
-	
+
 		fixHeight();
-		
+
 	$(window).resize(function() {
 		fixHeight();
 	});
-	
+
 	$(".navbar .navbar-toggler").on("click", function() {
 		fixHeight();
-	});			
+	});
 
 	$ (".navbar-toggler, .overlay").on("click", function() {
 		$ (".mobileMenu, .overlay").toggleClass("open");
@@ -59,25 +59,6 @@ $ (document).ready(function() {
 
 // === Dropdown === //
 
-$('.ui.dropdown')
-  .dropdown()
-;
-
-$('.dropdown').dropdown({transition: 'drop', on: 'hover' });
-
-
-// === Model === //
-$('.ui.modal')
-  .modal({
-    blurring: true
-  })
-  .modal('show')
-;
-
-// === Tab === //
-$('.menu .item')
-  .tab()
-;
 
 // === checkbox Toggle === //
 $('.ui.checkbox')

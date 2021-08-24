@@ -87,7 +87,7 @@ $(".product_countdown-timer").each(function(){
 $('.offers-banner').owlCarousel({
 	loop:true,
     margin:30,
-	nav:false,
+	nav_:false,
 	dots:false,
     autoplay:true,
     autoplayTimeout: 3000,
@@ -115,7 +115,7 @@ $('.offers-banner').owlCarousel({
 $('.cate-slider').owlCarousel({
 	loop:true,
 	margin:30,
-	nav:true,
+	nav_:true,
 	dots:false,
 	navText: ["<i class='uil uil-angle-left'></i>", "<i class='uil uil-angle-right'></i>"],
 	responsive:{

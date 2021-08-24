@@ -39,7 +39,7 @@ const ClassName = {
 
 const Selector = {
   DROPDOWN              : '.dropdown',
-  navLIST_GROUP        : '.nav, .list-group',
+  NAV_LIST_GROUP        : '.nav, .list-group',
   ACTIVE                : '.active',
   ACTIVE_UL             : '> li > .active',
   DATA_TOGGLE           : '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
@@ -76,7 +76,7 @@ class Tab {
 
     let target
     let previous
-    const listElement = $(this._element).closest(Selector.navLIST_GROUP)[0]
+    const listElement = $(this._element).closest(Selector.NAV_LIST_GROUP)[0]
     const selector = Util.getSelectorFromElement(this._element)
 
     if (listElement) {

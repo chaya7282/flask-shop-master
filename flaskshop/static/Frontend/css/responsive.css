@@ -76,11 +76,11 @@
     display: none;
 }
 
-.header_right .blog-nav li:first-child {
+.header_right .blog-nav_ li:first-child {
     display: block !important;
 }
 
-.header_right .blog-nav li:nth-child(2) {
+.header_right .blog-nav_ li:nth-child(2) {
     display: block !important;
 }
 

@@ -31,7 +31,7 @@ export default $(document).ready((e) => {
     // $.get(summaryLink, (data) => {
     //     $cartDropdown.html(data);
     // });
-    // $('.navbar__brand__cart').hover((e) => {
+    // $('.nav_bar__brand__cart').hover((e) => {
     //     $cartDropdown.addClass('show');
     //     $cartIcon.addClass('hover');
     // }, (e) => {
@@ -62,7 +62,7 @@ export default $(document).ready((e) => {
 
     let $cartLine = $('.cart__line');
     let $total = $('.cart-total span');
-    let $cartBadge = $('.navbar__brand__cart .badge');
+    let $cartBadge = $('.nav_bar__brand__cart .badge');
     let $closeMsg = $('.close-msg');
     $closeMsg.on('click', (e) => {
         $removeProductSuccess.addClass('d-none');

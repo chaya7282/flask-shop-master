@@ -1,12 +1,12 @@
-const $toogleIcon = $('.navbar__brand__menu-toggle');
-const $mobilenav = $('nav');
+const $toogleIcon = $('.nav_bar__brand__menu-toggle');
+const $mobilenav_ = $('nav_');
 const $searchIcon = $('.mobile-search-icon');
 const $closeSearchIcon = $('.mobile-close-search');
 const $searchForm = $('.search-form');
 
-const rendernavbar = () => {
-    const $desktopLinkBar = $('.navbar__login');
-    const $mobileLinkBar = $('.navbar__menu__login');
+const rendernav_bar = () => {
+    const $desktopLinkBar = $('.nav_bar__login');
+    const $mobileLinkBar = $('.nav_bar__menu__login');
     const windowWidth = window.innerWidth;
     const $languagePicker = $('.language-picker');
 
@@ -14,14 +14,14 @@ const rendernavbar = () => {
         const $desktopLinks = $desktopLinkBar.find('a').not('.dropdown-link');
         if ($desktopLinks.length) {
             $searchForm.addClass('search-form--hidden');
-            $mobilenav.append('<ul class="nav navbar-nav navbar__menu__login"></ul>');
-            $languagePicker.appendTo('.navbar__menu__login')
-                .wrap('<li class="nav-item login-item"></li>')
-                .addClass('nav-link');
+            $mobilenav_.append('<ul class="nav_ nav_bar-nav_ nav_bar__menu__login"></ul>');
+            $languagePicker.appendTo('.nav_bar__menu__login')
+                .wrap('<li class="nav_-item login-item"></li>')
+                .addClass('nav_-link');
             $desktopLinks
-                .appendTo('.navbar__menu__login')
-                .wrap('<li class="nav-item login-item"></li>')
-                .addClass('nav-link');
+                .appendTo('.nav_bar__menu__login')
+                .wrap('<li class="nav_-item login-item"></li>')
+                .addClass('nav_-link');
             $desktopLinkBar
                 .find('li')
                 .remove();
@@ -30,13 +30,13 @@ const rendernavbar = () => {
         const $mobileLinks = $mobileLinkBar.find('a').not('.dropdown-link');
         if ($mobileLinks.length) {
             $searchForm.removeClass('search-form--hidden');
-            $languagePicker.appendTo('.navbar__login ul')
+            $languagePicker.appendTo('.nav_bar__login ul')
                 .wrap('<li></li>')
-                .removeClass('nav-link');
+                .removeClass('nav_-link');
             $mobileLinks
-                .appendTo('.navbar__login ul')
+                .appendTo('.nav_bar__login ul')
                 .wrap('<li></li>')
-                .removeClass('nav-link');
+                .removeClass('nav_-link');
             $mobileLinkBar.remove();
         }
     }
@@ -44,10 +44,10 @@ const rendernavbar = () => {
 
 // -----
 
-rendernavbar();
+rendernav_bar();
 $toogleIcon
     .on('click', (e) => {
-        $mobilenav.toggleClass('open');
+        $mobilenav_.toggleClass('open');
         e.stopPropagation();
     });
 $(document)
