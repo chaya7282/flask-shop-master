@@ -81,7 +81,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ url_for('account.index') }}">Your Account</a></li>
 
               {% if current_user.can_edit() %}
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.index') }}" >Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.index') }}" >Dashboard <i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
               {% endif %}
               {% else %}
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('account.signup') }}">Register</a></li>
