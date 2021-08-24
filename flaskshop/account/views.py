@@ -11,6 +11,10 @@ from flaskshop.order.models import Order
 
 impl = HookimplMarker("flaskshop")
 
+def user_orders():
+    orders = Order.get_current_user_orders()
+    return render_template("account/dashboard_my_orders.html", orders=orders)
+
 
 def index():
     form = ChangePasswordForm(request.form)
@@ -70,7 +74,7 @@ def set_password():
 def addresses():
     """List addresses."""
     addresses = current_user.addresses
-    return render_template("account/addresses.html", addresses=addresses)
+    return render_template("account/dashboard_my_addresses.html", addresses=addresses)
 
 
 def edit_address():
@@ -121,6 +125,9 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/address", view_func=addresses)
     bp.add_url_rule("/address/edit", view_func=edit_address, methods=["GET", "POST"])
     bp.add_url_rule(
+        "/user_orders", view_func=user_orders)
+    bp.add_url_rule(
         "/address/<int:id>/delete", view_func=delete_address, methods=["POST"]
     )
+    user_orders
     app.register_blueprint(bp, url_prefix="/account")
