@@ -11,6 +11,9 @@
 
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+<script src="{{ url_for('static', filename='build/storefront.js') }}"></script>
+
 <div class="alert alert-success remove-product-alert d-none">
     Product has been removed from cart
     <button type="button" class="close close-msg" aria-hidden="true">&times;</button>
