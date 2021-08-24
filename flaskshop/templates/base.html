@@ -60,7 +60,7 @@
         </div>
     </div>
 
-<col class=" container fixed-top">
+<div class="container fixed-top">
 
 <nav class="navbar navbar-expand navbar-light bg-clr">
   <div class="container-fluid">
@@ -89,8 +89,7 @@
                {% endif %}
           {% if current_user.is_authenticated %}
           <li class="nav-item">
-
-                 <div class="col px-md-3"><a class="nav-link" href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+             <div class="col px-md-3"><a class="nav-link" href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
                {% if current_user.is_authenticated and current_user_cart.quantity %}
                   <span >{{ current_user_cart.quantity }}</span>
                      {% else %}
@@ -112,26 +111,10 @@
   </div>
 
 </nav>
-
-
-       {% if current_user.is_authenticated %}
-        <a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
-       {% if current_user.is_authenticated and current_user_cart.quantity %}
-          <span >{{ current_user_cart.quantity }}</span>
-             {% else %}
-                <span >0</span>
-         {% endif %}
-         </a></div>
-         {% if current_user.can_edit() %}
-          <a  href="{{ url_for('dashboard.index') }}" ><i class="fas fa-tachometer-alt  fa-3x" aria-hidden="true"></i></a>
-        {% endif %}
-         {% else %}
-         <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in fa-3x" aria-hidden="true"></i></a>
-          {% endif %}
-          <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a>
-
-
 </div>
+
+
+
 <body>
 <div class="container">
  {% block content %}
