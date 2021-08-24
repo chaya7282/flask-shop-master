@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   	<!-- Stylesheets -->
 
-
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
 
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
@@ -19,7 +18,36 @@
 
 
 </head>
-<body>
+ <!-- Modal -->
+
+
+
+
+ <!-- Modal -->
+  <div class="modal fade" id="category__model" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
 
 <nav class="navbar  navbar-fixed-top navbar-light bg-clr">
   <div class="container-fluid">
@@ -46,6 +74,20 @@
                 <li><a href="{{ url_for('account.signup') }}">Register</a></li>
 
                {% endif %}
+          {% if current_user.is_authenticated %}
+          <li>
+
+                 <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+               {% if current_user.is_authenticated and current_user_cart.quantity %}
+                  <span >{{ current_user_cart.quantity }}</span>
+                     {% else %}
+                        <span >0</span>
+                 {% endif %}
+                 </a></div>
+          </li>
+          {% endif %}
+           <li ><a href="#category__model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
+
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -57,18 +99,17 @@
       </ul>
     </div>
   </div>
-     <ul>
-          <li>dd</li>
-      </ul>
+
 </nav>
-</body>
+
+
+<body>
 <div class="container">
  {% block content %}
 {% endblock content %}
 </div>
 
-    <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
+     <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
