@@ -115,7 +115,7 @@
 
 
        {% if current_user.is_authenticated %}
-         <col><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i></col>
+        <a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
        {% if current_user.is_authenticated and current_user_cart.quantity %}
           <span >{{ current_user_cart.quantity }}</span>
              {% else %}
@@ -123,12 +123,12 @@
          {% endif %}
          </a></div>
          {% if current_user.can_edit() %}
-           <col> <a  href="{{ url_for('dashboard.index') }}" ><i class="fas fa-tachometer-alt  fa-3x" aria-hidden="true"></i></a></col>
+          <a  href="{{ url_for('dashboard.index') }}" ><i class="fas fa-tachometer-alt  fa-3x" aria-hidden="true"></i></a>
         {% endif %}
          {% else %}
-        <col> <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in fa-3x" aria-hidden="true"></i></a></col>
+         <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in fa-3x" aria-hidden="true"></i></a>
           {% endif %}
-         <col> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a></col>
+          <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a>
 
 
 </div>
