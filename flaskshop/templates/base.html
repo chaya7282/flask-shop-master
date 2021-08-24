@@ -5,9 +5,9 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   	<!-- Stylesheets -->
 
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-<div class="container fixed-top">
+<div class=" container fixed-top">
 
 <nav class="navbar navbar-expand navbar-light bg-clr">
   <div class="container-fluid">
@@ -81,15 +81,16 @@
             <li class="nav-item"><a class="nav-link" href="{{ url_for('account.index') }}">Your Account</a></li>
 
               {% if current_user.can_edit() %}
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.index') }}" >Dashboard <i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
+              <li><a  href="{{ url_for('dashboard.index') }}" >Dashboard</a></li>
               {% endif %}
               {% else %}
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('account.signup') }}">Register</a></li>
+                <li><a href="{{ url_for('account.signup') }}">Register</a></li>
 
                {% endif %}
           {% if current_user.is_authenticated %}
-          <li class="nav-item">
-             <div class="col px-md-3"><a class="nav-link" href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+          <li>
+
+                 <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
                {% if current_user.is_authenticated and current_user_cart.quantity %}
                   <span >{{ current_user_cart.quantity }}</span>
                      {% else %}
@@ -98,11 +99,11 @@
                  </a></div>
           </li>
           {% endif %}
-           <li class="nav-item"><a class="nav-link" href="#category_model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
+           <li ><a href="#category_model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
           {% if current_user.is_authenticated %}
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('account.logout') }}"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+        <li><a href="{{ url_for('account.logout') }}"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('account.login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="{{ url_for('account.login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         {% endif %}
 
       </ul>
