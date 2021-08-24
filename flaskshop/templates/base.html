@@ -111,6 +111,43 @@
   </div>
 
 </nav>
+
+ <div class="container-fluid mb-2" >
+   <div class="row">
+       {% if current_user.is_authenticated %}
+         <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+       {% if current_user.is_authenticated and current_user_cart.quantity %}
+          <span >{{ current_user_cart.quantity }}</span>
+             {% else %}
+                <span >0</span>
+         {% endif %}
+         </a></div>
+         {% if current_user.can_edit() %}
+           <div class="col px-md-3"> <a  href="{{ url_for('dashboard.index') }}" ><i class="fa fa-tachometer" style='font-size:36px' aria-hidden="true"></i></a></div>
+        {% endif %}
+         {% else %}
+        <div class="col px-md-3"> <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in fa-3x" aria-hidden="true"></i></a></div>
+          {% endif %}
+         <div class="col px-md-3"> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a></div>
+
+
+
+   </div>
+    <div class="row   bg-primary">
+         <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" value="search" name="keyword" id="keyword">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+         </form>
+    </div>
+   </div>
+
 </div>
 
 
