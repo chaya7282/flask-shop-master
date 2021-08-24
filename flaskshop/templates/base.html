@@ -24,25 +24,42 @@
 
 
  <!-- Modal -->
-  <div class="modal fade" id="category__model" role="dialog">
-    <div class="modal-dialog">
+<div id="category_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+        <div class="modal-dialog category-area" role="document">
+            <div class="category-area-inner">
+                <div class="modal-header">
+                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="uil uil-multiply"></i>
+                    </button>
+                </div>
+                <div class="category-model-content modal-content">
+					<div class="cate-header">
+						<h4>Select Category</h4>
+					</div>
+                    <ul class="category-by-cat">
+						{% for item in top_menu %}
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+                         <li>
+							<a href="{{ item.url }}" class="single-cat-item">
+								<div class="icon">
+									<img src="{{item.background_img }}" alt="">
+								</div>
+								<div class="text"> {{item.title}} </div>
+							</a>
+						</li>
+                        {% endfor %}
 
+
+                    </ul>
+					<div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
+
 
 
 
@@ -86,7 +103,7 @@
                  </a></div>
           </li>
           {% endif %}
-           <li ><a href="#category__model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
+           <li ><a href="#category_model" data-toggle="modal"> <i class="uil uil-apps"> </i>Categories</a></li>
 
 
       </ul>
