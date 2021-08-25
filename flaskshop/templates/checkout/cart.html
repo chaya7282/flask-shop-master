@@ -13,92 +13,53 @@
                     </div>
                 </div>
                 <div class="side-cart-items">
+                      {% for line in current_user_cart.lines %}
                     <div class="cart-item">
                         <div class="cart-product-img">
-                            <img src="images/product/img-1.jpg" alt="">
-                            <div class="offer-badge">6% OFF</div>
+                            <img src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" alt="">
+                            <div class="offer-badge"></div>
                         </div>
                         <div class="cart-text">
-                            <h4>Product Title Here</h4>
-                            <div class="cart-radio">
-                                <ul class="kggrm-now">
-                                    <li>
-                                        <input type="radio" id="a1" name="cart1">
-                                        <label for="a1">0.50</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="a2" name="cart1">
-                                        <label for="a2">1kg</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="a3" name="cart1">
-                                        <label for="a3">2kg</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="a4" name="cart1">
-                                        <label for="a4">3kg</label>
-                                    </li>
-                                </ul>
-                            </div>
+                            <h4>{{ line.product }}</h4>
+
+
                             <div class="qty-group">
                                 <div class="quantity buttons_added">
+                               <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+
                                     <input type="button" value="-" class="minus minus-btn">
-                                    <input type="number" step="1" name="quantity" value="1" class="input-text qty text">
+                                    <input type="number" step="1"  onchange="submit()" id="quantity_" name="quantity_" value="{{ line.quantity }}" class="input-text qty text">
                                     <input type="button" value="+" class="plus plus-btn">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                  </form>
                                 </div>
-                                <div class="cart-item-price">$10 <span>$15</span></div>
                             </div>
+                            </div>
+                                 <div class="cart-text">
+                                    <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+
+                         <button onclick="submit()" name="quantity_"  value="0" ><i class="fa fa-trash fa-lg" style='font-size:36px' aria-hidden="true"></i></button>
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                    </form>
+
+                                 </div>
+                                <div class="cart-item-price">{{line.subtotal}}</div>
+                                </div>
 
                             <button type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
                         </div>
                     </div>
-                    <div class="cart-item">
-                        <div class="cart-product-img">
-                            <img src="images/product/img-2.jpg" alt="">
-                            <div class="offer-badge">6% OFF</div>
-                        </div>
-                        <div class="cart-text">
-                            <h4>Product Title Here</h4>
-                            <div class="cart-radio">
-                                <ul class="kggrm-now">
-                                    <li>
-                                        <input type="radio" id="a5" name="cart2">
-                                        <label for="a5">0.50</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="a6" name="cart2">
-                                        <label for="a6">1kg</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="a7" name="cart2">
-                                        <label for="a7">2kg</label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="qty-group">
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus minus-btn">
-                                    <input type="number" step="1" name="quantity" value="1" class="input-text qty text">
-                                    <input type="button" value="+" class="plus plus-btn">
-                                </div>
-                                <div class="cart-item-price">$24 <span>$30</span></div>
-                            </div>
-                            <button type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
-                        </div>
-                    </div>
+                        {% endfor %}
                 </div>
             </div>
 
-                <div class="cart-total-dil saving-total ">
-                    <h4>Total Saving</h4>
-                    <span>$11</span>
-                </div>
                 <div class="main-total-cart">
                     <h2>Total</h2>
-                    <span>$35</span>
+                    <span>{{current_user_cart.total}}</span>
                 </div>
                 <div class="checkout-cart">
-                    <a href="#" class="promo-code">Have a promocode?</a>
+
                     <a href="#" class="cart-checkout-btn hover-btn">Proceed to Checkout</a>
                 </div>
 
