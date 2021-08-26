@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="container-fluid">
-
                 <div class="cart-top-total">
                     <div class="cart-total-dil">
                         <h3>{{ settings['project_title'].value }}</h3>
-                        <span>$34</span>
+                        <span>{{current_user_cart.total}}</span>
                     </div>
                     <div class="cart-total-dil pt-2">
                         <h4>Delivery Charges</h4>
-                        <span>$o</span>
+                        <span>$0</span>
                     </div>
                 </div>
                 <div class="side-cart-items">
@@ -25,7 +24,7 @@
 
                             <div class="qty-group">
                                 <div class="quantity buttons_added">
-                               <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+                                  <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
 
                                     <input type="button" value="-" class="minus minus-btn">
                                     <input type="number" step="1"  onchange="submit()" id="quantity_" name="quantity_" value="{{ line.quantity }}" class="input-text qty text">
@@ -33,7 +32,7 @@
                                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                   </form>
                                 </div>
-                            </div>
+                        </div>
                             </div>
                                  <div class="cart-text">
                                     <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
@@ -60,7 +59,7 @@
                 </div>
                 <div class="checkout-cart">
 
-                <a href="{{ url_for('checkout.checkout_note') }}" class="cart-checkout-btn hover-btn"> Proceed to Checkout</a>
+                <a href="{{ url_for('checkout.checkout_shipping') }}" class="cart-checkout-btn hover-btn"> Proceed to Checkout</a>
                 </div>
 
 {% endblock content %}

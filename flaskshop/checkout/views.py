@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from pluggy import HookimplMarker
 
 from .models import CartLine, Cart, ShippingMethod
-from .forms import NoteForm, VoucherForm
+from .forms import NoteForm, VoucherForm, CheckoutForm
 from flaskshop.account.forms import AddressForm
 from flaskshop.account.models import UserAddress
 from flaskshop.utils import flash_errors
@@ -45,7 +45,7 @@ def update_cart(id):
 
 
 def checkout_shipping():
-    form = AddressForm(request.form)
+    form = CheckoutForm()
     user_address = None
     if request.method == "POST":
         if request.form["address_sel"] != "new":
@@ -71,7 +71,7 @@ def checkout_shipping():
     flash_errors(form)
     shipping_methods = ShippingMethod.query.all()
     return render_template(
-        "checkout/shipping.html", form=form, shipping_methods=shipping_methods
+        "checkout/check_out.html", form=form, shipping_methods=shipping_methods
     )
 
 
@@ -79,6 +79,7 @@ def checkout_note():
     form = NoteForm(request.form)
     voucher_form = VoucherForm(request.form)
     cart = Cart.get_current_user_cart()
+
     address = (
         UserAddress.get_by_id(cart.shipping_address_id)
         if cart.shipping_address_id

@@ -19,6 +19,7 @@ class Cart(Model):
     quantity = Column(db.Integer())
     shipping_address_id = Column(db.Integer())
     shipping_method_id = Column(db.Integer())
+    contact_nubmer= Column(db.String(85))
 
     @property
     def subtotal(self):

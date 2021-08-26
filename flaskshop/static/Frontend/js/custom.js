@@ -259,6 +259,15 @@ $('.testimonial-slider').owlCarousel({
 		}
 	}
 })
+// === Model === //
+$('.ui.modal')
+  .modal({
+    blurring: true
+  })
+  .modal('show')
+;
+
+
 
 // Category Slider
 $('.team-slider').owlCarousel({
