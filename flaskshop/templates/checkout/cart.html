@@ -1,139 +1,139 @@
 {% extends "base.html" %}
 {% block content %}
-<head>
-<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
- <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 
-
- <style>
- @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
-
-
-
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
-
-body {
-    font-family: 'Manrope', sans-serif;
-    background: #eee
-}
-
-.size span {
-    font-size: 11px
-}
-
-.color span {
-    font-size: 11px
-}
-
-.product-deta {
-    margin-right: 70px
-}
-
-.gift-card:focus {
-    box-shadow: none
-}
-
-.pay-button {
-    color: #fff
-}
-
-.pay-button:hover {
-    color: #fff
-}
-
-.pay-button:focus {
-    color: #fff;
-    box-shadow: none
-}
-
-.text-grey {
-    color: #a39f9f
-}
-
-.qty i {
-    font-size: 11px
-}</style>
-</head>
-
-<body oncontextmenu='return false' class='snippet-body'>
-<div class="container mt-5 mb-5">
-<div class="d-flex justify-content-center row">
-        <div class="col-md-8">
-            <div class="p-7">
-                <h4>Shopping cart</h4>
-                </div>
-            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                    <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+<div class="container">
+<div class="contentbar">
+        <!-- Start row -->
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <h5 class="card-title">Cart</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10 col-xl-8">
+                                <div class="cart-container">
+                                    <div class="cart-head">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Photo</th>
+                                                        <th scope="col">Product</th>
+                                                        <th scope="col">Qty</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col" class="text-right">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                        <td><img src="https://themesbox.in/admin-templates/olian/html/light-vertical/assets/images/ecommerce/product_01.svg" class="img-fluid" width="35" alt="product"></td>
+                                                        <td>Apple Watch</td>
+                                                        <td>
+                                                            <div class="form-group mb-0">
+                                                                <input type="number" class="form-control cart-qty" name="cartQty1" id="cartQty1" value="1">
+                                                            </div>
+                                                        </td>
+                                                        <td>$10</td>
+                                                        <td class="text-right">$500</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                       <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                        <td><img src="https://themesbox.in/admin-templates/olian/html/light-vertical/assets/images/ecommerce/product_02.svg" class="img-fluid" width="35" alt="product"></td>
+                                                        <td>Apple iPhone</td>
+                                                        <td>
+                                                            <div class="form-group mb-0">
+                                                                <input type="number" class="form-control cart-qty" name="cartQty2" id="cartQty2" value="1">
+                                                            </div>
+                                                        </td>
+                                                        <td>$20</td>
+                                                        <td class="text-right">$200</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td>
+                                                        <td><img src="https://themesbox.in/admin-templates/olian/html/light-vertical/assets/images/ecommerce/product_03.svg" class="img-fluid" width="35" alt="product"></td>
+                                                        <td>Apple iPad</td>
+                                                        <td>
+                                                            <div class="form-group mb-0">
+                                                                <input type="number" class="form-control cart-qty" name="cartQty3" id="cartQty3" value="1">
+                                                            </div>
+                                                        </td>
+                                                        <td>$30</td>
+                                                        <td class="text-right">$300</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="cart-body">
+                                        <div class="row">
+                                            <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
+                                                <div class="order-note">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="search" class="form-control" placeholder="Coupon Code" aria-label="Search" aria-describedby="button-addonTags">
+                                                                <div class="input-group-append">
+                                                                    <button class="input-group-text" type="submit" id="button-addonTags">Apply</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="specialNotes">Special Note for this order:</label>
+                                                            <textarea class="form-control" name="specialNotes" id="specialNotes" rows="3" placeholder="Message here"></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+                                                <div class="order-total table-responsive ">
+                                                    <table class="table table-borderless text-right">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Sub Total :</td>
+                                                                <td>$1000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Shipping :</td>
+                                                                <td>$0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Tax(18%) :</td>
+                                                                <td>$180.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="f-w-7 font-18"><h4>Amount :</h4></td>
+                                                                <td class="f-w-7 font-18"><h4>$1180.00</h4></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cart-footer text-right">
+                                        <button type="button" class="btn btn-info my-1"><i class="ri-save-line mr-2"></i>Update Cart</button>
+                                        <a href="page-checkout.html" class="btn btn-success my-1">Proceed to Checkout<i class="ri-arrow-right-line ml-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                </div>
-                <div>
-                    <h5 class="text-grey">$20.00</h5>
-                </div>
-                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
             </div>
-            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                    <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                    </div>
-                </div>
-                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                </div>
-                <div>
-                    <h5 class="text-grey">$20.00</h5>
-                </div>
-                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-            </div>
-            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                    <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                    </div>
-                </div>
-                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                </div>
-                <div>
-                    <h5 class="text-grey">$20.00</h5>
-                </div>
-                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-            </div>
-            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
-                <div class="mr-1"><img class="rounded" src="https://i.imgur.com/XiFJkhI.jpg" width="70"></div>
-                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">Basic T-shirt</span>
-                    <div class="d-flex flex-row product-desc">
-                        <div class="size mr-1"><span class="text-grey">Size:</span><span class="font-weight-bold">&nbsp;M</span></div>
-                        <div class="color"><span class="text-grey">Color:</span><span class="font-weight-bold">&nbsp;Grey</span></div>
-                    </div>
-                </div>
-                <div class="d-flex flex-row align-items-center qty"><i class="fa fa-minus text-danger"></i>
-                    <h5 class="text-grey mt-1 mr-1 ml-1">2</h5><i class="fa fa-plus text-success"></i>
-                </div>
-                <div>
-                    <h5 class="text-grey">$20.00</h5>
-                </div>
-                <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
-            </div>
-            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><input type="text" class="form-control border-0 gift-card" placeholder="discount code/gift card"><button class="btn btn-outline-warning btn-sm ml-2" type="button">Apply</button></div>
-            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button">Proceed to Pay</button></div>
+            <!-- End col -->
         </div>
+        <!-- End row -->
     </div>
-</div>
-<script type='text/javascript'></script>
-</body>
-
-
+    </div>
 {% endblock content %}
 
