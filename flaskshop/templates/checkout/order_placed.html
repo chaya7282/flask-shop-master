@@ -1,0 +1,40 @@
+﻿{% import '_macros.html' as macros %}
+{% extends "base.html" %}
+{% block content %}
+	<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 col-md-8">
+						<div class="order-placed-dt">
+							<i class="uil uil-check-circle icon-circle"></i>
+							<h2>Order Successfully Placed</h2>
+							<p>Thank you for your order! will received order timing - <span>{{order.created_at}}</span></p>
+							<div class="delivery-address-bg">
+								<div class="title585">
+
+									<div class="pln-icon"> <i class="uil uil-telegram-alt"></i></div>
+									<h4>Your order will be sent to this address</h4>
+								</div>
+								<ul class="address-placed-dt1">
+									 {% with address=order.get_shipment_address %}
+									<li><p><i class="uil uil-map-marker-alt"></i>Address :<span>st: {{address.address }},city: {{address.city}}</span></p></li>
+									{% endwith %}
+									<li><p><i class="uil uil-phone-alt"></i>Cotact Name :<span>{{order.contact_name}}</span></p></li>
+
+									<li><p><i class="uil uil-phone-alt"></i>Contact Phone:<span>{{order.contact_phone}}</span></p></li>
+									<li><p><i class="uil uil-card-atm"></i>Delivery Method :<span>{{order.shipping_method_name}}</span></p></li>
+									<li><p><i class="uil uil-card-atm"></i>Payment Method :<span>{{order.payment_method}}</span></p></li>
+								</ul>
+
+								<div class="placed-bottom-dt">
+									The payment of <span>${{order.total_human}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+ <div class="cart-footer text-right">
+   <a  href="{{url_for('public.home')}}" class="btn btn-success my-1" >Back To Shop<i class="ri-arrow-left-line ml-2"></i></a>
+</div>
+{% endblock content %}

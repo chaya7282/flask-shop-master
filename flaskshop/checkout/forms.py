@@ -1,7 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, StringField,  DateTimeField
 from sqlalchemy.dialects.mysql import TINYINT
-from wtforms import SelectField, RadioField
+from wtforms import SelectField, RadioField, SubmitField
+from wtforms.validators import DataRequired, NumberRange
+
+
 
 class NoteForm(FlaskForm):
     created_at = DateTimeField()
@@ -16,12 +19,19 @@ class NoteForm(FlaskForm):
 class VoucherForm(FlaskForm):
     code = StringField()
 
+class PaymentDeliveryForm(FlaskForm):
+    shipping_methods = SelectField()
+    payment_method = SelectField()
+
 class CheckoutForm(FlaskForm):
     province = StringField()
     city = StringField()
     district = StringField()
+    state= StringField()
     address = StringField()
-    contact_name = StringField()
-    contact_phone = StringField()
-    delivery_method = SelectField("Status")
+    district=StringField()
+    contact_name = StringField(validators=[DataRequired()])
+    contact_phone = StringField(validators=[DataRequired()])
+
+    submit = SubmitField()
 

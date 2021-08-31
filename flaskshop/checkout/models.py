@@ -20,6 +20,9 @@ class Cart(Model):
     shipping_address_id = Column(db.Integer())
     shipping_method_id = Column(db.Integer())
     contact_nubmer= Column(db.String(85))
+    contact_name = Column(db.String(80))
+    contact_phone = Column(db.String(80))
+    payment_method = Column(db.String(50))
 
     @property
     def subtotal(self):
@@ -39,7 +42,8 @@ class Cart(Model):
         return CartLine.query.filter(CartLine.cart_id == self.id).all()
 
     @classmethod
-    @cache(MC_KEY_CART_BY_USER.format("{user_id}"))
+    @cache(MC_KEY_CART_BY_USER.
+           format("{user_id}"))
     def get_cart_by_user_id(cls, user_id):
         return cls.query.filter_by(user_id=user_id).first()
 
@@ -92,6 +96,11 @@ class Cart(Model):
     @property
     def shipping_method(self):
         return ShippingMethod.get_by_id(self.shipping_method_id)
+
+
+    def set_shipping_method(self,id):
+        self.shipping_method_id=id
+
 
     @property
     def shipping_method_price(self):
@@ -180,6 +189,8 @@ class ShippingMethod(Model):
     __tablename__ = "checkout_shippingmethod"
     title = Column(db.String(255), nullable=False)
     price = Column(db.DECIMAL(10, 2))
+    address_needed = Column(db.Boolean(),default=False)
+
 
     def __str__(self):
         return self.title + "   $" + str(self.price)

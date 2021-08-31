@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from pluggy import HookimplMarker
 
 from .models import CartLine, Cart, ShippingMethod
-from .forms import NoteForm, VoucherForm, CheckoutForm
+from .forms import NoteForm, VoucherForm, CheckoutForm, PaymentDeliveryForm
 from flaskshop.account.forms import AddressForm
 from flaskshop.account.models import UserAddress
 from flaskshop.utils import flash_errors
@@ -15,7 +15,10 @@ impl = HookimplMarker("flaskshop")
 
 
 def cart_index():
-    return render_template("checkout/cart.html")
+
+    shipping_methods = ShippingMethod.query.all()
+
+    return render_template("checkout/cart.html",shipping_methods=shipping_methods)
 
 
 def update_cart(id):
@@ -43,10 +46,74 @@ def update_cart(id):
     jsonify(response)
     return redirect(url_for("checkout.cart_index"))
 
+def Cart_Checkout():
+
+    if request.method == "POST":
+        cart = Cart.get_current_user_cart()
+        shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
+        payment_method = request.form["payment_method"]
+
+        cart.update(
+            shipping_method_id=shipping_method.id,
+            payment_method=payment_method
+        )
+
+    return redirect(url_for("checkout.shipment_details"))
+
+
+
+
+def shipment_details():
+
+    addresses = current_user.addresses
+    if addresses:
+       user_address = addresses[0]
+       form = CheckoutForm(obj=user_address)
+    else:
+        form = CheckoutForm()
+    if request.method == "POST":
+        cart = Cart.get_current_user_cart()
+        form.populate_obj(cart)
+
+        user_address = UserAddress.create(
+            province=form.province.data,
+            city=form.city.data,
+            district=form.district.data,
+            address=form.address.data,
+            contact_name=form.contact_name.data,
+            contact_phone=form.contact_phone.data,
+            user_id=current_user.id,
+        )
+
+        if user_address :
+
+            cart.update( shipping_address_id=user_address.id,)
+        order, msg = Order.create_whole_order(cart)
+        if order:
+            return render_template(
+                "checkout/order_placed.html", order=order
+            )
+
+        else:
+            flash(msg, "warning")
+            return redirect(url_for(""))
+
+
+    return render_template(
+        "checkout/check_out.html", form=form
+    )
+
+
+
 
 def checkout_shipping():
-    form = CheckoutForm()
-    user_address = None
+
+    addresses = current_user.addresses
+    if addresses:
+       user_address = addresses[0]
+       form = CheckoutForm(obj=user_address)
+    else:
+        form = CheckoutForm()
     if request.method == "POST":
         if request.form["address_sel"] != "new":
             user_address = UserAddress.get_by_id(request.form["address_sel"])
@@ -61,6 +128,7 @@ def checkout_shipping():
                 user_id=current_user.id,
             )
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
+
         if user_address and shipping_method:
             cart = Cart.get_current_user_cart()
             cart.update(
@@ -150,9 +218,10 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule(
         "/update_cart/<int:id>", view_func=update_cart, methods=["POST"]
     )
-
+    bp.add_url_rule("/details", view_func=shipment_details, methods=["GET", "POST"])
     bp.add_url_rule("/shipping", view_func=checkout_shipping, methods=["GET", "POST"])
     bp.add_url_rule("/note", view_func=checkout_note, methods=["GET", "POST"])
+    bp.add_url_rule("/delivery_type", view_func=Cart_Checkout, methods=["POST"])
     bp.add_url_rule("/voucher", view_func=checkout_voucher, methods=["POST"])
     bp.add_url_rule(
         "/voucher/remove", view_func=checkout_voucher_remove, methods=["POST"]
