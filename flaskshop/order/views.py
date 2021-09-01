@@ -121,6 +121,7 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/alipay/notify", view_func=ali_notify, methods=["POST"])
     bp.add_url_rule("/pay/<string:token>/testpay", view_func=test_pay)
     bp.add_url_rule("/payment_success", view_func=payment_success)
+
     bp.add_url_rule("/cancel/<string:token>", view_func=cancel_order)
     bp.add_url_rule("/receive/<string:token>", view_func=receive)
     app.register_blueprint(bp, url_prefix="/orders")

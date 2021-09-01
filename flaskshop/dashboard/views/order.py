@@ -1,28 +1,27 @@
 from datetime import datetime
 
 from flask import request, render_template, redirect,url_for
-
+from sqlalchemy import and_, or_, not_
 from flaskshop.order.models import Order
 from flaskshop.constant import OrderStatusKinds
 from flaskshop.dashboard.forms import OrderStatusForm
 
-def orders():
-    page = request.args.get("page", type=int, default=1)
+def search_Orders():
     query = Order.query.order_by(Order.id.desc())
+    if request.method == "POST":
 
-    status = request.args.get("status", type=int)
-    if status:
-        query = query.filter_by(status=status)
-    order_no = request.args.get("order_number", type=str)
-    if order_no:
-        query = query.filter(Order.token.like(f"%{order_no}%"))
-    created_at = request.args.get("created_at", type=str)
-    if created_at:
-        start_date, end_date = created_at.split("-")
-        start_date = datetime.strptime(start_date.strip(), "%m/%d/%Y")
-        end_date = datetime.strptime(end_date.strip(), "%m/%d/%Y")
-        query = query.filter(Order.created_at.between(start_date, end_date))
+        search_key = request.form["search_order"]
+        if search_key:
+            query = query.filter(or_(Order.contact_name == search_key, Order.contact_phone==search_key, Order.status==search_key ))
+    redirect(url_for("dashboard.orders", query=query))
+
+def orders(query=None):
+    page = request.args.get("page", type=int, default=1)
+    if not query:
+        query = Order.query.order_by(Order.id.desc())
     pagination = query.paginate(page, 10)
+
+
     props = {
         "id": "ID",
         "identity": "Identity",

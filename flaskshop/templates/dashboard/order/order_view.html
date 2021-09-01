@@ -14,13 +14,13 @@
                             <li class="breadcrumb-item"><a href="orders.html">Orders</a></li>
                             <li class="breadcrumb-item active">Order View</li>
                         </ol>
+
+
                         <div class="row">
 							<div class="col-xl-12 col-md-12">
 								<div class="card card-static-2 mb-30">
-									<div class="card-title-2">
-										<h2 class="title1458">Invoice</h2>
-										<span class="order-id">Order {{order.token}}</span>
-									</div>
+
+
 									<div class="invoice-content">
 										<div class="row">
 											<div class="col-lg-6 col-sm-6">
@@ -107,15 +107,31 @@
 													</div>
 												</div>
 											</div>
+
 											<div class="col-lg-7"></div>
 											<div class="col-lg-5">
 												<div class="select-status">
-													<label for="status">Status*</label>
+													<label >Contact:</label>
 													<div class="status-active">
-														{{order.status_human}}
+														{{order.contact_name}}-{{order.contact_phone}}
 													</div>
 												</div>
+												<div class="select-status">
+													<label >Delivery:</label>
+													<div class="status-active">
+														 {{order.shipping_method.title}}-{{order.shipping_method.price}}$
+													</div>
+												</div>
+												<div class="select-status">
+													<label >Payment:</label>
+													<div class="status-active">
+														 {{order.payment_method}}
+													</div>
+												</div>
+
 											</div>
+
+
 										</div>
 									</div>
 								</div>

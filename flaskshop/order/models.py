@@ -302,6 +302,10 @@ class Order(Model):
         db.session.commit()
         return order, "success"
 
+    @property
+    def shipping_method(self):
+        return ShippingMethod.get_by_id(self.shipping_method_id)
+
     def get_absolute_url(self):
         return url_for("order.show", token=self.token)
 

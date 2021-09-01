@@ -6,26 +6,18 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 
+		<form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('dashboard.search_Orders') }}"   enctype="multipart/form-data">
 
 						<div class="row justify-content-between">
-							<form>
 							<table>
 								<row>
-									<td>
-										<select class="form-control" name="status" id="status">
-										<option value="" disabled selected hidden>Status</option>
-										{% for stat in order_stats_kinds%}
-										<option value="{{stat.value}}">{{stat.name}}</option>
-										{% endfor %}
-                                	</select>
 
-									</td>
 									<td>
-										 <input type="text" name="order_number" class="float-right form-control"
-                                        placeholder="Order #">
+										 <input type="text" id="search_order" name="search_order" class="float-right form-control"  placeholder="Search">
 									</td>
 
 									<td>
+										 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 										<button class="status-btn hover-btn" type="submit">Search Order</button>
 									</td>
 								</row>
