@@ -8,7 +8,7 @@ from flaskshop.dashboard.forms import OrderStatusForm
 
 def search_Orders():
     query = Order.query.order_by(Order.id.desc())
-
+    search_word= request.form["search_order"]
 
     return redirect(url_for("public.home"))
 

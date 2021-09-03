@@ -11,7 +11,7 @@ MC_KEY_PAGE_ID = "public:page:{}"
 
 
 class MenuItem(Model):
-    __tablename__ = "public_menuitem"
+    __tablename__ = "menuitem"
     title = Column(db.String(255), nullable=False)
     order = Column(db.Integer(), default=0)
     url_ = Column("url", db.String(255))

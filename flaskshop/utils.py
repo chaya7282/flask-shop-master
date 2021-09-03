@@ -60,28 +60,18 @@ def jinja_global_varibles(app):
 
     @app.context_processor
     def inject_menus():
-        create_menus()
-        top_menu = (
-            MenuItem.query.filter(MenuItem.position == 1)
-            .filter(MenuItem.parent_id == 0)
-            .order_by(MenuItem.order)
-            .all()
-        )
-        bottom_menu = (
-            MenuItem.query.filter(MenuItem.position == 2)
-            .filter(MenuItem.parent_id == 0)
-            .order_by(MenuItem.order)
-            .all()
-        )
-        return dict(top_menu=top_menu, bottom_menu=bottom_menu)
+
+        return dict(top_menu=None, bottom_menu=None)
 
     @app.context_processor
     def inject_site_setting():
         settings = {}
         for key, value in SiteDefaultSettings.items():
+
             obj = Setting.query.filter_by(key=key).first()
             if not obj:
                 obj = Setting.create(key=key, **value)
+
             settings[key] = obj
         return dict(settings=settings)
 

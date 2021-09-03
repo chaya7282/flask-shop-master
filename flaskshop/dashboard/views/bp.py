@@ -217,7 +217,7 @@ def flaskshop_load_blueprints(app):
         "/products/variant/<id>/edit", view_func=variant_manage, methods=["GET", "POST"]
     )
     bp.add_url_rule("/orders", view_func=orders )
-    bp.add_url_rule("/search_Orders", view_func=search_Orders,methods=["GET", "POST"] )
+    bp.add_url_rule("/search_Orders", view_func=search_Orders,methods=[ "POST"] )
     bp.add_url_rule("/orders/<id>/detail", view_func=order_detail)
     bp.add_url_rule("/orders/<id>/edit", view_func=order_edit, methods=["GET", "POST"] )
     bp.add_url_rule("/orders/<id>/send", view_func=send_order)

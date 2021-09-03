@@ -298,7 +298,6 @@ class Category(Model):
     def background_img_url(self):
 
         urt= url_for("static", filename="uploads/"+self.get_background_img())
-        print(urt)
         return urt
     def get_background_img(self):
         if self.background_img:

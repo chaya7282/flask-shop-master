@@ -661,9 +661,7 @@ def create_fake_order(discounts):
             "shipping_method_name": shipping_method.title,
             "shipping_method_id": shipping_method.id,
             "shipping_price_net": shipping_method.price,
-            "payment_method":"Cash",
-            "contact_name":"Rami",
-            "contact_phone": "0524x534533",
+
         }
     )
 

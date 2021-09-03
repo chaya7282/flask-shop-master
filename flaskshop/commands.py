@@ -150,7 +150,6 @@ def urls(url, order):
 def createdb():
     """ create database tables
     """
-    db.create_all()
 
 def destroydb():
     """ destory database tables

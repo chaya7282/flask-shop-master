@@ -2,7 +2,7 @@
 """Public section, including homepage and signup."""
 from flask import Blueprint, render_template, request, send_from_directory
 from sqlalchemy.sql import or_
-
+import os
 from pluggy import HookimplMarker
 from flaskshop import settings
 
@@ -24,6 +24,7 @@ def load_user(user_id):
 def home():
     products= Product.query.all()
     categories= Category.query.all()
+
     return render_template("public/shopHomePage.html", products= products,categories=categories )
 
 

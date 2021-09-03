@@ -53,6 +53,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="owl-carousel cate-slider owl-theme">
+							{% if top_menu %}
 							 {% for item in top_menu %}
 							<div class="item">
 
@@ -64,6 +65,7 @@
 								</a>
 							</div>
 						    {% endfor %}
+							{% endif %}
 						</div>
 					</div>
 				</div>
