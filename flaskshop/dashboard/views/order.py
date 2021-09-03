@@ -8,12 +8,9 @@ from flaskshop.dashboard.forms import OrderStatusForm
 
 def search_Orders():
     query = Order.query.order_by(Order.id.desc())
-    if request.method == "POST":
 
-        search_key = request.form["search_order"]
-        if search_key:
-            query = query.filter(or_(Order.contact_name == search_key, Order.contact_phone==search_key, Order.status==search_key ))
-    redirect(url_for("dashboard.orders", query=query))
+
+    return redirect(url_for("public.home"))
 
 def orders(query=None):
     page = request.args.get("page", type=int, default=1)
