@@ -239,8 +239,6 @@ def seed(type):
             create_roles(),
             create_admin(),
 
-            create_shipping_methods(),
-
             create_dashboard_menus(),
         )
 
