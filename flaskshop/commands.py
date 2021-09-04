@@ -244,8 +244,6 @@ def seed(type):
             create_dashboard_menus(),
         )
 
-        create_products_by_schema(
-            placeholder_dir=place_holder, how_many=3, create_images=False)
 
 
         for msg in create_generator:
