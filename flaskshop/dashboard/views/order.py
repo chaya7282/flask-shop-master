@@ -6,34 +6,32 @@ from flaskshop.order.models import Order
 from flaskshop.constant import OrderStatusKinds
 from flaskshop.dashboard.forms import OrderStatusForm
 
-def search_Orders():
-    query = Order.query.order_by(Order.id.desc())
-    search_word= request.form["search_order"]
-
-    return redirect(url_for("public.home"))
 
 def orders(query=None):
-    page = request.args.get("page", type=int, default=1)
-    if not query:
+        page = request.args.get("page", type=int, default=1)
         query = Order.query.order_by(Order.id.desc())
-    pagination = query.paginate(page, 10)
+        if request.form:
+            search_word = request.form["search_order"]
+            if search_word:
+                query = query.filter(or_(Order.contact_name.like(f"%{search_word}%"), Order.status.like(f"%{search_word}%"),
+                                         Order.contact_phone.like(f"%{search_word}%")))
 
-
-    props = {
-        "id": "ID",
-        "identity": "Identity",
-        "status_human": "Status",
-        "total_human": "Total",
-        "user": "User",
-        "created_at": "Created At",
-    }
-    context = {
-        "items": pagination.items,
-        "props": props,
-        "pagination": pagination,
-        "order_stats_kinds": OrderStatusKinds,
-    }
-    return render_template("order/list.html", **context)
+        pagination = query.paginate(page, 10)
+        props = {
+            "id": "ID",
+            "identity": "Identity",
+            "status": "Status",
+            "total_human": "Total",
+            "user": "User",
+            "created_at": "Created At",
+        }
+        context = {
+            "items": pagination.items,
+            "props": props,
+            "pagination": pagination,
+            "order_stats_kinds": OrderStatusKinds,
+        }
+        return render_template("order/list.html", **context)
 
 def order_edit(id):
     order = Order.get_by_id(id)

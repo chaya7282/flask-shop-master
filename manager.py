@@ -24,12 +24,12 @@ def create_dashboard_menus():
     commands.create_dashboard_menus_cmd()
 
 
-@manager.command
+
 def seed(type):
     commands.seed(type)
 
 
-@manager.command
+
 def inits():
     commands.destroydb()
     commands.createdb()
@@ -41,6 +41,7 @@ def inits():
 if __name__ == "__main__":
 
     manager.run()
+
     manager.add_command('createdb', createdb())
     manager.add_command('destroydb', destroydb())
     manager.add_command('create_admin', create_admin())

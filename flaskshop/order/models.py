@@ -27,7 +27,7 @@ class Order(Model):
     discount_name = Column(db.String(100))
     voucher_id = Column(db.Integer())
     shipping_price_net = Column(db.DECIMAL(10, 2))
-    status = Column(TINYINT())
+    status =  Column(db.String(100))
     shipping_method_name = Column(db.String(100))
     shipping_method_id = Column(db.Integer())
     ship_status = Column(TINYINT())

@@ -37,19 +37,18 @@
 						<h4>Select Category</h4>
 					</div>
                     <ul class="category-by-cat">
-                        {% if top_menu %}
-						{% for item in top_menu %}
+                        {% for item in categories %}
 
                          <li>
-							<a href="{{ item.url }}" class="single-cat-item">
+							<a href="{{ item.get_absolute_url()  }}" class="single-cat-item">
 								<div class="icon">
-									<img src="{{item.background_img }}" alt="">
+									<img src="{{item.background_img_url }}" alt="">
 								</div>
 								<div class="text"> {{item.title}} </div>
 							</a>
 						</li>
                         {% endfor %}
-                        {% endif %}
+
 
                     </ul>
 					<div class="modal-footer">
@@ -78,7 +77,7 @@
         <li class="active"><a class="nav-link" href="{{url_for('public.home')}}"><span  class="glyphicon glyphicon-home">Home</span></a></li>
 
            {% if current_user.is_authenticated %}
-             {{ run_hook("flaskbb_tpl_user_nav_loggedin_before") }}
+
             <li class="nav-item"><a class="nav-link" href="{{ url_for('account.index') }}">Your Account</a></li>
 
               {% if current_user.can_edit() %}

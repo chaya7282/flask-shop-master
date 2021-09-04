@@ -310,6 +310,9 @@ class Category(Model):
         all_category_ids = [child.id for child in self.children] + [self.id]
         return Product.query.filter(Product.category_id.in_(all_category_ids)).all()
 
+    def product_number(self):
+        all_category_ids = [child.id for child in self.children] + [self.id]
+        return len(Product.query.filter(Product.category_id.in_(all_category_ids)).all())
 
 
     @property

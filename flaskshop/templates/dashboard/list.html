@@ -19,9 +19,29 @@
 													<h4>All Shop Products</h4>
 												</div>
 												<div class="card-title-2">
-													  <input type="text" id="myInput" onkeyup="searchTableColumns()" placeholder="Search Table.." title="Type in a name">
+
+
+													 	<form method = "POST"   class="product-form1 clearfix needs-validation" action="{{url_for('dashboard.{}'.format(identity))}}"   enctype="multipart/form-data">
+
+												<table>
+													<row>
+
+														<td>
+
+															 <input type="text" id="search_item" name="search_item" class="float-right form-control"  placeholder="Search">
+														</td>
+
+														<td>
+															<button class="status-btn hover-btn" type="submit">Search </button>
+															 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+														</td>
+													</row>
+														</table>
+												</form>
 
 												</div>
+
 												<div class="card-body-table">
 													<div class="table-responsive">
 														<table id="myTable" class="table ucp-table table-hover">

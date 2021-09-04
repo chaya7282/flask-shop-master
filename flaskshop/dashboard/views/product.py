@@ -11,8 +11,9 @@ import os
 import secrets
 from werkzeug import secure_filename
 from PIL import Image
-
+from sqlalchemy import and_, or_, not_
 from PIL import Image
+import re
 from flaskshop.product.models import (
     ProductAttribute,
     ProductType,
@@ -123,12 +124,19 @@ def collections_manage(id=None):
 
 def categories():
     page = request.args.get("page", type=int, default=1)
-    pagination = Category.query.paginate(page, 10)
+    query= Category.query
+    if request.form:
+        search_word = request.form["search_product"]
+        if search_word:
+            query = query.filter(or_(Category.title.like(f"%{search_word}%")))
+
+    pagination = query.paginate(page, 10)
+
     props = {
         "id": "ID",
         "title": "Title",
         "is_active":"is_active",
-        "description": "description",
+        "product_number": "product_number",
         "created_at": "Created At",
     }
     context = {
@@ -235,24 +243,13 @@ def product_types_manage(id=None):
 def products():
     page = request.args.get("page", type=int, default=1)
     query = Product.query
+    if request.form:
+        search_word = request.form["search_product"]
+        if search_word:
+            query = query.filter(or_(Product.title.like(f"%{search_word}%") ))
 
-    on_sale = request.args.get("sale", type=int)
-    if on_sale is not None:
-        query = query.filter_by(on_sale=on_sale)
-    category = request.args.get("category", type=int)
-    if category:
-        query = query.filter_by(category_id=category)
-    title = request.args.get("title", type=str)
-    if title:
-        query = query.filter(Product.title.like(f"%{title}%"))
-    created_at = request.args.get("created_at", type=str)
-    if created_at:
-        start_date, end_date = created_at.split("-")
-        start_date = datetime.strptime(start_date.strip(), "%m/%d/%Y")
-        end_date = datetime.strptime(end_date.strip(), "%m/%d/%Y")
-        query = query.filter(Product.created_at.between(start_date, end_date))
 
-    pagination = query.paginate(page, 2)
+    pagination = query.paginate(page,10)
     props = {
         "id": "ID",
         "title": "title",

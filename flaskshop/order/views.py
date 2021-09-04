@@ -124,4 +124,6 @@ def flaskshop_load_blueprints(app):
 
     bp.add_url_rule("/cancel/<string:token>", view_func=cancel_order)
     bp.add_url_rule("/receive/<string:token>", view_func=receive)
+
+
     app.register_blueprint(bp, url_prefix="/orders")
