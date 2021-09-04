@@ -2,10 +2,21 @@
 """Application configuration."""
 import os
 from pathlib import Path
-
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
+# This is a sample Python script.
+import psycopg2
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+import flask_sqlalchemy
+import sqlalchemy.dialects.postgresql
+from sqlalchemy.dialects import postgresql
 
 class LocalConfig:
-    db_uri = "mysql+pymysql://root:chaya@127.0.0.1:3306/chayadb2?charset=utf8mb4"
+    db_uri = "mysql://root:chaya@localhost:3306/chaya?charset=utf8mb4"
 
     redis_uri = "redis://localhost:6379"
     esearch_uri = "localhost"
@@ -31,7 +42,7 @@ class Config:
 
     # SQLALCHEMY"
     SQLALCHEMY_DATABASE_URI ="mysql://t165ie12h8gw65tx:jty23hwy76q7y275@ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hxg4ezjfrkkztwyc"
-#    SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
+ #   SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
     JSONIFY_PRETTYPRINT_REGULAR = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
