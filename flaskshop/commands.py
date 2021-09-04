@@ -234,15 +234,9 @@ def seed(type):
     elif type == "product":
 
         place_holder = Path("placeholders"),
-        create_generator = chain(
-
-            create_roles(),
-            create_admin(),
-
-            create_dashboard_menus(),
-        )
-
-
+        create_roles()
+        create_admin()
+        create_dashboard_menus()
 
         for msg in create_generator:
             click.echo(msg)
