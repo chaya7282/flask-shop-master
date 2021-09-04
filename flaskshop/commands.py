@@ -238,9 +238,9 @@ def seed(type):
 
             create_roles(),
             create_admin(),
-            create_users(),
+
             create_shipping_methods(),
-            create_orders(),
+
             create_dashboard_menus(),
         )
 
