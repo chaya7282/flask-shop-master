@@ -310,10 +310,11 @@ class Category(Model):
         all_category_ids = [child.id for child in self.children] + [self.id]
         return Product.query.filter(Product.category_id.in_(all_category_ids)).all()
 
+    @property
     def product_number(self):
         all_category_ids = [child.id for child in self.children] + [self.id]
-        return len(Product.query.filter(Product.category_id.in_(all_category_ids)).all())
-
+        category_products= Product.query.filter(Product.category_id.in_(all_category_ids))
+        return category_products.count()
 
     @property
     @cache(MC_KEY_CATEGORY_CHILDREN.format("{self.id}"))

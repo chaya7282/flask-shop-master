@@ -136,7 +136,7 @@ def categories():
         "id": "ID",
         "title": "Title",
         "is_active":"is_active",
-        "product_number": "product_number",
+        "product_number": "product-#",
         "created_at": "Created At",
     }
     context = {
