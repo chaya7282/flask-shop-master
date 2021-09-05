@@ -22,6 +22,9 @@ def create_admin():
 @manager.command
 def create_dashboard_menus():
     commands.create_dashboard_menus_cmd()
+@manager.command
+def create_shipping_methods():
+    commands.create_shipping_methods_cmd()
 
 
 
@@ -46,5 +49,9 @@ if __name__ == "__main__":
     manager.add_command('destroydb', destroydb())
     manager.add_command('create_admin', create_admin())
     manager.add_command('create_dashboard_menus', create_dashboard_menus())
+    manager.add_command('create_shipping_methods', create_dashboard_menus())
+
+
+
     manager.add_command('seed', seed())
     manager.add_command('inits', inits())

@@ -185,7 +185,13 @@ def create_products_by_schema_cmd():
     for msg in create_generator:
         click.echo(msg)
 
+def create_shipping_methods_cmd():
+    create_generator = chain(
 
+        create_shipping_methods(),
+    )
+    for msg in create_generator:
+        click.echo(msg)
 
 
 
