@@ -45,7 +45,7 @@ class User(Model, UserMixin):
 
     @property
     def addresses(self):
-        return UserAddress.query.filter_by(user_id=self.id)
+        return UserAddress.query.filter_by(user_id=self.id).all()
 
     @property
     def is_active_human(self):
