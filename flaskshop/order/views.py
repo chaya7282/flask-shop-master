@@ -29,9 +29,8 @@ def index():
 @login_required
 def show(token):
     order = Order.query.filter_by(token=token).first()
-    if not order.is_self_order:
-        abort(403, "This is not your order!")
-    return render_template("orders/details.html", order=order)
+
+    return render_template("order/order_view.html", order = order)
 
 
 def create_payment(token, payment_method):
