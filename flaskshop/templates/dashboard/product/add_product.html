@@ -33,10 +33,10 @@
 
                                             {{macros.render_select_field(form.category_id,categories)}}
                                             <div class="form-group">
-                                              {{ form.images.data }}
+
                                               <div class="add-cate-img-1">
-												  {% if form.images.data %}
-                                                      <img src="{{ url_for('static', filename=form.images.data) }}" alt="">
+												  {% if form.current_img.data %}
+                                                      <img src="{{ url_for('static', filename=form.current_img.data) }}" alt="">
                                               		{% endif %}
 											  </div>
                                                  {{ macros.render_file_field(form.images, form.images.data) }}
