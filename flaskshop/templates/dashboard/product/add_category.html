@@ -27,10 +27,10 @@
 											{{macros.render_input_field(form.title,"text")}}
 											{{macros.render_boolean_field(form.is_active)}}
 											<div class="form-group">
-                                            {{ form.background_img.data }}
+
                                               <div class="add-cate-img-1">
-												  {% if  form.background_img.data %}
-                                                      <img src="{{ url_for('static', filename= 'uploads/'+ form.background_img.data) }}" alt="">
+												  {% if  form.current_img.data %}
+                                                      <img src="{{ url_for('static', filename= form.current_img.data) }}" alt="">
 												  {% endif %}
                                               </div>
                                                 {{ macros.render_file_field(form.background_img, form.background_img.data) }}

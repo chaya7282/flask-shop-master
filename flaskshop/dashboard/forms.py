@@ -121,7 +121,7 @@ class CategoryForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
     is_active = BooleanField("Is-Active", default=False)
     parent_id = SelectField("Parent", default=0)
-
+    current_img = FileField()
     background_img = FileField()
     description = TextAreaField("Description")
     submit = SubmitField()
