@@ -369,7 +369,7 @@ def product_manage(id= None):
     if id:
         product= Product.get_by_id(id)
         form = ProductForm(obj=product)
-        form.images.data='uploads/'+ product.first_img;
+        form.current_img.data='uploads/'+ product.first_img;
 
     else:
         form = ProductForm()
@@ -383,6 +383,7 @@ def product_manage(id= None):
         image= form.images.data
         product = _save_product(product, form)
         if image:
+
             filename= load_image(image)
             ProductImage.del_product_imgs(product.id)
             ProductImage.get_or_create(image=filename , product_id=product.id)
