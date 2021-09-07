@@ -28,7 +28,7 @@
     <label  class="form-label"  for="{{label_id}}">{{ field.label.text }}</label>
     <div class="card card-editor">
         <div class="content-editor">
-            <textarea class="text-control" id="{{ label_id }}" name="{{label_id}} placeholder="Enter Description"></textarea>
+            <textarea class="text-control" id="{{ label_id }}" name="{{label_id}}" placeholder="Enter Description"></textarea>
         </div>
     </div>
 </div>
@@ -48,9 +48,7 @@
         <option value="0">None</option>
         {% endif %}
         {% for item in items %}
-
-
-        <option value= {{item.id}}  >
+        <option value= {{item.id}} >
           {{item.title}}
         </option>
         {% endfor %}
@@ -81,12 +79,14 @@
 {% macro render_select_field(field, items, has_zero=true) %}
 {% set label_id = field.label.field_id %}
 <div class="form-group">
-    <label>{{ field.label.text }}</label>
+
+    {{ field.label.text  }}
+    <label>{{ field.data.text }}</label>
 
        <select class="form-control select2" style="width: 100%;" name="{{ label_id }}">
-
+        {% set selection = field.data | int %}
          {% for item in items %}
-          <option {% if item.id == field.data %} selected {% endif %}  value={{item.id}}>{{ item.title }}</option>
+          <option {% if  item.id == selection %} selected {% endif %}  value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
          </select>
 

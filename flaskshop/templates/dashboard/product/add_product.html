@@ -30,14 +30,17 @@
 
 											{{macros.render_input_field(form.basic_price,"text")}}
 											{{macros.render_input_field(form.discount_price,"text")}}
-											{{macros.render_select_field(form.category_id,categories)}}
+
+                                            {{macros.render_select_field(form.category_id,categories)}}
                                             <div class="form-group">
-                                             {{ macros.render_file_field(form.images, image_path) }}
+                                              {{ form.images.data }}
                                               <div class="add-cate-img-1">
-												  {% if image_path %}
-                                                      <img src="{{ url_for('static', filename=image_path) }}" alt="">
+												  {% if form.images.data %}
+                                                      <img src="{{ url_for('static', filename=form.images.data) }}" alt="">
                                               		{% endif %}
 											  </div>
+                                                 {{ macros.render_file_field(form.images, form.images.data) }}
+
                                             </div>
                                        <table>
 										 <tr>

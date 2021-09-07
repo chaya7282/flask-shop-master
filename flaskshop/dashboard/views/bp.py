@@ -16,6 +16,7 @@ from .user import users, user, user_edit, address_edit
 from .site import (
     shipping_methods,
     shipping_methods_manage,
+    shipping_methods_del,
     site_menus,
     site_menus_manage,
     dashboard_menus,
@@ -186,6 +187,9 @@ def flaskshop_load_blueprints(app):
         methods=["GET", "POST"],
     )
     bp.add_url_rule("/shipping_methods", view_func=shipping_methods)
+    bp.add_url_rule("/ shipping_methods_del/<id>", view_func= shipping_methods_del)
+
+
     bp.add_url_rule(
         "/shipping_methods/create",
         view_func=shipping_methods_manage,

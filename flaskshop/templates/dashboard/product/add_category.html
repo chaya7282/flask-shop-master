@@ -27,12 +27,13 @@
 											{{macros.render_input_field(form.title,"text")}}
 											{{macros.render_boolean_field(form.is_active)}}
 											<div class="form-group">
-                                             {{ macros.render_file_field(form.bgimg_file, image_path) }}
+                                            {{ form.background_img.data }}
                                               <div class="add-cate-img-1">
-												  {% if image_path %}
-                                                      <img src="{{ url_for('static', filename= 'uploads/'+ image_path) }}" alt="">
+												  {% if  form.background_img.data %}
+                                                      <img src="{{ url_for('static', filename= 'uploads/'+ form.background_img.data) }}" alt="">
 												  {% endif %}
                                               </div>
+                                                {{ macros.render_file_field(form.background_img, form.background_img.data) }}
                                             </div>
 											 {{ macros.render_text_field(form.description,type)}}
 												<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />

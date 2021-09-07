@@ -167,24 +167,22 @@ def categories_manage(id=None):
     if id:
         category = Category.get_by_id(id)
         form = CategoryForm(obj=category)
-        image_path=category.background_img
+        form.background_img.data=category.background_img
     else:
         form = CategoryForm()
     if form.validate_on_submit():
         if not id:
             category = Category()
-        image = form.bgimg_file.data
+        image = form.background_img.data
         form.populate_obj(category)
 
         if image:
             filename=load_image(image)
             category.background_img=filename
-
-
         category.save()
         return redirect(url_for("dashboard.categories"))
     parents = Category.first_level_items()
-    return render_template("product/add_category.html", form=form, image_path=image_path, parents=parents)
+    return render_template("product/add_category.html", form=form, parents=parents)
 
 def product_types():
     page = request.args.get("page", type=int, default=1)
@@ -297,6 +295,7 @@ def product_del(id):
 def product_manage_(id):
     product = Product.get_by_id(id)
     form = ProductForm(obj=product)
+
     if form.validate_on_submit():
         f = request.files['imgdata']
         if f:
@@ -370,8 +369,8 @@ def product_manage(id= None):
     if id:
         product= Product.get_by_id(id)
         form = ProductForm(obj=product)
-        if product.first_img:
-            image_path='uploads/'+ product.first_img;
+        form.images.data='uploads/'+ product.first_img;
+
     else:
         form = ProductForm()
     if form.validate_on_submit():
@@ -382,8 +381,6 @@ def product_manage(id= None):
             product.title= product_type.title
 
         image= form.images.data
-        category = Category.get_by_id(int(form.category_id.data))
-        product.category_name = category.title
         product = _save_product(product, form)
         if image:
             filename= load_image(image)
@@ -402,8 +399,7 @@ def product_manage(id= None):
     return render_template(
         "product/add_product.html",
         form=form,
-        categories=categories,
-        image_path=image_path)
+        categories=categories)
 
 
 

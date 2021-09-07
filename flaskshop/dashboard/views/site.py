@@ -33,6 +33,9 @@ def shipping_methods():
     }
     return render_template("list.html", **context)
 
+def shipping_methods_del(id=None):
+   return redirect(url_for("dashboard.shipping_methods"))
+
 
 def shipping_methods_manage(id=None):
     if id:
