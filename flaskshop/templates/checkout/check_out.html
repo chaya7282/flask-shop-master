@@ -9,6 +9,8 @@
                 <span class="text-muted">Your cart</span>
                 <span class="badge badge-secondary badge-pill">{{current_user_cart.quantity}}</span>
             </h4>
+
+
             <ul class="list-group mb-3 sticky-top">
             {% for line in current_user_cart.lines %}
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -68,7 +70,7 @@
 
 
                {% with method=current_user_cart.shipping_method %}
-                {% if method.address_needed %}
+
                 <div class="mb-3">
 
                       {{ vendor.render_field(form.address) }}
@@ -96,7 +98,7 @@
           </div>
                 <hr class="mb-4">
 
-                {% endif %}
+
                 {% endwith %}
      <div class="row">
                <hr class="mb-4">

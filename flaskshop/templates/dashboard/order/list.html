@@ -61,9 +61,12 @@
 																	class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
 															</td>
 
-															<td>
+
+                                                            <td>
+																{% if item.status_human== 'canceled' %}
 																<a href="{{url_for('dashboard.order_del', id=item.id)}}"><i class="fas fa-trash"></i></a>
-															</td>
+															    {% endif %}
+                                                            </td>
 														</tr>
 													{% endfor %}
 

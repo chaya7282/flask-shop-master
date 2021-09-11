@@ -56,6 +56,7 @@ class OrderStatusForm(FlaskForm):
     status= SelectField("Status")
 
 
+
 class SiteMenuForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
     order = IntegerField(default=0)

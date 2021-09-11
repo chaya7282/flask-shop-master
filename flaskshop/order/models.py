@@ -129,178 +129,6 @@ class Order(Model):
         db.session.commit()
         return order, "success"
 
-    def create_whole_order__(cls, cart, note=None):
-        # Step1, certify stock, voucher
-        to_update_variants = []
-        to_update_orderlines = []
-        total_net = 0
-        for line in cart.lines:
-            variant = ProductVariant.get_by_id(line.variant.id)
-            result, msg = variant.check_enough_stock(line.quantity)
-            if result is False:
-                return result, msg
-            variant.quantity_allocated += line.quantity
-            to_update_variants.append(variant)
-            orderline = OrderLine(
-                variant_id=variant.id,
-                quantity=line.quantity,
-                product_name=variant.display_product(),
-                product_sku=variant.sku,
-                product_id=variant.sku.split("-")[0],
-                unit_price_net=variant.price,
-                is_shipping_required=variant.is_shipping_required,
-            )
-            to_update_orderlines.append(orderline)
-            total_net += orderline.get_total()
-
-        voucher = None
-        if cart.voucher_code:
-            voucher = Voucher.get_by_code(cart.voucher_code)
-            try:
-                voucher.check_available(cart)
-            except Exception as e:
-                return False, str(e)
-
-        # Step2, create Order obj
-        try:
-            shipping_method_id = None
-            shipping_method_title = None
-            shipping_method_price = 0
-            shipping_address = None
-
-            if cart.shipping_method_id:
-                shipping_method = ShippingMethod.get_by_id(cart.shipping_method_id)
-                shipping_method_id = shipping_method.id
-                shipping_method_title = shipping_method.title
-                shipping_method_price = shipping_method.price
-                shipping_address_id = UserAddress.get_by_id(
-                    cart.shipping_address_id
-                ).full_address
-
-            order = cls.create(
-                user_id=current_user.id,
-                token=str(uuid4()),
-                shipping_method_id=shipping_method_id,
-                shipping_method_name=shipping_method_title,
-                shipping_price_net=shipping_method_price,
-                shipping_address=shipping_address,
-                status=OrderStatusKinds.unfulfilled.value,
-                total_net=total_net,
-            )
-        except Exception as e:
-            return False, str(e)
-
-        # Step3, process others
-        if note:
-            order_note = OrderNote(
-                order_id=order.id, user_id=current_user.id, content=note
-            )
-            db.session.add(order_note)
-        if voucher:
-            order.voucher_id = voucher.id
-            order.discount_amount = voucher.get_vouchered_price(cart)
-            order.discount_name = voucher.title
-            voucher.used += 1
-            db.session.add(order)
-            db.session.add(voucher)
-        for variant in to_update_variants:
-            db.session.add(variant)
-        for orderline in to_update_orderlines:
-            orderline.order_id = order.id
-            db.session.add(orderline)
-        for line in cart.lines:
-            db.session.delete(line)
-        db.session.delete(cart)
-
-        db.session.commit()
-        return order, "success"
-
-    @classmethod
-    def create_whole_order_(cls, cart, note=None):
-        # Step1, certify stock, voucher
-        to_update_variants = []
-        to_update_orderlines = []
-        total_net = 0
-        for line in cart.lines:
-            variant = ProductVariant.get_by_id(line.variant.id)
-            result, msg = variant.check_enough_stock(line.quantity)
-            if result is False:
-                return result, msg
-            variant.quantity_allocated += line.quantity
-            to_update_variants.append(variant)
-            orderline = OrderLine(
-                variant_id=variant.id,
-                quantity=line.quantity,
-                product_name=variant.display_product(),
-                product_sku=variant.sku,
-                product_id=variant.sku.split("-")[0],
-                unit_price_net=variant.price,
-                is_shipping_required=variant.is_shipping_required,
-            )
-            to_update_orderlines.append(orderline)
-            total_net += orderline.get_total()
-
-        voucher = None
-        if cart.voucher_code:
-            voucher = Voucher.get_by_code(cart.voucher_code)
-            try:
-                voucher.check_available(cart)
-            except Exception as e:
-                return False, str(e)
-
-        # Step2, create Order obj
-        try:
-            shipping_method_id = None
-            shipping_method_title = None
-            shipping_method_price = 0
-            shipping_address = None
-
-            if cart.shipping_method_id:
-                shipping_method = ShippingMethod.get_by_id(cart.shipping_method_id)
-                shipping_method_id = shipping_method.id
-                shipping_method_title = shipping_method.title
-                shipping_method_price = shipping_method.price
-                shipping_address = UserAddress.get_by_id(
-                    cart.shipping_address_id
-                ).full_address
-
-            order = cls.create(
-                user_id=current_user.id,
-                token=str(uuid4()),
-                shipping_method_id=shipping_method_id,
-                shipping_method_name=shipping_method_title,
-                shipping_price_net=shipping_method_price,
-                shipping_address=shipping_address,
-                status=OrderStatusKinds.unfulfilled.value,
-                total_net=total_net,
-            )
-        except Exception as e:
-            return False, str(e)
-
-        # Step3, process others
-        if note:
-            order_note = OrderNote(
-                order_id=order.id, user_id=current_user.id, content=note
-            )
-            db.session.add(order_note)
-        if voucher:
-            order.voucher_id = voucher.id
-            order.discount_amount = voucher.get_vouchered_price(cart)
-            order.discount_name = voucher.title
-            voucher.used += 1
-            db.session.add(order)
-            db.session.add(voucher)
-        for variant in to_update_variants:
-            db.session.add(variant)
-        for orderline in to_update_orderlines:
-            orderline.order_id = order.id
-            db.session.add(orderline)
-        for line in cart.lines:
-            db.session.delete(line)
-        db.session.delete(cart)
-
-        db.session.commit()
-        return order, "success"
 
     @property
     def shipping_method(self):
@@ -320,6 +148,12 @@ class Order(Model):
     @property
     def status_human(self):
         return OrderStatusKinds(int(self.status)).name
+
+    def next_status(self):
+        if  OrderStatusKinds(int(self.status)).name =="draft":
+            return OrderStatusKinds(min(int(self.status)+2,len(OrderStatusKinds)))
+
+        return OrderStatusKinds(min(int(self.status)+1,len(OrderStatusKinds)))
 
     @property
     def total_human(self):
@@ -433,6 +267,7 @@ class Order(Model):
     def get_shipment_address(self):
         shipment_address= UserAddress.get_by_id(self.shipping_address_id)
         return shipment_address
+
 
 class OrderLine(Model):
     __tablename__ = "order_line"

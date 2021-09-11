@@ -5,7 +5,7 @@ PaymentStatusKinds = enum.Enum(
     value="PaymentStatus", names="waiting preauth confirmed rejected"
 )
 OrderStatusKinds = enum.Enum(
-    value="OrderStatus", names="draft unfulfilled fulfilled canceled completed shipped"
+    value="OrderStatus", names="canceled  unfulfilled fulfilled completed shipped"
 )
 OrderEvents = enum.Enum(
     value="OrderEvents",
@@ -19,6 +19,31 @@ VoucherTypeKinds = enum.Enum(
 SettingValueType = enum.Enum(
     value="SettingValueType", names="string integer float boolean select selectmultiple"
 )
+orderProcessing= {
+    OrderStatusKinds.canceled.value: {
+        "next": OrderStatusKinds.fulfilled.value,
+        "prev": None,
+    },
+
+     OrderStatusKinds.unfulfilled.value: {
+            "next": OrderStatusKinds.fulfilled.value,
+            "prev":  OrderStatusKinds.canceled.value,
+         },
+
+    OrderStatusKinds.fulfilled.value: {
+        "next": OrderStatusKinds.completed.value,
+        "prev": None,
+    },
+    OrderStatusKinds.completed.value: {
+        "next": OrderStatusKinds.shipped.value,
+        "prev":OrderStatusKinds.fulfilled.value,
+    },
+    OrderStatusKinds.shipped.value: {
+        "next": None,
+        "prev": OrderStatusKinds.completed.value,
+    },
+}
+
 
 
 

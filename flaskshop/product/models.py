@@ -65,7 +65,7 @@ class Product(Model):
 
     @property
     def is_in_stock(self):
-        return any(variant.is_in_stock for variant in self)
+        return any(variant.is_in_stock for variant in self.variant)
 
     @property
     def category(self):

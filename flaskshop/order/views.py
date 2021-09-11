@@ -85,7 +85,7 @@ def ali_notify():
 def test_pay(token):
     payment = create_payment(token, "testpay")
     payment.pay_success(paid_at=datetime.now())
-    return redirect(url_for("order.payment_success"))
+    redirect(url_for('dashboard.orders'))
 
 
 @login_required
@@ -99,7 +99,7 @@ def cancel_order(token):
     if not order.is_self_order:
         abort(403, "This is not your order!")
     order.cancel()
-    return render_template("orders/details.html", order=order)
+    return redirect(url_for('dashboard.order_edit',id=order.id))
 
 @login_required
 def receive(token):
@@ -108,7 +108,7 @@ def receive(token):
         status=OrderStatusKinds.completed.value,
         ship_status=ShipStatusKinds.received.value,
     )
-    return render_template("orders/details.html", order=order)
+    return redirect(url_for('dashboard.order_edit', id=order.id))
 
 
 @impl

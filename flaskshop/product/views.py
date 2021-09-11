@@ -32,6 +32,7 @@ def product_add_to_cart(id):
 
     quantity=request.form["id_quantity"]
     Cart.add_to_currentuser_cart(int(quantity), int(variant_id))
+
     return redirect(request.referrer)
 
 

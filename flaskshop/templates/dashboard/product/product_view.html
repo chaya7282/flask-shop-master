@@ -1,98 +1,124 @@
-{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor %}
 {% extends 'dashboard/dashboard_layout.html' %}
-<head>
 
-</head>
-{% block content %}
+
+ {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 
-                    <div class="container-fluid">
-                        <h2 class="mt-30 page-title">Shops</h2>
-                        <ol class="breadcrumb mb-30">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="shops.html">Shops</a></li>
-                            <li class="breadcrumb-item active">Shop view</li>
-                        </ol>
-                        <div class="row">
-							<div class="col-lg-5 col-md-6">
-								<div class="card card-static-2 mb-30">
-									<div class="card-body-table">
-										<div class="shopowner-content-left text-center pd-20">
-											<div class="shop_img">
-												<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="loop-image">
-											</div>
-											<ul class="product-dt-purchases">
-												<li>
-													<div class="product-status">
-														Orders <span class="badge-item-2 badge-status"></span>
+
+
+  <div class="row">
+		<div class="col-lg-8 col-md-7">
+								<div class="all-cate-tags">
+									<div class="row justify-content-between">
+
+										<div class="col-lg-12 col-md-12">
+											<div class="card card-static-2 mb-30">
+												<div class="card-title-2">
+													<h4>{{ product.title }} Stocks</h4>
+												</div>
+												<div class="card-title-2">
+													 	<form method = "POST"   class="product-form1 clearfix needs-validation" action="{{ url_for('dashboard.products') }}"   enctype="multipart/form-data">
+
+												<table>
+													<row>
+
+														<td>
+
+															 <input type="text" id="search_product" name="search_product" class="float-right form-control"  placeholder="Search">
+														</td>
+
+														<td>
+															<button class="status-btn hover-btn" type="submit">Search Product</button>
+															 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+														</td>
+													</row>
+														</table>
+												</form>
+
+												</div>
+
+												<div class="card-body-table">
+													<div class="table-responsive">
+														<table id="myTable" class="table ucp-table table-hover">
+															 <tr>
+
+																<th>ID</th>
+
+                                                                <th>SKU</th>
+                                                                <th>Title</th>
+                                                                <th>Quantity</th>
+                                                                 <th>Quantity Allocated</th>
+                                                                <th>PriceOverride</th>
+                                                                <th>Operation</th>
+
+                                                             </tr>
+
+													   <tbody id="myTableBody">
+
+																		{% for item in product.variant %}
+                                                                        <tr>
+                                                                            <td>{{item.id}}</td>
+                                                                            <td>{{item.sku}}</td>
+                                                                            <td>{{item.title}}</td>
+                                                                            <td>{{item.quantity}}</td>
+                                                                            <td>{{item.quantity_allocated}}</td>
+                                                                            <td>{{item.price_override}}</td>
+                                                                            <td>
+																		<a  href="{{url_for('dashboard.variant_manage', id=item.id)}}" class="edit-btn" title="Edit"><i class="fas fa-edit"></i></a>
+																	</td>
+                                                                    <td>
+																		<a data-url="variants/{{item.id}}/delete"><i class="fas fa-trash"></i></a>
+																	</td>
+
+                                                                </tr>
+															{% endfor %}
+															</tbody>
+													</table>
 													</div>
-												</li>
-												<li>
-													<div class="product-status">
-														Shop <span class="badge-item-2 badge-status"></span>
-													</div>
-												</li>
-											</ul>
-											<div class="shopowner-dts">
-												<div class="shopowner-dt-list">
-													<span class="left-dt">Price</span>
-													<span class="right-dt">{{product.price}}</span>
-												</div>
-													<div class="shopowner-dt-list">
-													<span class="left-dt">Discount Price</span>
-													<span class="right-dt">{{product.discount_price}}</span>
-												</div>
-
-
-												<div class="shopowner-dt-list">
-													<span class="left-dt">Status</span>
-													{% if product.is_active %}
-														<span class="right-dt">Active</span>
-													{% else %}
-														<span class="right-dt">Inactive</span>
-													{% endif %}
 
 												</div>
-												<div class="shopowner-dt-list">
-													<span class="left-dt">Category</span>
-													<span class="right-dt">{{product.category_name}}</span>
-												</div>
-												<div class="shopowner-dt-list">
-													  <table class="table table-hover">
-                            <tr>
-                                <th>ID</th>
-                                <th>SKU</th>
-                                <th>Title</th>
-                                <th>Quantity</th>
-                                <th>PriceOverride</th>
-                                <th>Operation</th>
-                            </tr>
-                            {% for item in product.variant %}
-                            <tr>
-                                <td>{{item.id}}</td>
-                                <td>{{item.sku}}</td>
-                                <td>{{item.title}}</td>
-                                <td>{{item.quantity}}</td>
-                                <td>{{item.price_override}}</td>
-                                <td>
-                                    <a href="{{url_for('dashboard.variant_manage', id=item.id)}}"
-                                        class="btn btn-primary btn-sm">Edit</a>
-                                    <a data-url="variants/{{item.id}}/delete"
-                                        class="btn btn-danger btn-sm delete-btn">Delete</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>		</div>
-
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-                        </div>
-                    </div>
+  </div>
 
 
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+function searchTableColumns() {
+      // Declare variables
+      var input, filter, table, tr, i, j, column_length, count_td;
+      column_length = document.getElementById('myTable').rows[0].cells.length;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 1; i < tr.length; i++) { // except first(heading) row
+        count_td = 0;
+        for(j = 1; j < column_length-1; j++){ // except first column
+            td = tr[i].getElementsByTagName("td")[j];
+            /* ADD columns here that you want you to filter to be used on */
+            if (td) {
+              if ( td.innerHTML.toUpperCase().indexOf(filter) > -1)  {
+                count_td++;
+              }
+            }
+        }
+        if(count_td > 0){
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+      }
+
+    }
+</script>
 
 {% endblock %}
-

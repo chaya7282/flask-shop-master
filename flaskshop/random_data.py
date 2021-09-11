@@ -652,7 +652,7 @@ def create_fake_order(discounts):
     order_data = {
         "user_id": user.id,
         "shipping_address": address.full_address,
-        "status": OrderStatusKinds(status).name,
+        "status": status,
         "token": str(uuid4()),
         "contact_name" : "Rami",
         "contact_phone" : "0524-534-533",

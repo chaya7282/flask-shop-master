@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import request, render_template, redirect,url_for
 from sqlalchemy import and_, or_, not_
 from flaskshop.order.models import Order
-from flaskshop.constant import OrderStatusKinds
+from flaskshop.constant import OrderStatusKinds, orderProcessing
 from flaskshop.dashboard.forms import OrderStatusForm
 
 
@@ -20,7 +20,7 @@ def orders(query=None):
         props = {
             "id": "ID",
             "identity": "Identity",
-            "status": "Status",
+            "status_human": "Status",
             "total_human": "Total",
             "user": "User",
             "created_at": "Created At",
@@ -35,18 +35,22 @@ def orders(query=None):
 
 def order_edit(id):
     order = Order.get_by_id(id)
-    form = OrderStatusForm()
-    if form.validate_on_submit():
-        status = form.status.data
-        if status == OrderStatusKinds.canceled.value:
-            order.cancel()
-        elif  status == OrderStatusKinds.completed.value:
-             order.complete()
-        elif  status == OrderStatusKinds.shipped.value:
-            order.delivered()
-        return redirect(url_for('dashboard.orders'))
 
-    return render_template("order/order_edit.html",form=form, order=order,order_stats_kinds=OrderStatusKinds )
+    form = OrderStatusForm()
+
+    if form.validate_on_submit():
+
+        status=request.form['status']
+
+        if status == 'canceled':
+            return redirect(url_for('order.cancel_order', token=order.token))
+        elif status == 'fulfilled':
+            order.pay_success(order.payment)
+        elif  status =='completed':
+             return redirect(url_for('order.receive',token=order.token))
+        elif  status == 'shipped':
+            order.delivered()
+    return render_template("order/order_edit.html",form=form, order=order,orderProcessing=orderProcessing, OrderStatusKinds=OrderStatusKinds)
 
 
 def order_detail(id):

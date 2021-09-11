@@ -96,8 +96,7 @@ def shipment_details():
 
         else:
             flash(msg, "warning")
-            return redirect(url_for(""))
-
+            return render_template("errors/out_of_stock.html")
 
     return render_template(
         "checkout/check_out.html", form=form

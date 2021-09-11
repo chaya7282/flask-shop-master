@@ -17,7 +17,11 @@
                 </div>
             </a>
             <div class="product-text-dt">
-                <p>Available<span>(In Stock)</span></p>
+                {%  if product.is_in_stock %}
+                    <p>Available<span>(In Stock)</span></p>
+                {%  else %}
+                     <p>Not Available<span>(Not in Stock)</span></p>
+                {% endif %}
                 <h4>{{product.title}}</h4>
                 {% if product.on_sale %}
                 <div class="product-price">{{product.price}} <span>{{discount_price}}</span></div>
@@ -34,7 +38,9 @@
                         </div>
                         <span class="cart-icon">
                           <div class="card-link">
-                            <button type="submit" class="btn btn-default btn-xs pull-right" type="button"><i class="fa fa-cart-arrow-down"></i> </button>
+                             {%  if product.is_in_stock %}
+                                 <button type="submit" class="btn btn-default btn-xs pull-right" type="button"><i class="fa fa-cart-arrow-down"></i> </button>
+                            {%  endif %}
                           </div>
                         </span>
                     </div>

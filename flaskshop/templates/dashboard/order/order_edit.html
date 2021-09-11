@@ -107,31 +107,43 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-lg-7"></div>
-
+                                            <div class="col-lg-7"></div>
 											<div class="col-lg-5">
-												<div class="select-status">
-													<h4>Change Status</h4>
-											  <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('dashboard.order_edit',id=order.id) }}"  enctype="multipart/form-data">
+												  <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('dashboard.order_edit',id=order.id) }}"  enctype="multipart/form-data">
 
-												<select class="form-control" name="status" id="status">
-												<option value="" disabled selected hidden>{{order.status_human}}</option>
-												{% for stat in order_stats_kinds%}
-												<option value="{{stat.value}}">Current: {{stat.name}}</option>
-												{% endfor %}
-												</select>
-												<div class="input-group-append">
-													  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                                                <div class="select-status">
+													<label for="status">Status*</label>
+													<div class="input-group">
+														<select id="status" name="status" class="custom-select">
+															{% set status = order.status | int %}
+                                                           {%  for process in orderProcessing %}
+                                                            {% if  process == status%}
+                                                             <option id ={{process  }}  selected> {{OrderStatusKinds(process).name }}</option>
+                                                            {% elif process == orderProcessing[status]['next'] or process == orderProcessing[status]['prev']%}
+                                                             <option id ={{process  }} > {{OrderStatusKinds(process).name }}</option>
+                                                            {% else %}
+                                                                <option id ={{process  }} disabled> {{OrderStatusKinds(process).name }}</option>
+                                                            {% endif %}
+                                                            {% endfor %}
+														</select>
+														<div class="input-group-append">
+															<button class="status-btn hover-btn" type="submit">Submit</button>
+														</div>
+													</div>
+												</div>
+                                                   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
-													<button class="status-btn hover-btn" type="submit">Submit</button>
-												</div>
-											  </form>
-												</div>
+                                                  </form>
 											</div>
+
+
+												</div>
+									</div>
+
 										</div>
 									</div>
-								</div>
-							</div>
+
+
                         </div>
                     </div>
                 </main>
