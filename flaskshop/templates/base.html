@@ -73,8 +73,21 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 <div class="d-flex justify-content-end order-lg-2 order-0">
-            <i class="fa fa-shopping-cart" style='font-size:36px'></i>
-            <i class="fa fa-search" style='font-size:36px'></i>
+    {% if current_user.is_authenticated %}
+
+
+              <a  href="{{ url_for('checkout.cart_index') }}"> <i class="fa fa-shopping-cart" style='padding-left: 10px; padding-right: 10px;font-size:36px;color: white '></i>
+               {% if current_user.is_authenticated and current_user_cart.quantity %}
+                  <span >{{ current_user_cart.quantity }}</span>
+                     {% else %}
+                        <span >0</span>
+                 {% endif %}
+                 </a>
+
+          {% endif %}
+
+
+            <i class="fa fa-search" style='padding-left: 10px; padding-right: 10px;font-size:36px; color:white'></i>
         </div>
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
