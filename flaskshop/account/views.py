@@ -63,12 +63,14 @@ def signup():
 
 def set_password():
     form = ChangePasswordForm(request.form)
-    if form.validate_on_submit():
-        current_user.update(password=form.password.data)
-        flash("You have changed password.", "success")
-    else:
-        flash_errors(form)
-    return redirect(url_for("account.index"))
+    if request.method == "POST":
+        if form.validate_on_submit():
+            current_user.update(password=form.password.data)
+            flash("You have changed password.", "success")
+            return redirect(url_for("account.index") )
+        else:
+            flash("You have not changed password.", "failure")
+    return render_template("account/forgot_password.html", form=form)
 
 
 def addresses():
@@ -121,7 +123,7 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/login", view_func=login, methods=["GET", "POST"])
     bp.add_url_rule("/logout", view_func=logout)
     bp.add_url_rule("/signup", view_func=signup, methods=["GET", "POST"])
-    bp.add_url_rule("/setpwd", view_func=set_password, methods=["POST"])
+    bp.add_url_rule("/set_password", view_func=set_password, methods=["GET", "POST"])
     bp.add_url_rule("/address", view_func=addresses)
     bp.add_url_rule("/address/edit", view_func=edit_address, methods=["GET", "POST"])
     bp.add_url_rule(

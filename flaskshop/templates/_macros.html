@@ -128,10 +128,12 @@
 								<a  class="user-item active"><i class="uil uil-apps"></i>Overview</a>
 								<a href="{{ url_for('account.user_orders') }}" class="user-item"><i class="uil uil-box"></i>My Orders</a>
 								<a href="{{ url_for('account.addresses') }}" class="user-item"><i class="uil uil-gift"></i>My Addresses</a>
-								<a href="dashboard_my_wallet.html" class="user-item"><i class="uil uil-wallet"></i>My Wallet</a>
+								<a href="{{ url_for('account.set_password') }}" class="user-item"><i class="uil uil-wallet"></i>Your Password</a>
 								<a href="dashboard_my_wishlist.html" class="user-item"><i class="uil uil-heart"></i>Shopping Wishlist</a>
 								<a href="dashboard_my_addresses.html" class="user-item"><i class="uil uil-location-point"></i>My Address</a>
 								<a href="sign_in.html" class="user-item"><i class="uil uil-exit"></i>Logout</a>
+
+
 							</div>
 						</div>
 {% endmacro %}

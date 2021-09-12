@@ -2,7 +2,16 @@
 {% import '_macros.html' as macros %}
 {% block content %}
 <div class="">
-			<div class="container">
+		<div class="jumbotron">
+    <div class="text-center">
+       {% for message in get_flashed_messages() %}
+        <p>Error: {{ message }}</p>
+        {% endfor %}
+
+    </div>
+</div>
+
+    <div class="container">
 				<div class="row">
 
 					<div class="col-lg-9 col-md-8">

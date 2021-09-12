@@ -62,7 +62,7 @@ class Permission:
 
 SiteDefaultSettings = {
     "project_title": {
-        "value": "bussiness in your hands",
+        "value": "חיה-טק",
         "value_type": SettingValueType.string,
         "name": "Project title",
         "description": "The title of the project.",
