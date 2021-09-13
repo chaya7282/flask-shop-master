@@ -45,7 +45,15 @@ class User(Model, UserMixin):
 
     @property
     def addresses(self):
-        return UserAddress.query.filter_by(user_id=self.id).all()
+        adresses=  UserAddress.query.filter_by(user_id=self.id).all()
+
+    @property
+    def addresses_id(self):
+        adresses = UserAddress.query.filter_by(user_id=self.id).first()
+        if adresses:
+            return adresses.id
+        else:
+            return None
 
     @property
     def is_active_human(self):
@@ -98,6 +106,11 @@ class UserAddress(Model):
 
     def __str__(self):
         return self.full_address
+
+
+
+
+
 
 
 class Role(Model):

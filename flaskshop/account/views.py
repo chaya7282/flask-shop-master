@@ -82,12 +82,13 @@ def addresses():
 def edit_address():
     """Create and edit an address."""
     form = AddressForm(request.form)
-    address_id = request.args.get("id", None, type=int)
+    address_id = current_user.addresses_id
     if address_id:
         user_address = UserAddress.get_by_id(address_id)
         form = AddressForm(request.form, obj=user_address)
     if request.method == "POST" and form.validate_on_submit():
         address_data = {
+            "user_id":current_user.id,
             "province": form.province.data,
             "city": form.city.data,
             "district": form.district.data,

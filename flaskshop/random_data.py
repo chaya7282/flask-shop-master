@@ -536,9 +536,8 @@ def create_admin():
     user = User.create(
         username="admin", email="admin@163.com", password="admin", is_active=True
     )
-    create_fake_address(user.id)
-    create_fake_address(user.id)
-    create_fake_address(user.id)
+
+
     UserRole.create(user_id=user.id, role_id=4)
     yield f"Admin {user.username} created"
     user = User.create(username="op", email="op@163.com", password="op", is_active=True)
@@ -651,7 +650,7 @@ def create_fake_order(discounts):
     status = random.choice(list(OrderStatusKinds)).value
     order_data = {
         "user_id": user.id,
-        "shipping_address": address.full_address,
+
         "status": status,
         "token": str(uuid4()),
         "contact_name" : "Rami",
