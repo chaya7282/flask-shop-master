@@ -63,6 +63,19 @@
             </div>
         </div>
     </div>
+<div id="search_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+        <div class="modal-dialog category-area" role="document">
+            <div class="category-area-inner">
+                <div class="modal-header">
+                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="uil uil-multiply"></i>
+                    </button>
+                </div>
+                <input type="text" id="search_order" name="search_order" class="float-right form-control"  placeholder="Search">
+
+            </div>
+        </div>
+    </div>
 
 <nav class="navbar  sticky-top navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
@@ -72,7 +85,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-<div class="d-flex justify-content-end order-lg-2 order-0">
+<a class="d-flex justify-content-end order-lg-2 order-0">
     {% if current_user.is_authenticated %}
 
 
@@ -85,10 +98,10 @@
                  </a>
 
           {% endif %}
+             <a href="#search_model" data-toggle="modal" data-target="#search_model"> <i class="fa fa-search" style='padding-left: 10px; padding-right: 10px;font-size:36px; color:white'></i></a>
 
 
-            <i class="fa fa-search" style='padding-left: 10px; padding-right: 10px;font-size:36px; color:white'></i>
-        </div>
+                 </div>
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
      <ul class="nav navbar-nav">
