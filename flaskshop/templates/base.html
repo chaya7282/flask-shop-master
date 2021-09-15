@@ -143,12 +143,16 @@
 </nav>
 </row>
 <row>
-   <!-- Search form -->
-<form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-  <i class="fa fa-search" aria-hidden="true"></i>
-  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-    aria-label="Search">
-</form>
+  <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"  name="keyword" id="keyword">
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+  </form>
+
+
+
 </row>
 </div>
 
