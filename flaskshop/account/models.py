@@ -45,7 +45,8 @@ class User(Model, UserMixin):
 
     @property
     def addresses(self):
-        adresses=  UserAddress.query.filter_by(user_id=self.id).all()
+        return UserAddress.query.filter_by(user_id=self.id).first()
+
 
     @property
     def addresses_id(self):

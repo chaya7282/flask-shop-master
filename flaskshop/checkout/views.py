@@ -67,7 +67,7 @@ def shipment_details():
 
     addresses = current_user.addresses
     if addresses:
-       user_address = addresses[0]
+       user_address = addresses
        form = CheckoutForm(obj=user_address)
     else:
         form = CheckoutForm()
