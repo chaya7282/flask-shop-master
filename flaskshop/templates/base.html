@@ -63,19 +63,58 @@
             </div>
         </div>
     </div>
-<div id="search_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
-        <div class="modal-dialog category-area" role="document">
-            <div class="category-area-inner">
-                <div class="modal-header">
-                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
-						<i class="uil uil-multiply"></i>
-                    </button>
-                </div>
-                <input type="text" id="search_order" name="search_order" class="float-right form-control"  placeholder="Search">
-
-            </div>
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Your Shopping Cart
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-image">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Total</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="w-25">
+                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/vans.png" class="img-fluid img-thumbnail" alt="Sheep">
+              </td>
+              <td>Vans Sk8-Hi MTE Shoes</td>
+              <td>89$</td>
+              <td class="qty"><input type="text" class="form-control" id="input1" value="2"></td>
+              <td>178$</td>
+              <td>
+                <a href="#" class="btn btn-danger btn-sm">
+                  <i class="fa fa-times"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+          <h5>Total: <span class="price text-success">89$</span></h5>
         </div>
+      </div>
+      <div class="modal-footer border-top-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Checkout</button>
+      </div>
     </div>
+  </div>
+</div>
+
 <div class="container sticky-top">
 <row>
     <nav class="navbar  navbar-expand-md bg-dark navbar-dark">
@@ -85,6 +124,9 @@
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
+  </button>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cartModal">
+    <i class="fa fa-shopping-cart" style='padding-left: 10px; padding-right: 10px;font-size:36px;color: white '></i>
   </button>
 
     {% if current_user.is_authenticated %}
@@ -141,7 +183,9 @@
 </div>
 
 </nav>
-</row>
+
+
+ </row>
 <row>
   <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
 
