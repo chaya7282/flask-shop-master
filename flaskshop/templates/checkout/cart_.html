@@ -48,8 +48,8 @@
                 <div class="row" >
                <div class="cart__line__quantity col-md-7 col-12">
 
-                  <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
-                   <div class="form-group">
+                 <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+                    <div class="form-group">
                       <input type="number" onchange="submit()" value="{{ line.quantity }}" min="1" max="50"  name="quantity_"  id="line.id">
                    </div>
                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
