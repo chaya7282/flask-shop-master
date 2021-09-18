@@ -124,12 +124,18 @@ class AddressForm(FlaskForm):
     province = StringField("Province", validators=[DataRequired()])
     city = StringField("City", validators=[DataRequired()])
     district = StringField("District", validators=[DataRequired()])
-    address = StringField("Address", validators=[DataRequired()])
+    address = StringField("Street + Flat/House number", validators=[DataRequired()])
     contact_name = StringField("Contact name", validators=[DataRequired()])
     contact_phone = StringField(
         "Contact Phone", validators=[DataRequired(), Length(min=11, max=11)]
     )
+    email = StringField(
+        "Email-Adress", validators=[DataRequired(), Email(), Length(min=6, max=40)]
+    )
 
+    pincode= StringField(
+        "pincode", validators=[DataRequired()]
+    )
     def __init__(self, *args, **kwargs):
         """Create instance."""
         super().__init__(*args, **kwargs)

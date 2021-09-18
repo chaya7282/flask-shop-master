@@ -32,6 +32,7 @@ class CheckoutForm(FlaskForm):
     district=StringField()
     contact_name = StringField(validators=[DataRequired()])
     contact_phone = StringField(validators=[DataRequired()])
-
+    pincode = StringField()
+    email =StringField()
     submit = SubmitField()
 

@@ -1,6 +1,6 @@
 ﻿{% extends "base.html" %}
 {% block content %}
-
+  {% if current_user_cart.lines %}
 <div class="wrapper">
 
 		<div class="all-product-grid">
@@ -17,37 +17,38 @@
 
 
                         {% for line in current_user_cart.lines %}
-                            <div class="row justify-content-center">
-                           <div class="cart-item border_radius">
-                               <a data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60"  class="cart-product-img"></a>
+                          <div class="cart-item">
+					<div class="cart-product-img">
+						 <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
 
-
-				                	<div class="cart-text">
+						<div class="offer-badge"></div>
+					</div>
+					<div class="cart-text">
 						<h4>{{ line.product }}</h4>
+                         <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
 
-					      <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+						<div class="qty-group">
+							<div class="quantity buttons_added">
+								<input type="button" value="-" class="minus minus-btn">
+								 <input type="number" step="1" name="quantity_" onchange="submit()" value="{{ line.quantity }}" id="line.id" class="input-text qty text">
+                            	<input type="button" value="+" class="plus plus-btn">
+							</div>
+							  <div class="cart-item-price">  $ {{ line.subtotal }} </div>
 
-                            <div class="qty-group">
-                                <div class="quantity buttons_added">
-                            <input type="button" value="-" class="minus minus-btn">
-                            <input type="number" step="1" name="quantity_" onchange="submit()" value="{{ line.quantity }}" id="line.id" class="input-text qty text">
-                            <input type="button" value="+" class="plus plus-btn">
-                        </div>
-                           <div class="cart-item-price">  $ {{ line.subtotal }} </div>
-                            </div>
-                                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                          </form>
+						</div>
+                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
+                         </form>
 
-                            <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+                         <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
 
-						        <button  onclick="submit()" name="quantity_"  value="0" type="button" class="cart-close-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
-					             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                           </form>
-                            </div>
+						<button type="submit" class="cart-close-btn"><i class="fa fa-times"></i></button>
+                          <input type="hidden" step="1" name="quantity_" value="0" id="line.id" class="input-text qty text">
+                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                         </form>
 
-                            </div>
-                            </div>
+					</div>
+				</div>
                         {%  endfor %}
 
 							<div class="main-total-cart">
@@ -127,12 +128,8 @@
 								<span>${{ current_user_cart.subtotal }}</span>
 							</div>
 						<div class="payment-secure">
-
-                                       <a  href="{{url_for('public.home')}}" class="btn btn-success my-1" >Continue Shopping<i class="ri-arrow-left-line ml-2"></i></a>
-                                        <button type="submit" class="btn btn-info my-1"><i class="ri-arrow-right-line ml-2"></i>Proceed to Checkout</button>
-
-
-							</div>
+                            <button type="submit" class="cart-checkout-btn hover-btn"><i class="fas fa-arrow-right"></i>Proceed to Checkout</button>
+            			</div>
                     </form>
 
 					</div>
@@ -142,4 +139,14 @@
 		</div>
 	</div>
 </div>
+   {% else %}
+    <div class="cart__empty">
+        <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='img/empty-cart-bg.png') }}">
+
+        <h2>There are no products in your shopping cart.</h2>
+        <a href="{{ url_for('public.home') }}" class="btn btn-primary">Check out our sales</a>
+    </div>
+    {% endif %}
+
+
 {% endblock content %}

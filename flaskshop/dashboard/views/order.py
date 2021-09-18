@@ -5,7 +5,7 @@ from sqlalchemy import and_, or_, not_
 from flaskshop.order.models import Order
 from flaskshop.constant import OrderStatusKinds, orderProcessing
 from flaskshop.dashboard.forms import OrderStatusForm
-
+from flaskshop.account.models import UserAddress
 
 def orders(query=None):
         page = request.args.get("page", type=int, default=1)
@@ -22,7 +22,7 @@ def orders(query=None):
             "identity": "Identity",
             "status_human": "Status",
             "total_human": "Total",
-            "user": "User",
+            "contact_name": "contact",
             "created_at": "Created At",
         }
         context = {
@@ -35,7 +35,7 @@ def orders(query=None):
 
 def order_edit(id):
     order = Order.get_by_id(id)
-
+    address = UserAddress.get_by_id(order.shipping_address_id)
     form = OrderStatusForm()
 
     if form.validate_on_submit():
@@ -50,12 +50,13 @@ def order_edit(id):
              return redirect(url_for('order.receive',token=order.token))
         elif  status == 'shipped':
             order.delivered()
-    return render_template("order/order_edit.html",form=form, order=order,orderProcessing=orderProcessing, OrderStatusKinds=OrderStatusKinds)
+    return render_template("order/order_edit.html",form=form, order=order,address=address,orderProcessing=orderProcessing, OrderStatusKinds=OrderStatusKinds)
 
 
 def order_detail(id):
     order = Order.get_by_id(id)
-    return render_template("order/order_view.html", order=order)
+    address=  UserAddress.get_by_id(order.shipping_address_id)
+    return render_template("order/order_view.html", order=order,address=address)
 
 
 def send_order(id):

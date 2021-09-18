@@ -100,6 +100,9 @@ class UserAddressForm(FlaskForm):
     address = StringField()
     contact_name = StringField()
     contact_phone = StringField()
+    pincode = StringField()
+    email = StringField()
+
     submit = SubmitField()
 
 

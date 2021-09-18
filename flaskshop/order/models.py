@@ -93,6 +93,7 @@ class Order(Model):
                 contact_name=cart.contact_name,
                 payment_method=cart.payment_method,
                 contact_phone=cart.contact_phone,
+
                 shipping_method_id=shipping_method_id,
                 shipping_address_id=cart.shipping_address_id,
                 shipping_method_name=shipping_method_title,

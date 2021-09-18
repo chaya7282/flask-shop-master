@@ -97,7 +97,7 @@ def edit_address():
             "contact_phone": form.contact_phone.data,
         }
         if address_id:
-            UserAddress.update(user_address, **address_data)
+            UserAddress.update( **address_data)
             flash("Success edit address.", "success")
         else:
             UserAddress.create(**address_data)

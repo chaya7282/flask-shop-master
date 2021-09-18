@@ -28,12 +28,16 @@
 													<b>Order Date :</b> {{order.created_at}}
 												</div>
 											</div>
-											<div class="col-lg-6 col-sm-6">
+                                          <div class="col-lg-6 col-sm-6">
 												<div class="ordr-date right-text">
 
-													 {{order.shipping_address | safe}}
+                                                    {{address|safe}}<br>
+
+
 												</div>
 											</div>
+
+
 											<div class="col-lg-12">
 												<div class="card card-static-2 mb-30 mt-30">
 													<div class="card-title-2">

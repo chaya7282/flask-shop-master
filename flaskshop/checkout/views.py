@@ -67,27 +67,32 @@ def shipment_details():
 
     addresses = current_user.addresses
     if addresses:
-       user_address = addresses
-       form = CheckoutForm(obj=user_address)
+        form = AddressForm(obj=addresses)
     else:
-        form = CheckoutForm()
+        form =AddressForm()
     if request.method == "POST":
         cart = Cart.get_current_user_cart()
+
         form.populate_obj(cart)
-
-        user_address = UserAddress.create(
-            province=form.province.data,
-            city=form.city.data,
-            district=form.district.data,
-            address=form.address.data,
-            contact_name=form.contact_name.data,
-            contact_phone=form.contact_phone.data,
-            user_id=current_user.id,
-        )
-
-        if user_address :
-
-            cart.update( shipping_address_id=user_address.id,)
+        address_data = {
+        "user_id": current_user.id,
+        "province": form.province.data,
+        "city": form.city.data,
+        "district": form.district.data,
+        "address": form.address.data,
+        "contact_name": form.contact_name.data,
+        "contact_phone": form.contact_phone.data,
+        "pincode": form.pincode,
+        "email":form.email
+        }
+        if addresses:
+            form.populate_obj(addresses)
+            flash("Success edit address.", "success")
+        else:
+            UserAddress.create(**address_data)
+            flash("Success add address.", "success")
+        user_address = current_user.addresses
+        cart.update( shipping_address_id=user_address.id)
         order, msg = Order.create_whole_order(cart)
         if order:
             return render_template(
