@@ -253,7 +253,7 @@ def products():
         "title": "title",
         "basic_price": "Price",
         "is_active": "is_active",
-        "category_name":"Category"
+        "category":"Category"
     }
 
 

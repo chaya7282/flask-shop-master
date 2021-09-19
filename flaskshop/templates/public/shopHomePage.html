@@ -55,7 +55,8 @@
 						<div class="owl-carousel cate-slider owl-theme">
 
 							 {% for item in categories %}
-							<div class="item">
+                                 {% if item.is_active %}
+							        <div class="item">
 
 								<a href="{{ item.get_absolute_url()  }}" class="category-item">
 									<div class="cate-img">
@@ -64,6 +65,7 @@
 									<h4>{{item.title}}</h4>
 								</a>
 							</div>
+                                 {% endif %}
 						    {% endfor %}
 
 						</div>
