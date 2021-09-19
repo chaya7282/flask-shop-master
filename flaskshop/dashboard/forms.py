@@ -20,7 +20,7 @@ from wtforms import (
 from wtforms.validators import DataRequired, optional, NumberRange, Length
 
 from flaskshop.constant import SettingValueType
-
+from flask import flash
 
 
 class FlaskForm(_FlaskForm):
@@ -163,6 +163,20 @@ class ProductForm(FlaskForm):
     variant_attributes = SelectMultipleField()
     submit = SubmitField()
 
+    def __init__(self, *args, **kwargs):
+        """Create instance."""
+        super(ProductForm, self).__init__(*args, **kwargs)
+
+    def validate(self):
+        """Validate the form."""
+        initial_validation = super( ProductForm, self).validate()
+        if not initial_validation:
+            return False
+
+        if self.category_id.data == "None":
+            flash("Try To add categories First")
+            return False
+        return True
 
 class ProductCreateForm(FlaskForm):
     product_type_id = SelectField("בחר סוג מוצר", default=1)

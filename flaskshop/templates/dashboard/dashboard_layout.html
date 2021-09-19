@@ -46,8 +46,8 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link active" href="index.html">
-								<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <a class="nav-link active"  href="{{ url_for('dashboard.index') }}">
+								<div class="sb-nav-link-icon"><i class="fa fa-tachometer" aria-hidden="true"></i></div>
                                 Dashboard
 							</a>
 
@@ -95,7 +95,7 @@
 								<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Customers
 							</a>
-							<a class="nav-link" href="{{url_for('dashboard.sales')}}">
+							<a class="nav-link" href="">
 								<div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
                                 Sales
 							</a>
@@ -108,10 +108,19 @@
 						</div>
 					</div>
                 </nav>
+
 			</div>
-1			<div id="layoutSidenav_content">
+			<div id="layoutSidenav_content">
 				<main>
                     <div class="container-fluid">
+                     <div class="jumbotron">
+                        <div class="text-center">
+                           {% for message in get_flashed_messages() %}
+                            <p>Error: {{ message }}</p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
 					 {% block content %}
 
 					   {% endblock %}
@@ -119,6 +128,8 @@
 					</div>
 				</main>
 			</div>
+
+
 		 <script src="{{ url_for('static', filename='Admin/js/jquery-3.4.1.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='Admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='Admin/js/scripts.js') }}"></script>

@@ -20,7 +20,10 @@
 							<div class="col-xl-12 col-md-12">
 								<div class="card card-static-2 mb-30">
 
-
+                                    <div class="card-title-2">
+										<h2 class="title1458">Invoice</h2>
+										<span class="order-id">Order {{order.token}}</span>
+									</div>
 									<div class="invoice-content">
 										<div class="row">
 											<div class="col-lg-6 col-sm-6">
@@ -28,25 +31,35 @@
 													<b>Order Date :</b> {{order.created_at}}
 												</div>
 											</div>
-                                          <div class="col-lg-6 col-sm-6">
-												<div class="ordr-date right-text">
-
-                                                    {{address|safe}}<br>
-
-
+                                              <div class="row">
+											<div class="col-lg-6 col-sm-6">
+												<div class="ordr-date">
+													 <a href="{{url_for('dashboard.user', user_id=order.user_id)}}" target="_blank">
+                                                    <h4>View User & Recent Orders</h4>
+                                                    </a>
 												</div>
 											</div>
 
 
+
+
+											<div class="col-lg-6 col-sm-6">
+												<div class="ordr-date right-text">
+
+													 {{address | safe}}
+												</div>
+											</div>
 											<div class="col-lg-12">
 												<div class="card card-static-2 mb-30 mt-30">
 													<div class="card-title-2">
-														<h4>Recent Orders</h4>
+														<h4>Current Order</h4>
 													</div>
-													<div class="card-body-table">
+
+
+                                                    <div class="card-body-table">
 														<div class="table-responsive">
-								<table class="table ucp-table table-hover">
-									<thead>
+															<table class="table ucp-table table-hover">
+															 <thead>
                                     <tr>
                                         <th>Qty</th>
                                         <th>Product</th>
@@ -60,11 +73,13 @@
                                     <tr>
                                         <td>{{item.quantity}}</td>
                                         <td>
-                                            <a href="{{url_for('dashboard.product_detail', id=item.product_id)}}"
+                                            <a href="{{url_for('dashboard.product_manage', id=item.product_id)}}"
                                                 target="_blank">
                                                 {{item.product_name}}
                                             </a>
                                         </td>
+
+
                                         <td>{{item.product_sku}}</td>
                                         <td>${{item.unit_price_net}}</td>
                                         <td>${{item.quantity * item.unit_price_net}}</td>
@@ -111,29 +126,37 @@
 													</div>
 												</div>
 											</div>
-
-											<div class="col-lg-7"></div>
+                                            <div class="col-lg-7"></div>
 											<div class="col-lg-5">
-												<div class="select-status">
-													<label >Contact:</label>
-													<div class="status-active">
-														{{order.contact_name}}-{{order.contact_phone}}
-													</div>
-												</div>
-												<div class="select-status">
-													<label >Delivery:</label>
-													<div class="status-active">
-														 {{order.shipping_method.title}}-{{order.shipping_method.price}}$
-													</div>
-												</div>
-												<div class="select-status">
-													<label >Payment:</label>
-													<div class="status-active">
-														 {{order.payment_method}}
-													</div>
-												</div>
+												  <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('dashboard.order_edit',id=order.id) }}"  enctype="multipart/form-data">
 
+                                                <div class="select-status">
+													<label for="status">Status*</label>
+													<div class="input-group">
+														<select id="status" name="status" class="custom-select">
+															{% set status = order.status | int %}
+                                                           {%  for process in orderProcessing %}
+                                                            {% if  process == status%}
+                                                             <option id ={{process  }}  selected> {{OrderStatusKinds(process).name }}</option>
+                                                            {% elif process == orderProcessing[status]['next'] or process == orderProcessing[status]['prev']%}
+                                                             <option id ={{process  }} > {{OrderStatusKinds(process).name }}</option>
+                                                            {% else %}
+                                                                <option id ={{process  }} disabled> {{OrderStatusKinds(process).name }}</option>
+                                                            {% endif %}
+                                                            {% endfor %}
+														</select>
+														<div class="input-group-append">
+															<button class="status-btn hover-btn" type="submit">Submit</button>
+														</div>
+													</div>
+												</div>
+                                                   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                                                  </form>
 											</div>
+
+
+												</div>
 
 
 										</div>

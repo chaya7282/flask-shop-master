@@ -82,8 +82,8 @@ def shipment_details():
         "address": form.address.data,
         "contact_name": form.contact_name.data,
         "contact_phone": form.contact_phone.data,
-        "pincode": form.pincode,
-        "email":form.email
+        "pincode": form.pincode.data,
+        "email":form.email.data
         }
         if addresses:
             form.populate_obj(addresses)

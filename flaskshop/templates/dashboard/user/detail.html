@@ -111,31 +111,8 @@
                     </button>
                 </div>
                 <div class="category-model-content modal-content">
-					<div class="cate-header">
-						<h4>Adress</h4>
-					</div>
-					  {% if addresses|list|length > 0 %}
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">ID</th>
-                                        <th>Contact Name</th>
-                                        <th>Contact Phone</th>
-                                        <th style="width: 40px">Operation</th>
-                                    </tr>
-                                    {% for address in addresses %}
-                                    <tr>
-                                        <td>{{address.id}}</td>
-                                        <td>{{address.contact_name}}</td>
-                                        <td>{{address.contact_phone}}</td>
-                                        <td style="text-align:center"><a
-                                                href="{{url_for('dashboard.address_edit', id=address.id)}}"
-                                                class="btn btn-primary btn-sm">Edit</a></td>
-                                    </tr>
-                                    {% endfor %}
-                                </table>
-                                {% else %}
-                                <h6 class="card-title">This user have not add address</h6>
-                                {% endif %}
+				 {{address | safe}}
+
                   </div>
             </div>
         </div>

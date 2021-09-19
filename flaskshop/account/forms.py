@@ -130,7 +130,7 @@ class AddressForm(FlaskForm):
         "Contact Phone", validators=[DataRequired(), Length(min=11, max=11)]
     )
     email = StringField(
-        "Email-Adress", validators=[DataRequired(), Email(), Length(min=6, max=40)]
+        "Email-Adress", validators=[DataRequired(), Email(), Length(min=6, max=100)]
     )
 
     pincode= StringField(

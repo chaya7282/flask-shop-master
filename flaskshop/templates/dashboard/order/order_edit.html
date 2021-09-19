@@ -9,11 +9,7 @@
    <main>
                     <div class="container-fluid">
                         <h2 class="mt-30 page-title">Orders</h2>
-                        <ol class="breadcrumb mb-30">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="orders.html">Orders</a></li>
-                            <li class="breadcrumb-item active">Order View</li>
-                        </ol>
+
                         <div class="row">
 							<div class="col-xl-12 col-md-12">
 								<div class="card card-static-2 mb-30">
@@ -22,12 +18,19 @@
 										<span class="order-id">Order {{order.token}}</span>
 									</div>
 									<div class="invoice-content">
-										<div class="row">
+
+                                         <div class="row">
 											<div class="col-lg-6 col-sm-6">
 												<div class="ordr-date">
-													<b>Order Date :</b> {{order.created_at}}
+													 <a href="{{url_for('dashboard.user', user_id=order.user_id)}}" target="_blank">
+                                                    <h4>View User</h4>
+                                                    </a>
 												</div>
 											</div>
+
+
+
+
 											<div class="col-lg-6 col-sm-6">
 												<div class="ordr-date right-text">
 
@@ -56,11 +59,13 @@
                                     <tr>
                                         <td>{{item.quantity}}</td>
                                         <td>
-                                            <a href="{{url_for('dashboard.product_detail', id=item.product_id)}}"
+                                            <a href="{{url_for('dashboard.product_manage', id=item.product_id)}}"
                                                 target="_blank">
                                                 {{item.product_name}}
                                             </a>
                                         </td>
+
+
                                         <td>{{item.product_sku}}</td>
                                         <td>${{item.unit_price_net}}</td>
                                         <td>${{item.quantity * item.unit_price_net}}</td>

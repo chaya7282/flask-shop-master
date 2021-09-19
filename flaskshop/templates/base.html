@@ -160,8 +160,17 @@
 
 
 <div class="container">
+  <div class="jumbotron">
+                        <div class="text-center">
+                           {% for message in get_flashed_messages() %}
+                            <p>Error: {{ message }}</p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
  {% block content %}
 {% endblock content %}
+
 </div>
 
      <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>

@@ -74,11 +74,7 @@ def index():
         .all()
     )
     top5_products = []
-    for product_id, order_count in hot_product_ids[:5]:
-        p = Product.get_by_id(product_id)
-        p.order_count = order_count
 
-        top5_products.append(p)
 
     activity = OrderEvent.query.order_by(OrderEvent.id.desc()).limit(10)
 

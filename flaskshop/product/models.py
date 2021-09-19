@@ -8,6 +8,7 @@ from flaskshop.database import Column, Model, db
 from flaskshop.corelib.mc import cache, cache_by_args, rdb
 from flaskshop.corelib.db import PropsItem
 from flaskshop.settings import Config
+
 import os
 
 MC_KEY_FEATURED_PRODUCTS = "product:featured:{}"
@@ -70,6 +71,8 @@ class Product(Model):
     @property
     def category(self):
         return Category.get_by_id(self.category_id)
+
+
 
     @property
     def product_type(self):
@@ -534,7 +537,10 @@ class ProductVariant(Model):
 
     @property
     def is_in_stock(self):
-        return self.quantity_available > 0
+        stock = self.quantity - self.quantity_allocated
+        if stock  > 0:
+           return True
+        return False
 
     @property
     def stock(self):

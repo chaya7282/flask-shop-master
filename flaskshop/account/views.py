@@ -21,6 +21,10 @@ def index():
     orders = Order.get_current_user_orders()
     return render_template("account/details.html", form=form, orders=orders)
 
+def index_by_user(user_id):
+    form = ChangePasswordForm(request.form)
+    orders = Order.get_current_user_orders()
+    return render_template("account/details.html", form=form, orders=orders)
 
 def login():
     """login page."""
@@ -28,7 +32,7 @@ def login():
     if form.validate_on_submit():
         login_user(form.user)
         redirect_url = request.args.get("next") or url_for("public.home")
-        flash("You are log in.", "success")
+
         return redirect(redirect_url)
     else:
         flash_errors(form)

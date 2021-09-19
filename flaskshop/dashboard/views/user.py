@@ -35,9 +35,9 @@ def users():
 
 def user(user_id):
     user = User.get_by_id(user_id)
-    addresses = user.addresses
+    address = user.addresses
     orders = Order.get_user_orders(user_id)
-    context = {"user": user, "addresses": addresses, "orders": orders}
+    context = {"user": user, "address": address, "orders": orders}
     return render_template("user/detail.html", **context)
 
 

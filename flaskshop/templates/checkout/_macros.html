@@ -44,9 +44,7 @@
 <div class="form-group">
     <label>{{ field.label.text }}</label>
     <select class="form-control select2" style="width: 100%;" name="{{ label_id }}">
-        {% if has_zero %}
-        <option value="0">None</option>
-        {% endif %}
+
         {% for item in items %}
 
 
@@ -89,7 +87,11 @@
           <option {% if item.id == field.data %} selected {% endif %}  value={{item.id}}>{{ item.title }}</option>
          {% endfor %}
          </select>
-
+        {% if field.errors %}
+        <div class="invalid-feedback" style="display:block">
+        {{ field.errors[0] }}
+       </div>
+    {% endif %}
     {% if field.description %}
     <small class="form-text text-muted">{{ field.description|safe }}</small>
     {% endif %}
