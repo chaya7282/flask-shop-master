@@ -147,7 +147,7 @@ class ProductForm(FlaskForm):
     basic_price = DecimalField("basic Price",validators=[DataRequired()])
     discount_price = DecimalField("Sale Price")
     on_sale = BooleanField("On Sale",default=False)
-    is_active = BooleanField("Is-Active",default=False)
+    is_active = BooleanField("Is-Active",default=True)
     is_featured = BooleanField("Special", default=False)
     in_front_banner=BooleanField("In front banner", default=False)
     active= BooleanField("", default=False)
