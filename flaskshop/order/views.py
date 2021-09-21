@@ -30,7 +30,7 @@ def index():
 def show(token):
     order = Order.query.filter_by(token=token).first()
 
-    return render_template("order/order_view.html", order = order)
+    return render_template("checkout/order_placed.html", order = order)
 
 
 def create_payment(token, payment_method):
