@@ -364,11 +364,6 @@ class Category(Model):
         db.session.commit()
 
 
-        if self.background_img:
-            image = current_app.config["STATIC_DIR"] / self.background_img
-            if image.exists():
-                image.unlink()
-
     @staticmethod
     def clear_mc(target):
         rdb.delete(MC_KEY_CATEGORY_CHILDREN.format(target.id))

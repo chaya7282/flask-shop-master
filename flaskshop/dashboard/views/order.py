@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import request, render_template, redirect,url_for
 from sqlalchemy import and_, or_, not_
-from flaskshop.order.models import Order
+from flaskshop.order.models import Order, ShippingAddress
 from flaskshop.constant import OrderStatusKinds, orderProcessing
 from flaskshop.dashboard.forms import OrderStatusForm
 from flaskshop.account.models import UserAddress
@@ -35,7 +35,7 @@ def orders(query=None):
 
 def order_edit(id):
     order = Order.get_by_id(id)
-    address = UserAddress.get_by_id(order.shipping_address_id)
+    address = ShippingAddress.get_by_id(order.shipping_address_id)
     form = OrderStatusForm()
 
     if form.validate_on_submit():
@@ -55,7 +55,7 @@ def order_edit(id):
 
 def order_detail(id):
     order = Order.get_by_id(id)
-    address=  UserAddress.get_by_id(order.shipping_address_id)
+    address=  ShippingAddress.get_by_id(order.shipping_address_id)
     return render_template("order/order_view.html", order=order,address=address)
 
 

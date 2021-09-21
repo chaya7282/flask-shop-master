@@ -19,6 +19,7 @@
                         {% for line in current_user_cart.lines %}
                           <div class="cart-item">
 					<div class="cart-product-img">
+                        {% if  %}
 						 <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
 
 						<div class="offer-badge"></div>

@@ -38,7 +38,7 @@ class Order(Model):
     def __str__(self):
         return f"#{self.identity}"
     @classmethod
-    def create_whole_order(cls, cart):
+    def create_whole_order(cls, cart, shippment_address):
         note= None
         # Step1, certify stock, voucher
         to_update_variants = []
@@ -85,7 +85,7 @@ class Order(Model):
                 shipping_method_title = shipping_method.title
                 shipping_method_price = shipping_method.price
 
-
+                shipping_address= ShippingAddress.create(**shippment_address)
 
             order = cls.create(
                 user_id=current_user.id,
@@ -93,12 +93,11 @@ class Order(Model):
                 contact_name=cart.contact_name,
                 payment_method=cart.payment_method,
                 contact_phone=cart.contact_phone,
-
                 shipping_method_id=shipping_method_id,
-                shipping_address_id=cart.shipping_address_id,
+                shipping_address_id=shipping_address.id,
                 shipping_method_name=shipping_method_title,
                 shipping_price_net=shipping_method_price,
-                shipping_address=shipping_address,
+                shipping_address=shipping_address.id,
                 status=OrderStatusKinds.unfulfilled.value,
                 total_net=total_net,
             )
@@ -229,6 +228,8 @@ class Order(Model):
             variant.quantity_allocated -= line.quantity
             db.session.add(variant)
 
+        shipping_address= ShippingAddress.query.filter_by(order_id=self.id).first()
+        shipping_address.delete()
         db.session.commit()
 
         OrderEvent.create(
@@ -266,8 +267,27 @@ class Order(Model):
 
     @property
     def get_shipment_address(self):
-        shipment_address= UserAddress.get_by_id(self.shipping_address_id)
+        shipment_address= ShippingAddress.get_by_id(self.shipping_address_id)
         return shipment_address
+
+class ShippingAddress(Model):
+    __tablename__ = "delivery_address"
+
+    province = Column(db.String(255))
+    city = Column(db.String(255))
+    district = Column(db.String(255))
+    address = Column(db.String(255))
+    contact_name = Column(db.String(255))
+    contact_phone = Column(db.String(80))
+    pincode = Column(db.String(80))
+    email = Column(db.String(80))
+
+    @property
+    def full_address(self):
+        return f"{self.contact_name}</br> {self.city}<br>{self.address}<br>{self.contact_phone}<br>"
+
+    def __str__(self):
+        return self.full_address
 
 
 class OrderLine(Model):

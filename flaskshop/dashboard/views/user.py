@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request,flash
 from sqlalchemy import or_
 
 from flaskshop.account.models import User, UserAddress
@@ -35,6 +35,10 @@ def users():
 
 def user(user_id):
     user = User.get_by_id(user_id)
+    if not user:
+        flash("user does not  exist")
+        return render_template("errors/user_doesnt_exsist.html")
+
     address = user.addresses
     orders = Order.get_user_orders(user_id)
     context = {"user": user, "address": address, "orders": orders}
@@ -61,3 +65,9 @@ def address_edit(id):
         addr.save()
         return redirect(url_for("dashboard.user", user_id=addr.user_id))
     return render_template("user/edit_addr.html", form=form)
+
+def user_del(user_id):
+    user = User.get_by_id(user_id)
+    if user:
+        user.delete()
+    return redirect(url_for("dashboard.users"))

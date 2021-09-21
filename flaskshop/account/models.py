@@ -70,8 +70,8 @@ class User(Model, UserMixin):
         return Role.query.filter(Role.id.in_(id for id, in at_ids)).all()
 
     def delete(self):
-        for addr in self.addresses:
-            addr.delete()
+        if self.addresses:
+            self.addresses.delete()
         return super().delete()
 
     def can(self, permissions):

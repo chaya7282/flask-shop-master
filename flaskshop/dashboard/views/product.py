@@ -269,6 +269,9 @@ def products():
 
 def product_detail(id):
     product = Product.get_by_id(id)
+    if not product:
+        flash("Product does not  exist")
+        return render_template("errors/user_doesnt_exsist.html")
 
     return render_template("product/product_view.html", product=product)
 

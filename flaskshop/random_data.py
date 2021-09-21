@@ -417,7 +417,7 @@ def create_product(**kwargs):
         "in_front_banner":random.choice([0, 1]),
         "on_sale": random.choice([0, 1]),
         "is_featured": random.choice([0, 1]),
-        "is_active":random.choice([0, 1])
+        "is_active": 1
 
 
     }

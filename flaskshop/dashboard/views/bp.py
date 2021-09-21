@@ -12,7 +12,7 @@ from flaskshop.account.utils import permission_required
 from flaskshop.settings import Config
 from flaskshop.constant import Permission, OrderStatusKinds, OrderEvents
 
-from .user import users, user, user_edit, address_edit
+from .user import users, user, user_edit, address_edit, user_del
 from .site import (
     shipping_methods,
     shipping_methods_manage,
@@ -152,6 +152,11 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule(
         "/users/address/<id>/edit", view_func=address_edit, methods=["GET", "POST"]
     )
+    bp.add_url_rule(
+        "/users/<user_id>/user_del", view_func=user_del, methods=["GET", "POST"]
+    )
+
+
     bp.add_url_rule("/attributes", view_func=attributes)
     bp.add_url_rule(
         "/attributes/create", view_func=attributes_manage, methods=["GET", "POST"]

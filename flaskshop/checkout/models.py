@@ -178,13 +178,6 @@ class CartLine(Model):
     def subtotal(self):
         return self.variant.price * self.quantity
 
-
-
-
-
-
-
-
 class ShippingMethod(Model):
     __tablename__ = "checkout_shippingmethod"
     title = Column(db.String(255), nullable=False)

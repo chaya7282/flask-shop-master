@@ -91,6 +91,8 @@
 								<div class="sb-nav-link-icon"><i class="fas fa-cart-arrow-down"></i></div>
                                 Orders
 							</a>
+
+
 							<a class="nav-link" href="{{url_for('dashboard.users')}}">
 								<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Customers
@@ -99,9 +101,9 @@
 								<div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
                                 Sales
 							</a>
-							<a class="nav-link"  href="{{url_for('dashboard.site_setting')}}">
-								<div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
-                                Configuration
+							<a class="nav-link"  href="{{ url_for('account.logout') }}">
+								<div class="sb-nav-link-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></i></div>
+                                Log Out
 							</a>
 
 

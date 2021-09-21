@@ -75,7 +75,6 @@ def shipment_details():
 
         form.populate_obj(cart)
         address_data = {
-        "user_id": current_user.id,
         "province": form.province.data,
         "city": form.city.data,
         "district": form.district.data,
@@ -85,15 +84,8 @@ def shipment_details():
         "pincode": form.pincode.data,
         "email":form.email.data
         }
-        if addresses:
-            form.populate_obj(addresses)
-            flash("Success edit address.", "success")
-        else:
-            UserAddress.create(**address_data)
-            flash("Success add address.", "success")
-        user_address = current_user.addresses
-        cart.update( shipping_address_id=user_address.id)
-        order, msg = Order.create_whole_order(cart)
+
+        order, msg = Order.create_whole_order(cart,shippment_address= address_data)
         if order:
             return render_template(
                 "checkout/order_placed.html", order=order
