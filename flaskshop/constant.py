@@ -62,7 +62,7 @@ class Permission:
 
 SiteDefaultSettings = {
     "project_title": {
-        "value": "חיה-טק",
+        "value": "הכנס שם עסק",
         "value_type": SettingValueType.string,
         "name": "Project title",
         "description": "The title of the project.",
