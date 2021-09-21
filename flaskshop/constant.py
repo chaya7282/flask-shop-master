@@ -79,4 +79,6 @@ SiteDefaultSettings = {
         "name": "Project Copyright",
         "description": "Copyright notice of the Project like '&copy'. ",
     },
+
+
 }

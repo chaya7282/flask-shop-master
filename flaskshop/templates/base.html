@@ -82,7 +82,7 @@
 <row>
     <nav class="navbar  navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="#">חיה-טק</a>
+        <a class="navbar-brand" href="#"> <div class="text-muted-1"><b>{{ settings['project_title'].value }}</b></div></a>
 
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -95,7 +95,8 @@
   <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
      <ul class="nav navbar-nav">
-        <li class="active"><a class="nav-link" href="{{url_for('public.home')}}"><span  class="glyphicon glyphicon-home">Home</span></a></li>
+        <li class="active"><a class="nav-link" href="{{url_for('public.home')}}"><i class="fa fa-home" aria-hidden="true"></i>
+        Home</a></li>
 
            {% if current_user.is_authenticated %}
 
@@ -153,7 +154,7 @@
   <div class="jumbotron">
                         <div class="text-center">
                            {% for message in get_flashed_messages() %}
-                            <p>Error: {{ message }}</p>
+                            <p>{{ message }}</p>
                             {% endfor %}
 
                         </div>
