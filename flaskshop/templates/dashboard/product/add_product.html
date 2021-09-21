@@ -14,8 +14,11 @@
 
 
                     <div class="container-fluid">
+                    {% if form.title.data %}
+                         <h2 class="mt-30 page-title">{{ form.title.data}}</h2>
+                    {%  else %}
                         <h2 class="mt-30 page-title">Add New Product</h2>
-
+                    {% endif %}
                         <div class="row">
 							<div class="col-lg-6 col-md-6">
 								<div class="card card-static-2 mb-30">
@@ -29,7 +32,7 @@
 											{{macros.render_input_field(form.title,"text")}}
 
 											{{macros.render_input_field(form.basic_price,"text")}}
-											{{macros.render_input_field(form.discount_price,"text")}}
+
 
                                             {{macros.render_select_field(form.category_id,categories)}}
                                             <div class="form-group">
@@ -58,7 +61,7 @@
 
 
 								<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
-								<button class="save-btn hover-btn" type="submit">Add New Product</button>
+								<button class="save-btn hover-btn" type="submit">Submit</button>
 								</div>
 
 							</form>
