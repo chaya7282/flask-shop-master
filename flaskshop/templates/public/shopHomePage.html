@@ -1,29 +1,39 @@
 ﻿{% extends "base.html" %}
 {% block content %}
 <head>
-		<!-- Stylesheets -->
+	<!-- Bootstrap Static Header -->
+<div style="background: url(/static/uploads/business_pictures/jambatron_front.jpg)" class="jumbotron bg-cover text-white">
+    <div class="container py-5 text-center">
+        <h1 class="display-4 font-weight-bold">{{ settings['project_title'].value }}</h1>
+        <p class="font-italic mb-0"></p>
+        <p class="font-italic">
+            <a href="https://bootstrapious.com" class="text-white">
+                <u></u>
+            </a>
+        </p>
+
+    </div>
+</div>
+
+<!-- For Demo Purpose -->
+
 
 </head>
  <div class="container">
   <div class="row justify-content-center">
-       <h1 class="bg-primary text-white display-2   ">{{ settings['project_title'].value }}</h1>
+       <h1 class="bg-primary text-white display-2   "></h1>
 
 
   </div>
 </div>
 
-<div class="main-title-tt">
 
-    <h2></h2>
-</div>
+<!-- Header End -->
+	<!-- Body Start -->
 
-<div class="wrapper">
-<!-- Categories Start -->
-	<div class="section145">
-		<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="owl-carousel offers-banner owl-theme">
+                    <div class="owl-carousel offers-banner owl-theme">
 							{%for product in products %}
 							{% if product.in_front_banner %}
 							<div class="item">
@@ -45,12 +55,10 @@
 							</div>
 							{% endif %}
 							{% endfor %}
-
+                    </div>
 						</div>
 					</div>
-				</div>
-			</div>
-	</div>
+
 
 
 	<div class="section145">
