@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% from 'bootstrap/pagination.html' import render_pagination %}
 
-{% block breadcrumb %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-      {% block breadcrumb_part %}{% endblock %}
-  </ol>
-</nav>
-{% endblock %}
-
-{% block topcontent %}
-{% if object.background_img %}
-<div class="row">
-<img src="{{ object.background_img_url }}" style="max-width:20%;" class="img-fluid" >
-</div>
-{% endif %}
-{% endblock topcontent %}
 
 {% block content %}
+  <div class="product-top-dt">
+
+  <div class="container-fluid">
+                        <h2 class="mt-30 page-title">{{ identity }}</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a  href="{{url_for('public.home')}}">חנות מרכזית</a></li>
+                            <li class="breadcrumb-item active">{{  object.title}}</li>
+                        </ol>
+
+ </div>
+
+            <div class="product-left-title">
+                <h2>{{  object.title}}</h2>
+            </div>
+  </div>
 <section>
   {% include('products/product_table.html') %}
 </section>
