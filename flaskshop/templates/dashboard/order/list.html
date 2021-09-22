@@ -5,7 +5,14 @@
 </head>
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+ <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Orders</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a  href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Orders</li>
+                        </ol>
 
+                        </div>
 
 						<div class="row justify-content-between">
 							<form method = "POST"   class="product-form1 clearfix needs-validation" action="{{ url_for('dashboard.orders') }}"   enctype="multipart/form-data">

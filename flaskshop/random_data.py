@@ -51,46 +51,63 @@ fake.add_provider(SaleorProvider)
 GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "icon-11.svg"}
 
 DEFAULT_SCHEMA2 = {
-    "Milk": {
-        "category": {"name": "Dairy and Eggs", "image_name": "category/diary_andEggs.jpg"},
+    "חלב תנובה": {
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.png"},
          "images_dir": "products/milk.jpg",
 
      },
-    "Eggs": {
-        "category": {"name": "Dairy and Eggs", "image_name": "category/diary_andEggs.jpg"},
+    "ביצים": {
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.png"},
         "images_dir": "products/eggs.jpg",
 
     },
-    "Bread": {
-        "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
+    "לחם": {
+        "category": {"name": "מאפים ולחמים", "image_name": "category/bakery.jpg"},
         "images_dir": "products/eggs.jpg",
 
     },
 
-    "Cake": {
-        "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
+    "עוגת שוקולד": {
+        "category": {"name": "מאפים ולחמים", "image_name": "category/bakery.jpg"},
         "images_dir": "products/cake.jpg",
 
     },
-    "Bread": {
-        "category": {"name": "Bakery and Breads", "image_name": "category/bakery.jpg"},
+    "באגט": {
+        "category": {"name": "מאפים ולחמים", "image_name": "category/bakery.jpg"},
+        "images_dir": "products/באגט.png",
+
+    },
+    "לחם": {
+        "category": {"name": "מאפים ולחמים", "image_name": "category/bakery.jpg"},
         "images_dir": "products/bread.jpg",
 
     },
-
-    "Cucumbers": {
-        "category": {"name": "Fruits & Vegtables", "image_name": "category/fruit_and_vegetables.jpg"},
+    "מלפפונים": {
+        "category": {"name": "ירקות ופירות", "image_name": "category/fruit_and_vegetables.jpg"},
         "images_dir": "products/cucumbers.jpg",
 
     },
 
-    "Tomatos": {
-        "category": {"name": "Fruits & Vegtables", "image_name": "category/fruit_and_vegetables.jpg"},
+    "עגבניות": {
+        "category": {"name": "ירקות ופירות", "image_name": "category/fruit_and_vegetables.jpg"},
         "images_dir": "products/tomatos.jpg",
 
     },
+    "יוגורט דנונה": {
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.jpg"},
+        "images_dir": "products/יוגורט יווני 0%.jpg",
 
+    },
+    "סטייק אנטריקוט": {
+        "category": {"name": "מוצרי בשר ודגים", "image_name": "category/meat_and_fish.jpg"},
+        "images_dir": "products/אנטריקוט-טרי-מוכשר.png",
 
+    },
+    "עוגת שוקולד": {
+        "category": {"name": "דגני בוקר וממתקים", "image_name": "category/sweets.jpg"},
+        "images_dir": "products/cake.jpg",
+
+    },
 }
 DEFAULT_SCHEMA = {
      "Generic": {
@@ -358,6 +375,7 @@ def create_products_by_type(
 ):
     category = get_or_create_category(schema["category"], placeholder_dir)
 
+
     for dummy in range(1):
         product = create_product(
             product_type_id=product_type.id, category_id=category.id,title=product_type.title,category_name=category.title,
@@ -401,7 +419,7 @@ def get_or_create_category(category_schema, placeholder_dir):
 
     defaults = {"background_img": image_name}
     category, _ = Category.get_or_create(
-        title=category_name, parent_id=parent_id, **defaults
+        title=category_name, parent_id=parent_id, is_active= True, **defaults,
     )
     return category
 

@@ -11,7 +11,18 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 
 </head>
-
+ <div class="container-fluid">
+                        <h2 class="mt-30 page-title">{{ identity }}</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a  href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Add Product </li>
+                        </ol>
+                        <div class="row justify-content-between">
+							<div class="col-lg-12">
+								<a href="{{url_for('dashboard.products')}}" class="add-btn hover-btn">All products</a>
+							</div>
+                        </div>
+ </div>
 
                     <div class="container-fluid">
                     {% if form.title.data %}

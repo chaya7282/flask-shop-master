@@ -7,6 +7,18 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
 
    <main>
+    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Order</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a  href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Orders</li>
+                        </ol>
+                        <div class="row justify-content-between">
+							<div class="col-lg-12">
+								<a  href="{{url_for('dashboard.orders')}}" class="add-btn hover-btn">All Orders</a>
+							</div>
+                        </div>
+                        </div>
                     <div class="container-fluid">
                         <h2 class="mt-30 page-title">Orders</h2>
 
