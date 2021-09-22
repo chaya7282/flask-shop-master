@@ -94,13 +94,32 @@ DEFAULT_SCHEMA2 = {
 
     },
     "יוגורט דנונה": {
-        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.jpg"},
-        "images_dir": "products/יוגורט יווני 0%.jpg",
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.png"},
+        "images_dir": "products/יוגורט יווני 0%.png",
 
     },
     "סטייק אנטריקוט": {
         "category": {"name": "מוצרי בשר ודגים", "image_name": "category/meat_and_fish.jpg"},
         "images_dir": "products/אנטריקוט-טרי-מוכשר.png",
+    },
+    "עוף שלם טרי ארוז": {
+        "category": {"name": "מוצרי בשר ודגים", "image_name": "category/meat_and_fish.jpg"},
+        "images_dir": "products/עןף שלם טרי.png",
+
+    },
+    "פילה סלמון שלם טרי נורוו": {
+        "category": {"name": "מוצרי בשר ודגים", "image_name": "category/meat_and_fish.jpg"},
+        "images_dir": "products/פילה סלמון שלם טרי נורוו.png",
+
+    },
+    "פילה בורי טרי": {
+        "category": {"name": "מוצרי בשר ודגים", "image_name": "category/meat_and_fish.jpg"},
+        "images_dir": "products/פילה בורי טרי.png",
+
+    },
+    "קרפיון שלם טרי": {
+        "category": {"name": "מוצרי בשר ודגים", "image_name": "category/meat_and_fish.jpg"},
+        "images_dir": "products/קרפיון שלם טרי.png",
 
     },
     "עוגת שוקולד": {
