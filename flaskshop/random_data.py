@@ -52,12 +52,12 @@ GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "icon-11.svg"}
 
 DEFAULT_SCHEMA2 = {
     "חלב תנובה": {
-        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.png"},
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.jpg"},
          "images_dir": "products/milk.jpg",
 
      },
     "ביצים": {
-        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.png"},
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.jpg"},
         "images_dir": "products/eggs.jpg",
 
     },
@@ -94,7 +94,7 @@ DEFAULT_SCHEMA2 = {
 
     },
     "יוגורט דנונה": {
-        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.png"},
+        "category": {"name": "מוצרי חלב וביצים", "image_name": "category/diary_andEggs.jpg"},
         "images_dir": "products/יוגורט יווני 0%.png",
 
     },
