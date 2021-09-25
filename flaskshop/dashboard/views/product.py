@@ -14,6 +14,7 @@ from PIL import Image
 from sqlalchemy import and_, or_, not_
 from PIL import Image
 import re
+from flaskshop.checkout.models import CartLine, Cart
 from flaskshop.product.models import (
     ProductAttribute,
     ProductType,
@@ -291,10 +292,11 @@ def _save_product(product, form):
 
 def product_del(id):
     product = Product.get_by_id(id)
+    Cart.del_product(id)
     if product:
         product.delete()
     return redirect(url_for('dashboard.products'))
-
+111
 def product_manage_(id):
     product = Product.get_by_id(id)
     form = ProductForm(obj=product)
