@@ -577,15 +577,7 @@ def create_admin():
 
     UserRole.create(user_id=user.id, role_id=4)
     yield f"Admin {user.username} created"
-    user = User.create(username="op", email="op@163.com", password="op", is_active=True)
-    UserRole.create(user_id=user.id, role_id=3)
-    yield f"Admin {user.username} created"
-    user = User.create(
-        username="editor", email="editor@163.com", password="editor", is_active=True
-    )
-    UserRole.create(user_id=user.id, role_id=2)
-    print("admin")
-    yield f"Admin {user.username} created"
+
 
 
 """
