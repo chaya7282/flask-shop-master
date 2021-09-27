@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy, Model, BaseQuery, DefaultMeta, _QueryPr
 from sqlalchemy import Column, Integer, DateTime, event
 from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
 import arrow
-
+from flask_mail import Mail
 from flaskshop.corelib.db import PropsItem, PropsMixin
 
 bcrypt = Bcrypt()
@@ -20,7 +20,7 @@ login_manager = LoginManager()
 migrate = Migrate(compare_type=True)
 debug_toolbar = DebugToolbarExtension()
 bootstrap = Bootstrap()
-
+mail= Mail()
 
 class BaseModel(PropsMixin, Model):
     __table_args__ = {"mysql_charset": "utf8mb4", "extend_existing": True}

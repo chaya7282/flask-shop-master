@@ -10,6 +10,7 @@ from flaskshop.plugin import spec, manager
 
 def create_app():
     app = Flask(__name__)
+
     app.config['UPLOAD_FOLDER']=settings.Config.UPLOAD_FOLDER
     app.config["SESSION_TYPE"] = "filesystem"
     app.config.from_object(Config)

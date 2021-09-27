@@ -5,6 +5,7 @@ from flaskshop.account.utils import admin_required
 from flaskshop import settings
 from .utils import ApiFlask, ApiResult
 from .exceptions import ApiException, httperrors
+from flask_mail import Mail
 from .views import (
     user_del,
     product_type_del,
@@ -26,6 +27,7 @@ def create_app(config):
     app.config.from_object(config)
     db.init_app(app)
     login_manager.init_app(app)
+    mail = Mail(app)
     return app
 
 

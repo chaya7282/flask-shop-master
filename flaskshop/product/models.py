@@ -111,10 +111,6 @@ class Product(Model):
         if float(self.discounted_price) > 0:
             return True
         return False
-
-
-
-
     @property
     @cache(MC_KEY_PRODUCT_DISCOUNT_PRICE.format("{self.id}"))
     def discounted_price(self):
@@ -233,7 +229,7 @@ class Product(Model):
 
         db.session.delete(self)
         db.session.commit()
-        i=8
+
 
     @staticmethod
     def clear_mc(target):

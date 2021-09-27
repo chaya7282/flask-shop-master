@@ -74,7 +74,9 @@
 																     <td>
 																		<a href="{{url_for('dashboard.{}_detail'.format(identity), id=item.id)}}"><i class="fas fa-eye"></i></a>
 																	</td>
-
+                                                                     <td>
+																		<a href="{{url_for('dashboard.{}_del'.format(identity), id=item.id)}}"><i class="fas fa-trash"></i></a>
+																	</td>
                                                                 </tr>
 															{% endfor %}
 															</tbody>

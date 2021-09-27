@@ -296,7 +296,7 @@ def product_del(id):
     if product:
         product.delete()
     return redirect(url_for('dashboard.products'))
-111
+
 def product_manage_(id):
     product = Product.get_by_id(id)
     form = ProductForm(obj=product)

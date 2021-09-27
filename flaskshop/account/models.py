@@ -69,6 +69,13 @@ class User(Model, UserMixin):
         )
         return Role.query.filter(Role.id.in_(id for id, in at_ids)).all()
 
+
+    def add_a_role(self, role_id):
+        res= UserRole.query.filter_by(role_id=role_id, user_id=self.id).first()
+        if not res:
+            UserRole.create(user_id=self.id, role_id=role_id)
+        return
+
     def delete(self):
         if self.addresses:
             self.addresses.delete()

@@ -40,6 +40,25 @@
 
                                                 <span class="right-dt"> {{ vendor.render_field(form.updated_at) }}</span>
 											</div>
+                                           <div class="shopowner-dt-list">
+                                                 <span class="left-dt">Curren Roles</span>
+                                                      <span class="right-dt">{% for role in roles %}{{ role.name }} {% endfor %} </span>
+                                                 </div>
+
+
+                                             <div class="select-status">
+
+													<label for="role">Select a new role </label>
+                                                    <div class="input-group">
+														<select id="role" name="role"  class="form-control select">
+                                                           <option value ="0"   selected> </option>
+                                                          <option value ="1"   > Login</option>
+                                                            <option value ="2"  > Editor</option>
+                                                            <option value ="3"  > Operator</option>
+                                                             <option value ="4"  > Admin</option>
+                                                           </select>
+                                                    </div>
+                                             </div>
 
 										</div>
 									</div>

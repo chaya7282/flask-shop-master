@@ -53,6 +53,8 @@ def log_slow_queries(app):
 def jinja_global_varibles(app):
     """Register global varibles for jinja2"""
 
+
+
     @app.context_processor
     def inject_cart():
         current_user_cart = Cart.get_current_user_cart()

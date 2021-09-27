@@ -38,8 +38,18 @@ class Cart(Model):
 
     @property
     def lines(self):
-        cart= CartLine.query.filter(CartLine.cart_id == self.id).all()
         return CartLine.query.filter(CartLine.cart_id == self.id).all()
+
+    @classmethod
+    def del_product(cls, product_id):
+        lines_= CartLine.query.filter(product_id == product_id).all()
+        for line in lines_:
+            line.delete()
+        carts= cls.query.all()
+        for cart in carts:
+            cart.update_quantity()
+
+
 
     @classmethod
     @cache(MC_KEY_CART_BY_USER.
@@ -73,7 +83,8 @@ class Cart(Model):
             quantity += line.quantity
             line.update(quantity=quantity)
         else:
-            CartLine.create(variant_id=variant_id, quantity=quantity, cart_id=cart.id)
+            variant= ProductVariant.get_by_id(variant_id)
+            CartLine.create(variant_id=variant_id, quantity=quantity, cart_id=cart.id,product_id= variant.product.id)
 
     def get_product_price(self, product_id):
         price = 0
@@ -154,6 +165,7 @@ class CartLine(Model):
     cart_id = Column(db.Integer())
     quantity = Column(db.Integer())
     variant_id = Column(db.Integer())
+    product_id = Column(db.Integer())
 
     def __repr__(self):
         return f"CartLine(variant={self.variant}, quantity={self.quantity})"
@@ -174,9 +186,12 @@ class CartLine(Model):
     def category(self):
         return self.product.category
 
+
+
     @property
     def subtotal(self):
         return self.variant.price * self.quantity
+
 
 class ShippingMethod(Model):
     __tablename__ = "checkout_shippingmethod"

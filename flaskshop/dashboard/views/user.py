@@ -41,7 +41,8 @@ def user(user_id):
 
     address = user.addresses
     orders = Order.get_user_orders(user_id)
-    context = {"user": user, "address": address, "orders": orders}
+    roles = user.roles
+    context = {"user": user, "address": address, "orders": orders, "roles":roles}
     return render_template("user/detail.html", **context)
 
 
@@ -52,9 +53,11 @@ def user_edit(user_id):
         if not form.password.data:
             del form.password
         form.populate_obj(user)
-        user.save()
+        new_role_id= int(form.role.data)
+        user.add_a_role(new_role_id)
         return redirect(url_for("dashboard.user", user_id=user_id))
-    return render_template("user/edit.html", form=form)
+    roles = user.roles
+    return render_template("user/edit.html", form=form, roles=roles)
 
 
 def address_edit(id):

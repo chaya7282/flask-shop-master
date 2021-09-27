@@ -14,6 +14,7 @@ from flaskshop.extensions import (
     login_manager,
     migrate,
     bootstrap,
+    mail
 )
 from flaskshop.settings import Config
 from flaskshop.plugin import spec, manager
@@ -29,7 +30,7 @@ from .order import views as order_view
 from .dashboard import views as dashboard_view
 from .api import api as api_view
 from .dashboard_api.api_app import dashboard_api
-
+from flask_mail import Mail
 
 
 
@@ -41,6 +42,7 @@ def register_extensions(app):
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
     bootstrap.init_app(app)
+    mail.init_app(app)
 
 def log_slow_queries(app):
     flaskshop.utils.log_slow_queries(app)

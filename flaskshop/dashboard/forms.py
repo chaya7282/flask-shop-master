@@ -90,6 +90,7 @@ class UserForm(FlaskForm):
     is_active = BooleanField()
     created_at = DateTimeField()
     updated_at = DateTimeField()
+    role = SelectField("Role", default=0)
     submit = SubmitField()
 
 

@@ -9,8 +9,10 @@ from flaskshop.account.models import UserAddress
 from flaskshop.utils import flash_errors
 from flaskshop.order.models import Order
 from flaskshop.discount.models import Voucher
-
-
+from flask_mail import Message
+from flaskshop.settings import Config
+from flaskshop.extensions import mail
+from flaskshop.constant import SiteDefaultSettings
 impl = HookimplMarker("flaskshop")
 
 
@@ -87,9 +89,19 @@ def shipment_details():
 
         order, msg = Order.create_whole_order(cart,shippment_address= address_data)
         if order:
+#  send confirmation mail
+            msg = Message('Hello from'+SiteDefaultSettings['project_title'].value, sender = SiteDefaultSettings['business_email'].value,
+                          password=SiteDefaultSettings['email_password'].value, recipients=[address_data.email])
+            msg.html =  render_template(
+                "checkout/order_placed_template.html", order=order
+            )
+            mail.body = "html"
+            mail.send(msg)
+#  end confirmation mail
             return render_template(
                 "checkout/order_placed.html", order=order
             )
+
 
         else:
             flash(msg, "warning")

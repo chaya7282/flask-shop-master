@@ -79,6 +79,17 @@ SiteDefaultSettings = {
         "name": "Project Copyright",
         "description": "Copyright notice of the Project like '&copy'. ",
     },
-
+    "business_email": {
+        "value":'esekbekafyad@gmail.com',
+        "value_type": SettingValueType.string,
+        "name": "business_email",
+        "description": "Copyright notice of the Project like '&copy'. ",
+    },
+    "email_password": {
+        "value": 'chaya7282',
+        "value_type": SettingValueType.string,
+        "name": "email_password",
+        "description": "Copyright notice of the Project like '&copy'. ",
+    },
 
 }
