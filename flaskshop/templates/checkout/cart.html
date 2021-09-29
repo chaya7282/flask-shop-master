@@ -17,10 +17,11 @@
 
 
                         {% for line in current_user_cart.lines %}
+                            {% if line.product %}
                           <div class="cart-item">
 					<div class="cart-product-img">
-                        {% if  %}
-						 <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
+
+						 <img class="lazyload lazypreload" src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
 
 						<div class="offer-badge"></div>
 					</div>
@@ -50,6 +51,8 @@
 
 					</div>
 				</div>
+
+                            {% endif %}
                         {%  endfor %}
 
 							<div class="main-total-cart">
