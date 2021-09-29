@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 import datetime
 import os
 import secrets
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from PIL import Image
 from sqlalchemy import and_, or_, not_
 from PIL import Image

@@ -4,7 +4,7 @@ import sys
 
 from flask import Flask, render_template
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from flask_cli import FlaskCLI
+
 from flaskshop import commands
 from flaskshop.extensions import (
     bcrypt,
@@ -31,7 +31,7 @@ from .dashboard import views as dashboard_view
 from .api import api as api_view
 from .dashboard_api.api_app import dashboard_api
 from flask_mail import Mail
-
+from flask_bootstrap import Bootstrap
 
 
 def register_extensions(app):
@@ -41,7 +41,7 @@ def register_extensions(app):
     login_manager.init_app(app)
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
-    bootstrap.init_app(app)
+    bootstrap=Bootstrap(app)
     mail.init_app(app)
 
 def log_slow_queries(app):

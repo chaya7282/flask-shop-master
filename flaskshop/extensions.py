@@ -19,7 +19,7 @@ csrf_protect = CSRFProtect()
 login_manager = LoginManager()
 migrate = Migrate(compare_type=True)
 debug_toolbar = DebugToolbarExtension()
-bootstrap = Bootstrap()
+bootstrap=Bootstrap()
 mail= Mail()
 
 class BaseModel(PropsMixin, Model):
