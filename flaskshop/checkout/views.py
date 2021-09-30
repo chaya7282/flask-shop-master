@@ -9,12 +9,12 @@ from flaskshop.account.models import UserAddress
 from flaskshop.utils import flash_errors
 from flaskshop.order.models import Order
 from flaskshop.discount.models import Voucher
-
+from flask_mail import Message
 from flaskshop.settings import Config
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
 impl = HookimplMarker("flaskshop")
-
+from flask import  current_app
 
 def cart_index():
 
@@ -89,7 +89,15 @@ def shipment_details():
 
         order, msg = Order.create_whole_order(cart,shippment_address= address_data)
         if order:
-#  end confirmation mail
+            if address_data['email']:
+
+                msg = Message('Hello from', sender = current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
+                msg.html =  render_template(
+                    "checkout/order_placed_template.html", order=order
+                )
+
+                mail.send(msg)
+
             return render_template(
                 "checkout/order_placed.html", order=order
             )
