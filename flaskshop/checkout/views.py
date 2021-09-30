@@ -91,7 +91,7 @@ def shipment_details():
         if order:
             if address_data['email']:
 
-                msg = Message('Hello from', sender = current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
+                msg = Message('Hello from '+SiteDefaultSettings['project_title']['value'], sender = current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
                 msg.html =  render_template(
                     "checkout/order_placed_template.html", order=order
                 )
