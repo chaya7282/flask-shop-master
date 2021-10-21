@@ -66,25 +66,12 @@
 						<div class="product-dt-view">
 							<div class="row">
 								<div class="col-lg-4 col-md-4">
-									<div id="sync1" class="owl-carousel owl-theme">
-										<div class="item">
-											<img  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
-										</div>
+
+
+											<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
 
 									</div>
-									<div id="sync2" class="owl-carousel owl-theme">
-										<div class="item">
-											<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
-										</div>
-										<div class="item">
-											<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
-										</div>
-										<div class="item">
-											<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
-										</div>
 
-									</div>
-								</div>
 								<div class="col-lg-8 col-md-8">
 									<div class="product-dt-right">
 										<h2>{{ product.title }}</h2>
