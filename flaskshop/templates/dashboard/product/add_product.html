@@ -56,6 +56,9 @@
                                                  {{ macros.render_file_field(form.images, form.images.data) }}
 
                                             </div>
+
+
+
                                        <table>
 										 <tr>
 											  <td>{{macros.render_boolean_field(form.is_active)}}</td>
@@ -67,7 +70,9 @@
 									 </table>
 
 									 </div>
-
+                                      <div class="form-group">
+												{{macros.render_select_multi_field(form.variant_attributes, attributes)}}
+										</div>
 
 
 

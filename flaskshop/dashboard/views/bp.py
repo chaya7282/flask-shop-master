@@ -32,6 +32,7 @@ from .site import (
 from .product import (
     attributes,
     attributes_manage,
+    attributes_del,
     collections,
     collections_manage,
     categories,
@@ -158,6 +159,10 @@ def flaskshop_load_blueprints(app):
 
 
     bp.add_url_rule("/attributes", view_func=attributes)
+
+    bp.add_url_rule(
+        "/attributes/<id>/del", view_func=attributes_del, methods=["GET", "POST"]
+    )
     bp.add_url_rule(
         "/attributes/create", view_func=attributes_manage, methods=["GET", "POST"]
     )

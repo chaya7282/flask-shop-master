@@ -69,6 +69,7 @@ class Cart(Model):
     def add_to_currentuser_cart(cls, quantity, variant_id):
         cart = cls.get_current_user_cart()
         variant = ProductVariant.get_by_id(variant_id)
+
         result, msg = variant.check_enough_stock(quantity)
         if result is False:
             flash(msg, "warning")
@@ -84,8 +85,12 @@ class Cart(Model):
             line.update(quantity=quantity)
         else:
             variant= ProductVariant.get_by_id(variant_id)
-            CartLine.create(variant_id=variant_id, quantity=quantity, cart_id=cart.id,product_id= variant.product.id)
+            CartLine.create(variant_id=variant_id, quantity=quantity, cart_id=cart.id,
+                                   product_id=variant.product.id)
 
+
+
+        i=8
     def get_product_price(self, product_id):
         price = 0
         for line in self:
@@ -178,6 +183,17 @@ class CartLine(Model):
     def variant(self):
         return ProductVariant.get_by_id(self.variant_id)
 
+    def update_variant_attributes(self,variant_and_values):
+        for key in variant_and_values.keys():
+            attr = cartlineVariantAttributes.query.filter_by(
+                CartLine_id=self.id, ProductAttribute_id=key
+            ).first()
+            if attr:
+                attr.value=variant_and_values[key]
+            else:
+                attr= cartlineVariantAttributes.create( CartLine_id=self.id, ProductAttribute_id=key, ProductAttribute_value_id=variant_and_values[key])
+            attr.save()
+
     @property
     def product(self):
         return self.variant.product
@@ -185,12 +201,20 @@ class CartLine(Model):
     @property
     def category(self):
         return self.product.category
-
-
+    @property
+    def subtotal(self):
+        return self.variant.price * self.quantity
 
     @property
     def subtotal(self):
         return self.variant.price * self.quantity
+
+class cartlineVariantAttributes(Model):
+    __tablename__ = "product_additionals"
+    CartLine_id= Column(db.Integer())
+    ProductAttribute_id= Column(db.Integer())
+    ProductAttribute_value_id= Column(db.Integer())
+
 
 
 class ShippingMethod(Model):

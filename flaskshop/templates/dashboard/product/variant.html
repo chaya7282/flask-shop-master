@@ -13,6 +13,10 @@
                         <h3 class="card-title">{% if 'edit' in request.path %}Edit{% else %}Create{% endif %}
                             Variant</h3>
                     </div>
+
+                    <div class="card-header">
+                   {% for attribute, value in variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
+                    </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form method="POST">

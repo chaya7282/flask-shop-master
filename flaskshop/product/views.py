@@ -17,7 +17,10 @@ def show(id, form=None):
     product = Product.get_by_id(id)
     if not form:
         form = AddCartForm(request.form, product=product)
-    return render_template("products/details.html", product=product, form=form)
+    return render_template("products/single_product_view.html", product=product, form=form)
+
+
+
 
 
 @login_required
@@ -25,12 +28,20 @@ def product_add_to_cart(id):
     """ this method return to the show method and use a form instance for display validater errors"""
     product = Product.get_by_id(id)
 
-    if product.has_variants:
-        variant_id= request.form["id_variant"]
-    else:
-        variant_id= product.variant[0].id
 
     quantity=request.form["id_quantity"]
+
+    attribute_list={}
+    for variant_attributes in product.product_type.variant_attributes:
+        value= request.form[variant_attributes.title]
+        attribute_list[str(variant_attributes.id)]=value
+
+    if product.has_variants:
+        variant = ProductVariant.search_varint_by_attributs(attribute_list,product.id)
+        variant_id = variant.id
+    else:
+        variant_id = product.variant[0].id
+
     Cart.add_to_currentuser_cart(int(quantity), int(variant_id))
 
     return redirect(request.referrer)

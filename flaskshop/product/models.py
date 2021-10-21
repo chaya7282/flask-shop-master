@@ -57,6 +57,12 @@ class Product(Model):
         return ProductImage.query.filter(ProductImage.product_id == self.id).all()
 
     @property
+    def background_img_url(self):
+        return url_for("static", filename="uploads/"+ self.first_img)
+
+
+
+    @property
     def first_img(self):
         if self.images:
             im=self.images[0].image
@@ -102,9 +108,15 @@ class Product(Model):
         return product_type.has_variants
 
     @property
+
     def get_has_attributes(self):
         product_type = ProductType.get_by_id(self.product_type_id)
         return product_type.has_attributes
+
+    def variant_attributes(self):
+        product_type = ProductType.get_by_id(self.product_type_id).first()
+        return product_type.variant_attributes()
+
 
     @property
     def is_discounted(self):
@@ -206,17 +218,31 @@ class Product(Model):
             ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id, title= self.title)
         else:
             sku_id = 1337
-            variant_attributes = self.product_type.variant_attributes[0]
-            for value in variant_attributes.values:
+            variant_attr_map = {
+                attr: attr.values for attr in self.product_type.variant_attributes
+            }
+            all_combinations = itertools.product(*variant_attr_map.values())
+            variant_combination= [
+                {str(attr_value.attribute.id): str(attr_value.id) for attr_value in combination}
+                for combination in all_combinations
+            ]
+
+
+            for variant_attributes in variant_combination:
                 sku = str(self.id) + "-" + str(sku_id)
-                attributes = {str(variant_attributes.id): str(value.id)}
-                ProductVariant.create(
+                variant=ProductVariant.create(
                     sku=sku,
-                    title=value.title,
+                    title="",
                     product_id=self.id,
-                    attributes=attributes,
+                    attributes=variant_attributes,
                 )
                 sku_id += 1
+    def delete_variants(self):
+        for item in itertools.chain(
+             self.variant
+        ):
+            item.delete(commit=False)
+        db.session.commit()
 
     def delete(self):
         need_del_collection_products = ProductCollection.query.filter_by(
@@ -393,7 +419,6 @@ class ProductTypeVariantAttributes(Model):
     product_type_id = Column(db.Integer())
     product_attribute_id = Column(db.Integer())
 
-
 class ProductType(Model):
     __tablename__ = "product_type"
     title = Column(db.String(255), nullable=False)
@@ -455,7 +480,7 @@ class ProductType(Model):
         for id in need_del:
             ProductTypeAttributes.query.filter_by(
                 product_type_id=self.id, product_attribute_id=id
-            ).first().delete(commit=False)
+            ).first()
         for id in need_add:
             new = ProductTypeAttributes(
                 product_type_id=self.id, product_attribute_id=id
@@ -463,17 +488,39 @@ class ProductType(Model):
             db.session.add(new)
         db.session.commit()
 
-    def update_variant_attr(self, variant_attr):
-        origin_attr = ProductTypeVariantAttributes.query.filter_by(
+    def update_variant_attr(self, new_attrs):
+        origin_ids = (ProductTypeVariantAttributes.query.filter_by(
             product_type_id=self.id
-        ).first()
-        if origin_attr:
-            origin_attr.product_attribute_id = variant_attr
-            origin_attr.save()
-        else:
-            ProductTypeVariantAttributes.create(
-                product_type_id=self.id, product_attribute_id=variant_attr
+        ).all())
+
+        origin_ids = set(i.id for i in origin_ids)
+        new_attrs = set(int(i) for i in new_attrs)
+        need_del = origin_ids - new_attrs
+        need_add = new_attrs - origin_ids
+
+        for id in need_del:
+            need_del_variant_attrs= ProductTypeVariantAttributes.query.filter_by(
+                product_type_id=self.id, product_attribute_id=id
+            ).first()
+            for item in itertools.chain(need_del_variant_attrs):
+                item.delete(commit=False)
+
+        for id in need_add:
+            new =  ProductTypeVariantAttributes(
+                product_type_id=self.id, product_attribute_id=id
             )
+            db.session.add(new)
+        db.session.commit()
+
+
+
+    def del_all_variant_attr(self):
+        need_del_variant_attrs = ProductTypeVariantAttributes.query.filter_by(
+            product_type_id=self.id
+        ).all()
+        for item in itertools.chain(need_del_variant_attrs):
+            item.delete(commit=False)
+        db.session.commit()
 
     def delete(self):
         need_del_product_attrs = ProductTypeAttributes.query.filter_by(
@@ -526,6 +573,15 @@ class ProductVariant(Model):
     def quantity_available(self):
         return max(self.quantity - self.quantity_allocated, 0)
 
+    @classmethod
+    def search_varint_by_attributs(cls,variantAttributes,product_id):
+
+          variants= ProductVariant.query.filter_by(product_id=product_id).all()
+          for aa in variants:
+             res=  all( variantAttributes[k] == v for k, v in aa.attributes.items() if k in variantAttributes)
+             if res:
+                 return aa
+          return None
     @property
     def is_in_stock(self):
         stock = self.quantity - self.quantity_allocated
@@ -585,6 +641,7 @@ class ProductAttribute(Model):
     __tablename__ = "product_attribute"
 
     title = Column(db.String(255), nullable=False)
+    image= Column(db.String(255), nullable=True, default=None)
 
     def __str__(self):
         return self.title
@@ -619,13 +676,24 @@ class ProductAttribute(Model):
         return ",".join([t.title for t in self.types])
 
     def update_values(self, new_values):
+        origin_values = AttributeChoiceValue.query.filter_by(attribute_id=self.id).all()
+        for value in origin_values:
+            value.delete(commit=False)
+        for key in new_values.keys():
+            new = AttributeChoiceValue(title=key, image=new_values[key], attribute_id=self.id)
+            db.session.add(new)
+        db.session.commit()
+
+
+    def update_values_(self, new_values):
         origin_values = list(value.title for value in self.values)
+
         need_del = set()
         need_add = set()
         for value in self.values:
-            if value.title not in new_values:
+            if value.title not in new_values.keys():
                 need_del.add(value)
-        for value in new_values:
+        for value in new_values.keys():
             if value not in origin_values:
                 need_add.add(value)
         for value in need_del:
@@ -688,6 +756,7 @@ class ProductAttribute(Model):
 class AttributeChoiceValue(Model):
     __tablename__ = "product_attribute_value"
     title = Column(db.String(255), nullable=False)
+    image = Column(db.String(255), nullable=False)
     attribute_id = Column(db.Integer())
 
     def __str__(self):
@@ -696,7 +765,9 @@ class AttributeChoiceValue(Model):
     @property
     def attribute(self):
         return ProductAttribute.get_by_id(self.attribute_id)
-
+    def image_url(self):
+        urt = url_for("static", filename="uploads/" + self.image)
+        return urt
 
 class ProductImage(Model):
     __tablename__ = "product_image"

@@ -27,7 +27,10 @@
 						<div class="offer-badge"></div>
 					</div>
 					<div class="cart-text">
-						<h4>{{ line.product }}</h4>
+						<h4>{{ line.product }}-{{ line.variant.sku }}</h4>
+                         {% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
+
+
                          <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
 
 						<div class="qty-group">
@@ -36,7 +39,8 @@
 								 <input type="number" step="1" name="quantity_" onchange="submit()" value="{{ line.quantity }}" id="line.id" class="input-text qty text">
                             	<input type="button" value="+" class="plus plus-btn">
 							</div>
-							  <div class="cart-item-price">  $ {{ line.subtotal }} </div>
+							   <div class="cart-item-price"> per item: $ {{ line.variant.product.price }} </div>
+                            <div class="cart-item-price">  $ {{ line.subtotal }} </div>
 
 						</div>
                              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>

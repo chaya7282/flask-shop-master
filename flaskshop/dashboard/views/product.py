@@ -10,6 +10,7 @@ import datetime
 import os
 import secrets
 from werkzeug.utils import secure_filename
+from flaskshop.Media.media import load_image
 from PIL import Image
 from sqlalchemy import and_, or_, not_
 from PIL import Image
@@ -56,8 +57,11 @@ def attributes():
     }
     return render_template("list.html", **context)
 
+def attributes_del(id=None):
+    return redirect(url_for("dashboard.attributes"))
 
 def attributes_manage(id=None):
+    attr=None
     if id:
         attr = ProductAttribute.get_by_id(id)
         form = AttributeForm(obj=attr)
@@ -68,13 +72,17 @@ def attributes_manage(id=None):
             attr = ProductAttribute()
         attr.title = form.title.data
         attr.save()
-        attr.update_types(form.types.data)
-        attr.update_values(form.values.data)
+        keys = form.values.data
+        daya= request.form
+        values = [load_image(item,"Attributes") for item in form.background_imgs.data]
+        dictionary = dict(zip(keys, values))
+
+        attr.update_values(dictionary)
         attr.save()
         return redirect(url_for("dashboard.attributes"))
 
     return render_template(
-        "product/attribute.html", form=form,
+        "product/attribute.html",attribute=attr, form=form,
     )
 
 
@@ -356,18 +364,7 @@ def product_create_step1(id=None):
     return render_template(
         "product/product_create_step1.html", form=form, attributes=attributes
     )
-def load_image(image):
-    if image:
-        baseheight= 400
-        image.save(os.path.join(Config.UPLOAD_FOLDER, "tmp_file.jpg"))
-        im = Image.open(os.path.join(Config.UPLOAD_FOLDER, "tmp_file.jpg"))
-        wpercent = (baseheight / float(im.size[1]))
-        wsize = int((float(im.size[0]) * float(wpercent)))
-        im= im.resize((wsize,baseheight), Image.ANTIALIAS)
-        preffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-        filename = "_".join(["a", preffix, image.filename])  # e.g. 'mylogfile_120508_171442'
-        im.save(os.path.join(Config.UPLOAD_FOLDER, filename))
-        return filename
+
 
 def product_manage(id= None):
     image_path= None
@@ -384,7 +381,8 @@ def product_manage(id= None):
                 has_attributes=None, title=form.title.data, is_shipping_required=None,has_variants=None)[0]
             product = Product(product_type_id=product_type.id)
             product.title= product_type.title
-
+        else:
+            product_type= ProductType.get_by_id(id)
         image= form.images.data
         product = _save_product(product, form)
         if image:
@@ -392,19 +390,24 @@ def product_manage(id= None):
             filename= load_image(image)
             ProductImage.del_product_imgs(product.id)
             ProductImage.get_or_create(image=filename , product_id=product.id)
-        if not id:
-            if product_type.has_variants:
-                for attr in form.variant_attributes.data:
-                    ProductTypeVariantAttributes.get_or_create(product_type_id=product_type.id,product_attribute_id=int(attr))
 
-            product.generate_variants()
+        if form.variant_attributes.data:
+            product.product_type.has_variants = True
 
+            product_type.update_variant_attr(form.variant_attributes.data)
+        else:
+            product.product_type.has_variants = False
+            product_type.del_all_variant_attr()
+        product.delete_variants()
+        product.generate_variants()
         return redirect(url_for("dashboard.product_detail", id=product.id))
 
     categories = Category.query.all()
+    attributes = ProductAttribute.query.all()
     return render_template(
         "product/add_product.html",
         form=form,
+        attributes= attributes,
         categories=categories)
 
 
@@ -426,4 +429,4 @@ def variant_manage(id=None):
         variant.sku = str(variant.product_id) + "-" + str(form.sku_id.data)
         variant.save()
         return redirect(url_for("dashboard.product_detail", id=variant.product_id))
-    return render_template("product/variant.html", form=form)
+    return render_template("product/variant.html", form=form,variant=variant)

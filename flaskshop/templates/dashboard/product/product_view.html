@@ -47,6 +47,7 @@
 																<th>ID</th>
 
                                                                 <th>SKU</th>
+                                                                 <th>Attributes</th>
                                                                 <th>Title</th>
                                                                 <th>Quantity</th>
                                                                  <th>Quantity Allocated</th>
@@ -61,6 +62,7 @@
                                                                         <tr>
                                                                             <td>{{item.id}}</td>
                                                                             <td>{{item.sku}}</td>
+                                                                            <td>{% for attribute, value in item.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}</td>
                                                                             <td>{{item.title}}</td>
                                                                             <td>{{item.quantity}}</td>
                                                                             <td>{{item.quantity_allocated}}</td>

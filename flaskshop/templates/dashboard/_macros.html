@@ -62,11 +62,11 @@
 {% macro render_select_multi_field(field, items) %}
 {% set label_id = field.label.field_id %}
 
-
 <div class="form-group" >
     <label >{{ field.label.text }}</label>
-   <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true" required multiple>
-        {% if has_zero %}
+   <select  name="{{ label_id }}"  class="selectpicker form-control"  data-live-search="true"  multiple>
+
+       {% if has_zero %}
         <option value="0">None</option>
         {% endif %}
          {% for item in items %}
@@ -127,8 +127,11 @@
     <div id="field_list">
         {% for subfield in field %}
         <div class="input-group input-group-sm field-list-item{% if subfield.errors %} error_class{% endif %}">
+
             <input type="text" class="form-control" id="{{subfield.label.field_id}}" name="{{subfield.label.field_id}}"
                 value="{{ subfield.data }}">
+
+            <input type="file" class="custom-file-input" id="" name="">
             <span class="input-group-append">
                 <button type="button" class="btn btn-info btn-flat" id="item_del">Remove Entry</button>
             </span>
@@ -136,7 +139,7 @@
         {% endfor %}
     </div>
     <br />
-    <button type="button" class="btn btn-info" id="add_entry" data-index="{{field | length}}"
+    <button type="button" onclick="addEntry()" class="btn btn-info" id="add_entry" data-index="{{field | length}}"
         data-field="{{field.label.field_id}}">Add
         entry</button>
 </div>

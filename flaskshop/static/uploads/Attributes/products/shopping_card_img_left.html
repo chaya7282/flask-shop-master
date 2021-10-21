@@ -1,0 +1,111 @@
+  <head>
+       <style>
+           .card-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.card-img-wrap:after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.3);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.card-img-wrap img {
+  transition: transform .25s;
+  width: 100%;
+}
+.card-img-wrap:hover img {
+  transform: scale(1.2);
+}
+.card-img-wrap:hover:after {
+  opacity: 1;
+}
+
+       </style>
+
+   </head>
+
+
+    <div class="card bg-secondary mb-3"style="width: 18rem;">
+         {%if product.on_sale  %}
+
+            <h2 class="mb-0"><span class="badge badge-primary badge-pill badge-news">Sale</span></h2>
+       {% elif product.is_featured %}
+        <h2 class="mb-0"><span class="badge badge-success badge-pill badge-news">Is featured</span></h2>
+
+     {% endif %}
+
+         <div class="card-header bg-warning text-dark">
+            {{product.title}}
+        </div>
+       <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+
+        <div class="card-block bg-light">
+            <table>
+                <tr>
+                     <td colspan="5" >
+                         <div class="card-img-wrap"><img  height="150px" width="150px"  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}"></div>
+                     </td>
+                    <td>
+                   <div class="qty-cart">
+                    <div class="quantity buttons_added">
+
+                            <input type="button" value="-" class="minus minus-btn">
+                            <input type="number" step="1" id="id_quantity" name="id_quantity" value="1" class="input-text qty text" style='width:2em'>
+                            <input type="button" value="+" class="plus plus-btn">
+                        </div>
+                     </div>
+                </td>
+
+                </tr>
+                <tr>
+                   <td  >
+
+                    </td>
+
+                    <td>
+                         <div class="card-link"><button type="submit" class="btn btn-default btn-xs pull-right" type="button">
+                     <i class="fa fa-cart-arrow-down fa-3x"></i>  </button></div>
+                    </td>
+
+                </tr>
+                  <tr>
+                      <td></td>
+                       <td></td>
+
+                      <td></td>
+                       <td></td>
+                     <td colspan="5" >
+                      {% if product.has_variants %}
+
+                           <select name= "id_variant" class="form-select mb-2" id="validationDefault04"  style="width: 7em" required>
+
+                    <option selected disabled value="">Variant</option>
+
+                    {% for var in  product.variant %}
+                           {%if var.is_in_stock %}
+                                <option value={{var.id}}>{{var.title}}</option>
+                        {% endif %}
+                   {% endfor %}
+
+                </select>
+                   {% endif %}
+                  </td>
+                    </tr>
+            </table>
+
+        </div>
+        {%if product.on_sale  %}
+       <div class="card-footer text-muted bg-danger">
+          on sale
+       </div>
+       {% elif product.is_featured %}
+            <div class="card-footer text-muted  bg-info">
+        Is featured
+       </div>
+     {% endif %}
+       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+       </form>
+    </div>
