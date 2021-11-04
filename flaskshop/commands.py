@@ -259,7 +259,24 @@ def seed(type):
 
         for msg in create_generator:
             click.echo(msg)
+    elif type == "product_2":
+        db.drop_all()
+        db.create_all()
 
+        place_holder = Path("placeholders"),
+
+        create_generator = chain(
+
+            create_roles(),
+            create_admin(),
+
+            create_shipping_methods(),
+            create_dashboard_menus(),
+
+        )
+
+        for msg in create_generator:
+            click.echo(msg)
     else:
         create_dict = {
             "user": create_users,

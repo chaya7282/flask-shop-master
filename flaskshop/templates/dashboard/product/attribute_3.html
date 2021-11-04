@@ -1,0 +1,66 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends 'dashboard/dashboard_layout.html' %}
+ {% block content %}
+   <head>
+
+
+
+</head>
+   <section class="content">
+     <div class="input-group">
+      <div class="custom-file">
+           <input type="file"   class="custom-file-input" id= "22" name="22" >
+           <label class="custom-file-label" for="22"></label>
+      </div>
+     </div>
+
+
+
+
+     <div class="container-fluid">
+   <div class="row">
+							<div class="col-lg-6 col-md-6">
+
+									<div class="card-title-2">
+                                        <h3 class="card-title">{% if 'edit' in request.path %}Edit{% else %}Create{% endif %} Attribute</h3>
+
+									</div>
+
+									   <form method="POST" action="" enctype="multipart/form-data">
+									<div class="card-body">
+
+											 {{ form.hidden_tag() }}
+                                             {{ form.title }}
+											<div class="form-group" id="field_list">
+                                                   {% if attribute %}
+                                                        {% for attr in attribute.values %}
+
+                                                           <div class="custom-file">
+                                                                <input type="file"   class="custom-file-input" id= "background_imgs-{{attr.id}}" name="background_imgs-{{attr.id}}" >
+                                                                 <label class="custom-file-label" for="background_imgs-{{attr.id}}"></label>
+                                                            </div>
+
+
+
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                        </div>
+									</div>
+                                     <button type="button" onclick="addEntry()" class="save-btn hover-btn" id="add_entry"  data-index="{{attribute.values | length}}"  data-field="values">Add entry</button>
+
+                                        <button class="save-btn hover-btn" type="submit">Submit</button>
+
+									 </form>
+
+								</div>
+							</div>
+                        </div>
+
+   </section>
+
+{% endblock %}
+
+
+

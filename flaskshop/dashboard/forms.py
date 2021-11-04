@@ -154,6 +154,7 @@ class ProductForm(FlaskForm):
     is_featured = BooleanField("Special", default=False)
     in_front_banner=BooleanField("In front banner", default=False)
     active= BooleanField("", default=False)
+    need_check_stock= BooleanField("need check stock", default=False)
     rating = FloatField(default=0)
     sold_count = IntegerField(default=0)
     review_count = IntegerField(default=0)

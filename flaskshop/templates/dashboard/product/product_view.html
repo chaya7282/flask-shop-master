@@ -62,7 +62,10 @@
                                                                         <tr>
                                                                             <td>{{item.id}}</td>
                                                                             <td>{{item.sku}}</td>
+                                                                            {% if product.product_type.variant_attributes %}
+
                                                                             <td>{% for attribute, value in item.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}</td>
+                                                                            {% endif %}
                                                                             <td>{{item.title}}</td>
                                                                             <td>{{item.quantity}}</td>
                                                                             <td>{{item.quantity_allocated}}</td>

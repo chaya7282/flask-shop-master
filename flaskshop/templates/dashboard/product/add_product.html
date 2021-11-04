@@ -50,7 +50,8 @@
 
                                               <div class="add-cate-img-1">
 												  {% if form.current_img.data %}
-                                                      <img src="{{ url_for('static', filename=form.current_img.data) }}" alt="">
+
+                                                      <img src="{{form.current_img.data}}" width="70" height="70">
                                               		{% endif %}
 											  </div>
                                                  {{ macros.render_file_field(form.images, form.images.data) }}
@@ -66,7 +67,11 @@
 												<td>{{macros.render_boolean_field(form.is_featured)}}</td>
 											 <td>{{macros.render_boolean_field(form.in_front_banner)}}</td>
 
+
 										 </tr>
+                                           <tr>
+                                                <td>{{macros.render_boolean_field(form.need_check_stock)}}</td>
+                                           </tr>
 									 </table>
 
 									 </div>

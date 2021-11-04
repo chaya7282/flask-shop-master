@@ -36,7 +36,7 @@ class Product(Model):
     discount_price = Column(db.DECIMAL(10, 2))
     category_id = Column(db.Integer())
     category_name = Column(db.String(255))
-
+    need_check_stock=Column(db.Boolean(), default=False)
     product_type_id = Column(db.Integer())
     attributes = Column(MutableDict.as_mutable(db.JSON()),nullable=True)
     description = Column(db.Text())
@@ -60,13 +60,15 @@ class Product(Model):
     def background_img_url(self):
         return url_for("static", filename="uploads/"+ self.first_img)
 
-
+    def image_url(self):
+        urt = url_for("static", filename="uploads/" + self.first_img)
+        return urt
 
     @property
     def first_img(self):
         if self.images:
-            im=self.images[0].image
-            return str(self.images[0].image)
+            im =self.images[0].image
+            return str(im)
 
         return ""
 
@@ -237,6 +239,15 @@ class Product(Model):
                     attributes=variant_attributes,
                 )
                 sku_id += 1
+
+    def set_all_stocks_infi(self):
+         for item in self.variant:
+             item.quantity_allocated=10000,000;
+
+
+
+
+
     def delete_variants(self):
         for item in itertools.chain(
              self.variant
@@ -502,6 +513,7 @@ class ProductType(Model):
             need_del_variant_attrs= ProductTypeVariantAttributes.query.filter_by(
                 product_type_id=self.id, product_attribute_id=id
             ).first()
+
             for item in itertools.chain(need_del_variant_attrs):
                 item.delete(commit=False)
 
@@ -584,6 +596,9 @@ class ProductVariant(Model):
           return None
     @property
     def is_in_stock(self):
+        product= Product.get_by_id(self.product_id)
+        if not product.need_check_stock:
+            return True;
         stock = self.quantity - self.quantity_allocated
         if stock  > 0:
            return True
@@ -613,6 +628,10 @@ class ProductVariant(Model):
         return items
 
     def check_enough_stock(self, quantity):
+        product = Product.get_by_id(self.product_id)
+        if not product.need_check_stock:
+            return True, "success"
+
         if self.stock < quantity:
             return False, f"{self.display_product()} has not enough stock"
         return True, "success"

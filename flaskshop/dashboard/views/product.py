@@ -58,6 +58,15 @@ def attributes():
     return render_template("list.html", **context)
 
 def attributes_del(id=None):
+    attr = ProductAttribute.get_by_id(id)
+    if attr:
+        attr.delete()
+
+    type_attr= ProductTypeAttributes.query.filter_by(product_attribute_id=id).all()
+    if type_attr:
+        for item in  type_attr:
+            type_attr.delete()
+
     return redirect(url_for("dashboard.attributes"))
 
 def attributes_manage(id=None):
@@ -73,7 +82,7 @@ def attributes_manage(id=None):
         attr.title = form.title.data
         attr.save()
         keys = form.values.data
-        daya= request.form
+
         values = [load_image(item,"Attributes") for item in form.background_imgs.data]
         dictionary = dict(zip(keys, values))
 
@@ -186,7 +195,7 @@ def categories_manage(id=None):
         form.populate_obj(category)
 
         if image:
-            filename=load_image(image)
+            filename=load_image(image,"category")
             category.background_img=filename
         category.save()
         return redirect(url_for("dashboard.categories"))
@@ -312,7 +321,7 @@ def product_manage_(id):
     if form.validate_on_submit():
         f = request.files['imgdata']
         if f:
-            image_name= load_image(f.filename)
+            image_name= filename=load_image(f.filename,"products")
             new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
             Product.update_images([new_img[0].id],product.id)
 
@@ -371,7 +380,7 @@ def product_manage(id= None):
     if id:
         product= Product.get_by_id(id)
         form = ProductForm(obj=product)
-        form.current_img.data='uploads/'+ product.first_img;
+        form.current_img.data=product.image_url();
 
     else:
         form = ProductForm()
@@ -387,7 +396,7 @@ def product_manage(id= None):
         product = _save_product(product, form)
         if image:
 
-            filename= load_image(image)
+            filename= load_image(image,'products')
             ProductImage.del_product_imgs(product.id)
             ProductImage.get_or_create(image=filename , product_id=product.id)
 
@@ -400,6 +409,7 @@ def product_manage(id= None):
             product_type.del_all_variant_attr()
         product.delete_variants()
         product.generate_variants()
+
         return redirect(url_for("dashboard.product_detail", id=product.id))
 
     categories = Category.query.all()

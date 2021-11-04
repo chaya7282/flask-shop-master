@@ -71,6 +71,8 @@ class Cart(Model):
         variant = ProductVariant.get_by_id(variant_id)
 
         result, msg = variant.check_enough_stock(quantity)
+
+
         if result is False:
             flash(msg, "warning")
             return

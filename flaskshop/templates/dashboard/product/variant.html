@@ -15,7 +15,9 @@
                     </div>
 
                     <div class="card-header">
+                    {% if variant.attribute_map %}
                    {% for attribute, value in variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
+                    {% endif %}
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->

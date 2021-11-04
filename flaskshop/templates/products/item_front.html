@@ -5,7 +5,8 @@
 <div class="product-item">
   <!-- To do referenc to product details-->
             <a href="" class="product-img">
-                <img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" width="auto" height="250">
+
+                <img src= {{ product.image_url() }} width="auto" height="250">
                 <div class="product-absolute-options">
                     {% if product.on_sale %}
                     <span class="offer-badge-1"> Sale</span>
@@ -18,12 +19,13 @@
             </a>
             <div class="product-text-dt">
 
-                {%  if product.is_in_stock %}
+                {%  if product.is_in_stock  or not product.need_check_stock%}
 
                     <p>Available<span>(In Stock)</span></p>
                 {%  else %}
                      <p>Not Available<span>(Not in Stock)</span></p>
                 {% endif %}
+
                 <h4>{{product.title}}</h4>
                 {% if product.on_sale %}
                 <div class="product-price">{{product.price}} <span>{{discount_price}}</span></div>
@@ -54,7 +56,7 @@
 
                         <span class="cart-icon">
                           <div class="card-link">
-                             {%  if product.is_in_stock %}
+                             {%  if product.is_in_stock or not product.need_check_stock%}
                                <a href="{{product.get_absolute_url()  }}" > View<i class="fa fa-eye"></i></a>
                               {%  endif %}
                           </div>

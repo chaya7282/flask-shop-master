@@ -59,6 +59,8 @@
 				</div>
 			</div>
 		</div>
+    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+
 		<div class="all-product-grid">
 			<div class="container">
 				<div class="row">
@@ -68,21 +70,48 @@
 								<div class="col-lg-4 col-md-4">
 
 
-											<img src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" alt="">
+											<img src={{ product.image_url() }}  width="250" height="auto">
+                                            <div class="product-group-dt">
+											<ul>
+												<li><div class="main-price color-discount">{{ product.price}}$<span></span></div></li>
 
+											</ul>
+
+                                                <ul class="gty-wish-share">
+                                                    <li>
+                                                        <div class="qty-product">
+                                                              <div class="quantity buttons_added">
+                                                                <input type="button" value="-" class="minus minus-btn">
+                                                                <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
+                                                                <input type="button" value="+" class="plus plus-btn">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+                                                <ul class="ordr-crt-share">
+
+                                                     {%  if product.is_in_stock or not product.need_check_stock  %}
+
+                                                    <li><button type="submit" class="add-cart-btn hover-btn"><i class="uil uil-shopping-cart-alt"></i>Add to Cart</button></li>
+                                                    {%  endif %}
+                                                </ul>
+                                               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+
+										</div>
 									</div>
 
 								<div class="col-lg-8 col-md-8">
 									<div class="product-dt-right">
 										<h2>{{ product.title }}</h2>
 										<div class="no-stock">
-											   {%  if product.is_in_stock %}
+											   {%  if product.is_in_stock or not product.need_check_stock%}
 											    <p class="stock-qty">Available<span>(Instock)</span></p>
                                                {% else %}
                                                <p class="stock-qty">Not Available<span>(Not Instock)</span></p>
                                                {% endif %}
 										</div>
-                                    	<form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
 
                                             {%  for variant_attributes in product.product_type.variant_attributes %}
@@ -106,36 +135,8 @@
                                              </ul>
                                             {% endfor %}
 
-										<div class="product-group-dt">
-											<ul>
-												<li><div class="main-price color-discount">{{ product.price}}$<span></span></div></li>
-
-											</ul>
-
-                                                <ul class="gty-wish-share">
-                                                    <li>
-                                                        <div class="qty-product">
-                                                              <div class="quantity buttons_added">
-                                                                <input type="button" value="-" class="minus minus-btn">
-                                                                <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
-                                                                <input type="button" value="+" class="plus plus-btn">
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                </ul>
-                                                <ul class="ordr-crt-share">
-
-                                                     {%  if product.is_in_stock %}
-
-                                                    <li><button type="submit" class="add-cart-btn hover-btn"><i class="uil uil-shopping-cart-alt"></i>Add to Cart</button></li>
-                                                    {%  endif %}
-                                                </ul>
-                                               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 
-										</div>
-										</form>
 
                                             <div class="pdp-details">
 											<ul>
@@ -151,6 +152,7 @@
 
 			</div>
 		</div>
+    </form>
 		<!-- Featured Products Start -->
 
 		<!-- Featured Products End -->
