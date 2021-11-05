@@ -402,7 +402,8 @@ def product_manage(id= None):
             ProductImage.get_or_create(image=filename , product_id=product.id)
 
         if form.variant_attributes.data:
-            product.product_type.has_variants = True
+            product_type.has_variants = True
+            product_type.save()
             product_type.del_all_variant_attr()
             product_type.update_variant_attr(form.variant_attributes.data)
         else:
