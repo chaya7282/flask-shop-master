@@ -50,6 +50,8 @@ def order_edit(id):
              return redirect(url_for('order.receive',token=order.token))
         elif  status == 'shipped':
             order.delivered()
+        return redirect(url_for('dashboard.orders'))
+
     return render_template("order/order_edit.html",form=form, order=order,address=address,orderProcessing=orderProcessing, OrderStatusKinds=OrderStatusKinds)
 
 

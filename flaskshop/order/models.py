@@ -221,23 +221,22 @@ class Order(Model):
 
     def cancel(self):
         self.status = OrderStatusKinds.canceled.value
-        db.session.add(self)
+        shipping_address = self.get_shipment_address
+        if shipping_address:
+            shipping_address.delete()
 
         for line in self.lines:
             variant = line.variant
             variant.quantity_allocated -= line.quantity
-            db.session.add(variant)
-
-        shipping_address= ShippingAddress.query.filter_by(order_id=self.id).first()
-        shipping_address.delete()
-        db.session.commit()
+            line.delete(commit=False)
 
         OrderEvent.create(
             order_id=self.id,
             user_id=self.user_id,
             type_=OrderEvents.order_canceled.value,
         )
-
+        db.session.delete(self)
+        db.session.commit()
     def complete(self):
         self.update(status=OrderStatusKinds.completed.value)
         OrderEvent.create(

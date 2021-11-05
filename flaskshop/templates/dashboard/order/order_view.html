@@ -76,7 +76,10 @@
                                             <a href="{{url_for('dashboard.product_manage', id=item.product_id)}}"
                                                 target="_blank">
                                                 {{item.product_name}}
+
                                             </a>
+                                             {% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
+
                                         </td>
 
 

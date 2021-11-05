@@ -95,8 +95,10 @@ def shipment_details():
                 msg.html =  render_template(
                     "checkout/order_placed_template.html", order=order
                 )
-
-                mail.send(msg)
+                try:
+                    mail.send(msg)
+                except Exception as inst:
+                    flash(inst, "warning")
 
             return render_template(
                 "checkout/order_placed.html", order=order

@@ -67,9 +67,9 @@
 
 
                                                             <td>
-																{% if item.status_human== 'canceled' %}
+
 																<a href="{{url_for('dashboard.order_del', id=item.id)}}"><i class="fas fa-trash"></i></a>
-															    {% endif %}
+
                                                             </td>
 														</tr>
 													{% endfor %}
