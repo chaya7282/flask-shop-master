@@ -403,7 +403,7 @@ def product_manage(id= None):
 
         if form.variant_attributes.data:
             product.product_type.has_variants = True
-
+            product_type.del_all_variant_attr()
             product_type.update_variant_attr(form.variant_attributes.data)
         else:
             product.product_type.has_variants = False
