@@ -82,8 +82,22 @@ def attributes_manage(id=None):
         attr.title = form.title.data
         attr.save()
         keys = form.values.data
+        current_values= attr.values
+        values= []
+        for index in range(len(keys)):
+            key= keys[index]
+            curr_value= [x for x in attr.values if x.title == key]
+            new_image = form.background_imgs.data[index]
+            if new_image:
+                image=load_image(new_image,"Attributes")
+            else:
+                if curr_value:
+                    if curr_value[0].image:
+                        image=curr_value[0].image
+                else:
+                     image= "tmp_file.jpg"
+            values.append(image)
 
-        values = [load_image(item,"Attributes") for item in form.background_imgs.data]
         dictionary = dict(zip(keys, values))
 
         attr.update_values(dictionary)
