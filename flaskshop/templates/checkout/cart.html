@@ -28,8 +28,9 @@
 					</div>
 					<div class="cart-text">
 						<h4>{{ line.product }}-{{ line.variant.sku }}</h4>
+                        {% if line.variant.attribute_map %}
                          {% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
-
+                        {% endif %}
 
                          <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
 
