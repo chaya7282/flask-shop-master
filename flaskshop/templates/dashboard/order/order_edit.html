@@ -83,8 +83,9 @@
                                                 {{item.product_name}}
 
                                             </a>
+                                             {% if item.variant.attribute_map %}
                                               {% for attribute, value in item.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
-
+                                             {% endif %}
                                         </td>
 
 
