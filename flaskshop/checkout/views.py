@@ -98,7 +98,9 @@ def shipment_details():
                 try:
                     mail.send(msg)
                 except Exception as inst:
-                    flash(inst, "warning")
+
+                    flash("email could not be sent", "warning")
+
 
             return render_template(
                 "checkout/order_placed.html", order=order

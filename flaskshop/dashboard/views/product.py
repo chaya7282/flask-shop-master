@@ -158,7 +158,7 @@ def categories():
     page = request.args.get("page", type=int, default=1)
     query= Category.query
     if request.form:
-        search_word = request.form["search_product"]
+        search_word = request.form["search_item"]
         if search_word:
             query = query.filter(or_(Category.title.like(f"%{search_word}%")))
 
