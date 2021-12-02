@@ -24,6 +24,10 @@ def load_image_AWS(image):
         baseheight = 400
         image.save(os.path.join(Config.UPLOAD_FOLDER, "tmp_file.jpg"))
         loaded_image = Image.open(os.path.join(Config.UPLOAD_FOLDER, "tmp_file.jpg"))
+        wpercent = (baseheight / float(loaded_image.size[1]))
+        wsize = int((float(loaded_image.size[0]) * float(wpercent)))
+        loaded_image = loaded_image.resize((wsize, baseheight), Image.ANTIALIAS)
+
         saved_quantized_image = io.BytesIO()
         loaded_image.save(saved_quantized_image, 'PNG')
 
