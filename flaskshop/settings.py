@@ -45,13 +45,16 @@ class Config:
     SQLALCHEMY_DATABASE_URI ="mysql://t165ie12h8gw65tx:jty23hwy76q7y275@ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hxg4ezjfrkkztwyc"
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
-    S3_BUCKET = "chayaflaskbacket"
-    S3_KEY = "AKIAR3EL7JFQ7PZIAPKJ"
-    S3_SECRET = "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"
-    AWS_S3_REGION_NAME= "ap-northeast-3"
+    #S3_BUCKET = "chayaflaskbacket"
+    #S3_KEY = "AKIAR3EL7JFQ7PZIAPKJ"
+   # S3_SECRET = "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"
+   # AWS_S3_REGION_NAME= "ap-northeast-3"
 
-
-    SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
+    S3_BUCKET =  os.getenv('chayaflaskbacket')
+    S3_KEY = os.getenv('AKIAR3EL7JFQ7PZIAPKJ')
+    S3_SECRET = os.getenv('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')
+    AWS_S3_REGION_NAME = os.getenv('ap-northeast-3')
+    #SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
 
 
     JSONIFY_PRETTYPRINT_REGULAR = False
