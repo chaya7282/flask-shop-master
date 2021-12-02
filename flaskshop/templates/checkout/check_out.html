@@ -90,7 +90,7 @@
                                   {% for line in current_user_cart.lines %}
 								<div class="cart-item border_radius">
 									<div class="cart-product-img">
-										 <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
+										 <img class="lazyload lazypreload" src={{ line.product.image_url() }} width="60" />
 
 										<div class="offer-badge">4% OFF</div>
 									</div>
