@@ -40,7 +40,7 @@
 								<div class="offer-item">
 									<div class="offer-item-img">
 										<div class="gambo-overlay"></div>
-										<img  src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" width="auto" height="300">
+										<img  src= {{ product.image_url() }} width="auto" height="300">
 									</div>
 									<div class="offer-text-dt">
 										<div class="offer-top-text-banner">
