@@ -54,7 +54,7 @@ class Config:
     S3_KEY = os.getenv('AKIAR3EL7JFQ7PZIAPKJ')
     S3_SECRET = os.getenv('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')
     AWS_S3_REGION_NAME = os.getenv('ap-northeast-3')
-    #SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
+    SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
 
 
     JSONIFY_PRETTYPRINT_REGULAR = False
