@@ -45,10 +45,10 @@ class Config:
     SQLALCHEMY_DATABASE_URI ="mysql://t165ie12h8gw65tx:jty23hwy76q7y275@ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hxg4ezjfrkkztwyc"
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
 
-    #S3_BUCKET = "chayaflaskbacket"
-    #S3_KEY = "AKIAR3EL7JFQ7PZIAPKJ"
-   # S3_SECRET = "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"
-   # AWS_S3_REGION_NAME= "ap-northeast-3"
+    S3_BUCKET = "chayaflaskbacket"
+    S3_KEY = "AKIAR3EL7JFQ7PZIAPKJ"
+    S3_SECRET = "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"
+    AWS_S3_REGION_NAME= "ap-northeast-3"
 
     S3_BUCKET = os.getenv('S3_BUCKET')
     S3_KEY = os.getenv('S3_KEY')
@@ -85,5 +85,5 @@ class Config:
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
-    MAIL_USERNAME = 'esekbekafyad@gmail.com'
-    MAIL_PASSWORD = 'chaya7282'
+    MAIL_USERNAME = 'chaya.zilberstein@gmail.com'
+    MAIL_PASSWORD = 'ChayaNadavYoav7282'
