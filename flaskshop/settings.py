@@ -50,10 +50,10 @@ class Config:
    # S3_SECRET = "ah1TOQb8iabUE3Ew41mrOB9aVZJSRTxp6znQOOov"
    # AWS_S3_REGION_NAME= "ap-northeast-3"
 
-    S3_BUCKET =  os.getenv('chayaflaskbacket')
-    S3_KEY = os.getenv('AKIAR3EL7JFQ7PZIAPKJ')
-    S3_SECRET = os.getenv('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')
-    AWS_S3_REGION_NAME = os.getenv('ap-northeast-3')
+    S3_BUCKET =  os.getenv(' S3_BUCKET')
+    S3_KEY = os.getenv('S3_KEY')
+    S3_SECRET = os.getenv('S3_SECRET')
+    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
     SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
 
 
