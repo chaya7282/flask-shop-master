@@ -8,7 +8,7 @@ from flaskshop.database import Column, Model, db
 from flaskshop.corelib.mc import cache, cache_by_args, rdb
 from flaskshop.corelib.db import PropsItem
 from flaskshop.settings import Config
-
+from flaskshop.resources.resources import get_presigned_url
 import os
 
 MC_KEY_FEATURED_PRODUCTS = "product:featured:{}"
@@ -61,7 +61,8 @@ class Product(Model):
         return url_for("static", filename="uploads/"+ self.first_img)
 
     def image_url(self):
-        urt = url_for("static", filename="uploads/" + self.first_img)
+        name= self.first_img
+        urt = get_presigned_url(self.first_img)
         return urt
 
     @property
@@ -71,6 +72,8 @@ class Product(Model):
             return str(im)
 
         return ""
+
+
 
     @property
     def is_in_stock(self):
@@ -332,12 +335,18 @@ class Category(Model):
 
     @property
     def background_img_url(self):
-
-        urt= url_for("static", filename="uploads/"+self.get_background_img())
-        return urt
+        url = self.get_background_img()
+        return url
     def get_background_img(self):
         if self.background_img:
            return self.background_img
+
+        return ""
+
+    def get_background_img_AWS(self):
+        if self.background_img:
+            url= get_presigned_url(self.background_img)
+            return url
 
         return ""
 
@@ -785,7 +794,7 @@ class AttributeChoiceValue(Model):
     def attribute(self):
         return ProductAttribute.get_by_id(self.attribute_id)
     def image_url(self):
-        urt = url_for("static", filename="uploads/" + self.image)
+        urt = get_presigned_url(self.image)
         return urt
 
 class ProductImage(Model):

@@ -10,7 +10,7 @@ import datetime
 import os
 import secrets
 from werkzeug.utils import secure_filename
-from flaskshop.Media.media import load_image
+from flaskshop.Media.media import load_image, upload_file, get_image_url
 from PIL import Image
 from sqlalchemy import and_, or_, not_
 from PIL import Image
@@ -89,7 +89,7 @@ def attributes_manage(id=None):
             curr_value= [x for x in attr.values if x.title == key]
             new_image = form.background_imgs.data[index]
             if new_image:
-                image=load_image(new_image,"Attributes")
+                image=upload_file(new_image)
             else:
                 if curr_value:
                     if curr_value[0].image:
@@ -210,7 +210,7 @@ def categories_manage(id=None):
         form.populate_obj(category)
 
         if image:
-            filename=load_image(image,"category")
+            filename=upload_file(image)
             category.background_img=filename
         category.save()
         return redirect(url_for("dashboard.categories"))
@@ -336,7 +336,7 @@ def product_manage_(id):
     if form.validate_on_submit():
         f = request.files['imgdata']
         if f:
-            image_name= filename=load_image(f.filename,"products")
+            image_name= upload_file(f.filename)
             new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
             Product.update_images([new_img[0].id],product.id)
 
@@ -411,7 +411,7 @@ def product_manage(id= None):
         product = _save_product(product, form)
         if image:
 
-            filename= load_image(image,'products')
+            filename= upload_file(image)
             ProductImage.del_product_imgs(product.id)
             ProductImage.get_or_create(image=filename , product_id=product.id)
 

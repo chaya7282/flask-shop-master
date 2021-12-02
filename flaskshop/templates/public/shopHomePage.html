@@ -75,18 +75,20 @@
 					<div class="col-md-12">
 						<div class="owl-carousel cate-slider owl-theme">
 
-							 {% for item in categories %}
+							 {% for item in categories%}
                                  {% if item.is_active %}
 							        <div class="item">
 
 								<a href="{{ item.get_absolute_url()  }}" class="category-item">
 									<div class="cate-img">
-										<img src="{{item.background_img_url }}"  width="auto" height="70px">
+										<img src={{item.get_background_img_AWS ()}}  width="auto" height="70px">
 									</div>
 									<h4>{{item.title}}</h4>
 								</a>
 							</div>
                                  {% endif %}
+
+
 						    {% endfor %}
 
 						</div>
@@ -115,7 +117,8 @@
 							{% for product in products %}
 							{% if product.get_is_featured %}
 							<div class="item">
-								 {% include('products/item_front.html') %}
+
+                                {% include('products/item_front.html') %}
 							</div>
 							{% endif %}
 							{% endfor %}
@@ -143,7 +146,8 @@
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
 							{% if product.on_sale%}
-							<div class="item">
+
+                                <div class="item">
 								 {% include('products/item_front.html') %}
 							</div>
 							{% endif %}
