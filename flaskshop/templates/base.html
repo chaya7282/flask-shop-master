@@ -47,7 +47,7 @@
                          <li>
 							<a href="{{ item.get_absolute_url()  }}" class="single-cat-item">
 								<div class="icon">
-									<img src="{{item.background_img_url }}" alt="">
+									<img src={{item.get_background_img_AWS ()}} alt="">
 								</div>
 								<div class="text"> {{item.title}} </div>
 							</a>
