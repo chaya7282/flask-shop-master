@@ -48,6 +48,9 @@ class SaleorProvider(BaseProvider):
 
 fake.add_provider(SaleorProvider)
 
+
+
+
 GROCERIES_CATEGORY = {"name": "Groceries", "image_name": "icon-11.svg"}
 
 DEFAULT_SCHEMA2 = {
@@ -334,7 +337,7 @@ Fake for products data
 
 # step1
 def create_products_by_schema(
-    placeholder_dir, how_many, create_images, schema=DEFAULT_SCHEMA2
+    placeholder_dir, how_many, create_images, schema
 ):
     for product_type, type_schema in create_product_types_by_schema(schema):
         create_products_by_type(

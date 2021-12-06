@@ -25,6 +25,7 @@ def home():
     products= Product.query.all()
     categories= Category.query.all()
 
+
     return render_template("public/shopHomePage.html", products= products,categories=categories )
 
 

@@ -7,8 +7,11 @@ from flask.cli import with_appcontext
 from werkzeug.exceptions import MethodNotAllowed, NotFound
 from pathlib import Path
 from itertools import chain
-
-
+from flaskshop.random_data import DEFAULT_SCHEMA2
+from pathlib import Path
+import pickle
+import json
+import codecs
 from flaskshop.random_data import (
     create_users,
     create_menus,
@@ -147,6 +150,9 @@ def urls(url, order):
         click.echo(str_template.format(*row[:column_length]))
 
 
+
+
+
 def createdb():
     """ create database tables
     """
@@ -185,6 +191,24 @@ def create_products_by_schema_cmd():
     for msg in create_generator:
         click.echo(msg)
 
+def save_store_to_cmd():
+
+    dictionary_data = {"a": 1, "b": 2}
+    with open("codebeautify.json", "w") as outfile:
+        json.dump(DEFAULT_SCHEMA2, outfile)
+
+
+def load_store_from_xls_cmd(xls):
+     db.drop_all()
+     db.create_all()
+     with open('data.json') as json_file:
+         data = json.load(json_file)
+     print(data["a"])
+
+
+
+
+
 def create_shipping_methods_cmd():
     create_generator = chain(
 
@@ -192,6 +216,8 @@ def create_shipping_methods_cmd():
     )
     for msg in create_generator:
         click.echo(msg)
+
+
 
 
 
@@ -203,16 +229,17 @@ def seed(type):
         db.create_all()
 
         place_holder = Path("placeholders")
+        create_categories_by_schema(placeholder_dir=place_holder),
         create_products_by_schema(
             placeholder_dir=place_holder, how_many=5, create_images=False
         )
-        create_categories_by_schema(placeholder_dir=place_holder),
+
         create_generator = chain(
             create_roles(),
             create_admin(),
-            create_users(),
+
             create_shipping_methods(),
-            create_orders(),
+
           create_dashboard_menus(),
         )
         for msg in create_generator:
@@ -238,6 +265,7 @@ def seed(type):
         )
         for msg in create_generator:
             click.echo(msg)
+
     elif type == "product":
 
         place_holder = Path("placeholders"),
