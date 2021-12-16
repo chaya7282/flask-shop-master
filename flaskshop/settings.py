@@ -42,8 +42,14 @@ class Config:
 
     # SQLALCHEMY"
 
-    SQLALCHEMY_DATABASE_URI ="mysql://t165ie12h8gw65tx:jty23hwy76q7y275@ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hxg4ezjfrkkztwyc"
+
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost/db'
+    MYSQL_DATABASE_USER = 'root'
+    MYSQL_DATABASE_PASSWORD = 'root'
+    MYSQL_DATABASE_DB = 'db'
+    MYSQL_DATABASE_HOST = '127.0.0.1'
+    MYSQL_DATABASE_PORT = '3306'
 
     S3_BUCKET = "chayaflaskbacket"
     S3_KEY = "AKIAR3EL7JFQ7PZIAPKJ"
@@ -51,11 +57,11 @@ class Config:
     AWS_S3_REGION_NAME= "ap-northeast-3"
 
 
-    S3_BUCKET = os.getenv('S3_BUCKET')
-    S3_KEY = os.getenv('S3_KEY')
-    S3_SECRET = os.getenv('S3_SECRET')
-    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
-    SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
+   # S3_BUCKET = os.getenv('S3_BUCKET')
+    #S3_KEY = os.getenv('S3_KEY')
+    #S3_SECRET = os.getenv('S3_SECRET')
+    #AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+   # SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
 
     JSONIFY_PRETTYPRINT_REGULAR = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -64,7 +70,7 @@ class Config:
 
 
     SQLALCHEMY_POOL_RECYCLE=3600
-    SQLALCHEMY_POOL_TIMEOUT= 20
+    #SQLALCHEMY_POOL_TIMEOUT= 20
     # Dir
     APP_DIR = Path(__file__).parent  # This directory
     PROJECT_ROOT = APP_DIR.parent

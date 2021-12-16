@@ -82,7 +82,6 @@ class SiteConfigForm(FlaskForm):
     description = TextAreaField()
     submit = SubmitField()
 
-
 class UserForm(FlaskForm):
     username = StringField(validators=[DataRequired()])
     email = StringField(validators=[DataRequired()])
@@ -91,6 +90,13 @@ class UserForm(FlaskForm):
     created_at = DateTimeField()
     updated_at = DateTimeField()
     role = SelectField("Role", default=0)
+    submit = SubmitField()
+
+
+
+class FileImportForm(FlaskForm):
+    xls_file = FileField(validators=[ FileRequired(), FileAllowed(['.xls'], 'xls only!')])
+    DataType = SelectMultipleField("Data Type",choices=[(0,'product'), (1,'Categories')],)
     submit = SubmitField()
 
 

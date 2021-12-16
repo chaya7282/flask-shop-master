@@ -50,7 +50,7 @@ from .product import (
 )
 from .order import orders, order_detail, send_order, draft_order, order_edit,order_del
 from .discount import vouchers, vouchers_manage, sales, sales_manage
-
+from .file_import import file_data_import
 impl = HookimplMarker("flaskshop")
 
 
@@ -213,6 +213,12 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/category_del/<id>", view_func= categories_del)
     bp.add_url_rule( "/products/create/step1",view_func=product_create_step1,methods=["GET", "POST"],
     )
+
+    bp.add_url_rule(
+        "/file_data_import", view_func=file_data_import, methods=["GET", "POST"],
+    )
+
+
     bp.add_url_rule(
         "/products/create/step2",view_func=product_manage, methods=["GET", "POST"],
     )
