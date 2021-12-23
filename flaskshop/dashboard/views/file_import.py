@@ -23,6 +23,7 @@ def file_data_import():
             if len(products_to_add) %1000 ==0:
                  db.session.add_all(products_to_add)
                  products_to_add =[]
+                 db.session.commit()
 #        products_to_add = [Product(**row) for row in df.to_dict('records')]
  #       db.session.add_all( products_to_add)
         db.session.commit()
