@@ -95,7 +95,7 @@ class UserForm(FlaskForm):
 
 
 class FileImportForm(FlaskForm):
-    xls_file = FileField(validators=[ FileRequired(), FileAllowed(['.xls'], 'xls only!')])
+    xls_file = FileField(validators=[ FileRequired(), FileAllowed(['xls','xlsx'], 'xls only!')])
     DataType = SelectMultipleField("Data Type",choices=[(0,'product'), (1,'Categories')],)
     submit = SubmitField()
 

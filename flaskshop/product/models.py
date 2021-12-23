@@ -10,7 +10,7 @@ from flaskshop.corelib.db import PropsItem
 from flaskshop.settings import Config
 from flaskshop.resources.resources import get_presigned_url
 import os
-
+import datetime
 MC_KEY_FEATURED_PRODUCTS = "product:featured:{}"
 MC_KEY_PRODUCT_IMAGES = "product:product:{}:images"
 MC_KEY_PRODUCT_VARIANT = "product:product:{}:variant"
@@ -24,6 +24,7 @@ MC_KEY_CATEGORY_CHILDREN = "product:category:{}:children"
 
 class Product(Model):
     __tablename__ = "product_product"
+
     title = Column(db.String(255), nullable=False)
     on_sale = Column(db.Boolean(), default=False)
     is_active  = Column(db.Boolean(), default=False)
