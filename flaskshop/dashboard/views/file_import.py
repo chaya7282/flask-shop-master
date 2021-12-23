@@ -16,10 +16,14 @@ def file_data_import():
 
         df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER,"xls_source.xls"),sheet_name='Sheet4' )
         products_to_add =[]
+
         for row in df.to_dict('records'):
             if not pd.isna(row['title']):
                 products_to_add.append(Product(**row))
+            if len(products_to_add) %1000 ==0:
+                 db.session.add_all(products_to_add)
+                 products_to_add =[]
 #        products_to_add = [Product(**row) for row in df.to_dict('records')]
-        db.session.add_all( products_to_add)
+ #       db.session.add_all( products_to_add)
         db.session.commit()
     return render_template("ImportDataFromFile/importFromFile.html", form=form)
