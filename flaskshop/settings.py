@@ -76,6 +76,7 @@ class Config:
 
     SQLALCHEMY_POOL_RECYCLE=3600
     #SQLALCHEMY_POOL_TIMEOUT= 20
+    MAX_QUERIES_PER_HOUR = 30000
     # Dir
     APP_DIR = Path(__file__).parent  # This directory
     PROJECT_ROOT = APP_DIR.parent
