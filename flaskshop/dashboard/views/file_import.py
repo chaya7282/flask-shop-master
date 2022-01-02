@@ -33,9 +33,6 @@ def add_to_db(sheet_name, data_type):
 #        products_to_add = [Product(**row) for row in df.to_dict('records')]
 #       db.session.add_all( products_to_add)
 
-def decimal(number):
-    num=str(number)
-    return num
 
 def add_products(sheet_name):
     df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
@@ -54,7 +51,7 @@ def add_products(sheet_name):
 
             products_types_to_add.append(ProductType(title=row['title'], is_shipping_required=False,has_variants=False))
             if 'basic_price' in row:
-                row['basic_price']= Decimal(str(row['basic_price']).replace(',',''))
+                row['basic_price']= float(str(row['basic_price']).replace(',',''))
 
             product = Product(**row)
 
