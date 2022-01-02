@@ -57,7 +57,7 @@ def add_products(sheet_name):
             for c in columns_table:
                 if c['name'] in row:
                     if str(c['type']) =='DECIMAL(10, 2)':
-                         row[c['name']]=Decimal(str(row[c['name']]).replace(',',''))
+                         row[c['name']]=decimal(str(row[c['name']]).replace(',',''))
 
 
 
