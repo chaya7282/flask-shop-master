@@ -1,0 +1,164 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<head>
+	<!-- Bootstrap Static Header -->
+<div style="background: url(/static/uploads/business_pictures/jambatron_front.jpg)" class="jumbotron bg-cover text-white">
+    <div class="container py-5 text-center">
+        <h1 class="display-4 font-weight-bold">{{ settings['project_title'].value }}</h1>
+        <p class="font-italic mb-0"></p>
+        <p class="font-italic">
+            <a href="https://bootstrapious.com" class="text-white">
+                <u></u>
+            </a>
+        </p>
+
+    </div>
+</div>
+
+<!-- For Demo Purpose -->
+
+
+</head>
+ <div class="container">
+  <div class="row justify-content-center">
+       <h1 class="bg-primary text-white display-2   "></h1>
+
+
+  </div>
+</div>
+
+
+<!-- Header End -->
+	<!-- Body Start -->
+
+				<div class="row">
+					<div class="col-md-12">
+                    <div class="owl-carousel offers-banner owl-theme">
+							{%for product in products %}
+							{% if product.in_front_banner %}
+							<div class="item">
+								<div class="offer-item">
+									<div class="offer-item-img">
+										<div class="gambo-overlay"></div>
+										<img  src= {{ product.image_url() }} width="auto" height="300">
+									</div>
+									<div class="offer-text-dt">
+										<div class="offer-top-text-banner">
+											<p> off</p>
+											<div class="top-text-1">Buy More & Save More</div>
+											<span>{{product.category}}</span>
+										</div>
+
+										<a href="{{product.category.get_absolute_url() }}"  class="Offer-shop-btn hover-btn">Shop Now</a>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+                    </div>
+						</div>
+					</div>
+
+
+
+	<div class="section145">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="main-title-tt">
+							<div class="main-title-left">
+								<span>Shop By</span>
+								<h2>Categories</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="owl-carousel cate-slider owl-theme">
+
+							 {% for item in categories%}
+                                 {% if item.is_active %}
+							        <div class="item">
+
+								<a href="{{ item.get_absolute_url()  }}" class="category-item">
+									<div class="cate-img">
+										<img src={{item.get_background_img_AWS ()}}  width="auto" height="70px">
+									</div>
+									<h4>{{item.title}}</h4>
+								</a>
+							</div>
+                                 {% endif %}
+
+
+						    {% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+		<!-- Categories End -->
+		<!-- Featured Products Start -->
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-title-tt">
+							<div class="main-title-left">
+								<span>For You</span>
+								<h2>Top Featured Products</h2>
+							</div>
+
+
+
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="owl-carousel featured-slider owl-theme">
+							{% for product in products %}
+							{% if product.get_is_featured %}
+							<div class="item">
+
+                                {% include('products/item_front.html') %}
+							</div>
+							{% endif %}
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Featured Products End -->
+	<!-- Best Values Offers Start -->
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-title-tt">
+							<div class="main-title-left">
+								<span>For You</span>
+								<h2>On Sale</h2>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="owl-carousel featured-slider owl-theme">
+							{% for product in products %}
+							{% if product.on_sale%}
+
+                                <div class="item">
+								 {% include('products/item_front.html') %}
+							</div>
+							{% endif %}
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<!-- Best Values Offers End -->
+
+</div>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends "base.html" %}
+{% block content %}
+<div class="all-product-grid">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-md-7">
+						<div id="checkout_wizard" class="checkout accordion left-chck145">
+
+								<div class="checkout-card" id="headingTwo">
+								<h2>Delivery-Details</h2>
+
+								</div>
+									  <form method="POST" action="" enctype='multipart/form-data'>
+                                     <div class="checkout-step-body">
+										<div class="checout-address-step">
+											<div class="row">
+												<div class="col-lg-12">
+													<form class="">
+														<!-- Multiple Radios (inline) -->
+
+														<div class="address-fieldset">
+															<div class="row">
+																<div class="col-lg-6 col-md-12">
+																	<div class="form-group">
+
+																		 {{ macros.render_input_field(form.contact_name) }}
+																	</div>
+																</div>
+                                                                	<div class="col-lg-6 col-md-12">
+																	<div class="form-group">
+
+																		 {{macros.render_input_field(form.contact_phone) }}
+																	</div>
+																</div>
+
+																<div class="col-lg-12 col-md-12">
+																	<div class="form-group">
+
+                                                                         {{macros.render_input_field(form.address) }}
+                                                                    </div>
+																</div>
+                                                                <div class="col-lg-12 col-md-12">
+																	<div class="form-group">
+
+                                                                         {{macros.render_input_field(form.city) }}
+                                                                    </div>
+																</div>
+																<div class="col-lg-6 col-md-12">
+																	<div class="form-group">
+
+																		 {{ macros.render_input_field(form.pincode) }}
+																	</div>
+																</div>
+																<div class="col-lg-6 col-md-12">
+																	<div class="form-group">
+                                                                            {{ macros.render_input_field(form.email) }}
+
+																	</div>
+																</div>
+																<div class="col-lg-12 col-md-12">
+																	<div class="form-group">
+																		<div class="address-btns">
+
+                                                                              <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+
+																			<button type="submit" class="save-btn14 hover-btn">Confirm</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+                               </form>
+
+							</div>
+						</div>
+
+					<div class="col-lg-4 col-md-5">
+						<div class="pdpt-bg mt-0">
+							<div class="pdpt-title">
+								<h4>Order Summary</h4>
+							</div>
+							<div class="right-cart-dt-body">
+                                  {% for line in current_user_cart.lines %}
+								<div class="cart-item border_radius">
+									<div class="cart-product-img">
+										 {%if line.product.image_url() %}
+											 <img class="lazyload lazypreload" src={{ line.product.image_url() }} width="60" />
+										{% endif %}
+										<div class="offer-badge"></div>
+									</div>
+									<div class="cart-text">
+										<h4>{{ line.product }}</h4>
+										<div >{{ line.quantity }}-items  <span>${{ line.subtotal }}</span></div>
+
+									</div>
+								</div>
+                                {% endfor %}
+							</div>
+							<div class="total-checkout-group">
+								<div class="cart-total-dil">
+									<h4>Sub-total</h4>
+									<span>${{ current_user_cart.subtotal }}</span>
+								</div>
+								<div class="cart-total-dil pt-3">
+									<h4>Delivery Charges</h4>
+									<span>${{current_user_cart.shipping_method.price}}</span>
+								</div>
+							</div>
+							<div class="cart-total-dil saving-total ">
+								<h4>Total Saving</h4>
+								<span></span>
+							</div>
+							<div class="main-total-cart">
+								<h2>Total</h2>
+								<span>${{current_user_cart.total}}</span>
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock content %}

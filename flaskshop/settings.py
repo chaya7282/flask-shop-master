@@ -62,11 +62,11 @@ class Config:
 
     SQLALCHEMY_POOL_TIMEOUT = 180
 
-    S3_BUCKET = os.getenv('S3_BUCKET')
-    S3_KEY = os.getenv('S3_KEY')
-    S3_SECRET = os.getenv('S3_SECRET')
-    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
-    SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
+    #S3_BUCKET = os.getenv('S3_BUCKET')
+    #S3_KEY = os.getenv('S3_KEY')
+   # S3_SECRET = os.getenv('S3_SECRET')
+    #AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+    #SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
 
     JSONIFY_PRETTYPRINT_REGULAR = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -76,7 +76,7 @@ class Config:
 
     SQLALCHEMY_POOL_RECYCLE=3600
     #SQLALCHEMY_POOL_TIMEOUT= 20
-    MAX_QUERIES_PER_HOUR = 30000
+    TEMPLATES_AUTO_RELOAD=True
     # Dir
     APP_DIR = Path(__file__).parent  # This directory
     PROJECT_ROOT = APP_DIR.parent

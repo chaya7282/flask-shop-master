@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+  {% block meta %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    {% endblock meta %}
+   </head>
+<body>
+{% block header %}
+ <div class="container-fluid mb-2" >
+   <div class="row">
+
+
+           <div class="col px-md-1"> <a  href="{{ url_for('dashboard.index') }}" ><i class="fas fa-tachometer-alt  fa-3x" aria-hidden="true"></i></a></div>
+
+         <div class="col px-md-1"> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a></div>
+   </div>
+
+   </div>
+{% endblock %}
+<!-- Google Font: Source Sans Pro -->
+
+ <div class="container maincontent">
+   <div class="content-wrapper mb-2">
+
+        <section class="content">
+            {% for message in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{ message[0] }}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message[1] }}
+            </div>
+            {% endfor %}
+        </section>
+
+            {% block content %}
+
+           {% endblock %}
+        </div>
+ </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

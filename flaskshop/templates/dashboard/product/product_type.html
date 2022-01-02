@@ -1,0 +1,51 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends 'dashboard/dashboard_layout.html' %}
+ {% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard/bootstrap-select.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ url_for('static', filename='build/dashboard/product_edit.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/dashboard/bootstrap-select.js') }}"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">{% if 'edit' in request.path %}Edit{% else %}Create{% endif %}
+                            Product Type</h3>
+                   11
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                <form method="POST" action="" enctype='multipart/form-data'>
+                        <div class="card-body">
+                            {{ form.hidden_tag() }}
+                            {{ vendor.render_field(form.title) }}
+                            {{ vendor.render_field(form.has_variants) }}
+                            {{ vendor.render_field(form.is_shipping_required) }}
+                            {{ macros.render_select_multi_field(form.product_attributes, attributes) }}
+                            {{ macros.render_select_multi_field(form.variant_attributes, attributes) }}
+                            <div class="card-footer">
+                                {{ macros.render_submit(form.submit) }}
+                            </div>
+                        </div>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block tail_js %}
+<script src="{{ url_for('static', filename='build/dashboard/select.js') }}"></script>
+{% endblock %}

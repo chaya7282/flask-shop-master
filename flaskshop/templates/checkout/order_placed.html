@@ -1,0 +1,15 @@
+﻿{% import '_macros.html' as macros %}
+{% extends "base.html" %}
+{% block content %}
+
+	<!-- Header Start -->
+
+   {% include('checkout/order_placed_template.html') %}
+
+
+
+
+ <div class="cart-footer text-right">
+   <a  href="{{url_for('public.home')}}" class="btn btn-success my-1" >Back To Shop<i class="ri-arrow-left-line ml-2"></i></a>
+</div>
+{% endblock content %}

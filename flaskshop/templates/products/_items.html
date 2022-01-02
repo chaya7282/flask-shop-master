@@ -1,0 +1,107 @@
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/product_card/product_card3.css') }}">
+<head>
+    <style>
+        .button_quantity {
+           width: 5px;
+            max-width: 5px;
+            background-color: #8064A2;
+       }
+    </style>
+</head>
+<div class="card">
+        <div class="top d-flex flex-row align-items-center">
+
+
+         {%if product.get_is_featured%}
+        <h6 class="mb-0 mr-2">Special Product</h6><i class="fa-thumbs-o-up "></i>
+        <div class="badge bg-dark text-white position-absolute" style="top: 1rem; right: 1rem">מיוחד</div>
+
+            {%elif product.get_is_on_sale%}
+         <h6 class="mb-0 mr-2">Product on sale</h6><i class="fa fa-opencart"></i>
+
+            <div class="badge bg-dark text-white position-absolute" style="top: 1rem; right: 1rem">במבצע</div>
+        {%else%}
+        <h6 class="mb-0 mr-2"></h6>
+
+       {%endif%}
+        </div>
+
+         <div class="middle">
+          <a href="{{ url_for('product.show', id=product.id)}}"  target="_blank">
+             <img   src="{{ url_for('static', filename='uploads/'+ product.first_img) }}" class="img_card">
+          </a>
+            <h5>{{ product.title }}</h5> <span></span>
+        </div>
+
+    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+        <div class="container-fluid bottom justify-content-center">
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                 {% if product.on_sale %}
+                    <div class="input-group mb-3"> <input type="number" name="id_quantity" class="form-control" value="1"> </div>
+             {% endif %}
+         </div>
+
+            </div>
+            <div class="col-sm">
+               {% if product.get_has_variants %}
+                <div class="form-group mb-0.5">
+                   <select name= "id_variant" class="form-select" id="validationDefault04" required>
+
+                    <option selected disabled value="">Choose Variant</option>
+
+                    {% for var in  product.variant %}
+                           {%if var.is_in_stock %}
+                                <option value={{var.id}}>{{var.title}}</option>
+                        {% endif %}
+                   {% endfor %}
+
+                </select>
+           <label for="validationDefault04" class="form-label">Variant</label>
+        </div>
+            {% endif %}
+            </div>
+           </div>
+           <div class="row align-items-center ">
+           <button  type="submit" class="btn btn-success btn-xsm btn-outline btn-wrap-text reducefontsize ">Add For <b>${{product.price}}</b></button>
+                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+           </div>
+       </div>
+
+</form>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+$('.add').click(function () {
+    $(this).prev().val(+$(this).prev().val() + 1);
+});
+$('.sub').click(function () {
+    if ($(this).next().val() > 0) $(this).next().val(+$(this).next().val() - 1);
+});
+
+</script>
+
+
+

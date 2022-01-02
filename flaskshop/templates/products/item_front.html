@@ -1,0 +1,71 @@
+<head>
+
+</head>
+{% if product.is_active %}
+
+<div class="product-item">
+  <!-- To do referenc to product details-->
+            <a href="" class="product-img">
+                {%if product.image_url() %}
+                    <img src= {{ product.image_url() }} width="auto" height="250">
+                {% endif %}
+                <div class="product-absolute-options">
+                    {% if product.on_sale %}
+                    <span class="offer-badge-1"> Sale</span>
+                    {% elif product.is_featured %}
+                    <span class="offer-badge-1"> Special</span>
+                    {% endif %}
+
+                    <span class="like-icon" title="wishlist"></span>
+                </div>
+            </a>
+            <div class="product-text-dt">
+
+                {%  if product.is_in_stock  or not product.need_check_stock%}
+
+                    <p>Available<span>(In Stock)</span></p>
+                {%  else %}
+                     <p>Not Available<span>(Not in Stock)</span></p>
+                {% endif %}
+
+                <h4>{{product.title}}</h4>
+                {% if product.on_sale %}
+                <div class="product-price">{{product.price}} <span>{{discount_price}}</span></div>
+                {% else %}
+                <div class="product-price">{{product.price}} </div>
+                {% endif %}
+
+                    {% if not product.has_variants %}
+                     <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+
+                    <div class="qty-cart">
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus minus-btn">
+                            <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
+                            <input type="button" value="+" class="plus plus-btn">
+                        </div>
+                        <span class="cart-icon">
+                          <div class="card-link">
+                             {%  if product.is_in_stock %}
+                                 <button type="submit" class="btn btn-default btn-xs pull-right" type="button"><i class="fa fa-cart-arrow-down"></i> </button>
+                            {%  endif %}
+                          </div>
+                        </span>
+                    </div>
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                </form>
+                  {%  else %}
+                       <div class="qty-cart">
+
+                        <span class="cart-icon">
+                          <div class="card-link">
+                             {%  if product.is_in_stock or not product.need_check_stock%}
+                               <a href="{{product.get_absolute_url()  }}" > View<i class="fa fa-eye"></i></a>
+                              {%  endif %}
+                          </div>
+                        </span>
+                    </div>
+                   {% endif  %}
+            </div>
+</div>
+{% endif %}

@@ -1,0 +1,114 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends 'dashboard/dashboard_layout.html' %}
+
+
+ {% block content %}
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+<script>
+
+$( document ).ready(function() {
+
+
+ var add_btn = $("#add_entry");
+var index = add_btn.data('index');
+var field = add_btn.data('field');
+$('#field_list').on('click', '#item_del', function () {
+    $(this).parent().parent().remove();
+});
+ add_btn.click(function () {
+
+    var index_field = field + '-' + index;
+    var index_field2 = "background_imgs" + '-' + index;
+    var html= '    <div class="form-group form-inline mb-3">'
+
+    html+=  ' <div class="col-sm-2">  Attribute: </div>'
+    html+= ' <div class="col-sm-4"> <label for="' + index_field + '">Name</label>  <input type="text" class="form-control" id="' + index_field + '" name="' + index_field + '" ></div>'
+     html+= ' <div class="col-sm-4"> <label for="' + index_field2 + '">Image</label>  <input type="file" class="form-control" id="' + index_field2 + '" name="' + index_field2 + '" ></div>'
+    html+= '<div class="col-sm-2">'
+    html+= '<button type="button" class="save-btn hover-btn" id="item_del">Remove Entry</button>'
+    html+= '</div>'
+
+    $('#field_list').append(html);
+    index += 1;
+});
+
+});
+
+</script>
+
+
+</head>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+ <div class="container-fluid">
+
+                        <h2 class="mt-30 page-title">{{ identity }}</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a  href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Attribute </li>
+                        </ol>
+                        <div class="row justify-content-between">
+							<div class="col-lg-12">
+								<a href="{{url_for('dashboard.attributes')}}" class="add-btn hover-btn">All attributes</a>
+							</div>
+                        </div>
+                     </div>
+                       <div class="row">
+							<div class="col-lg-10 col-md-10">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Attribute</h4>
+									</div>
+
+									   <form method="POST" action="" enctype="multipart/form-data">
+                                        {{ form.hidden_tag() }}
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+											{{macros.render_input_field(form.title,"text")}}
+
+                                            <div id="field_list">
+
+
+                                                 {% if attribute %}
+                                                        {% for attr in attribute.values %}
+
+
+                                                            <div class="form-group form-inline mb-3">
+
+
+                                                                         <span> <img src="{{attr.image_url() }}" width="40" height="40"></span>
+                                                                        </span><input type="text" class="form-control" value={{ attr.title }} id="values-{{attr.id}}" name="values-{{attr.id}}" value="attr.title" ></span>
+                                                                       <span><input type="file" class="form-control"  id="background_imgs-{{attr.id}}" name="background_imgs-{{attr.id}}"></span>
+
+                                                               <span><button type="button" class="save-btn hover-btn" id="item_del">Remove Entry</button></span>
+                                                            </div>
+
+
+
+
+                                                        {% endfor %}
+                                                        {% endif %}
+                                                       </div>
+
+											    <button type="button" onclick="addEntry()" class="save-btn hover-btn" id="add_entry"  data-index="{{attribute.values | length}}"  data-field="values">Add entry</button>
+
+                                                <button class="save-btn hover-btn" type="submit">Submit</button>
+                                            </div>
+                                            </div>
+
+									 </form>
+								</div>
+							</div>
+                        </div>
+
+
+{% endblock %}
+
+
+

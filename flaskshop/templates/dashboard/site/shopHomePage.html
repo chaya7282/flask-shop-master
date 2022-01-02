@@ -1,0 +1,133 @@
+﻿
+ {% extends "base.html" %}
+{% block content %}
+<head>
+   <script src="{{ url_for('static', filename='js/shopHomePage/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+ <script src="{{ url_for('static', filename='vendor/semantic/semantic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/shopHomePage/custom.js') }}"></script>
+
+
+	<style>
+	@media (max-width: 767px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* medium and up screens */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(25%);
+    }
+
+    .carousel-inner .carousel-item-start.active,
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-25%);
+    }
+}
+
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+  transform: translateX(0);
+}
+row > .col-xs-3 {
+    display:flex;
+    flex: 0 0 25%;
+    max-width: 25%
+}
+
+.scrolling-wrapper{
+	overflow-x: auto;
+}
+
+body{
+	background-color: black;
+	color: #fff;
+	font-family: 'system-ui';
+}
+
+h1{
+	font-weight: 800;
+	font-size: 3em;
+}
+
+.subtitle{
+	font-size: 1.25em;
+	opacity: 0.65;
+}
+
+.card-block{
+	height: 250px;
+	background-color: #fff;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	transition: all 0.2s ease-in-out !important;
+	border-radius: 24px;
+	&:hover{
+		transform: translateY(-5px);
+		box-shadow: none;
+	}
+}
+
+
+</style>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<section>
+
+<div class="container text-center my-3">
+
+<div class="container-fluid">
+    <h1 class="mt-5">Our Categories</h1>
+	    <div class="scrolling-wrapper row flex-row flex-nowrap mt-12 pb-4 pt-2">
+            {% if top_menu %}
+            {% for item in top_menu %}
+			<div class="col-12">
+			       <div class="card" style="width: 18rem;">
+                            <img height="80px" width="auto" class="card-img-top" src="{{item.background_img }}"  alt="Card image cap">
+                                  <div class="card-body">
+                                    <h5 class="card-title">{{item.title}}</h5>
+                                     <a href="{{ item.url }}" class="btn btn-primary">Go somewhere</a>
+                                  </div>
+
+                        </div>
+			</div>
+            {% endfor %}
+            {% endif %}
+    </div>
+</div>
+
+
+  </div>
+</section>
+<section>
+
+ <div class="container-fluid">
+    <h1 class="mt-5">Our Categories</h1>
+	    <div class="scrolling-wrapper row flex-row flex-nowrap mt-12 pb-4 pt-2">
+            {% for product in products %}
+			<div class="col-12">
+			        {% include('../../../static/uploads/Attributes/products/shopping_card_img_left.html') %}
+			</div>
+            {% endfor %}
+    </div>
+</div>
+
+
+</section>
+
+{% endblock %}

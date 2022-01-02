@@ -1,0 +1,54 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+{% extends 'dashboard/dashboard_layout.html' %}
+ {% block content %}
+<head>
+<script>
+$(document).ready(function(){
+  $('.custom-file-input').on('change',function(){
+  var id= document.getElementById("formInputId").value;
+  var fileName =  document.getElementById(id).files[0].name;
+
+  document.getElementById("labelFile").innerHTML=fileName;
+});
+});
+</script>
+</head>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">{% if 'edit' in request.path %}Edit{% else %}Create{% endif %}
+                            Category</h3>
+                     </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        <div class="card-body">
+                            {{ form.hidden_tag() }}
+                            {{ vendor.render_field(form.title) }}
+
+                              <input type="text" id ="formInputId" value={{form.bgimg_file.label.field_id}} hidden="true">
+                            {{ macros.render_file_field(form.bgimg_file, form.background_img) }}
+
+                            <div class="card-footer">
+                                {{ macros.render_submit(form.submit) }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block tail_js %}
+
+<script src="{{ url_for('static', filename='build/dashboard/select.js') }}"></script>
+{% endblock %}

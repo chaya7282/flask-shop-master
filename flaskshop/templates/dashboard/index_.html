@@ -1,0 +1,78 @@
+{% extends 'dashboard/layout.html' %}
+{% import 'dashboard/_macros.html' as macros%}
+{% extends 'dashboard/AdminLTE.html' %}
+
+{% block body %}
+<div class="container-fluid">
+                <h2 class="mt-30 page-title">Dashboard</h2>
+                <ol class="breadcrumb mb-30">
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="dashboard-report-card purple">
+                            <div class="card-content">
+                                <span class="card-title">Order Pending</span>
+                                <span class="card-count">{{order_unfulfill.count}}</span>
+                            </div>
+                            <div class="card-media">
+                                <i class="fab fa-rev"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="dashboard-report-card red">
+                            <div class="card-content">
+                                <span class="card-title">Payments to capture</span>
+                                <span class="card-count">{{order_unfulfill.count}}</span>
+                            </div>
+                            <div class="card-media">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="dashboard-report-card info">
+                            <div class="card-content">
+                                <span class="card-title">Orders Today</span>
+                                <span class="card-count">{{orders_today}}</span>
+                            </div>
+                            <div class="card-media">
+                                <i class="fas fa-sync-alt rpt_icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-xl-3 col-md-6">
+                        <div class="dashboard-report-card info">
+                            <div class="card-content">
+                                <span class="card-title">Accounts</span>
+                                <span class="card-count"><b>{{users_today}}</b> new in <b>{{users_total}}</b></span>
+                            </div>
+                            <div class="card-media">
+                                <i class="fa fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="dashboard-report-card info">
+                            <div class="card-content">
+                                <span class="card-title">products on sale</span>
+                                <span class="card-count">{{onsale_products_count}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+        <footer class="py-4 bg-footer mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted-1">{{ settings['project_title'].value }}</b>. by {{ settings['project_copyright'].value }}</div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+            </div>
+{% endblock %}
