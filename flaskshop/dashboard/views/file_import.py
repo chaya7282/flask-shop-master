@@ -52,7 +52,7 @@ def add_products(sheet_name):
             products_types_to_add.append(ProductType(title=row['title'], is_shipping_required=False,has_variants=False))
             if 'basic_price' in row:
                 row['basic_price']= float(str(row['basic_price']).replace(',',''))
-
+                print( row['basic_price'])
             product = Product(**row)
 
             category=None
