@@ -35,7 +35,7 @@ def add_to_db(sheet_name, data_type):
 
 def decimal(number):
     num=str(number)
-    num.re
+    return num
 
 def add_products(sheet_name):
     df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
@@ -53,13 +53,8 @@ def add_products(sheet_name):
         if 'title' in row:
 
             products_types_to_add.append(ProductType(title=row['title'], is_shipping_required=False,has_variants=False))
-
-            for c in columns_table:
-                if c['name'] in row:
-                    if str(c['type']) =='DECIMAL(10, 2)':
-                         row[c['name']]=decimal(str(row[c['name']]).replace(',',''))
-
-
+            if 'basic_price' in row:
+                row['basic_price']= Decimal(str(row['basic_price']).replace(',',''))
 
             product = Product(**row)
 
