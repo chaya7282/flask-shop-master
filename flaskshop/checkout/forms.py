@@ -24,15 +24,20 @@ class PaymentDeliveryForm(FlaskForm):
     payment_method = SelectField()
 
 class CheckoutForm(FlaskForm):
-    province = StringField()
-    city = StringField()
+    province = StringField( )
+    city = StringField( )
     district = StringField()
-    state= StringField()
-    address = StringField()
-    district=StringField()
-    contact_name = StringField(validators=[DataRequired()])
-    contact_phone = StringField(validators=[DataRequired()])
-    pincode = StringField()
+    state= StringField( )
+    address = StringField(label=('*'),validators=[DataRequired()])
+    district=StringField( )
+    contact_name = StringField(label=('*'),validators=[DataRequired()])
+    contact_phone = StringField(label=('*'),validators=[DataRequired()])
+    pincode = StringField( )
     email =StringField()
     submit = SubmitField()
 
+    def validate(self):
+        """Validate the form."""
+        initial_validation = super( CheckoutForm, self).validate()
+        if not initial_validation:
+            return False

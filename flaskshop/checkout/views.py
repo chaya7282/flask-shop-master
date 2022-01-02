@@ -72,10 +72,11 @@ def shipment_details():
         form = AddressForm(obj=addresses)
     else:
         form =AddressForm()
-    if request.method == "POST":
+    if form.validate_on_submit():
         cart = Cart.get_current_user_cart()
 
         form.populate_obj(cart)
+
         address_data = {
         "province": form.province.data,
         "city": form.city.data,
@@ -126,19 +127,13 @@ def checkout_shipping():
        form = CheckoutForm(obj=user_address)
     else:
         form = CheckoutForm()
-    if request.method == "POST":
+
+    if form.validate_on_submit():
         if request.form["address_sel"] != "new":
             user_address = UserAddress.get_by_id(request.form["address_sel"])
         elif request.form["address_sel"] == "new" and form.validate_on_submit():
-            user_address = UserAddress.create(
-                province=form.province.data,
-                city=form.city.data,
-                district=form.district.data,
-                address=form.address.data,
-                contact_name=form.contact_name.data,
-                contact_phone=form.contact_phone.data,
-                user_id=current_user.id,
-            )
+            form.populate_obj(user_address)
+
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
 
         if user_address and shipping_method:
@@ -148,7 +143,6 @@ def checkout_shipping():
                 shipping_method_id=shipping_method.id,
             )
             return redirect(url_for("checkout.checkout_note"))
-    flash_errors(form)
     shipping_methods = ShippingMethod.query.all()
     return render_template(
         "checkout/check_out.html", form=form, shipping_methods=shipping_methods

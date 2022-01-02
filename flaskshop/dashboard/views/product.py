@@ -200,7 +200,7 @@ def categories_manage(id=None):
     if id:
         category = Category.get_by_id(id)
         form = CategoryForm(obj=category)
-        form.current_img.data='uploads/'+ category.background_img
+        form.current_img.data=category.get_background_img_AWS()
     else:
         form = CategoryForm()
     if form.validate_on_submit():

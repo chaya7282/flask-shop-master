@@ -27,10 +27,10 @@ class Product(Model):
 
     title = Column(db.String(255), nullable=False)
     on_sale = Column(db.Boolean(), default=False)
-    is_active  = Column(db.Boolean(), default=False)
+    is_active  = Column(db.Boolean(), default=True)
     is_featured = Column(db.Boolean())
     in_front_banner= Column(db.Boolean(), default=False)
-    rating = Column(db.DECIMAL(8, 2), default=5.0)
+    rating = Column(db.DECIMAL(10, 2), default=5.0)
     sold_count = Column(db.Integer(), default=0)
     review_count = Column(db.Integer(), default=0)
     basic_price = Column(db.DECIMAL(10, 2))
@@ -63,7 +63,13 @@ class Product(Model):
 
     def image_url(self):
         name= self.first_img
-        urt = get_presigned_url(self.first_img)
+        urt=None;
+        category= Category.get_by_id(self.category_id)
+        if self.first_img:
+            urt = get_presigned_url(self.first_img)
+        elif category:
+            urt= category.get_background_img_AWS()
+
         return urt
 
     @property
@@ -73,9 +79,6 @@ class Product(Model):
             return str(im)
 
         return ""
-
-
-
     @property
     def is_in_stock(self):
         return any(variant.is_in_stock for variant in self.variant)
@@ -326,7 +329,7 @@ class Category(Model):
     title = Column(db.String(255), nullable=False)
     parent_id = Column(db.Integer(), default=0)
     background_img = Column(db.String(255),nullable=True,default=None)
-    is_active = Column(db.Boolean(), default=False)
+    is_active = Column(db.Boolean(), default=True)
     description = Column(db.Text())
     def __str__(self):
         return self.title
@@ -345,9 +348,10 @@ class Category(Model):
         return ""
 
     def get_background_img_AWS(self):
+        url=None
         if self.background_img:
             url= get_presigned_url(self.background_img)
-            return url
+        return url
 
         return ""
 
@@ -375,8 +379,11 @@ class Category(Model):
     def attr_filter(self):
         attr_filter = set()
         for product in self.products:
-            for attr in product.product_type.product_attributes:
-                attr_filter.add(attr)
+            product_type=  product.product_type
+            product_tpe_list= ProductType.query.filter_by(title= product.title).first()
+            if product.product_type.has_attributes:
+                for attr in product.product_type.product_attributes:
+                    attr_filter.add(attr)
         return attr_filter
 
     @classmethod

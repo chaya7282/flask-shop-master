@@ -97,14 +97,14 @@ class User(Model, UserMixin):
 class UserAddress(Model):
     __tablename__ = "account_address"
     user_id = Column(db.Integer())
-    province = Column(db.String(255))
-    city = Column(db.String(255))
-    district = Column(db.String(255))
-    address = Column(db.String(255))
-    contact_name = Column(db.String(255))
-    contact_phone = Column(db.String(80))
-    pincode = Column(db.String(80))
-    email = Column(db.String(80))
+    province = Column(db.String(255),nullable=True)
+    city = Column(db.String(255),nullable=True)
+    district = Column(db.String(255),nullable=True)
+    address = Column(db.String(255),nullable=False)
+    contact_name = Column(db.String(255),nullable=False)
+    contact_phone = Column(db.String(80),nullable=False)
+    pincode = Column(db.String(80),nullable=True)
+    email = Column(db.String(80),nullable=True)
 
     @property
     def full_address(self):

@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from flask_login import current_user
 from wtforms import PasswordField, StringField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Regexp
-
+from wtforms.widgets import PasswordInput
 from .models import User
 
 
@@ -26,11 +26,11 @@ class RegisterForm(FlaskForm):
         "Email", validators=[DataRequired(), Email(), Length(min=6, max=40)]
     )
     password = PasswordField(
-        "Password", validators=[DataRequired(), Length(min=6, max=40)]
+        "Password", validators=[DataRequired(), Length(min=6, max=40)],widget=PasswordInput(hide_value=True)
     )
     confirm = PasswordField(
         "Verify password",
-        [DataRequired(), EqualTo("password", message="Passwords must match")],
+        [DataRequired(), EqualTo("password", message="Passwords must match")],widget=PasswordInput(hide_value=False)
     )
 
     def __init__(self, *args, **kwargs):
@@ -58,7 +58,9 @@ class LoginForm(FlaskForm):
     """Login form."""
 
     username = StringField("Username Or Email", validators=[DataRequired()])
-    password = StringField("Password", validators=[DataRequired()])
+    password = PasswordField(
+        "Password", validators=[DataRequired(), Length(min=5, max=40)], widget=PasswordInput(hide_value=True)
+    )
 
     def __init__(self, *args, **kwargs):
         """Create instance."""
@@ -121,20 +123,20 @@ class ChangePasswordForm(FlaskForm):
 class AddressForm(FlaskForm):
     """Address form."""
 
-    province = StringField("Province", validators=[DataRequired()])
-    city = StringField("City", validators=[DataRequired()])
-    district = StringField("District", validators=[DataRequired()])
-    address = StringField("Street + Flat/House number", validators=[DataRequired()])
+    province = StringField("Province")
+    city = StringField("City")
+    district = StringField("District")
+    address = StringField("Street + Flat/House number", validators=[DataRequired(), Length(min=5, max=30)])
     contact_name = StringField("Contact name", validators=[DataRequired()])
     contact_phone = StringField(
-        "Contact Phone", validators=[DataRequired(), Length(min=11, max=11)]
+        "Contact Phone 0524-534555", validators=[DataRequired(), Length(min=11, max=11)]
     )
     email = StringField(
-        "Email-Adress", validators=[DataRequired(), Email(), Length(min=6, max=100)]
+        "Email-Adress", validators=[DataRequired(),Email(), Length(min=6, max=100)]
     )
 
     pincode= StringField(
-        "pincode", validators=[DataRequired()]
+        "pincode"
     )
     def __init__(self, *args, **kwargs):
         """Create instance."""

@@ -131,17 +131,17 @@ class CollectionForm(FlaskForm):
 
 
 class CategoryForm(FlaskForm):
-    title = StringField(validators=[DataRequired()])
+    title = StringField(validators=[DataRequired(), Length(min=6, max=40)])
     is_active = BooleanField("Is-Active", default=True)
     parent_id = SelectField("Parent", default=0)
     current_img = FileField()
-    background_img = FileField()
+    background_img = FileField(validators=[FileAllowed(['jpg', 'png','jpeg'])])
     description = TextAreaField("Description")
     submit = SubmitField()
 
 
 class ProductTypeForm(FlaskForm):
-    title = StringField(validators=[DataRequired()])
+    title = StringField(validators=[DataRequired(), Length(min=6, max=40)])
     has_variants = BooleanField("has_variants",default=False)
     has_attributes= BooleanField("has_attributes",default=False)
     is_shipping_required = BooleanField("is_shipping_required",default=True)
@@ -152,7 +152,7 @@ class ProductTypeForm(FlaskForm):
 
 
 class ProductForm(FlaskForm):
-    title = StringField()
+    title = StringField("title",validators=[DataRequired(), Length(min=6, max=40)])
     basic_price = DecimalField("basic Price",validators=[DataRequired()])
     discount_price = DecimalField("Sale Price")
     on_sale = BooleanField("On Sale",default=False)

@@ -50,7 +50,7 @@ from .product import (
 )
 from .order import orders, order_detail, send_order, draft_order, order_edit,order_del
 from .discount import vouchers, vouchers_manage, sales, sales_manage
-from .file_import import file_data_import
+from .file_import import file_data_import,exportexcel
 impl = HookimplMarker("flaskshop")
 
 
@@ -217,7 +217,9 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule(
         "/file_data_import", view_func=file_data_import, methods=["GET", "POST"],
     )
-
+    bp.add_url_rule(
+        "/exportexcel", view_func=exportexcel, methods=["GET", "POST"],
+    )
 
     bp.add_url_rule(
         "/products/create/step2",view_func=product_manage, methods=["GET", "POST"],
