@@ -4,6 +4,7 @@ import os
 from flaskshop.settings import Config
 from flaskshop.database import Column, Model, db
 from flaskshop.product.models import Product, Category,ProductType,ProductVariant
+from flask import send_file, send_from_directory, safe_join, abort
 import pandas as pd
 from decimal import Decimal
 from sqlalchemy import inspect
@@ -118,14 +119,19 @@ def to_dict(row):
     return rtn_dict
 
 
+def get_report(path):
+    filename= os.path.join(path, "autos.xlsx")
+
+
+
 
 def exportexcel():
 
     form =  FileExportForm()
 
     if form.validate_on_submit():
-        path= form.path.data
-        filename = os.path.join(path, "autos.xlsx")
+
+        filename = os.path.join(Config.CLIENT_REPORTS, "autos.xlsx")
         try:
             writer = pd.ExcelWriter(filename)
         except:
@@ -152,6 +158,9 @@ def exportexcel():
         df_product.to_excel(writer, sheet_name='Categories',index=False)
 
         writer.save()
-        return redirect(url_for('dashboard.index'))
+
+        return send_file( os.path.join(Config.CLIENT_REPORTS, "autos.xlsx"))
+
+
     return render_template("ImportDataFromFile/export_toxls.html", form=form)
 

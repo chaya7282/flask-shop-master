@@ -99,7 +99,7 @@ class FileImportForm(FlaskForm):
     DataType = SelectMultipleField("Data Type",choices=[(0,'product'), (1,'Categories')],)
     submit = SubmitField()
 class FileExportForm(FlaskForm):
-    path=  StringField(validators=[DataRequired()])
+
     submit = SubmitField()
 class UserAddressForm(FlaskForm):
     province = StringField()
