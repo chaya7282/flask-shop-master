@@ -63,8 +63,8 @@ def add_products(sheet_name,type):
 
             products_types_to_add.append(ProductType(title=row['title'], is_shipping_required=False,has_variants=False))
 
-            if 'basic_price' in row:
-                row['basic_price']= float(str(row['basic_price']).replace(',',''))
+ #           if 'basic_price' in row:
+#                row['basic_price']= float(str(row['basic_price']).replace(',',''))
 
             product = Product(**row)
 
@@ -149,12 +149,15 @@ def exportexcel():
             return redirect(url_for('dashboard.index'))
         data = Product.query.all()
         data_list = [to_dict(item) for item in data]
-        remove = ['created_at', 'updated_at','id']
+        remove = ['created_at', 'updated_at','id','attributes']
         for idx in range(len(data_list)):
             data_list[idx] = dict([(k, v) for k, v in data_list[idx].items() if k not in remove])
 
         df_product = pd.DataFrame(data_list)
         df_product= df_product.fillna('None')
+        df_product= df_product.replace({'':'None'})
+
+
         df_product.to_excel(writer, sheet_name='Products',index=False)
 
         data = Category.query.all()
