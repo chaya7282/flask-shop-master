@@ -149,7 +149,7 @@ def exportexcel():
             return redirect(url_for('dashboard.index'))
         data = Product.query.all()
         data_list = [to_dict(item) for item in data]
-        remove = ['created_at', 'updated_at','id','attributes']
+        remove = ['created_at', 'updated_at','id','attributes','category_id','sold_count','review_count','product_type_id','rating']
         for idx in range(len(data_list)):
             data_list[idx] = dict([(k, v) for k, v in data_list[idx].items() if k not in remove])
 
