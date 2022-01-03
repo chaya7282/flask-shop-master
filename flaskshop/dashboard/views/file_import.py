@@ -9,21 +9,17 @@ import pandas as pd
 from decimal import Decimal
 from sqlalchemy import inspect
 from flask import flash
-def add_to_db(sheet_name, data_type):
+def add_categories(sheet_name):
     df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
-
+    Category.query.delete()
     products_to_add = []
 
     for row in df.to_dict('records'):
-        if not pd.isna(row['title']):
+        if 'title' in row:
             remove = ['None']
             row = dict([(k, v) for k, v in row.items() if v not in remove])
             row = dict([(k, v) for k, v in row.items() if not pd.isna(v)])
-            if data_type== "Products":
-
-                products_to_add.append(Product(**row))
-            else:
-                products_to_add.append(Category(**row))
+            products_to_add.append(Category(**row))
 
 
     db.session.add_all(products_to_add)
@@ -34,15 +30,30 @@ def add_to_db(sheet_name, data_type):
 #        products_to_add = [Product(**row) for row in df.to_dict('records')]
 #       db.session.add_all( products_to_add)
 
+def clean_DataFrame(df):
+    df2 = df.loc[df["Fee"] >= 24000]
 
-def add_products(sheet_name):
+
+def add_products(sheet_name,type):
+    Product.query.delete()
     df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
+    if not df.empty:
+        if type == "cash_register":
+            df['Unnamed: 0']= df['Unnamed: 6']
+            df['Unnamed: 1']= df['Unnamed: 9'].fillna("") + df['Unnamed: 8'].fillna("")
+            df = df[pd.to_numeric(df['Unnamed: 0'], errors='coerce').notnull()]
+            df = df[(df['Unnamed: 1'] != "")]
+            df= df[['Unnamed: 1', 'Unnamed: 0']]
+            df=df.rename(columns={'Unnamed: 1': "title",'Unnamed: 0': "basic_price"})
+            df['category_name'] = df['title'].str[:1]
+            options =["א","ב","ג","ד","ה","ו","ז","ח","ט","י","כ","ל","מ","נ","ס","ע","פ","צ","ק","ר","ש","ת"]
+            df = df[df['category_name'].isin(options)]
+        df= df.drop_duplicates(subset="title", keep="last")
+    else:
+        return
 
     products_types_to_add = []
     products_to_add = []
-    insp = inspect(db.engine)
-
-    columns_table = insp.get_columns( "product_product")  # schema is optional
 
 
     for row in df.to_dict('records'):
@@ -51,7 +62,7 @@ def add_products(sheet_name):
         if 'title' in row:
 
             products_types_to_add.append(ProductType(title=row['title'], is_shipping_required=False,has_variants=False))
-            print(row)
+
             if 'basic_price' in row:
                 row['basic_price']= float(str(row['basic_price']).replace(',',''))
 
@@ -87,7 +98,6 @@ def add_products(sheet_name):
     db.session.add_all(product_variants)
     db.session.commit()
 
-
 def file_data_import():
     image_path = None
 
@@ -97,7 +107,7 @@ def file_data_import():
         xls_file= form.xls_file.data
         xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
         try:
-            add_to_db("Categories", "Categories")
+            add_categories("Categories", "Categories")
             add_products("Products")
         except:
             flash('problem in operation try again')
@@ -164,3 +174,52 @@ def exportexcel():
 
     return render_template("ImportDataFromFile/export_toxls.html", form=form)
 
+def Import_Products_db_xls():
+    form = FileImportForm()
+
+    if form.validate_on_submit():
+        xls_file = form.xls_file.data
+        xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
+        try:
+            add_categories("Categories")
+            add_products("Products","db_file")
+        except:
+            flash('problem in operation try again')
+            return redirect(url_for('dashboard.index'))
+        db.session.commit()
+
+        return redirect(url_for('dashboard.index'))
+    return render_template("ImportDataFromFile/Import_Products_db_xls.html", form=form)
+
+
+def Import_Cash_Registe_xls():
+    form = FileImportForm()
+
+    if form.validate_on_submit():
+        xls_file = form.xls_file.data
+        xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
+        try:
+            add_products( "Sheet1","cash_register")
+        except:
+            flash('problem in operation try again')
+            return redirect(url_for('dashboard.index'))
+        db.session.commit()
+
+        return redirect(url_for('dashboard.index'))
+    return render_template("ImportDataFromFile/Import_Cash_Registe_xls.html", form=form)
+
+def Import_Categories_db_xls():
+    form = FileImportForm()
+
+    if form.validate_on_submit():
+        xls_file = form.xls_file.data
+        xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
+        try:
+            add_categories("Categories")
+        except:
+            flash('problem in operation try again')
+            return redirect(url_for('dashboard.index'))
+        db.session.commit()
+
+        return redirect(url_for('dashboard.index'))
+    return render_template("ImportDataFromFile/Import_Categories_db_xls.html", form=form)

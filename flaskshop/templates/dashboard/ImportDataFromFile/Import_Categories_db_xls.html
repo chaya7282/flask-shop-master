@@ -1,6 +1,6 @@
 {% import 'dashboard/_macros.html' as macros%}
 {% extends 'dashboard/dashboard_layout.html' %}
-{% from 'bootstrap/form.html' import render_field %}
+
 
  {% block content %}
 <head>
@@ -18,14 +18,21 @@
 							<div class="col-lg-6 col-md-6">
 								<div class="card card-static-2 mb-30">
 									<div class="card-title-2">
-										<h4>Export Data to xls</h4>
+										<h4>Import Data From File</h4>
 									</div>
 
-									   <form method="POST"  action="{{url_for('dashboard.exportexcel')}}" enctype="multipart/form-data">
+									   <form method="POST"  action="{{url_for('dashboard.Import_Categories_db_xls')}}" enctype="multipart/form-data">
+									   	<div class="form-group">
+                                             {{ macros.render_file_field(form.xls_file, form.xls_file.data) }}
+                                             {% for error in form.xls_file.errors %}
+                                                {{ error }}
+                                            {% endfor %}
+                                        </div>
 
                                            <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
 
-											<button class="save-btn hover-btn" type="submit">Export</button>
+
+											<button class="save-btn hover-btn" type="submit">Submit</button>
 
 
 

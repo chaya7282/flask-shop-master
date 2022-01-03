@@ -132,7 +132,7 @@ class CollectionForm(FlaskForm):
 
 
 class CategoryForm(FlaskForm):
-    title = StringField(validators=[DataRequired(), Length(min=3, max=10)])
+    title = StringField(validators=[DataRequired(), Length(min=1, max=10)])
     is_active = BooleanField("Is-Active", default=True)
     parent_id = SelectField("Parent", default=0)
     current_img = FileField()
