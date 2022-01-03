@@ -62,6 +62,7 @@ class Config:
 
     SQLALCHEMY_POOL_TIMEOUT = 180
 
+
     S3_BUCKET = os.getenv('S3_BUCKET')
     S3_KEY = os.getenv('S3_KEY')
     S3_SECRET = os.getenv('S3_SECRET')
@@ -82,6 +83,7 @@ class Config:
     PROJECT_ROOT = APP_DIR.parent
     STATIC_DIR = APP_DIR / "static"
     UPLOAD_FOLDER = STATIC_DIR /"uploads"
+    CLIENT_REPORTS= STATIC_DIR /"ClientReport"
     CATEGORY_IMAGES= STATIC_DIR /"uploads/category"
     UPLOAD_DIR = STATIC_DIR /"uploads"
     DASHBOARD_TEMPLATE_FOLDER = APP_DIR / "templates" / "dashboard"
