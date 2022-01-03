@@ -136,7 +136,7 @@ class CategoryForm(FlaskForm):
     is_active = BooleanField("Is-Active", default=True)
     parent_id = SelectField("Parent", default=0)
     current_img = FileField()
-    background_img = FileField(validators=[FileAllowed(['jpg', 'png','jpeg'])])
+    background_img = FileField(validators=[FileAllowed(['jpg', 'png','jpeg','png'])])
     description = TextAreaField("Description")
     submit = SubmitField()
 
@@ -169,7 +169,7 @@ class ProductForm(FlaskForm):
     description = TextAreaField()
     background_img = StringField("Next Image")
     current_img = StringField("Current Image")
-    images = FileField("Upload")
+    images = FileField(validators=[FileAllowed(['jpg', 'png','jpeg','png'])])
     attributes = FieldList(SelectField(),validators=[DataRequired()])
     variant_attributes = SelectMultipleField()
     submit = SubmitField()
