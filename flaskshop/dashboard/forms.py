@@ -98,8 +98,9 @@ class FileImportForm(FlaskForm):
     xls_file = FileField(validators=[ FileRequired(), FileAllowed(['xls','xlsx'], 'xls only!')])
     DataType = SelectMultipleField("Data Type",choices=[(0,'product'), (1,'Categories')],)
     submit = SubmitField()
-
-
+class FileExportForm(FlaskForm):
+    path=  StringField(validators=[DataRequired()])
+    submit = SubmitField()
 class UserAddressForm(FlaskForm):
     province = StringField()
     city = StringField()
@@ -131,7 +132,7 @@ class CollectionForm(FlaskForm):
 
 
 class CategoryForm(FlaskForm):
-    title = StringField(validators=[DataRequired(), Length(min=6, max=40)])
+    title = StringField(validators=[DataRequired(), Length(min=3, max=10)])
     is_active = BooleanField("Is-Active", default=True)
     parent_id = SelectField("Parent", default=0)
     current_img = FileField()

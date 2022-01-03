@@ -1,6 +1,6 @@
 {% import 'dashboard/_macros.html' as macros%}
 {% extends 'dashboard/dashboard_layout.html' %}
-
+{% from 'bootstrap/form.html' import render_field %}
 
  {% block content %}
 <head>
@@ -25,7 +25,8 @@
 
                                            <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
 
-
+											  {{ render_field(form.path) }}
+										       {{ render_field(form.submit) }}
 											<button class="save-btn hover-btn" type="submit">Export</button>
 
 

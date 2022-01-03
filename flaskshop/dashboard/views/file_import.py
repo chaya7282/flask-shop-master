@@ -1,4 +1,4 @@
-from flaskshop.dashboard.forms import FileImportForm
+from flaskshop.dashboard.forms import FileImportForm, FileExportForm
 from flask import request, render_template, redirect, url_for, current_app
 import os
 from flaskshop.settings import Config
@@ -7,7 +7,7 @@ from flaskshop.product.models import Product, Category,ProductType,ProductVarian
 import pandas as pd
 from decimal import Decimal
 from sqlalchemy import inspect
-
+from flask import flash
 def add_to_db(sheet_name, data_type):
     df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
 
@@ -95,9 +95,12 @@ def file_data_import():
     if form.validate_on_submit():
         xls_file= form.xls_file.data
         xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
-
-        add_products("Products")
-        add_to_db("Categories", "Categories")
+        try:
+            add_to_db("Categories", "Categories")
+            add_products("Products")
+        except:
+            flash('problem in operation try again')
+            return redirect(url_for('dashboard.index'))
         db.session.commit()
 
         return redirect(url_for('dashboard.index'))
@@ -117,11 +120,17 @@ def to_dict(row):
 
 
 def exportexcel():
-    if request.method == 'POST':
-        filename = os.path.join(Config.UPLOAD_FOLDER, "autos.xlsx")
-        writer = pd.ExcelWriter(filename)
 
+    form =  FileExportForm()
 
+    if form.validate_on_submit():
+        path= form.path.data
+        filename = os.path.join(path, "autos.xlsx")
+        try:
+            writer = pd.ExcelWriter(filename)
+        except:
+            flash('problem with directory')
+            return redirect(url_for('dashboard.index'))
         data = Product.query.all()
         data_list = [to_dict(item) for item in data]
         remove = ['created_at', 'updated_at','id']
@@ -143,7 +152,6 @@ def exportexcel():
         df_product.to_excel(writer, sheet_name='Categories',index=False)
 
         writer.save()
-    else:
-        return render_template("ImportDataFromFile/export_toxls.html")
+        return redirect(url_for('dashboard.index'))
+    return render_template("ImportDataFromFile/export_toxls.html", form=form)
 
-    return redirect(url_for('dashboard.index') )
