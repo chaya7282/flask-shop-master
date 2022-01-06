@@ -72,27 +72,37 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="owl-carousel cate-slider owl-theme">
+					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+<div class='carousel-outer'>
+    <!-- Wrapper for slides -->
+    <div class='carousel-inner'>
 
-							 {% for item in categories%}
-                                 {% if item.is_active %}
-							        <div class="item">
+       {% for item in categories%}
+		 {% if item.is_active %}
+			{% if loop.index ==1 %}
+			 <div class="item active">
 
-								<a href="{{ item.get_absolute_url()  }}" class="category-item">
-									<div class="cate-img">
-										<img src={{item.get_background_img_AWS ()}}  width="auto" height="70px">
-									</div>
-									<h4>{{item.title}}</h4>
-								</a>
-							</div>
-                                 {% endif %}
+			{%else %}
+		 	<div class="item ">
+		     {% endif %}
+				   {% include('products/category_item.html') %}
 
+		    {% endif %}
+			</div>
 
-						    {% endfor %}
+		   {% endfor %}
 
-						</div>
-					</div>
+    </div>
+
+    <!-- Controls -->
+    <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+        <span class='glyphicon glyphicon-chevron-left'></span>
+    </a>
+    <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+        <span class='glyphicon glyphicon-chevron-right'></span>
+    </a>
+</div>
+
 				</div>
 			</div>
 	</div>

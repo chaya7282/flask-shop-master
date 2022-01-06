@@ -1,0 +1,14 @@
+
+<div class="container">
+  <!-- To do referenc to product details-->
+            <a href="" class="product-img">
+                {%if item.get_background_img_AWS () %}
+                <a href="{{ item.get_absolute_url()  }}"> <img src={{item.get_background_img_AWS ()}}   width="250" height="250"> </a>
+                {% endif %}
+
+            </a>
+            <div class="product-text-dt">
+                <h4>{{item.title}}</h4>
+
+            </div>
+</div>

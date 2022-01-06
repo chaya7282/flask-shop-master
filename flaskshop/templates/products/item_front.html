@@ -8,7 +8,7 @@
             <a href="" class="product-img">
                 {%if product.image_url() %}
 
-                {% endif %}
+                <img src= {{ product.image_url() }} width="auto" height="250">
                 <div class="product-absolute-options">
                     {% if product.on_sale %}
                     <span class="offer-badge-1"> Sale</span>
