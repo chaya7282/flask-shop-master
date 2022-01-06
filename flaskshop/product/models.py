@@ -40,7 +40,7 @@ class Product(Model):
     need_check_stock=Column(db.Boolean(), default=False)
     product_type_id = Column(db.Integer())
     attributes = Column(MutableDict.as_mutable(db.JSON()),nullable=True)
-    description = Column(db.Text())
+    description = Column(db.Text(),nullable=True)
     background_img = Column(db.String(255), nullable=True, default=None)
 
     if Config.USE_REDIS:

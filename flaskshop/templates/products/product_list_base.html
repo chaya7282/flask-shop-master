@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from 'bootstrap/pagination.html' import render_pagination %}
+{% import 'dashboard/_vendor.html' as vendor %}
 
 
 {% block content %}
@@ -13,6 +13,8 @@
                         </ol>
 
  </div>
+ {{vendor.render_pagination(pagination, size='sm', align='right')}}
+
 
             <div class="product-left-title">
                 <h2>{{  object.title}}</h2>
