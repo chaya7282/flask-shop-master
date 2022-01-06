@@ -9,6 +9,7 @@
                 {%if product.image_url() %}
 
                 <img src= {{ product.image_url() }} width="auto" height="250">
+                {% endif %}
                 <div class="product-absolute-options">
                     {% if product.on_sale %}
                     <span class="offer-badge-1"> Sale</span>
