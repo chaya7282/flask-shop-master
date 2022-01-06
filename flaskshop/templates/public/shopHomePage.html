@@ -2,18 +2,7 @@
 {% block content %}
 <head>
 	<!-- Bootstrap Static Header -->
-<div style="background: url(/static/uploads/business_pictures/jambatron_front.jpg)" class="jumbotron bg-cover text-white">
-    <div class="container py-5 text-center">
-        <h1 class="display-4 font-weight-bold">{{ settings['project_title'].value }}</h1>
-        <p class="font-italic mb-0"></p>
-        <p class="font-italic">
-            <a href="https://bootstrapious.com" class="text-white">
-                <u></u>
-            </a>
-        </p>
 
-    </div>
-</div>
 
 <!-- For Demo Purpose -->
 
@@ -44,9 +33,9 @@
 									</div>
 									<div class="offer-text-dt">
 										<div class="offer-top-text-banner">
-											<p> off</p>
-											<div class="top-text-1">Buy More & Save More</div>
-											<span>{{product.category}}</span>
+
+											<div class="top-text-1">{{ settings['project_title'].value }}</div>
+
 										</div>
 
 										<a href="{{product.category.get_absolute_url() }}"  class="Offer-shop-btn hover-btn">Shop Now</a>
@@ -62,7 +51,7 @@
 
 
 	<div class="section145">
-			<div class="container">
+			<div class="container translate-middle ">
 				<div class="row">
 					<div class="col-md-2">
 						<div class="main-title-tt">
@@ -73,26 +62,22 @@
 						</div>
 					</div>
 					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
-<div class='carousel-outer'>
+
     <!-- Wrapper for slides -->
     <div class='carousel-inner'>
 
-       {% for item in categories%}
-		 {% if item.is_active %}
-			{% if loop.index ==1 %}
-			 <div class="item active">
+      						 {% for item in categories%}
+							 {% if item.is_active %}
 
-			{%else %}
-		 	<div class="item ">
-		     {% endif %}
-				   {% include('products/category_item.html') %}
+								<div {% if loop.index ==1 %} class="item active" {%else %} class="item"  {% endif %}>
+									{% include('products/category_item.html') %}
+								</div>
+							 {% endif %}
 
-		    {% endif %}
-			</div>
 
-		   {% endfor %}
+		  				 {% endfor %}
 
-    </div>
+   					 </div>
 
     <!-- Controls -->
     <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
@@ -101,11 +86,15 @@
     <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
         <span class='glyphicon glyphicon-chevron-right'></span>
     </a>
+
+
 </div>
 
 				</div>
+
 			</div>
 	</div>
+
 		<!-- Categories End -->
 		<!-- Featured Products Start -->
 
