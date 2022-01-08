@@ -17,7 +17,7 @@ from .models import Order, OrderPayment
 from .payment import zhifubao
 from flaskshop.extensions import csrf_protect
 from flaskshop.constant import ShipStatusKinds, PaymentStatusKinds, OrderStatusKinds
-
+from flaskshop.constant import Language
 impl = HookimplMarker("flaskshop")
 
 
@@ -30,7 +30,7 @@ def index():
 def show(token):
     order = Order.query.filter_by(token=token).first()
 
-    return render_template("checkout/order_placed.html", order = order)
+    return render_template("checkout/order_placed.html", order = order,Language=Language)
 
 
 def create_payment(token, payment_method):

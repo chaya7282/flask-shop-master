@@ -1,5 +1,7 @@
 import enum
-
+from flaskshop.settings import Config
+import pandas as pd
+import os
 ShipStatusKinds = enum.Enum(value="ShipStatus", names="pending delivered received")
 PaymentStatusKinds = enum.Enum(
     value="PaymentStatus", names="waiting preauth confirmed rejected"
@@ -93,3 +95,6 @@ SiteDefaultSettings = {
     },
 
 }
+df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "language.xlsx"), sheet_name="Sheet1")
+Language= dict(zip(df.Key, df.value))
+

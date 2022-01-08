@@ -2,14 +2,16 @@
 <form method="post" action="" id="loginForm" novalidate>
   <fieldset>
     {{ form.csrf_token }}
+    <h4>{{Language["user name"]}}</h4>
     {{ render_field(form.username) }}
+        <h4>{{Language["password"]}}</h4>
     {{ render_field(form.password) }}
-      <input type="checkbox" onclick="myFunction()">Show Password
+      <input type="checkbox" onclick="myFunction()">{{Language["Show Password"]}}
   </fieldset>
   <div class="row login__btn-group">
     <div class="col-sm-12">
       <button class="btn btn-primary narrow" type="submit">
-        Log in
+        {{Language["Log in"]}}
       </button>
 
       <hr>

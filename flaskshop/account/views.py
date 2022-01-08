@@ -8,7 +8,7 @@ from .forms import AddressForm, LoginForm, RegisterForm, ChangePasswordForm
 from .models import UserAddress, User
 from flaskshop.utils import flash_errors
 from flaskshop.order.models import Order
-
+from flaskshop.constant import Language
 impl = HookimplMarker("flaskshop")
 
 def user_orders():
@@ -36,7 +36,7 @@ def login():
         return redirect(redirect_url)
     else:
         flash_errors(form)
-    return render_template("account/login.html", form=form)
+    return render_template("account/login.html", form=form, Language= Language)
 
 
 @login_required
@@ -62,7 +62,7 @@ def signup():
         return redirect(url_for("public.home"))
     else:
         flash_errors(form)
-    return render_template("account/signup.html", form=form)
+    return render_template("account/signup.html", form=form,Language= Language)
 
 
 def set_password():
@@ -74,7 +74,7 @@ def set_password():
             return redirect(url_for("account.index") )
         else:
             flash("You have not changed password.", "failure")
-    return render_template("account/forgot_password.html", form=form)
+    return render_template("account/forgot_password.html", form=form,Language= Language)
 
 
 def addresses():
@@ -110,7 +110,7 @@ def edit_address():
     else:
         flash_errors(form)
     return render_template(
-        "account/address_edit.html", form=form, address_id=address_id
+        "account/address_edit.html", form=form, address_id=address_id,Language= Language
     )
 
 

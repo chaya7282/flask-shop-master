@@ -8,15 +8,15 @@
     <div class="row login">
       <div class="col-md-6 login__register">
         <div class="login__register-link">
-          <h3>Don't have an account yet?</h3>
+          <h3> {{Language["Don't have an account yet?"]}}  </h3>
 
           <a  href="{{ url_for('account.signup') }}" class=" text-decoration-underline" >
-           <u>Register</u>
+           <u>{{Language["Register"]}} </u>
           </a>
         </div>
       </div>
       <div class="col-md-6 login__form">
-        <h3>Log in</h3>
+        <h3>{{Language["Log in"]}}</h3>
         {% include "account/partials/login_form.html" %}
       </div>
     </div>

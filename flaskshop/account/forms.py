@@ -126,13 +126,13 @@ class AddressForm(FlaskForm):
     province = StringField("Province")
     city = StringField("City")
     district = StringField("District")
-    address = StringField("Street + Flat/House number", validators=[DataRequired(), Length(min=5, max=30)])
-    contact_name = StringField("Contact name", validators=[DataRequired()])
+    address = StringField("Street + Flat/House number *", validators=[DataRequired(), Length(min=5, max=30)])
+    contact_name = StringField("Contact name *", validators=[DataRequired()])
     contact_phone = StringField(
-        "Contact Phone 0524-534555", validators=[DataRequired(), Length(min=11, max=11)]
+        "Contact Phone 0524534555 *", validators=[DataRequired(), Length(min=10, max=10)]
     )
     email = StringField(
-        "Email-Adress", validators=[DataRequired(),Email(), Length(min=6, max=100)]
+        "Email-Adress *", validators=[DataRequired(),Email(), Length(min=6, max=100)]
     )
 
     pincode= StringField(

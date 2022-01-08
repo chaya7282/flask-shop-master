@@ -7,12 +7,16 @@ from flaskshop.plugin.models import PluginRegistry
 from flaskshop.settings import Config
 from flaskshop.plugin import spec, manager
 
-
+import pandas as pd
+import os
 def create_app():
     app = Flask(__name__)
 
     app.config['UPLOAD_FOLDER']=settings.Config.UPLOAD_FOLDER
     app.config["SESSION_TYPE"] = "filesystem"
+
+
+
     app.config.from_object(Config)
     app.pluggy = manager.FlaskshopPluginManager("flaskshop")
     configuration.register_extensions(app)

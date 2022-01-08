@@ -13,6 +13,9 @@ from flask_mail import Message
 from flaskshop.settings import Config
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
+from flaskshop.constant import Language
+
+
 impl = HookimplMarker("flaskshop")
 from flask import  current_app
 
@@ -20,7 +23,7 @@ def cart_index():
 
     shipping_methods = ShippingMethod.query.all()
 
-    return render_template("checkout/cart.html",shipping_methods=shipping_methods)
+    return render_template("checkout/cart.html",shipping_methods=shipping_methods,Language=Language)
 
 
 def update_cart(id):
@@ -93,19 +96,11 @@ def shipment_details():
             if address_data['email']:
 
                 msg = Message('Hello from '+SiteDefaultSettings['project_title']['value'], sender = current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
-                msg.html =  render_template(
-                    "checkout/order_placed_template.html", order=order
-                )
-                try:
-                    mail.send(msg)
-                except Exception as inst:
-
-                    flash("email could not be sent", "warning")
+                msg.html =  render_template("checkout/order_placed_template.html", order=order ,Language=Language)
 
 
             return render_template(
-                "checkout/order_placed.html", order=order
-            )
+                "checkout/order_placed.html", order=order,Language=Language)
 
 
         else:
@@ -113,8 +108,7 @@ def shipment_details():
             return render_template("errors/out_of_stock.html")
 
     return render_template(
-        "checkout/check_out.html", form=form
-    )
+        "checkout/check_out.html", form=form, Language=Language)
 
 
 

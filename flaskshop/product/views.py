@@ -8,7 +8,7 @@ from flaskshop.checkout.models import Cart
 
 from .models import Product, Category, ProductCollection, ProductVariant
 from .forms import AddCartForm
-
+from flaskshop.constant import Language
 
 impl = HookimplMarker("flaskshop")
 
@@ -61,7 +61,8 @@ def show_category(id):
     pagination = query.paginate(page, per_page=10)
     print(" pagination--")
     category= Category.query.filter_by(id=id)
-    ctx.update(object=category, pagination=pagination, products=pagination.items)
+    categories = Category.query.all()
+    ctx.update(object=category, pagination=pagination, products=pagination.items,categories=  categories, Language= Language)
 
     return render_template("category/index.html", **ctx)
 

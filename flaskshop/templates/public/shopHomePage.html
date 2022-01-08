@@ -38,7 +38,7 @@
 
 										</div>
 
-										<a href="{{product.category.get_absolute_url() }}"  class="Offer-shop-btn hover-btn">Shop Now</a>
+										<a href="{{product.category.get_absolute_url() }}"  class="Offer-shop-btn hover-btn">{{Language["Shop Now"]}}  </a>
 									</div>
 								</div>
 							</div>
@@ -51,33 +51,34 @@
 
 
 	<div class="section145">
-			<div class="container translate-middle ">
+			<div class="container">
 				<div class="row">
 					<div class="col-md-2">
 						<div class="main-title-tt">
 							<div class="main-title-left">
-								<span>Shop By</span>
-								<h2>Categories</h2>
+								<span>{{Language["Shop By"]}}</span>
+								<h2> {{Language["Categories"]}}</h2>
 							</div>
 						</div>
 					</div>
 					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
 
     <!-- Wrapper for slides -->
-    <div class='carousel-inner'>
+    <div class="carousel slide" data-ride="carousel">
+ 		<div class="carousel-inner">
+       {% for item in categories%}
+		 {% if item.is_active %}
 
-      						 {% for item in categories%}
-							 {% if item.is_active %}
+			 <div {% if loop.index ==1 %}  class="item active" {%else %}class="item"  {% endif %}>
+				{% include('products/category_item.html') %}
+			 </div>
 
-								<div {% if loop.index ==1 %} class="item active" {%else %} class="item"  {% endif %}>
-									{% include('products/category_item.html') %}
-								</div>
-							 {% endif %}
+		    {% endif %}
 
 
-		  				 {% endfor %}
+		   {% endfor %}
 
-   					 </div>
+    </div>
 
     <!-- Controls -->
     <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
@@ -86,15 +87,11 @@
     <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
         <span class='glyphicon glyphicon-chevron-right'></span>
     </a>
-
-
 </div>
 
 				</div>
-
 			</div>
 	</div>
-
 		<!-- Categories End -->
 		<!-- Featured Products Start -->
 
@@ -103,8 +100,8 @@
 					<div class="col-md-12">
 						<div class="main-title-tt">
 							<div class="main-title-left">
-								<span>For You</span>
-								<h2>Top Featured Products</h2>
+								<span>{{Language["For You"]}}</span>
+								<h2>{{Language["Top Featured Products"]}}</h2>
 							</div>
 
 
@@ -135,8 +132,8 @@
 					<div class="col-md-12">
 						<div class="main-title-tt">
 							<div class="main-title-left">
-								<span>For You</span>
-								<h2>On Sale</h2>
+								<span>{{Language["For You"]}}</span>
+								<h2>{{Language["On Sale"]}}</h2>
 							</div>
 
 						</div>
