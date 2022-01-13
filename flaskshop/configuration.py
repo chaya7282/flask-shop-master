@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """The app module, containing the app factory function."""
 import sys
-
+from flaskshop.constant import Language
 from flask import Flask, render_template
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
@@ -61,7 +61,7 @@ def register_errorhandlers(app):
         """Render error template."""
         # If a HTTPException, pull the `code` attribute; default to 500
         error_code = getattr(error, "code", 500)
-        return render_template(f"errors/{error_code}.html"), error_code
+        return render_template(f"errors/{error_code}.html",Language=Language), error_code
 
     for errcode in [401, 404, 500]:
         app.errorhandler(errcode)(render_error)
