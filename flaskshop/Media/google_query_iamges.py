@@ -1,0 +1,2 @@
+from google_images_search import GoogleImagesSearch
+

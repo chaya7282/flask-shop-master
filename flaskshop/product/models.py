@@ -351,9 +351,10 @@ class Category(Model):
         url=None
         if self.background_img:
             url= get_presigned_url(self.background_img)
+
         return url
 
-        return ""
+
 
     @property
     def products(self):

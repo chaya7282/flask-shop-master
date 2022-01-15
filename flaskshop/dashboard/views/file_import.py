@@ -3,9 +3,10 @@ from flask import request, render_template, redirect, url_for, current_app
 import os
 from flaskshop.settings import Config
 from flaskshop.database import Column, Model, db
-from flaskshop.product.models import Product, Category,ProductType,ProductVariant
+from flaskshop.product.models import Product, Category,ProductType,ProductVariant, ProductImage
 from flask import send_file, send_from_directory, safe_join, abort
 import pandas as pd
+
 from decimal import Decimal
 from sqlalchemy import inspect
 from flask import flash
@@ -36,6 +37,7 @@ def clean_DataFrame(df):
 
 def add_products(sheet_name,type):
     Product.query.delete()
+    ProductImage.query.delete()
     df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
     if not df.empty:
         if type == "cash_register":
@@ -93,9 +95,13 @@ def add_products(sheet_name,type):
 
     products_query = Product.query.all()
     product_variants=[]
+    product_images=[]
     for idx in range(len( products_query)):
         product_variants.append( ProductVariant(sku=str(products_query[idx].id) + "-1337", product_id=products_query[idx].id, title= products_query[idx].title))
+        product_images.append(ProductImage(image=products_query[idx].background_img, product_id=products_query[idx].id))
+
     db.session.add_all(product_variants)
+    db.session.add_all(product_images)
     db.session.commit()
 
 def file_data_import():
@@ -108,7 +114,7 @@ def file_data_import():
         xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
         try:
             add_categories("Categories", "Categories")
-            add_products("Products")
+            add_products("Products","cash_register")
         except:
             flash('problem in operation try again')
             return redirect(url_for('dashboard.index'))

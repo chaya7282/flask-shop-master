@@ -76,7 +76,7 @@ def product_search():
     keyword = request.form['keyword']
     searchResult = Product.query.filter(Product.title.contains(keyword)).all()
 
-    return render_template("search/index.html",title='Searching..' + keyword,products=searchResult)
+    return render_template("search/index.html",title='Searching..' + keyword,products=searchResult,Language= Language)
 
 @impl
 def flaskshop_load_blueprints(app):
