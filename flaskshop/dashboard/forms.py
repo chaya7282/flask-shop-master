@@ -153,7 +153,7 @@ class ProductTypeForm(FlaskForm):
 
 
 class ProductForm(FlaskForm):
-    title = StringField("title",validators=[DataRequired(), Length(min=6, max=40)])
+    title = StringField("title",validators=[DataRequired(), Length(min=6, max=100)])
     basic_price = DecimalField("basic Price",validators=[DataRequired()])
     discount_price = DecimalField("Sale Price")
     on_sale = BooleanField("On Sale",default=False)
