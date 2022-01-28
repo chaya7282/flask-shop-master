@@ -129,8 +129,8 @@
 
 							<div class="dashboard-left-links">
 								<a  class="user-item active"><i class="uil uil-apps"></i>Overview</a>
-								<a href="{{ url_for('account.user_orders') }}" class="user-item"><i class="uil uil-box"></i>My Orders</a>
-								<a href="{{ url_for('account.edit_address') }}" class="user-item"><i class="uil uil-gift"></i>My Addresses</a>
+								<a href="{{ url_for('account.user_orders') }}" class="user-item"><i class="uil uil-box"></i> My Orders </a>
+								<a href="{{ url_for('account.edit_address',show_cart=False ) }}" class="user-item"><i class="uil uil-gift"></i>My Addresses </a>
 								<a href="{{ url_for('account.set_password') }}" class="user-item"><i class="uil uil-wallet"></i>Your Password</a>
 
 

@@ -2,7 +2,7 @@
 """User forms."""
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import PasswordField, StringField
+from wtforms import PasswordField, StringField,BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Regexp
 from wtforms.widgets import PasswordInput
 from .models import User
@@ -138,6 +138,7 @@ class AddressForm(FlaskForm):
     pincode= StringField(
         "pincode"
     )
+    save = BooleanField("Save address",default=True)
     def __init__(self, *args, **kwargs):
         """Create instance."""
         super().__init__(*args, **kwargs)

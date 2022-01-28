@@ -1,91 +1,125 @@
 
-<div class="order-placed-dt">
+<div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
+     <div class="card">
+         <div class="card-header p-4">
 
-    <h2>Order Successfully Placed</h2>
-</div>
-<div class="bill-dt-bg">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="bill-detail">
-                        <div class="bill-dt-step">
-							<div class="bill-title">
-								<h4>{{Language["Order ID"]}}</h4>
-							</div>
-                            {{order.token}}
-						</div>
-                          <div class="bill-dt-step">
-							<div class="bill-title">
-								<h4>{{Language["Status"]}}</h4>
-							</div>
-                            {{order.status_human}}
-						</div>
-						<div class="bill-dt-step">
-							<div class="bill-title">
-								<h4>{{Language["Items"]}}</h4>
-							</div>
-							<div class="bill-descp">
-							<ol class="list-group list-group-numbered">
-                                {%  for item in order.lines %}
-								<li>
-								<span class="item-prdct">{{ item.quantity }} x {{ item.product_name}}</span>
-								</li>
-								{%  endfor  %}
-								</ol>
-							</div>
-						</div>
-						<div class="bill-dt-step">
-							<div class="bill-title">
-								<h4>>{{Language["Delivery"]}} </h4>
-							</div>
-							<div class="bill-descp">
-								<ul >
+             <div class="float-right">
+                 <h3 class="mb-0">{{Language["Invoice"]}} # {{order.token}}</h3>
+                 {{Language["Date"]}}: {{ order.created_at}}
+             </div>
+         </div>
+         <div class="card-body">
+             <div class="row mb-4">
 
-                                    <li><p>{{Language["Delivery Method "]}}:<span>   {{order.shipping_method_name}}</span></p></li>
-                                    {% with address=order.get_shipment_address %}
-									<li><p><i class="fa fa-map-marker-alt"></i>Address :<span>st: {{address.address }},city: {{address.city}}</span></p></li>
-									{% endwith %}
-									<li><p>{{Language["contact-name"]}} :<span>{{order.contact_name}}</span></p></li>
-                                    <li><p>{{Language["contact-phone"]}} :<span>{{order.contact_phone}}</span></p></li>
+                 <div class="col-sm-6 ">
+                     <h5 class="mb-3">{{Language["To:"]}}</h5>
+                     <h5 class="mb-3"> {{user_address.contact_name}}</h5>
+                     <h3 class="text-dark mb-1"></h3>
+                     <div>{{user_address.address}} </div>
+                     <div> {{user_address.city}}</div>
+                     <div>Email: {{user_address.email}}</div>
+                    <div>Phone:  {{user_address.contact_phone}}</div>
 
-								</ul>
-		                    </div>
-						</div>
-						<div class="bill-dt-step">
-							<div class="bill-title">
-								<h4>{{Language["Payment"]}} </h4>
-							</div>
-							<div class="bill-descp">
-								<div class="total-checkout-group p-0 border-top-0">
+                 </div>
 
-									<div class="cart-total-dil pt-3">
-										<h4>{{Language["Delivery Charges"]}}</h4>
-										<span>{{ order.shipping_price_net }}</span>
-									</div>
-								</div>
-								<div class="main-total-cart pl-0 pr-0 pb-0 border-bottom-0">
-									<h2>{{Language[" Total"]}} </h2>
-									<span>${{order.total_human}}</span>
-								</div>
-							</div>
-						</div>
 
-						<div class="bill-dt-step">
-							<div class="bill-title">
-								<h4>{{Language["Payment"]}}</h4>
-							</div>
-							<div class="bill-descp">
-								<p class="bill-dt-sl"><span class="dlr-ttl25 mr-1"><i class="uil uil-check-circle"></i></span>{{order.payment_method}}</p>
-							</div>
-						</div>
-						<div class="bill-dt-step">
-							<div class="bill-bottom">
-								<div class="thnk-ordr">{{Language["Thanks for Ordering"]}}  </div>
-                                <a class="print-btn hover-btn" href="javascript:window.print();">{{Language["Print"]}}  </a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+             </div>
+             <div class="table-responsive-sm">
+                 <table class="table table-striped">
+                     <thead>
+                         <tr>
+
+                             <th>{{Language["Item"]}} </th>
+
+                             <th class="right">{{Language["Price"]}}</th>
+                             <th class="center">{{Language["Qty"]}}  </th>
+                             <th class="right">{{Language["Total"]}} </th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        {%  for item in order.lines %}
+
+                         <tr>
+
+                             <td class="left strong">{{item.variant}}</td>
+                             <td class="right">{{item.unit_price_net}}</td>
+                             <td class="center">{{item.quantity}}</td>
+                             <td class="right">{{item.get_total()}}</td>
+                         </tr>
+                        {% endfor %}
+                     </tbody>
+                 </table>
+             </div>
+             <div class="row">
+                 <div class="col-lg-4 col-sm-5">
+                 </div>
+                 <div class="col-lg-4 col-sm-5 ml-auto">
+                     <table class="table table-clear">
+                         <tbody>
+                            <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">{{Language["Sub total"]}}</strong> </td>
+                                 <td class="right">
+                                     <strong class="text-dark">{{ order.total_net }}</strong>
+                                 </td>
+                             </tr>
+                            <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">{{Language["Delivery Charges"]}}</strong> </td>
+                                 <td class="right">
+                                     <strong class="text-dark">{{ order.shipping_price_net }}</strong>
+                                 </td>
+                             </tr>
+                              <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">{{Language["Delivery Charges"]}}</strong> </td>
+                                 <td class="right">
+                                     <strong class="text-dark">{{ order.shipping_price_net }}</strong>
+                                 </td>
+                             </tr>
+                             <tr>
+                                 <td class="left">
+                                     <strong class="text-dark">{{Language["Total"]}}</strong> </td>
+                                 <td class="right">
+                                     <strong class="text-dark">{{order.total}}</strong>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+              <div class="row mb-4">
+
+                 <div class="col-sm-6 ">
+                     <h5 class="mb-3">{{Language["Payment"]}}</h5>
+                     <h5 class="mb-3"> {{Language[order.payment_method]}} {{order.payment_method}}</h5>
+                </div>
+
+                <div class="col-sm-6 ">
+                 {% with delivery_address=order.get_shipment_address() %}
+                 {% with shipment_method= order.shipping_method %}
+                 {% if shipment_method.address_needed %}
+
+                    <h3 class="mb-3">{{Language["Delivery needed"]}} </h3>
+
+
+                     <h6 >{{Language["contact person and delivery address"]}}</h6>
+                     <h6 > {{delivery_address.contact_name}}</h6>
+
+                     <div>{{delivery_address.address}} </div>
+                     <div> {{delivery_address.city}}</div>
+                     <div>Email: {{delivery_address.email}}</div>
+                     <div>Phone:  {{delivery_address.contact_phone}}</div>
+
+                 {% else %}
+                    <h3 class="mb-3">{{Language["No delivery"]}} </h3>
+                     <h6 >{{Language[shipment_method.title]}}</h6>
+                 {% endif %}
+                 {% endwith %}
+                 {% endwith %}
+                 </div>
+             </div>
+         </div>
+
+     </div>
+ </div>

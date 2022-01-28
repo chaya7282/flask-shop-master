@@ -14,7 +14,7 @@ from flaskshop.settings import Config
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
 from flaskshop.constant import Language
-
+from flaskshop.product.models import Product, Category
 
 impl = HookimplMarker("flaskshop")
 from flask import  current_app
@@ -22,8 +22,8 @@ from flask import  current_app
 def cart_index():
 
     shipping_methods = ShippingMethod.query.all()
-
-    return render_template("checkout/cart.html",shipping_methods=shipping_methods,Language=Language)
+    categories = Category.query.all()
+    return render_template("checkout/cart.html",shipping_methods=shipping_methods,categories=categories,Language=Language)
 
 
 def update_cart(id):
@@ -63,84 +63,94 @@ def Cart_Checkout():
             payment_method=payment_method
         )
 
-    return redirect(url_for("checkout.shipment_details"))
 
 
+    if shipping_method.address_needed:
+        return redirect(url_for("checkout.get_Shipping_address"))
+    else:
+        address_data={}
+        return Create_An_Order(address_data)
+
+
+
+
+def Create_An_Order(address_data):
+    cart = Cart.get_current_user_cart()
+    address_id = current_user.addresses_id
+    if address_id:
+        user_address = UserAddress.get_by_id(address_id)
+
+    order, msg = Order.create_whole_order(cart, shippment_address=address_data)
+    address = order.get_shipment_address()
+    if order:
+
+        return render_template("checkout/order_placed.html", order=order,user_address=user_address, Language=Language)
+    else:
+        flash(msg, "warning")
+        return render_template("errors/out_of_stock.html", Language=Language)
 
 
 def shipment_details():
-
-    addresses = current_user.addresses
-    if addresses:
-        form = AddressForm(obj=addresses)
-    else:
-        form =AddressForm()
-    if form.validate_on_submit():
-        cart = Cart.get_current_user_cart()
-
-        form.populate_obj(cart)
-
+    address_data = {}
+    if  current_user.addresses:
         address_data = {
-        "province": form.province.data,
-        "city": form.city.data,
-        "district": form.district.data,
-        "address": form.address.data,
-        "contact_name": form.contact_name.data,
-        "contact_phone": form.contact_phone.data,
-        "pincode": form.pincode.data,
-        "email":form.email.data
+            "province": current_user.addresses.province,
+            "city": current_user.addresses.city,
+            "district": current_user.addresses.district,
+            "address": current_user.addresses.address,
+            "contact_name": current_user.addresses.contact_name,
+            "contact_phone": current_user.addresses.contact_phone,
+            "pincode": current_user.addresses.pincode,
+            "email": current_user.addresses.email
         }
 
-        order, msg = Order.create_whole_order(cart,shippment_address= address_data)
-        if order:
-            if address_data['email']:
-
-                msg = Message('Hello from '+SiteDefaultSettings['project_title']['value'], sender = current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
-                msg.html =  render_template("checkout/order_placed_template.html", order=order ,Language=Language)
 
 
-            return render_template(
-                "checkout/order_placed.html", order=order,Language=Language)
 
 
-        else:
-            flash(msg, "warning")
-            return render_template("errors/out_of_stock.html")
 
-    return render_template(
-        "checkout/check_out.html", form=form, Language=Language)
+
+def get_Shipping_address():
+    form = AddressForm(request.form)
+    address_id = current_user.addresses_id
+    if address_id:
+        user_address = UserAddress.get_by_id(address_id)
+        form = AddressForm(request.form, obj=user_address)
+    if request.method == "POST" and form.validate_on_submit():
+        address_data = {
+
+            "province": form.province.data,
+            "city": form.city.data,
+            "district": form.district.data,
+            "address": form.address.data,
+            "contact_name": form.contact_name.data,
+            "contact_phone": form.contact_phone.data,
+            "email": form.email.data,
+            "pincode": form.pincode.data
+        }
+        return  Create_An_Order(address_data)
+
+    return render_template("account/address_edit.html", form=form, address_id=address_id,Language= Language,show_cart=True)
+
 
 
 
 
 def checkout_shipping():
 
-    addresses = current_user.addresses
-    if addresses:
-       user_address = addresses[0]
-       form = CheckoutForm(obj=user_address)
-    else:
-        form = CheckoutForm()
+    user_address = current_user.addresses[0]
 
-    if form.validate_on_submit():
-        if request.form["address_sel"] != "new":
-            user_address = UserAddress.get_by_id(request.form["address_sel"])
-        elif request.form["address_sel"] == "new" and form.validate_on_submit():
-            form.populate_obj(user_address)
+    shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
 
-        shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
+    if user_address and shipping_method:
+        cart = Cart.get_current_user_cart()
+        cart.update(
+            shipping_address_id=user_address.id,
+            shipping_method_id=shipping_method.id,
+        )
+    return redirect(url_for("checkout.checkout_note"))
 
-        if user_address and shipping_method:
-            cart = Cart.get_current_user_cart()
-            cart.update(
-                shipping_address_id=user_address.id,
-                shipping_method_id=shipping_method.id,
-            )
-            return redirect(url_for("checkout.checkout_note"))
-    shipping_methods = ShippingMethod.query.all()
-    return render_template(
-        "checkout/check_out.html", form=form, shipping_methods=shipping_methods
-    )
+
 
 
 def checkout_note():
@@ -159,18 +169,20 @@ def checkout_note():
         else None
     )
     if form.validate_on_submit():
-        order, msg = Order.create_whole_order(cart, form.note.data)
-        if order:
-            return redirect(order.get_absolute_url())
-        else:
+        order, msg = Order.create_whole_order(cart,shippment_address=address, )
+        if not order:
             flash(msg, "warning")
-            return redirect(url_for("checkout.cart_index"))
+        else:
+            return render_template("checkout/order_placed.html", order=order, Language=Language)
+
     return render_template(
         "checkout/note.html",
         form=form,
         address=address,
         voucher_form=voucher_form,
         shipping_method=shipping_method,
+        Language=Language
+
     )
 
 
@@ -226,5 +238,8 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule(
         "/voucher/remove", view_func=checkout_voucher_remove, methods=["POST"]
     )
+    bp.add_url_rule(
+        "/get_Shipping_address", view_func=get_Shipping_address, methods=["GET", "POST"])
+
 
     app.register_blueprint(bp, url_prefix="/checkout")

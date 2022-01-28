@@ -134,7 +134,10 @@ class Order(Model):
     def shipping_method(self):
         return ShippingMethod.get_by_id(self.shipping_method_id)
 
+    @property
+
     def get_absolute_url(self):
+        str=  url_for("order.show", token=self.token)
         return url_for("order.show", token=self.token)
 
     @property
@@ -221,7 +224,7 @@ class Order(Model):
 
     def cancel(self):
         self.status = OrderStatusKinds.canceled.value
-        shipping_address = self.get_shipment_address
+        shipping_address = self.get_shipment_address()
         if shipping_address:
             shipping_address.delete()
 
@@ -264,10 +267,12 @@ class Order(Model):
             type_=OrderEvents.order_delivered.value,
         )
 
-    @property
+
     def get_shipment_address(self):
         shipment_address= ShippingAddress.get_by_id(self.shipping_address_id)
         return shipment_address
+
+
 
 class ShippingAddress(Model):
     __tablename__ = "delivery_address"

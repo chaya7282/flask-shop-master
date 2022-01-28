@@ -16,7 +16,7 @@
 											<h4>My Address</h4>
 										</div>
 										<div class="address-body">
-											<a href="{{url_for('account.edit_address')}}" class="add-address hover-btn">Add New Address</a>
+											<a href="{{url_for('account.edit_address',show_cart=False)}}" class="add-address hover-btn">Add New Address</a>
 
 											  {% for address in current_user.addresses %}
 												<div class="address-item">

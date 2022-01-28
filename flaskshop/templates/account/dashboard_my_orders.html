@@ -29,8 +29,9 @@
 													</div>
 												</li>
 												<li>
+													href= url_for
 													<div class="order-dt47">
-														<h4><a href="{{ order.get_absolute_url() }}" class="float-right link--styled">Details</a></h4>
+														<h4><a href="{{url_for('order.show', token=order.token)}}" class="float-right link--styled">Details</a></h4>
 
 														<div class="order-title"> {{ order.total_human }} Items <span data-inverted="" data-tooltip="2kg broccoli, 1kg Apple" data-position="top center">?</span></div>
 													</div>

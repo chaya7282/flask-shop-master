@@ -77,7 +77,7 @@
                                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 							<div class="right-cart-dt-body">
-								        <h5 >Delivery</h5>
+								        <h5 > {{Language[Delivery]}}</h5>
                                                 <div class="form-group">
                                                     <div class="rpt100">
 														<ul class="radio--group-inline-container_1">
@@ -86,7 +86,7 @@
                                                                           <li>
                                                                             <div class="radio-item_1">
                                                                               <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}" {% if loop.first %}checked{%endif%}>
-                                                                                <label class="radio-label_1" for="shipping_{{ method.id }}">{{ method }}</label>
+                                                                                <label class="radio-label_1" for="shipping_{{ method.id }}">{{ Language[method.title] }}:{{method.price}}</label>
                                                                             </div>
                                                                           </li>
                                                                           {% endfor %}
@@ -107,7 +107,7 @@
 														<ul class="radio--group-inline-container_1">
                                                            <li>
                                                                <div class="radio-item_1">
-                                                                 <input type="radio" name="payment_method" value="Cash " id="payment_method_1" >
+                                                                 <input type="radio" name="payment_method" value="Cash" id="payment_method_1" >
                                                                  <label class="radio-label_1" for="payment_method_1"> {{Language["Cash"]}}</label>
                                                                </div>
                                                               </li>

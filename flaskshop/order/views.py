@@ -13,7 +13,9 @@ from flask import (
 from flask_login import login_required, current_user
 from pluggy import HookimplMarker
 
-from .models import Order, OrderPayment
+from .models import Order, OrderPayment,UserAddress
+from flaskshop.product.models import Category
+
 from .payment import zhifubao
 from flaskshop.extensions import csrf_protect
 from flaskshop.constant import ShipStatusKinds, PaymentStatusKinds, OrderStatusKinds
@@ -29,8 +31,12 @@ def index():
 @login_required
 def show(token):
     order = Order.query.filter_by(token=token).first()
+    address_id = current_user.addresses_id
+    if address_id:
+        user_address = UserAddress.get_by_id(address_id)
+    categories = Category.query.all()
 
-    return render_template("checkout/order_placed.html", order = order,Language=Language)
+    return render_template("checkout/order_placed.html", order = order,user_address=user_address,Language=Language, categories =categories )
 
 
 def create_payment(token, payment_method):
@@ -115,7 +121,7 @@ def receive(token):
 def flaskshop_load_blueprints(app):
     bp = Blueprint("order", __name__)
     bp.add_url_rule("/", view_func=index)
-    bp.add_url_rule("/<string:token>", view_func=show)
+    bp.add_url_rule("/orders/<string:token>", view_func=show)
     bp.add_url_rule("/pay/<string:token>/alipay", view_func=ali_pay)
     bp.add_url_rule("/alipay/notify", view_func=ali_notify, methods=["POST"])
     bp.add_url_rule("/pay/<string:token>/testpay", view_func=test_pay)

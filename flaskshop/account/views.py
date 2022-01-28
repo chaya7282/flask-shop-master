@@ -6,6 +6,7 @@ from pluggy import HookimplMarker
 
 from .forms import AddressForm, LoginForm, RegisterForm, ChangePasswordForm
 from .models import UserAddress, User
+from flaskshop.product.models import Category
 from flaskshop.utils import flash_errors
 from flaskshop.order.models import Order
 from flaskshop.constant import Language
@@ -13,22 +14,27 @@ impl = HookimplMarker("flaskshop")
 
 def user_orders():
     orders = Order.get_current_user_orders()
-    return render_template("account/dashboard_my_orders.html", orders=orders)
+    categories = Category.query.all()
+    return render_template("account/dashboard_my_orders.html", orders=orders, categories =categories , Language= Language)
 
 
 def index():
+
     form = ChangePasswordForm(request.form)
     orders = Order.get_current_user_orders()
-    return render_template("account/details.html", form=form, orders=orders)
+    categories = Category.query.all()
+    return render_template("account/details.html", form=form, orders=orders, categories =categories, Language= Language)
 
 def index_by_user(user_id):
     form = ChangePasswordForm(request.form)
     orders = Order.get_current_user_orders()
-    return render_template("account/details.html", form=form, orders=orders)
+    categories = Category.query.all()
+    return render_template("account/details.html", form=form,  categories = categories , orders=orders,Language= Language)
 
 def login():
     """login page."""
     form = LoginForm(request.form)
+    categories = Category.query.all()
     if form.validate_on_submit():
         login_user(form.user)
         redirect_url = request.args.get("next") or url_for("public.home")
@@ -36,7 +42,7 @@ def login():
         return redirect(redirect_url)
     else:
         flash_errors(form)
-    return render_template("account/login.html", form=form, Language= Language)
+    return render_template("account/login.html", categories =categories, form=form, Language= Language)
 
 
 @login_required
@@ -50,6 +56,7 @@ def logout():
 def signup():
     """Register new user."""
     form = RegisterForm(request.form)
+    categories = Category.query.all()
     if form.validate_on_submit():
         user = User.create(
             username=form.username.data,
@@ -62,11 +69,12 @@ def signup():
         return redirect(url_for("public.home"))
     else:
         flash_errors(form)
-    return render_template("account/signup.html", form=form,Language= Language)
+    return render_template("account/signup.html", form=form,categories=categories,Language= Language)
 
 
 def set_password():
     form = ChangePasswordForm(request.form)
+    categories = Category.query.all()
     if request.method == "POST":
         if form.validate_on_submit():
             current_user.update(password=form.password.data)
@@ -74,17 +82,19 @@ def set_password():
             return redirect(url_for("account.index") )
         else:
             flash("You have not changed password.", "failure")
-    return render_template("account/forgot_password.html", form=form,Language= Language)
+    return render_template("account/forgot_password.html", form=form,categories=categories,Language= Language)
 
 
 def addresses():
     """List addresses."""
+    categories = Category.query.all()
     addresses = current_user.addresses
-    return render_template("account/dashboard_my_addresses.html", addresses=addresses)
+    return render_template("account/dashboard_my_addresses.html", addresses=addresses,categories=categories)
 
 
 def edit_address():
     """Create and edit an address."""
+    categories = Category.query.all()
     form = AddressForm(request.form)
     address_id = current_user.addresses_id
     if address_id:
@@ -99,19 +109,20 @@ def edit_address():
             "address": form.address.data,
             "contact_name": form.contact_name.data,
             "contact_phone": form.contact_phone.data,
+            "email": form.email.data,
+            "pincode": form.pincode.data
         }
+
         if address_id:
-            UserAddress.update( **address_data)
+            user_address.update( **address_data)
             flash("Success edit address.", "success")
         else:
             UserAddress.create(**address_data)
             flash("Success add address.", "success")
+
         return redirect(url_for("account.index") + "#addresses")
-    else:
-        flash_errors(form)
-    return render_template(
-        "account/address_edit.html", form=form, address_id=address_id,Language= Language
-    )
+
+    return render_template("account/address_edit.html", form=form, address_id=address_id,categories=categories,Language= Language,show_cart=False)
 
 
 def delete_address(id):

@@ -655,7 +655,7 @@ def create_shipping_methods():
     shipping_method = ShippingMethod.create(title="Self picking", price=0,address_needed=False)
     yield f"Shipping method #{shipping_method.id}"
     shipping_method = ShippingMethod.create(title="Delivery", price=150,address_needed=True)
-    shipping_method = ShippingMethod.create(title="Fast Delivery", price=250,address_needed=True)
+
 
 # step22
 def create_dashboard_menus():
