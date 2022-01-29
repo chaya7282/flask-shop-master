@@ -32,6 +32,7 @@ def index():
 def show(token):
     order = Order.query.filter_by(token=token).first()
     address_id = current_user.addresses_id
+    user_address=None
     if address_id:
         user_address = UserAddress.get_by_id(address_id)
     categories = Category.query.all()
