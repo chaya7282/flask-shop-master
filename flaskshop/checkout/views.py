@@ -77,6 +77,7 @@ def Cart_Checkout():
 def Create_An_Order(address_data):
     cart = Cart.get_current_user_cart()
     address_id = current_user.addresses_id
+    user_address= None
     if address_id:
         user_address = UserAddress.get_by_id(address_id)
 
