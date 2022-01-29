@@ -86,7 +86,7 @@
                                                                           <li>
                                                                             <div class="radio-item_1">
                                                                               <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}" {% if loop.first %}checked{%endif%}>
-                                                                                <label class="radio-label_1" for="shipping_{{ method.id }}">{{ Language[method.title] }}:{{method.price}}</label>
+                                                                                <label class="radio-label_1" for="shipping_{{ method.id }}">{{ method.title }}:{{method.price}}</label>
                                                                             </div>
                                                                           </li>
                                                                           {% endfor %}

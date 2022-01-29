@@ -125,8 +125,9 @@ class Order(Model):
         for line in cart.lines:
             db.session.delete(line)
         db.session.delete(cart)
-
+        order.set_contact()
         db.session.commit()
+
         return order, "success"
 
 
@@ -137,7 +138,7 @@ class Order(Model):
     @property
 
     def get_absolute_url(self):
-        str=  url_for("order.show", token=self.token)
+
         return url_for("order.show", token=self.token)
 
     @property
@@ -267,6 +268,14 @@ class Order(Model):
             type_=OrderEvents.order_delivered.value,
         )
 
+    def set_contact(self):
+        contact_name= None
+        if self.get_shipment_address():
+            self.contact_name= self.get_shipment_address().contact_name
+            self.contact_phone = self.get_shipment_address().contact_phone
+        elif UserAddress.get_by_id(self.user_id):
+            self.contact_name = self.get_shipment_address().contact_name
+            self.contact_phone = self.get_shipment_address().contact_phone
 
     def get_shipment_address(self):
         shipment_address= ShippingAddress.get_by_id(self.shipping_address_id)

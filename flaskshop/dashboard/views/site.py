@@ -34,7 +34,11 @@ def shipping_methods():
     return render_template("list.html", **context)
 
 def shipping_methods_del(id=None):
-   return redirect(url_for("dashboard.shipping_methods"))
+    shipping_method = ShippingMethod.get_by_id(id)
+    if shipping_method:
+        shipping_method.delete(commit=True)
+
+    return redirect(url_for("dashboard.shipping_methods"))
 
 
 def shipping_methods_manage(id=None):

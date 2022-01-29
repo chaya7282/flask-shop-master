@@ -21,6 +21,7 @@
                             {{ form.hidden_tag() }}
                             {{ vendor.render_field(form.title) }}
                             {{ vendor.render_field(form.price) }}
+                            {{ vendor.render_field(form.address_needed) }}
                             <div class="card-footer">
                                 {{ macros.render_submit(form.submit) }}
                             </div>

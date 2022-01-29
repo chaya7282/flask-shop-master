@@ -23,6 +23,7 @@ def orders(query=None):
             "status_human": "Status",
             "total_human": "Total",
             "contact_name": "contact",
+            "contact_phone": "contact-phone ",
             "created_at": "Created At",
         }
         context = {
@@ -35,30 +36,12 @@ def orders(query=None):
 
 def order_edit(id):
     order = Order.get_by_id(id)
-    address = ShippingAddress.get_by_id(order.shipping_address_id)
-    form = OrderStatusForm()
-
-    if form.validate_on_submit():
-
-        status=request.form['status']
-
-        if status == 'canceled':
-            return redirect(url_for('order.cancel_order', token=order.token))
-        elif status == 'fulfilled':
-            order.pay_success(order.payment)
-        elif  status =='completed':
-             return redirect(url_for('order.receive',token=order.token))
-        elif  status == 'shipped':
-            order.delivered()
-        return redirect(url_for('dashboard.orders'))
-
-    return render_template("order/order_edit.html",form=form, order=order,address=address,orderProcessing=orderProcessing, OrderStatusKinds=OrderStatusKinds)
+    return redirect(url_for('order.show', token=order.token))
 
 
 def order_detail(id):
     order = Order.get_by_id(id)
-    address=  ShippingAddress.get_by_id(order.shipping_address_id)
-    return render_template("order/order_view.html", order=order,address=address)
+    return redirect(url_for('order.show', token=order.token))
 
 
 def send_order(id):

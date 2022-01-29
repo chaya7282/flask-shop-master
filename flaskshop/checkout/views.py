@@ -81,7 +81,7 @@ def Create_An_Order(address_data):
         user_address = UserAddress.get_by_id(address_id)
 
     order, msg = Order.create_whole_order(cart, shippment_address=address_data)
-    address = order.get_shipment_address()
+
     if order:
 
         return render_template("checkout/order_placed.html", order=order,user_address=user_address, Language=Language)

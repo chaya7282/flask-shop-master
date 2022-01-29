@@ -207,6 +207,7 @@ class VariantForm(FlaskForm):
 class ShippingMethodForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
     price = DecimalField(default=0.00, validators=[NumberRange(min=0)])
+    address_needed = BooleanField("address needed",default=True)
     submit = SubmitField()
 
 
