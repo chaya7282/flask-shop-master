@@ -31,10 +31,10 @@ def index():
 @login_required
 def show(token):
     order = Order.query.filter_by(token=token).first()
-    address_id = current_user.addresses_id
-    user_address=None
-    if address_id:
-        user_address = UserAddress.get_by_id(address_id)
+    user_id = order.user_id
+    user_address= None
+    if  user_id:
+        user_address = UserAddress.query.filter_by(user_id= user_id ).first()
     categories = Category.query.all()
 
     return render_template("checkout/order_placed.html", order = order,user_address=user_address,Language=Language, categories =categories )
