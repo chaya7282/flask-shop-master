@@ -101,8 +101,8 @@ def edit_address():
         user_address = UserAddress.get_by_id(address_id)
         form = AddressForm(request.form, obj=user_address)
     else:
-        form.contact_name=current_user.username
-        form.email = current_user.email
+        form.contact_name.data=current_user.username
+        form.email.data = current_user.email
     if request.method == "POST" and form.validate_on_submit():
         address_data = {
             "user_id":current_user.id,
