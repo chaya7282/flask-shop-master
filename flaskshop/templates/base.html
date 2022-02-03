@@ -27,7 +27,6 @@
 
 
 
- <!-- Modal -->
 <div id="category_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
         <div class="modal-dialog category-area" role="document">
             <div class="category-area-inner">
@@ -38,22 +37,28 @@
                 </div>
                 <div class="category-model-content modal-content">
 					<div class="cate-header">
-						<h4>{{Language["Select Category"]}}</h4>
+						<h4>Select Category</h4>
 					</div>
                     <ul class="category-by-cat">
-                        {% for item in categories %}
-                            {% if item.is_active %}
+                      <div class="row">
+                          {% for item in categories %}
+                         {% set row_number= loop.index-1 %}
+                         {% if row_number % 3 ==0 %}
+                           </div>
+                            <div class="row">
+                          {% endif %}
+                           <div class="col">
 
-                         <li>
-							<a href="{{ item.get_absolute_url()  }}" class="single-cat-item">
+                               <a href= "{{ item.get_absolute_url()}}" class="single-cat-item">
 								<div class="icon">
 									<img src={{item.get_background_img_AWS ()}} alt="">
 								</div>
 								<div class="text"> {{item.title}} </div>
-							</a>
-						</li>
-                            {% endif %}
-                        {% endfor %}
+                                   </a>
+
+                           </div>
+                          {% endfor %}
+                            </div>
 
 
                     </ul>
@@ -65,6 +70,9 @@
             </div>
         </div>
     </div>
+
+ <!-- Modal -->
+
 <div id="search_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
         <div class="modal-dialog category-area" role="document">
             <div class="category-area-inner">
@@ -141,12 +149,17 @@
         {% endif %}
 
       </ul>
+
+
 </div>
 
 </nav>
 
 
  </row>
+
+
+
 <row>
  <div class="search-header">
 					 <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
@@ -180,7 +193,9 @@
     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
+    <script>
 
+</script>
 </body>
 </html>
 

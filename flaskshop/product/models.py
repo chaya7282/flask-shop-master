@@ -335,6 +335,7 @@ class Category(Model):
         return self.title
 
     def get_absolute_url(self):
+        url=url_for("product.show_category", id=self.id)
         return url_for("product.show_category", id=self.id)
 
     @property
