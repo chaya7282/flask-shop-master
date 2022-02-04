@@ -13,7 +13,7 @@ from flask_mail import Message
 from flaskshop.settings import Config
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
-from flaskshop.constant import Language
+
 from flaskshop.product.models import Product, Category
 
 impl = HookimplMarker("flaskshop")
@@ -85,7 +85,7 @@ def Create_An_Order(address_data):
 
     if order:
 
-        return render_template("checkout/order_placed.html", order=order,user_address=user_address, Language=Language)
+        return render_template("checkout/order_placed.html", order=order,user_address=user_address)
     else:
         flash(msg, "warning")
         return render_template("errors/out_of_stock.html", Language=Language)
@@ -131,7 +131,7 @@ def get_Shipping_address():
         }
         return  Create_An_Order(address_data)
 
-    return render_template("account/address_edit.html", form=form, address_id=address_id,Language= Language,show_cart=True)
+    return render_template("account/address_edit.html", form=form, address_id=address_id,show_cart=True)
 
 
 

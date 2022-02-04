@@ -8,7 +8,7 @@ from flaskshop.checkout.models import Cart
 
 from .models import Product, Category, ProductCollection, ProductVariant
 from .forms import AddCartForm
-from flaskshop.constant import Language
+
 
 impl = HookimplMarker("flaskshop")
 
@@ -62,7 +62,7 @@ def show_category(id):
     print(" pagination--")
     category= Category.query.filter_by(id=id)
     categories = Category.query.all()
-    ctx.update(object=category, pagination=pagination, products=pagination.items,categories=  categories, Language= Language)
+    ctx.update(object=category, pagination=pagination, products=pagination.items,categories=  categories)
 
     return render_template("category/index.html", **ctx)
 
@@ -76,7 +76,7 @@ def product_search():
     keyword = request.form['keyword']
     searchResult = Product.query.filter(Product.title.contains(keyword)).all()
 
-    return render_template("search/index.html",title='Searching..' + keyword,products=searchResult,Language= Language)
+    return render_template("search/index.html",title='Searching..' + keyword,products=searchResult)
 
 @impl
 def flaskshop_load_blueprints(app):

@@ -11,7 +11,7 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product, Category
 from .models import Page
 from .search import Item
-from flaskshop.constant import Language
+
 from flaskshop.product.forms import AddCartForm
 impl = HookimplMarker("flaskshop")
 
@@ -27,7 +27,7 @@ def home():
     categories= Category.query.all()
 
 
-    return render_template("public/shopHomePage.html", products= products,categories=categories, Language=Language)
+    return render_template("public/shopHomePage.html", products= products,categories=categories)
 
 
 def style():

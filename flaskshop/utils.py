@@ -14,7 +14,7 @@ from flaskshop.dashboard.models import Setting
 from flaskshop.plugin.utils import template_hook
 from flaskshop.constant import SiteDefaultSettings
 from flaskshop.create_menus import create_menus
-
+from flaskshop.constant import Language
 
 def flash_errors(form, category="warning"):
     """Flash all errors for a form."""
@@ -60,6 +60,10 @@ def jinja_global_varibles(app):
     def inject_cart():
         current_user_cart = Cart.get_current_user_cart()
         return dict(current_user_cart=current_user_cart)
+
+    @app.context_processor
+    def inject_Language():
+        return dict(Language=Language)
 
     @app.context_processor
     def inject_menus():

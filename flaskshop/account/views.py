@@ -9,13 +9,13 @@ from .models import UserAddress, User
 from flaskshop.product.models import Category
 from flaskshop.utils import flash_errors
 from flaskshop.order.models import Order
-from flaskshop.constant import Language
+
 impl = HookimplMarker("flaskshop")
 
 def user_orders():
     orders = Order.get_current_user_orders()
     categories = Category.query.all()
-    return render_template("account/dashboard_my_orders.html", orders=orders, categories =categories , Language= Language)
+    return render_template("account/dashboard_my_orders.html", orders=orders, categories =categories )
 
 
 def index():
@@ -23,13 +23,13 @@ def index():
     form = ChangePasswordForm(request.form)
     orders = Order.get_current_user_orders()
     categories = Category.query.all()
-    return render_template("account/details.html", form=form, orders=orders, categories =categories, Language= Language)
+    return render_template("account/details.html", form=form, orders=orders, categories =categories)
 
 def index_by_user(user_id):
     form = ChangePasswordForm(request.form)
     orders = Order.get_current_user_orders()
     categories = Category.query.all()
-    return render_template("account/details.html", form=form,  categories = categories , orders=orders,Language= Language)
+    return render_template("account/details.html", form=form,  categories = categories , orders=orders)
 
 def login():
     """login page."""
@@ -42,7 +42,7 @@ def login():
         return redirect(redirect_url)
     else:
         flash_errors(form)
-    return render_template("account/login.html", categories =categories, form=form, Language= Language)
+    return render_template("account/login.html", categories =categories, form=form)
 
 
 @login_required
@@ -69,7 +69,7 @@ def signup():
         return redirect(url_for("public.home"))
     else:
         flash_errors(form)
-    return render_template("account/signup.html", form=form,categories=categories,Language= Language)
+    return render_template("account/signup.html", form=form,categories=categories)
 
 
 def set_password():
@@ -82,7 +82,7 @@ def set_password():
             return redirect(url_for("account.index") )
         else:
             flash("You have not changed password.", "failure")
-    return render_template("account/forgot_password.html", form=form,categories=categories,Language= Language)
+    return render_template("account/forgot_password.html", form=form,categories=categories)
 
 
 def addresses():
@@ -125,7 +125,7 @@ def edit_address():
 
         return redirect(url_for("account.index") + "#addresses")
 
-    return render_template("account/address_edit.html", form=form, address_id=address_id,categories=categories,Language= Language,show_cart=False)
+    return render_template("account/address_edit.html", form=form, address_id=address_id,categories=categories,show_cart=False)
 
 
 def delete_address(id):

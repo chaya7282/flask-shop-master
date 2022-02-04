@@ -36,9 +36,33 @@
                     </button>
                 </div>
                 <div class="category-model-content modal-content">
-					<div class="cate-header">
+
+					 <div class="category-area-inner">
+                        <div class="modal-header">
+                            <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+                                <i class="uil uil-multiply"></i>
+                            </button>
+                         </div>
+                <div>
+
+                </div>
+
+                    </div>
+
+                    <div class="cate-header">
 						<h4>Select Category</h4>
-					</div>
+					 <div>
+                          <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
+							<input type="search" placeholder= {{Language["Search"]}} name="keyword" id="keyword">
+							<button type="submit"><i class="fa fa-search"></i></button>
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                </form>
+
+
+                    </div>
+
+                    </div>
                     <ul class="category-by-cat">
                       <div class="row">
                           {% for item in categories %}
@@ -81,17 +105,22 @@
 						<i class="uil uil-multiply"></i>
                     </button>
                 </div>
-                <input type="text" id="search_order" name="search_order" class="float-right form-control"  placeholder="Search">
+                <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
+							<input type="search" placeholder= {{Language["Search"]}} name="keyword" id="keyword">
+							<button type="submit"><i class="fa fa-search"></i></button>
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                </form>
 
             </div>
         </div>
     </div>
-<div class="container sticky-top">
+
 <row>
     <nav class="navbar  navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
         <a class="navbar-brand" href="#"> <div class="text-muted-1"><b>{{ settings['project_title'].value }}</b></div></a>
-
+        ><a href="#category_model" data-toggle="modal">	<i class="fa fa-search" aria-hidden="true"></i> </i>{{Language["Search Product"]}}  </a>
   <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
@@ -160,19 +189,8 @@
 
 
 
-<row>
- <div class="search-header">
-					 <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
-
-							<input type="search" placeholder= {{Language["Search"]}} name="keyword" id="keyword">
-							<button type="submit"><i class="fa fa-search"></i></button>
-                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-						</form>
-					</div>
 
 
-</row>
-</div>
 
 
 <div class="container">

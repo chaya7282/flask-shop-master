@@ -14,12 +14,12 @@
  <div class="container-fluid">
                         <h2 class="mt-30 page-title">{{ identity }}</h2>
                         <ol class="breadcrumb mb-30">
-                            <li class="breadcrumb-item"><a  href="{{ url_for('dashboard.index') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Add Product </li>
+                            <li class="breadcrumb-item"><a  href="{{ url_for('dashboard.index') }}">{{Language["Dashboard"]}}</a></li>
+                            <li class="breadcrumb-item active">{{Language["Add Product"]}} </li>
                         </ol>
                         <div class="row justify-content-between">
 							<div class="col-lg-12">
-								<a href="{{url_for('dashboard.products')}}" class="add-btn hover-btn">All products</a>
+								<a href="{{url_for('dashboard.products')}}" class="add-btn hover-btn">{{Language["All products"]}}  </a>
 							</div>
                         </div>
  </div>
@@ -28,7 +28,7 @@
                     {% if form.title.data %}
                          <h2 class="mt-30 page-title">{{ form.title.data}}</h2>
                     {%  else %}
-                        <h2 class="mt-30 page-title">Add New Product</h2>
+                        <h2 class="mt-30 page-title">{{Language[" Add New Product"]}} </h2>
                     {% endif %}
                         <div class="row">
 							<div class="col-lg-6 col-md-6">
@@ -82,7 +82,7 @@
 
 
 								<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
-								<button class="save-btn hover-btn" type="submit">Submit</button>
+								<button class="save-btn hover-btn" type="submit">{{Language["Submit"]}} </button>
 								</div>
 
 							</form>
