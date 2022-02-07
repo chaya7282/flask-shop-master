@@ -3,26 +3,21 @@
 
 
 
-<div class="card" style="height:25rem;">
-
-     <div class="col-lg-4 col-md-6">
-
-                      <div class="image_with_badge_container">
-                    <div class="row text-center">
-                    <img src= {{ product.image_url() }} class="center-block" alt="Chicago Skyscrapers"/>
-                    </div>
-                     <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
-
-              </div>
+<div class="card" style="height:30rem;">
+<div class="image_with_badge_container">
+     <div class="col-lg-6 col-md-2">
+        <img src= {{ product.image_url() }} class="mx-auto d-block" alt="Chicago Skyscrapers"/>
      </div>
 
-
+     <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
+    </div>
 
   <div class="card-body">
-    <h5 class="card-title">{{product.title}}</h5>
+    <h5 class="card-title"></h5>
     <p class="card-text"></p>
   </div>
   <ul class="list-group list-group-flush">
+      <li class="list-group-item"> <h3 class="text-dark mb-0 center-block"></h3> {{product.title}}</li>
     <li class="list-group-item"><h3 class="text-dark mb-0 center-block"><p><del>{{product.discount_price}}</del> -> {{product.basic_price}} {{Language["$"]}}</p>  </h3></li>
 
   </ul>
