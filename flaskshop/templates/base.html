@@ -32,7 +32,7 @@
             <div class="category-area-inner">
                 <div class="modal-header">
                     <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
-						<i class="uil uil-multiply"></i>
+						 <i class="fa fa-times" ></i>
                     </button>
                 </div>
                 <div class="category-model-content modal-content">
@@ -40,7 +40,7 @@
 					 <div class="category-area-inner">
                         <div class="modal-header">
                             <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
-                                <i class="uil uil-multiply"></i>
+
                             </button>
                          </div>
                 <div>
@@ -49,20 +49,28 @@
 
                     </div>
 
+
+
                     <div class="cate-header">
-						<h4>Select Category</h4>
-					 <div>
-                          <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
 
-							<input type="search" placeholder= {{Language["Search"]}} name="keyword" id="keyword">
-							<button type="submit"><i class="fa fa-search"></i></button>
+                          <div>
+                         <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
+							<input type="search" placeholder= "{{Language['Search Product']}}" name="keyword" id="keyword" class="text-primary">
+							<button type="submit"><i class="fa fa-search" style="font-size:14px;color:black;"></i></button>
                           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                </form>
+                  </form>
+                     </div>
+                       <div class="text-center">
+	                    <h4> {{Language["Select Category"]}} </h4>
+                       </div>
+					 <div>
 
 
                     </div>
 
                     </div>
+
                     <ul class="category-by-cat">
                       <div class="row">
                           {% for item in categories %}
@@ -97,24 +105,7 @@
 
  <!-- Modal -->
 
-<div id="search_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
-        <div class="modal-dialog category-area" role="document">
-            <div class="category-area-inner">
-                <div class="modal-header">
-                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
-						<i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
 
-							<input type="search" placeholder= {{Language["Search"]}} name="keyword" id="keyword">
-							<button type="submit"><i class="fa fa-search"></i></button>
-                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                </form>
-
-            </div>
-        </div>
-    </div>
 
 <row>
     <nav class="navbar  navbar-expand-md bg-dark navbar-dark">
@@ -211,9 +202,7 @@
     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
-    <script>
 
-</script>
 </body>
 </html>
 

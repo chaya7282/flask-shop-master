@@ -14,10 +14,8 @@ impl = HookimplMarker("flaskshop")
 
 
 def show(id, form=None):
-    product = Product.get_by_id(id)
-    if not form:
-        form = AddCartForm(request.form, product=product)
-    return render_template("products/single_product_view.html", product=product, form=form)
+    product = Product.query.filter_by(id=id).all()
+    return render_template("products/show_a_single_product.html", product=product)
 
 
 
@@ -45,6 +43,11 @@ def product_add_to_cart(id):
     Cart.add_to_currentuser_cart(int(quantity), int(variant_id))
 
     return redirect(url_for("public.home"))
+
+def show_a_single_product(id):
+    product = Product.get_by_id(id)
+    return render_template("products/item_front.html", product=product)
+
 
 
 def variant_price(id):

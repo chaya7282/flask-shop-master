@@ -1,6 +1,14 @@
 ﻿{% extends "base.html" %}
 {% block content %}
 <head>
+<style>
+	.badge-mine {
+   color: #212529;
+   background-color: $orange-500;
+}
+
+</style>
+
 	<!-- Bootstrap Static Header -->
 
 
@@ -20,37 +28,27 @@
 <!-- Header End -->
 	<!-- Body Start -->
 
-				<div class="row">
-					<div class="col-md-12">
+
+
+	<div class="row">
+
                     <div class="owl-carousel offers-banner owl-theme">
-							{%for product in products %}
+
+						{%for product in products %}
 							{% if product.in_front_banner %}
-							<div class="item">
-								<div class="offer-item">
-									<div class="offer-item-img">
-										<div class="gambo-overlay"></div>
-										<img  src= {{ product.image_url() }} width="auto" height="300">
-									</div>
-									<div class="offer-text-dt">
-										<div class="offer-top-text-banner">
 
-											<div class="top-text-1">{{ settings['project_title'].value }}</div>
-
-										</div>
-
-										<a href="{{product.category.get_absolute_url() }}"  class="Offer-shop-btn hover-btn">{{Language["Shop Now"]}}  </a>
-									</div>
-								</div>
-							</div>
+							{% include('products/item_front_banner.html') %}
 							{% endif %}
 							{% endfor %}
                     </div>
-						</div>
-					</div>
+	</div>
 
 
 
-	<div class="section145">
+
+
+
+<div class="section145">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2">
@@ -63,31 +61,31 @@
 					</div>
 					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel slide" data-ride="carousel">
- 		<div class="carousel-inner">
-       {% for item in categories%}
-		 {% if item.is_active %}
+					<!-- Wrapper for slides -->
+					<div class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+					   {% for item in categories%}
+						 {% if item.is_active %}
 
-			 <div {% if loop.index ==1 %}  class="item active" {%else %}class="item"  {% endif %}>
-				{% include('products/category_item.html') %}
-			 </div>
+							 <div {% if loop.index ==1 %}  class="item active" {%else %}class="item"  {% endif %}>
+								{% include('products/category_item.html') %}
+							 </div>
 
-		    {% endif %}
+							{% endif %}
 
 
-		   {% endfor %}
+						   {% endfor %}
 
-    </div>
+					</div>
 
-    <!-- Controls -->
-    <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-        <span class='glyphicon glyphicon-chevron-left'></span>
-    </a>
-    <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-        <span class='glyphicon glyphicon-chevron-right'></span>
-    </a>
-</div>
+					<!-- Controls -->
+					<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+						<span class='glyphicon glyphicon-chevron-left'></span>
+					</a>
+					<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+						<span class='glyphicon glyphicon-chevron-right'></span>
+					</a>
+				</div>
 
 				</div>
 			</div>

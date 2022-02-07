@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+     {% with products = product %}
+     {{product.title}}
+     {% include('products/product_table.html') %}
+{% endwith %}
+{% endblock content %},

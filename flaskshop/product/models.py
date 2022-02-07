@@ -57,6 +57,8 @@ class Product(Model):
     def images(self):
         return ProductImage.query.filter(ProductImage.product_id == self.id).all()
 
+
+
     @property
     def background_img_url(self):
         return url_for("static", filename="uploads/"+ self.first_img)
