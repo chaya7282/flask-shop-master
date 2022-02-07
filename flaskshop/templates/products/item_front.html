@@ -1,44 +1,40 @@
 
 {% if product.is_active %}
 
-<div class="card">
-  <!-- To do referenc to product details-->
+<div class="card" style="height:25rem;">
+<div class="image_with_badge_container">
+     <div class="col-lg-6 col-md-2">
+        <img src= {{ product.image_url() }} class="mx-auto d-block" alt="Chicago Skyscrapers" style="height:120px; width:auto"/>
+     </div>
+       {% if product.on_sale %}
+     <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
+     {% endif %}
+    </div>
 
-                {%if product.image_url() %}
-                   <div class="col-lg-4 col-md-6">
-                    <img src= {{ product.image_url() }} >
-                   </div>
-                {% endif %}
-                <div class="product-absolute-options">
-                    {% if product.on_sale %}
-                    <span class="offer-badge-1"> Sale</span>
-                    {% elif product.is_featured %}
-                    <span class="offer-badge-1"> Special</span>
-                    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title"> {%  if product.is_in_stock  or not product.need_check_stock%}
+        <p>Available<span>(In Stock)</span></p>
+        {%  else %}
+             <p>Not Available<span>(Not in Stock)</span></p>
+        {% endif %}</h5>
+  </div>
 
+  <ul class="list-group list-group-flush">
+      <li class="list-group-item"> {% if product.on_sale %}
 
-           <div class="container">
-               <div class="d-flex justify-content-center">
-                {%  if product.is_in_stock  or not product.need_check_stock%}
-
-                    <p>Available<span>(In Stock)</span></p>
-                {%  else %}
-                     <p>Not Available<span>(Not in Stock)</span></p>
-                {% endif %}
-               </div>
-                 <div class="d-flex justify-content-center">
-                     <p class="text-md-center"> {{product.title}}</p>
-                 </div>
-                 <div class="d-flex justify-content-center">
-                {% if product.on_sale %}
                     <p>{{product.price}} <span>{{discount_price}}</span></p>
                     {% else %}
+                     <div class="d-flex justify-content-center">
                     <p>{{product.price}}{{Language["$"]}} </p>
+                     </div>
                 {% endif %}
-                </div>
+      </li>
 
-                    {% if not product.has_variants %}
-                     <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+
+         <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+         {% if not product.has_variants %}
+        <li class="list-group-item">
+
 
                     <div class="d-flex justify-content-center">
                         <div class="quantity buttons_added">
@@ -46,34 +42,24 @@
                             <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
                             <input type="button" value="+" class="plus plus-btn">
                         </div>
-
-
-                             {%  if product.is_in_stock %}
-                                 <button type="submit" class="btn btn-default btn-xs pull-right" type="button"><i class="fa fa-cart-arrow-down"></i> </button>
-                            {%  endif %}
-
-
                     </div>
-                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                </form>
-                  {%  else %}
-                        <div >
 
-                        <span class="cart-icon">
-                          <div class="card-link">
-                             {%  if product.is_in_stock or not product.need_check_stock%}
-                               <a href="{{product.get_absolute_url()  }}" > View<i class="fa fa-eye"></i></a>
-                              {%  endif %}
-                          </div>
-                        </span>
-                    </div>
-                   {% endif  %}
+     </li>
+      <li>
+            <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-default btn-lg " type="button"><i class="fa fa-cart-arrow-down"></i> </button>
             </div>
- </div>
+      </li>
+
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+         </form>
+        {% endif %}
 
 
+  </ul>
+
+  </div>
+</div>
+{% endif  %}
 
 
-
-
-{% endif %}
