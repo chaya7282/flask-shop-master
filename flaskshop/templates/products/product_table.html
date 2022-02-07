@@ -1,14 +1,17 @@
 
+                     <div class="row">
+                           {% for product in products %}
+                         {% set row_number= loop.index-1 %}
+                         {% if row_number % 3 ==0 %}
+                           </div>
+                            <div class="row">
+                          {% endif %}
+                               <div class="col-lg-4 col-md-6">
+                                {% include('products/item_front.html') %}
+                            </div>
+                          {% endfor %}
+                            </div>
 
- <div class="row">
-                        {% for product in products %}
 
-						<div class="col-lg-4 col-md-6">
 
-                                 {% include('products/item_front.html') %}
 
-                        </div>
-
-                    {% endfor %}
-
- </div>

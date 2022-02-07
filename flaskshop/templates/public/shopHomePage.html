@@ -2,11 +2,19 @@
 {% block content %}
 <head>
 <style>
-	.badge-mine {
-   color: #212529;
-   background-color: $orange-500;
+.image_with_badge_container {
+    display: inline-block; /* keeps the img with the badge if the img is forced to a new line */
+    position: center;
+    margin-bottom: 5px;
 }
 
+.badge-on-image {
+    position: absolute;
+    top: -10px; /* position where you want it */
+    left: -5px;
+    padding: 3px 6px;
+}
+}
 </style>
 
 	<!-- Bootstrap Static Header -->
@@ -28,22 +36,25 @@
 <!-- Header End -->
 	<!-- Body Start -->
 
+<div class="container">
 
 
-	<div class="row">
 
                     <div class="owl-carousel offers-banner owl-theme">
 
 						{%for product in products %}
+
 							{% if product.in_front_banner %}
+							<div class="item">
 
 							{% include('products/item_front_banner.html') %}
+							</div>
 							{% endif %}
 							{% endfor %}
-                    </div>
-	</div>
 
 
+				</div>
+</div>
 
 
 

@@ -1,43 +1,34 @@
 
 
-<div class="col-lg-8 col-md-6">
-
-<div class="card">
-       <div class="d-flex justify-content-left p-3">
 
 
 
-             <span class=" badge rounded-pill bg-warning text-dark float-right "style="font-size: 20px;"><span>{{Language["on sale"]}}    </span></span>
+<div class="card" style="height:25rem;">
 
-       </div>
- <div class="d-flex justify-content-between p-3">
-<h3> <span class="badge badge-secondary bg-secondary ">{{ settings['project_title'].value }}</span></h3>
- </div>
-<div class="container">
+     <div class="col-lg-4 col-md-6">
 
-          <img
-            src= {{ product.image_url() }}
+                      <div class="image_with_badge_container">
+                    <div class="row text-center">
+                    <img src= {{ product.image_url() }} class="center-block" alt="Chicago Skyscrapers"/>
+                    </div>
+                     <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
 
-            alt="laptop", width="auto" height="120" class="img-rounded center-block" />
+              </div>
+     </div>
+
+
+
+  <div class="card-body">
+    <h5 class="card-title">{{product.title}}</h5>
+    <p class="card-text"></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h3 class="text-dark mb-0 center-block"><p><del>{{product.discount_price}}</del> -> {{product.basic_price}} {{Language["$"]}}</p>  </h3></li>
+
+  </ul>
+  <div class="card-body">
+         	 <h3> <a href="{{ product.get_absolute_url() }}"> <span class="badge badge-secondary  bg-secondary">{{Language["Add to cart"]}}</span></a></h3>
+
+  </div>
 </div>
-
-
-          <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <p ><a href="#!" class="text-muted center-block">{{product.title}}</a></p>
-
-            </div>
-
-            <div class="d-flex justify-content-between mb-3">
-
-              <h3 class="text-dark mb-0 center-block"><p><del>{{product.discount_price}}{{Language["$"]}} </del> {{product.basic_price}}{{Language["$"]}}</p>  </h3>
-            </div>
-
-            <div class="d-flex justify-content-between mb-2">
-           	 <h3> <a href="{{ product.get_absolute_url() }}"> <span class="badge badge-secondary  bg-secondary">{{Language["Add to cart"]}}</span></a></h3>
-
-			</div>
-          </div>
-        </div>
-    </div>
 
