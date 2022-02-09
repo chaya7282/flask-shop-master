@@ -23,7 +23,7 @@ def cart_index():
 
     shipping_methods = ShippingMethod.query.all()
     categories = Category.query.all()
-    return render_template("checkout/cart.html",shipping_methods=shipping_methods,categories=categories,Language=Language)
+    return render_template("checkout/cart.html",shipping_methods=shipping_methods,categories=categories)
 
 
 def update_cart(id):

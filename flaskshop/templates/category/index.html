@@ -1,9 +1,4 @@
 
-{% block breadcrumb_part %}
-  <li class="breadcrumb-item">
-    <a href="{{ url_for('public.home') }}">Home</a>
-  </li >
-  <li class="breadcrumb-item"><a href='{{ object.get_absolute_url() }}'>{{ object.title }}</a></li>
-{% endblock %}
+
 {% extends "products/product_list_base.html" %}
 

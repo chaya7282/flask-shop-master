@@ -1,4 +1,6 @@
 
+
+
 {% if product.is_active %}
    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
@@ -7,12 +9,18 @@
 
 
           <div class="card-body p-4">
-              <h5>{{product.title}}</h5>
+               <div class="d-flex justify-content-around align-items-center">
+             <p class="float-right">  <h5>{{product.title}}</h5></p>
+               </div>
            <div class="d-flex flex-row justify-content-around align-items-center">
                <div >
                 <img src= {{ product.image_url() }}
                   class="img-sm" alt="Cotton T-shirt">
-              </div>
+                 {% if product.on_sale%}
+                       <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
+
+                   {% endif %}
+               </div>
 
 
 
@@ -30,11 +38,16 @@
 
 
                <div >
-                {{product.price}}
+                 {% if product.on_sale %}
+                    <h3 class="text-dark mb-0 center-block"><p><del>{{product.discount_price}}</del> -> {{product.basic_price}} {{Language["$"]}}</p>  </h3>
+                   {% else %}
+                    <h3 class="text-dark mb-0 center-block"><p>{{product.basic_price}} {{Language["$"]}}</p>  </h3>
+
+                   {% endif %}
               </div>
 
             <div >
-                <button type="submit" class="btn btn-default btn-lg " type="button"><i class="fa fa-trash fa-lg"></i></button>
+                 <button type="submit" class="btn btn-default btn-lg " type="button"><i class="fa fa-shopping-cart"></i></button>
 
               </div>
                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
@@ -43,7 +56,9 @@
 
             </div>
           </div>
+
         </div>
+
   </form>
 {% endif  %}
 

@@ -13,9 +13,18 @@ from .forms import AddCartForm
 impl = HookimplMarker("flaskshop")
 
 
-def show(id, form=None):
-    product = Product.query.filter_by(id=id).all()
-    return render_template("products/show_a_single_product.html", product=product)
+def show(id):
+    product = Product.query.filter_by(id=id).first()
+
+    ctx={}
+    print("product--")
+    pagination = None
+    print(" pagination--")
+    category = Category.query.filter_by(id=product.category_id).first()
+    categories = Category.query.all()
+    ctx.update(object=category, pagination=pagination, products=[product], categories=categories)
+
+    return render_template("products/product_list_base.html",**ctx)
 
 
 
@@ -46,7 +55,8 @@ def product_add_to_cart(id):
 
 def show_a_single_product(id):
     product = Product.get_by_id(id)
-    return render_template("products/item_front.html", product=product)
+
+    return render_template("products/product_list_base.html")
 
 
 
@@ -83,7 +93,18 @@ def product_search():
     keyword = request.form['keyword']
     searchResult = Product.query.filter(Product.title.contains(keyword)).all()
 
-    return render_template("search/index.html",title='Searching..' + keyword,products=searchResult)
+
+    ctx = {}
+    print("product--")
+    pagination =None
+    print(" pagination--")
+    category =None
+    categories = Category.query.all()
+    ctx.update(object=category, pagination=pagination, products=searchResult, categories=categories)
+
+    return render_template("products/product_list_base.html", **ctx)
+
+
 
 @impl
 def flaskshop_load_blueprints(app):

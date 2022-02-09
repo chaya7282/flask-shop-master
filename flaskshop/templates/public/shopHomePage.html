@@ -24,17 +24,24 @@
 
 
 </head>
- <div class="container">
-  <div class="row justify-content-center">
-       <h1 class="bg-primary text-white display-2   "></h1>
 
-
-  </div>
-</div>
 
 
 <!-- Header End -->
 	<!-- Body Start -->
+
+ <div style="background: url(/static/uploads/business_pictures/jambatron_front.jpg)" class="jumbotron text-white">
+    <div class="container py-5 text-center">
+        <h1 class="display-4 font-weight-bold">{{ settings['project_title'].value }}</h1>
+        <p class="font-italic mb-0"></p>
+        <p class="font-italic">
+            <a href="https://bootstrapious.com" class="text-white">
+                <u></u>
+            </a>
+        </p>
+
+    </div>
+</div>
 
 <div class="container">
 
@@ -55,7 +62,6 @@
 
 				</div>
 </div>
-
 
 
 
@@ -91,65 +97,12 @@
 		<!-- Categories End -->
 		<!-- Featured Products Start -->
 
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="main-title-tt">
-							<div class="main-title-left">
-								<span>{{Language["For You"]}}</span>
-								<h2>{{Language["Top Featured Products"]}}</h2>
-							</div>
 
-
-
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="owl-carousel featured-slider owl-theme">
-							{% for product in products %}
-							{% if product.get_is_featured %}
-							<div class="item">
-
-                                {% include('products/item_front.html') %}
-							</div>
-							{% endif %}
-							{% endfor %}
-
-						</div>
-					</div>
-				</div>
-			</div>
 
 		<!-- Featured Products End -->
 	<!-- Best Values Offers Start -->
 
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="main-title-tt">
-							<div class="main-title-left">
-								<span>{{Language["For You"]}}</span>
-								<h2>{{Language["On Sale"]}}</h2>
-							</div>
 
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="owl-carousel featured-slider owl-theme">
-							{% for product in products %}
-							{% if product.on_sale%}
-
-                                <div class="item">
-								 {% include('products/item_front.html') %}
-							</div>
-							{% endif %}
-							{% endfor %}
-
-						</div>
-
-					</div>
-				</div>
-			</div>
 
 	<!-- Best Values Offers End -->
 
