@@ -67,7 +67,7 @@ def show_category(id):
     print("product--")
     pagination = query.paginate(page, per_page=10)
     print(" pagination--")
-    category= Category.query.filter_by(id=id)
+    category= Category.query.filter_by(id=id).first()
     categories = Category.query.all()
     ctx.update(object=category, pagination=pagination, products=pagination.items,categories=  categories)
 

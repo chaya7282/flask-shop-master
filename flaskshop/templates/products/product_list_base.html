@@ -131,24 +131,27 @@ a {
 
 
 {% block content %}
-  <div class="product-top-dt">
 
-  <div class="container-fluid">
-                        <h2 class="mt-30 page-title">{{ identity }}</h2>
-                        <ol class="breadcrumb mb-30">
-                            <li class="breadcrumb-item"><a  href="{{url_for('public.home')}}">חנות מרכזית</a></li>
-                            <li class="breadcrumb-item active">{{  object.title}}</li>
-                        </ol>
+<section style="background-color: #eee;">
 
- </div>
- {{vendor.render_pagination(pagination, size='sm', align='right')}}
+  <div class="container py-5">
+          <h3 >{{  object.title}}</h3>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+             <div class="d-flex justify-content-between align-items-center mb-4">
+
+          <div>
+            <p class="mb-0"><span class="text-muted">{{vendor.render_pagination(pagination, size='sm', align='right')}}</span></a></p>
+                     {% include('products/product_table.html') %}
+          </div>
+
+             </div>
+
+        </div>
 
 
-            <div class="product-left-title">
-                <h2>{{  object.title}}</h2>
-            </div>
   </div>
-<section>
-  {% include('products/product_table.html') %}
 </section>
-{% endblock content %},
+
+
+{% endblock content %}

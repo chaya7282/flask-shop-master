@@ -1,29 +1,39 @@
 
+ <div class="card rounded-3 mb-4">
+
+
+
+          <div class="card-body p-4">
+
+           <div class="d-flex flex-col justify-content-around align-items-center">
+
+
+
+                 <div class="d-flex flex-row .justify-content-xl-end">
+                    <div >
+                   <p class="text-start">
+                        <h5>{{product.title}}</h5>
+
+                     <h3 class="text-dark mb-0 center-block"><p><del>{{product.discount_price}}</del> -> {{product.basic_price}} {{Language["$"]}}</p>  </h3>
+                      <h3> <a href="{{ product.get_absolute_url() }}"> <span class="badge badge-secondary  bg-secondary">{{Language["Add to cart"]}}</span></a></h3>
+                    </p>
+                    </div>
+
+              </div>
+
+
+                    <div >
+                <img src= {{ product.image_url() }}
+                  class="img-sm" alt="Cotton T-shirt">
+                    <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
 
 
 
 
-<div class="card" style="height:25rem; ">
-<div class="image_with_badge_container">
-     <div class="col-lg-6 col-md-2">
-        <img src= {{ product.image_url() }} class="mx-auto d-block" alt="Chicago Skyscrapers" style="height:120px; width:auto"/>
-     </div>
-
-     <span class="badge badge-pill badge-danger  badge-on-image"><h3>{{Language["on sale"]}}</h3> </span>
-    </div>
-
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <p class="card-text"></p>
-  </div>
-  <ul class="list-group list-group-flush">
-      <li class="list-group-item"> <h3 class="text-dark mb-0 center-block"></h3> {{product.title}}</li>
-    <li class="list-group-item"><h3 class="text-dark mb-0 center-block"><p><del>{{product.discount_price}}</del> -> {{product.basic_price}} {{Language["$"]}}</p>  </h3></li>
-
-  </ul>
-  <div class="card-body">
-         	 <h3> <a href="{{ product.get_absolute_url() }}"> <span class="badge badge-secondary  bg-secondary">{{Language["Add to cart"]}}</span></a></h3>
-
-  </div>
-</div>
 
