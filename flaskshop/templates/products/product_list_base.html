@@ -6,7 +6,7 @@
 body {
     background-color: #eeeeee;
     font-family: 'Open Sans', serif;
-    font-size: 14px
+    font-size: 10px
 }
 
 .container-fluid {
@@ -20,8 +20,8 @@ body {
 }
 
 .img-sm {
-    width: 80px;
-    height: 80px
+    width:70px;
+    height:auto
 }
 
 .itemside .info {
@@ -49,10 +49,10 @@ a {
 
 .card {
     position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    display: d-inline;
+
+    -ms-flex-direction: row;
+    flex-direction: row;
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
@@ -120,6 +120,11 @@ a {
 .btn-apply {
     font-size: 11px
 }
+
+.row {
+  width: 50%;
+}
+
    </style>
 </head>
 {% import 'dashboard/_vendor.html' as vendor %}
