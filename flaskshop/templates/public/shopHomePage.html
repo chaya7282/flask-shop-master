@@ -70,11 +70,9 @@
 							</div>
 						</div>
 					</div>
-					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+					   <div class="owl-carousel offers-banner owl-theme">
 
-					<!-- Wrapper for slides -->
-					<div class="carousel slide" >
-						<div class="carousel-inner">
+
 					   {% for item in categories%}
 						 {% if item.is_active %}
 
@@ -83,24 +81,13 @@
 							 </div>
 
 							{% endif %}
+							 {% endfor %}
 
-
-						   {% endfor %}
-
-					</div>
-
-					<!-- Controls -->
-					<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-						<span class='glyphicon glyphicon-chevron-left'></span>
-					</a>
-					<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-						<span class='glyphicon glyphicon-chevron-right'></span>
-					</a>
 				</div>
+
 
 				</div>
 			</div>
-	</div>
 		<!-- Categories End -->
 		<!-- Featured Products Start -->
 
@@ -159,6 +146,7 @@
 							{% endfor %}
 
 						</div>
+
 					</div>
 				</div>
 			</div>
