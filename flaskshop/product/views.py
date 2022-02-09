@@ -56,9 +56,13 @@ def variant_price(id):
 
 
 def show_category(id):
-    page = request.args.get("page", 1, type=int)
-    ctx = {}
     print("product--")
+
+    page = request.args.get("page", type=int,default=1)
+
+
+    ctx = {}
+
     query=Product.query.filter_by(category_id= id)
     print("product--")
     pagination = query.paginate(page, per_page=10)
