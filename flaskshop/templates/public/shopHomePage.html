@@ -29,20 +29,9 @@
 
 <!-- Header End -->
 	<!-- Body Start -->
-
- <div style="background: url(/static/uploads/business_pictures/jambatron_front.jpg)" class="jumbotron text-white">
-    <div class="container py-5 text-center">
-        <h1 class="display-4 font-weight-bold">{{ settings['project_title'].value }}</h1>
-        <p class="font-italic mb-0"></p>
-        <p class="font-italic">
-            <a href="https://bootstrapious.com" class="text-white">
-                <u></u>
-            </a>
-        </p>
-
-    </div>
+<div class="container">
+<img src="{{ url_for('static', filename='uploads/business_pictures/jambatron_front.jpg') }}" width='1000px', height=auto,class="img-fluid" alt="Responsive image">
 </div>
-
 <div class="container">
 
 
