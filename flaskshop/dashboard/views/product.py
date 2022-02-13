@@ -313,7 +313,7 @@ def product_detail(id):
 def _save_product(product, form):
    # product.update_images(form.images.data)
 
-    product.update_attributes(form.attributes.data)
+ #   product.update_attributes(form.attributes.data)
 
 
     del form.images
@@ -406,7 +406,7 @@ def product_manage(id= None):
             product = Product(product_type_id=product_type.id)
             product.title= product_type.title
         else:
-            product_type= ProductType.get_by_id(id)
+            product_type= product.product_type()
         image= form.images.data
         product = _save_product(product, form)
         if image:
@@ -420,9 +420,12 @@ def product_manage(id= None):
             product_type.save()
             product_type.del_all_variant_attr()
             product_type.update_variant_attr(form.variant_attributes.data)
+
+            product.save()
         else:
             product.product_type.has_variants = False
             product_type.del_all_variant_attr()
+
         product.delete_variants()
         product.generate_variants()
 

@@ -90,7 +90,8 @@ def add_products(sheet_name,type):
     products_query= Product.query.all()
     products_to_add = []
     for idx in range(len(products_query)):
-         products_query[idx].product_type_id= productTypes_query[idx].id
+         product_type= ProductType.query.filter_by(title=products_query[idx].title).first()
+         products_query[idx].product_type_id=product_type.id
     db.session.commit()
 
     products_query = Product.query.all()

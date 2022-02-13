@@ -91,7 +91,7 @@ class Product(Model):
 
 
 
-    @property
+
     def product_type(self):
         return ProductType.get_by_id(self.product_type_id)
 
@@ -225,12 +225,12 @@ class Product(Model):
         self.attributes = attributes
 
     def generate_variants(self):
-        if not self.product_type.has_variants:
+        if not self.product_type().has_variants:
             ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id, title= self.title)
         else:
             sku_id = 1337
             variant_attr_map = {
-                attr: attr.values for attr in self.product_type.variant_attributes
+                attr: attr.values for attr in self.product_type().variant_attributes
             }
             all_combinations = itertools.product(*variant_attr_map.values())
             variant_combination= [

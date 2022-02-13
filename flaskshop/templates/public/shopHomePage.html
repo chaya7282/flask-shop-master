@@ -40,7 +40,7 @@
 
 						{%for product in products %}
 
-							{% if product.in_front_banner %}
+							{% if product.is_featured or product.on_sale%}
 							<div class="item">
 
 							{% include('products/item_front_banner.html') %}

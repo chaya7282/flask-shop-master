@@ -1,6 +1,4 @@
 
-
-
 {% if product.is_active %}
    <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
@@ -24,8 +22,8 @@
 
 
 
-
-            <div >
+            {% if not product.has_variants %}
+              <div >
                  <div class="quantity buttons_added">
                             <input type="button" value="-" class="minus minus-btn">
                             <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
@@ -33,9 +31,9 @@
                  </div>
 
             </div>
+            {% endif %}
 
-
-
+                {{product.has_variants}}
 
                <div >
                  {% if product.on_sale %}
@@ -46,10 +44,14 @@
                    {% endif %}
               </div>
 
+               {% if not product.has_variants %}
             <div >
                  <button type="submit" class="btn btn-default btn-lg " type="button"><i class="fa fa-shopping-cart"></i></button>
 
               </div>
+            {% else %}
+                <a href="{{product.get_absolute_url()  }}" >{{Language["View"]}}  <i class="fa fa-eye"></i></a>
+           {% endif %}
                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 
