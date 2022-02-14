@@ -1,0 +1,240 @@
+{% import '_macros.html' as macros %}
+<!DOCTYPE html>
+<html class="no-js">
+{% import '_macros.html' as macros %}
+<!DOCTYPE html>
+<html class="no-js">
+
+   <head>
+    <title>{% block title %}flask store{% endblock %}</title>
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {% endblock meta %}
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/unicons-2.0.1/css/unicons.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/responsive.css') }}">
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/css/night-mode.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/fontawesome-free/css/all.min.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.carousel.css') }}">
+	    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
+ 		  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+	   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/storefront.css') }}">
+
+   </head>
+
+   <body>
+{% block header %}
+
+
+<!-- Category Model Start-->
+<div id="category_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+        <div class="modal-dialog category-area" role="document">
+            <div class="category-area-inner">
+                <div class="modal-header">
+                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="uil uil-multiply"></i>
+                    </button>
+                </div>
+                <div class="category-model-content modal-content">
+					<div class="cate-header">
+						<h4>Select Category</h4>
+					</div>
+                    <ul class="category-by-cat">
+						{% for item in top_menu %}
+
+                         <li>
+							<a href="{{ item.url }}" class="single-cat-item">
+								<div class="icon">
+									<img src="{{item.background_img }}" alt="">
+								</div>
+								<div class="text"> {{item.title}} </div>
+							</a>
+						</li>
+                        {% endfor %}
+
+
+                    </ul>
+					<a href="#" class="morecate-btn"><i class="uil uil-apps"></i>More Categories</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Header-->
+<header class="sticky-top mb-3">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- ============= COMPONENT ============== -->
+
+<!-- Cart Sidebar Offsetl End-->
+	<!-- Header Start -->
+
+	<!-- Header End -->
+
+   <div class="container-fluid sticky-top mb-2" >
+   <div class="row">
+       {% if current_user.is_authenticated %}
+         <div class="col px-md-3"><a  href="{{ url_for('checkout.cart_index') }}"><i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i>
+       {% if current_user.is_authenticated and current_user_cart.quantity %}
+          <span >{{ current_user_cart.quantity }}</span>
+             {% else %}
+                <span >0</span>
+         {% endif %}
+         </a></div>
+         {% if current_user.can_edit() %}
+           <div class="col px-md-3"> <a  href="{{ url_for('dashboard.index') }}" ><i class="fas fa-tachometer-alt  fa-3x" aria-hidden="true"></i></a></div>
+        {% endif %}
+         {% else %}
+        <div class="col px-md-3"> <a href="{{ url_for('account.login') }}">Log in<i class="fa fa-sign-in fa-3x" aria-hidden="true"></i></a></div>
+          {% endif %}
+         <div class="col px-md-3"> <a  href="{{ url_for('public.home') }}"> <i class="fa fa-home fa-3x " aria-hidden="true"></i></a></div>
+
+
+
+   </div>
+    <div class="row   bg-primary">
+         <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" value="search" name="keyword" id="keyword">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+         </form>
+    </div>
+   </div>
+
+ <!-- ============= COMPONENT ============== -->
+
+</header>
+<!-- End Header-->
+{% endblock %}
+
+    <div class="container maincontent">
+        {% block breadcrumb %}
+      {% endblock breadcrumb %}
+      {% block content %}
+      {% endblock content %}
+      {% block topcontent %}{% endblock topcontent %}
+
+      {% for message in get_flashed_messages(with_categories=True) %}
+      <br>
+      <div class="alert alert-{{ message[0] }}">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ message[1] }}
+      </div>
+      {% endfor %}
+
+
+    </div>
+    {% block footer %}
+    <footer class="footer">
+      <div class="footer__menus">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-md-2 col-6">
+              <ul class="menu">
+                <li class="nav-item__dropdown menu__item">
+                  <a>
+                    <strong>
+                      Account
+                    </strong>
+                  </a>
+                  <hr />
+                <li>
+                  <a rel="nofollow" href="{{ url_for('checkout.cart_index') }}">
+                    Your Cart
+                  </a>
+                </li>
+                {% if current_user.is_authenticated %}
+                {% if current_user.can_edit() %}
+                <li>
+                  <a href="{{ url_for('dashboard.index') }}" target="_blank" rel="noopener">
+                    Dashboard
+                  </a>
+                </li>
+                {% endif %}
+                <li>
+                  <a href="{{ url_for('account.index') }}">
+                    Your account
+                  </a>
+                </li>
+
+                <li>
+                  <a href="{{ url_for('account.logout') }}">
+                    Log out</a>
+                </li>
+
+                {% else %}
+                <li>
+                  <a rel="nofollow" href="{{ url_for('account.signup') }}">
+                    Register
+                  </a>
+                </li>
+                <li>
+                  <a rel="nofollow" href="{{ url_for('account.login') }}">
+                    Log in
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="footer__copy">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-8 footer__copy-text">{{ settings['project_copyright'].value }}</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    {% endblock %}
+    {% block footer_scripts %}
+ <script src="{{ url_for('static', filename='Frontend/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='Frontend/js/custom.js') }}"></script>
+
+
+{% endblock footer_scripts %}
+  </body>
+
+</html>

@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+<div class="container">
+
+        <!-- Start row -->
+        {% if current_user_cart.lines %}
+       <div class="row">
+            <!-- Start col -->
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <h5 class="card-title">Cart</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10 col-xl-8">
+                                <div class="cart-container">
+                                    <div class="cart-head">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Photo</th>
+                                                        <th scope="col">Product</th>
+                                                        <th scope="col">Qty</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col" class="text-right">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                  {% for line in current_user_cart.lines %}
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td> <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+
+                                                            <button onclick="submit()" name="quantity_"  value="0" ><i class="fa fa-trash fa-lg" style='font-size:12px' aria-hidden="true"></i></button>
+                                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                                                         </form></td>
+                                                        <td><img src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="40"></td>
+                                                        <td>{{ line.product }}</td>
+                                                        <td>
+                                                            <div class="form-group mb-0">
+                                                                 <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+
+                                                                 <input type="number" onchange="submit()" value="{{ line.quantity }}" min="1" max="50"  name="quantity_"  id="line.id">
+                                                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                                                                      </form>
+                                                                </div>
+                                                        </td>
+                                                        <td>{{ line.product.price }}</td>
+                                                        <td class="text-right">$ {{ line.subtotal }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="cart-body">
+                                        <div class="row">
+                                            <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
+
+                                            <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+                                                <div class="order-total table-responsive ">
+                                                    <table class="table table-borderless text-right">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Sub Total :</td>
+                                                                <td>${{ current_user_cart.subtotal }}</td>
+                                                            </tr>
+
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.Cart_Checkout') }}"   enctype="multipart/form-data">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                                              <h5 >Delivery</h5>
+                                                <div class="form-group">
+                                                    <div class="rpt100">
+														<ul class="radio--group-inline-container_1">
+
+                                                                       {% for method in shipping_methods %}
+                                                                          <li>
+                                                                            <div class="radio-item_1">
+                                                                              <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}" {% if loop.first %}checked{%endif%}>
+                                                                                <label class="radio-label_1" for="shipping_{{ method.id }}">{{ method }}</label>
+                                                                            </div>
+                                                                          </li>
+                                                                          {% endfor %}
+                                                                </ul>>
+                                                         </div>
+
+
+
+
+
+                                          </div>
+
+                                               <h5 >Payment </h5>
+                                                <div class="form-group">
+                                                    <div class="rpt100">
+														<ul class="radio--group-inline-container_1">
+                                                           <li>
+                                                               <div class="radio-item_1">
+                                                                 <input type="radio" name="payment_method" value="Cash " id="payment_method_1" >
+                                                                 <label class="radio-label_1" for="payment_method_1"> "Cash" </label>
+                                                               </div>
+                                                              </li>
+                                                               <li>
+                                                                  <div class="radio-item_1">
+                                                                 <input type="radio" name="payment_method" value="Credit Card" id="payment_method_2" checked>
+                                                                 <label class="radio-label_1" for="payment_method_1"> Credit Card </label>
+                                                                  </div>
+                                                           </li>
+                                                                   <li>
+                                                                     <div class="radio-item_1">
+                                                                       <input type="radio" name="payment_method" value=" Bit or Pay-Pal " id="payment_method_3" >
+                                                                    <label class="radio-label_1" for="payment_method_3"> Bit or Pay-Pal </label>
+                                                                     </div>
+                                                           </li>
+
+
+                                                         </ul>
+                                                     </div>
+                                               </div>
+
+
+
+                                    <div class="cart-footer text-right">
+                                       <a  href="{{url_for('public.home')}}" class="btn btn-success my-1" >Continue Shopping<i class="ri-arrow-left-line ml-2"></i></a>
+                                        <button type="submit" class="btn btn-info my-1"><i class="ri-arrow-right-line ml-2"></i>Proceed to Checkout</button>
+                                    </div>
+
+                                </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End row -->
+    </div>
+        {% else %}
+    <div class="cart__empty">
+        <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='img/empty-cart-bg.png') }}">
+
+        <h2>There are no products in your shopping cart.</h2>
+        <a href="{{ url_for('public.home') }}" class="btn btn-primary">Check out our sales</a>
+    </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock content %}
+

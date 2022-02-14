@@ -1,0 +1,45 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% extends 'dashboard/dashboard_layout.html' %}
+<head>
+
+</head>
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+				<div class="container-fluid">
+                        <h2 class="mt-30 page-title">{{category.title}}</h2>
+				</div>
+
+                        <div class="row">
+							<div class="col-lg-5 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+											<div class="shop_img">
+												<img src="{{ url_for('static', filename='uploads/'+category.background_img) }}" class="loop-image">
+											</div>
+
+
+                                            <div class="shopowner-dt-list">
+													<span class="left-dt">Status</span>
+													{% if category.is_active %}
+														<span class="right-dt">Active</span>
+													{% else %}
+														<span class="right-dt">Inactive</span>
+													{% endif %}
+
+												</div>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+
+
+
+{% endblock %}
+

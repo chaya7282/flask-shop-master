@@ -1,0 +1,68 @@
+
+{% import 'dashboard/_macros.html' as macros%}
+{% extends 'dashboard/dashboard_layout.html' %}
+
+
+ {% block content %}
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
+</head>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
+   <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Import Data from File</h4>
+									</div>
+
+									   <form method="POST" action="{{ url_for('dashboard.import_from_xls') }}"  enctype="multipart/form-data">
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+
+											<div class="form-group">
+
+
+                                                {{ macros.render_file_field(form.xls, form.xls.data) }}
+                                            </div>
+
+                                           <div class="form-group">
+
+
+                                               {{form.dataType}}
+
+                                            </div>
+
+												<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+
+
+											<button class="save-btn hover-btn" type="submit">Submit</button>
+										</div>
+									</div>
+									 </form>
+                                     {% for error in form.xls.errors %}
+                                              <span style="color:red;">
+
+                                                  {{error}}
+                                              </span>
+                                              {% endfor %}
+								</div>
+							</div>
+                        </div>
+
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+{% endblock %}
+
+

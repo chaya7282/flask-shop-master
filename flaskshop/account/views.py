@@ -37,9 +37,12 @@ def login():
     categories = Category.query.all()
     if form.validate_on_submit():
         login_user(form.user)
-        redirect_url = request.args.get("next") or url_for("public.home")
 
-        return redirect(redirect_url)
+        address_id=current_user.addresses_id
+        if address_id:
+            return redirect(url_for("public.home"))
+        else:
+           return redirect(url_for("account.edit_address", show_cart= False))
     else:
         flash_errors(form)
     return render_template("account/login.html", categories =categories, form=form)
@@ -123,7 +126,7 @@ def edit_address():
             UserAddress.create(**address_data)
             flash("Success add address.", "success")
 
-        return redirect(url_for("account.index") + "#addresses")
+        return redirect(url_for("public.home"))
 
     return render_template("account/address_edit.html", form=form, address_id=address_id,categories=categories,show_cart=False)
 

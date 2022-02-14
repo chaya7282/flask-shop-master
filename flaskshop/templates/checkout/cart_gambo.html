@@ -1,0 +1,83 @@
+      {% if current_user_cart.lines %}
+<div class="container">
+
+        <!-- Start row -->
+
+       <div class="row">
+            <!-- Start col -->
+            <div class="col-md-4 col-lg-12 col-xl-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <h5 class="card-title">Cart</h5>
+                    </div>
+
+
+
+                        {% for line in current_user_cart.lines %}
+                            <div class="row justify-content-center">
+                                <div class="cart-item">
+                                    <div class="cart-product-img">
+						  <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='uploads/'+ line.product.first_img) }}" width="60" />
+
+						<div class="offer-badge">6% OFF</div>
+					</div>
+				                	<div class="cart-text">
+						<h4>{{ line.product }}</h4>
+
+					      <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+
+                            <div class="qty-group">
+                                 <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus minus-btn">
+                            <input type="number" step="1" name="quantity_" onchange="submit()" value="{{ line.quantity }}" id="line.id" class="input-text qty text">
+                            <input type="button" value="+" class="plus plus-btn">
+                        </div>
+                            </div>
+                                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                          </form>
+							<div class="cart-item-price">  $ {{ line.subtotal }} </div>
+						</div>
+                                    <form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.update_cart', id=line.id) }}"   enctype="multipart/form-data">
+
+						        <button  onclick="submit()" name="quantity_"  value="0" type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
+					             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                           </form>
+                            </div>
+                            </div>
+                        {%  endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <div class="cart-total-dil saving-total ">
+				<h4>Total Saving</h4>
+				<span></span>
+			</div>
+			<div class="main-total-cart">
+				<h2>Total</h2>
+				<span>{{ current_user_cart.subtotal }}</span>
+			</div>
+			<div class="checkout-cart">
+
+				<a href="{{url_for('checkout.checkout_shipping') }}" class="cart-checkout-btn hover-btn">Proceed to Checkout</a>
+			</div>
+        <!-- End row -->
+
+        {% else %}
+    <div class="cart__empty">
+        <img class="lazyload lazypreload" data-src="{{ url_for('static', filename='img/empty-cart-bg.png') }}">
+
+        <h2>There are no products in your shopping cart.</h2>
+        <a href="{{ url_for('public.home') }}" class="btn btn-primary">Check out our sales</a>
+    </div>
+    {% endif %}
+    </div>
+</div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+

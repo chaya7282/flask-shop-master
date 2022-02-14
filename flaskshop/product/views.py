@@ -27,8 +27,10 @@ def show(id):
     return render_template("products/product_list_base.html",**ctx)
 
 
-
-
+def show_single(id):
+    product = Product.query.filter_by(id=id).first()
+    categories = Category.query.all()
+    return render_template("products/single_product_view.html",product=product,categories=categories)
 
 @login_required
 def product_add_to_cart(id):
@@ -53,10 +55,6 @@ def product_add_to_cart(id):
 
     return redirect(url_for("public.home"))
 
-def show_a_single_product(id):
-    product = Product.get_by_id(id)
-
-    return render_template("products/product_list_base.html")
 
 
 
@@ -110,6 +108,8 @@ def product_search():
 def flaskshop_load_blueprints(app):
     bp = Blueprint("product", __name__)
     bp.add_url_rule("/<int:id>", view_func=show)
+
+    bp.add_url_rule("/show_single/<int:id>", view_func=show_single)
     bp.add_url_rule("/api/variant_price/<int:id>", view_func=variant_price)
     bp.add_url_rule("/<int:id>/add", view_func=product_add_to_cart, methods=["POST"])
     bp.add_url_rule("/category/<int:id>", view_func=show_category)

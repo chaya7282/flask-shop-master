@@ -1,0 +1,9 @@
+{
+  "a": {
+  "category": {
+    "name": "אבא",
+    "image_name": "category/sweets.jpg"
+  },
+  "images_dir": "products/cake.jpg"
+}
+}

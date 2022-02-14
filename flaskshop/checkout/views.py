@@ -62,15 +62,7 @@ def Cart_Checkout():
             shipping_method_id=shipping_method.id,
             payment_method=payment_method
         )
-
-
-
-    if shipping_method.address_needed:
-        return redirect(url_for("checkout.get_Shipping_address"))
-    else:
-        address_data={}
-        return Create_An_Order(address_data)
-
+    return redirect(url_for("checkout.get_Shipping_address"))
 
 
 

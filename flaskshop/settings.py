@@ -44,7 +44,7 @@ class Config:
 
 
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI", LocalConfig.db_uri)
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost/db3'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:root@localhost/db'
     MYSQL_DATABASE_USER = 'root'
     MYSQL_DATABASE_PASSWORD = 'root'
     MYSQL_DATABASE_DB = 'db3'
@@ -63,11 +63,11 @@ class Config:
     SQLALCHEMY_POOL_TIMEOUT = 180
 
 
-    S3_BUCKET = os.getenv('S3_BUCKET')
-    S3_KEY = os.getenv('S3_KEY')
-    S3_SECRET = os.getenv('S3_SECRET')
-    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
-    SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
+    #S3_BUCKET = os.getenv('S3_BUCKET')
+    #S3_KEY = os.getenv('S3_KEY')
+    #S3_SECRET = os.getenv('S3_SECRET')
+    #AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+    #SQLALCHEMY_DATABASE_URI= os.getenv('JAWSDB_MARIA_URL')
 
     JSONIFY_PRETTYPRINT_REGULAR = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False

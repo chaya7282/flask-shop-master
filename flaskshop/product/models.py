@@ -50,7 +50,10 @@ class Product(Model):
         return self.title
 
     def get_absolute_url(self):
-        return url_for("product.show", id=self.id)
+        if self.has_variants:
+            return url_for("product.show_single", id=self.id)
+        else:
+            return url_for("product.show", id=self.id)
 
     @property
     @cache(MC_KEY_PRODUCT_IMAGES.format("{self.id}"))
@@ -89,9 +92,7 @@ class Product(Model):
     def category(self):
         return Category.get_by_id(self.category_id)
 
-
-
-
+    @property
     def product_type(self):
         return ProductType.get_by_id(self.product_type_id)
 
@@ -225,12 +226,12 @@ class Product(Model):
         self.attributes = attributes
 
     def generate_variants(self):
-        if not self.product_type().has_variants:
+        if not self.product_type.has_variants:
             ProductVariant.create(sku=str(self.id) + "-1337", product_id=self.id, title= self.title)
         else:
             sku_id = 1337
             variant_attr_map = {
-                attr: attr.values for attr in self.product_type().variant_attributes
+                attr: attr.values for attr in self.product_type.variant_attributes
             }
             all_combinations = itertools.product(*variant_attr_map.values())
             variant_combination= [
@@ -337,7 +338,7 @@ class Category(Model):
         return self.title
 
     def get_absolute_url(self):
-        url=url_for("product.show_category", id=self.id)
+
 
         return url_for("product.show_category", id=self.id)
 

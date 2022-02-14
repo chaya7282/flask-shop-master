@@ -1,0 +1,65 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor %}
+{% extends 'dashboard/dashboard_layout.html' %}
+<head>
+
+</head>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+{{ form.hidden_tag() }}
+                            {{ vendor.render_field(form.username) }}
+                            {{ vendor.render_field(form.email) }}
+                            {{ vendor.render_field(form.password) }}
+                            {{ macros.render_boolean_field(form.is_active) }}
+                            {{ vendor.render_field(form.created_at) }}
+                            {{ vendor.render_field(form.updated_at) }}
+
+
+
+  <div class="row">
+
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Edit Customer</h4>
+									</div>
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+											<div class="form-group">
+												<label class="form-label">Name*</label>
+												<input type="text" class="form-control" value="Joginder Singh" placeholder="Enter Full Name">
+											</div>
+											{{ vendor.render_field(form.username) }}
+											{{ vendor.render_field(form.email) }}
+											<div class="form-group">
+												<label class="form-label">Phone*</label>
+												<input type="text" class="form-control" value="+918437176189" placeholder="Enter Phone Number">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Customer Image*</label>
+												<div class="input-group">
+													<div class="custom-file">
+														<input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+														<label class="custom-file-label" for="inputGroupFile04">Choose Image</label>
+													</div>
+												</div>
+												<div class="add-customer-img">
+													<img src="images/avatar/img-1.jpg" alt="">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Address*</label>
+												<div class="card card-editor">
+													<div class="content-editor">
+														<textarea class="text-control" value="Ludhiana, Punjab" placeholder="Enter Description"></textarea>
+													</div>
+												</div>
+											</div>
+											<button class="save-btn hover-btn" type="submit">Save Changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+
+ {% endblock %}
