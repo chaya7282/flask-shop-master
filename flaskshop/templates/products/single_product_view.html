@@ -11,7 +11,7 @@
                 <div class="attributes_model-content modal-content">
                   {%  for variant_attributes in product.product_type.variant_attributes %}
 					<div class="cate-header">
-						<h4>11Select {{ variant_attributes.title }}</h4>
+						<h4>Select {{ variant_attributes.title }}</h4>
 					</div>
                     <ul class="category-by-cat">
                          {%  for item in variant_attributes.values %}
@@ -44,21 +44,7 @@
     </div>
 
 <div class="wrapper">
-		<div class="gambo-Breadcrumb">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-								<li class="breadcrumb-item"><a href="shop_grid.html">Vegetables & Fruits</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Product Title</li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
+
     <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
 
 		<div class="all-product-grid">
@@ -73,7 +59,7 @@
 											<img src={{ product.image_url() }}  width="250" height="auto">
                                             <div class="product-group-dt">
 											<ul>
-												<li><div class="main-price color-discount">{{ product.price}}$<span></span></div></li>
+												<li><div class="main-price color-discount">{{ product.price}}{{Language["$"]}}<span></span></div></li>
 
 											</ul>
 
@@ -93,7 +79,7 @@
 
                                                      {%  if product.is_in_stock or not product.need_check_stock  %}
 
-                                                    <li><button type="submit" class="add-cart-btn hover-btn"><i class="uil uil-shopping-cart-alt"></i>Add to Cart</button></li>
+                                                    <li><button type="submit" class="add-cart-btn hover-btn"><i class="uil uil-shopping-cart-alt"></i>{{Language["Add to cart"]}}</button></li>
                                                     {%  endif %}
                                                 </ul>
                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
