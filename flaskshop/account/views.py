@@ -69,7 +69,7 @@ def signup():
         )
         login_user(user)
         flash("You are signed up.", "success")
-        return redirect(url_for("public.home"))
+        return redirect(url_for("account.edit_address", show_cart=False))
     else:
         flash_errors(form)
     return render_template("account/signup.html", form=form,categories=categories)

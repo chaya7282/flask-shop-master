@@ -8,7 +8,7 @@ from flaskshop.checkout.models import Cart
 
 from .models import Product, Category, ProductCollection, ProductVariant
 from .forms import AddCartForm
-
+from flask_login import current_user
 
 impl = HookimplMarker("flaskshop")
 
@@ -32,12 +32,11 @@ def show_single(id):
     categories = Category.query.all()
     return render_template("products/single_product_view.html",product=product,categories=categories)
 
-@login_required
+
 def product_add_to_cart(id):
     """ this method return to the show method and use a form instance for display validater errors"""
+
     product = Product.get_by_id(id)
-
-
     quantity=request.form["id_quantity"]
 
     attribute_list={}
@@ -51,7 +50,10 @@ def product_add_to_cart(id):
     else:
         variant_id = product.variant[0].id
 
-    Cart.add_to_currentuser_cart(int(quantity), int(variant_id))
+    if current_user.is_authenticated:
+        Cart.add_to_currentuser_cart(int(quantity), int(variant_id))
+    else:
+        return redirect(url_for("account.login"))
 
     return redirect(url_for("public.home"))
 
