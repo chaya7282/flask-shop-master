@@ -20,7 +20,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
  <style>
 .image_with_badge_container {
     display: inline-block; /* keeps the img with the badge if the img is forced to a new line */
@@ -203,22 +203,22 @@
 
 
  </row>
+<row >
+
+<div class="container sticky-top">
+
+ <div class="btn-group btn-group-justified mb-4">
+  <a href="#" class="btn btn-primary">{{Language["Store departments"]}}</a>
+  <a href="#" class="btn btn-primary">{{Language["shopping cart"]}} <i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i></a>
+  <a href="#" class="btn btn-primary">{{Language["Home"]}}  <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a>
+</div>
+</div>
+</row>
 
 
 
 
 
-
-
-<div class="container">
-  <div class="jumbotron">
-                        <div class="text-center">
-                           {% for message in get_flashed_messages() %}
-                            <p>{{ message }}</p>
-                            {% endfor %}
-
-                        </div>
-                    </div>
  {% block content %}
 {% endblock content %}
 
