@@ -131,10 +131,10 @@
 
  <!-- Modal -->
 
-
+<div class="container-fluid">
 
 <row>
-    <nav class="navbar  navbar-expand-md bg-dark navbar-dark">
+    <nav class="navbar  navbar-expand-md bg-secondary navbar-dark">
   <!-- Brand -->
         <a class="navbar-brand" href="#"> <div class="text-muted-1"><b>{{ settings['project_title'].value }}</b></div></a>
         ><a href="#category_model" data-toggle="modal">	<i class="fa fa-search" aria-hidden="true"></i> </i>{{Language["Search Product"]}}  </a>
@@ -203,26 +203,21 @@
 
 
  </row>
-<row >
 
-<div class="container sticky-top">
+
+<div class="container-expand-md sticky-top">
 
  <div class="btn-group btn-group-justified mb-4">
-  <a href="#" class="btn btn-primary">{{Language["Store departments"]}}</a>
-  <a href="#" class="btn btn-primary">{{Language["shopping cart"]}} <i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i></a>
-  <a href="#" class="btn btn-primary">{{Language["Home"]}}  <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a>
+  <a href="#" class="btn btn-secondary">{{Language["Store departments"]}}</a>
+  <a href="#" class="btn btn-secondary">{{Language["shopping cart"]}} <i class="fa fa-shopping-cart" style='font-size:36px' aria-hidden="true"></i></a>
+  <a href="#" class="btn btn-secondary">{{Language["Home"]}}  <i class="fa fa-home" style='font-size:36px' aria-hidden="true"></i></a>
 </div>
 </div>
-</row>
-
-
-
-
-
+<div class="wrapper container">
  {% block content %}
 {% endblock content %}
-
 </div>
+
 
      <script src="{{ url_for('static', filename='Frontend/vendor/OwlCarousel/owl.carousel.js') }}"></script>
     <script src="{{ url_for('static', filename='Frontend/vendor/semantic/semantic.min.js') }}"></script>
