@@ -1,41 +1,15 @@
 
- <div class="card rounded-3 mb-4">
+     <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
 
 
 
-          <div class="card-body p-4">
-
-           <div class="d-flex flex-col justify-content-around align-items-center">
-
-
-
-                 <div class="d-flex flex-row .justify-content-xl-end">
-                    <div >
-                   <p class="text-start">
-                        <h5>{{product.title}}</h5>
-
-                     <h3 class="text-dark mb-0 center-block"><p> {%if product.on_sale %} <del>{{product.discount_price}}</del> -> {{product.basic_price}} {{Language["$"]}} {%else %} {{product.basic_price}} {% endif %}</p>  </h3>
-                      <h3> <a href="{{ product.get_absolute_url() }}"> <span class="badge badge-secondary  bg-secondary">{{Language["Add to cart"]}}</span></a></h3>
-                    </p>
-                    </div>
-
-              </div>
-
-
-                    <div >
-
-                <img src= {{ product.image_url() }}
-                  class="img-sm" alt="Cotton T-shirt">
-                    <span class="badge badge-pill badge-danger  badge-on-image"><h3> {%if product.on_sale %}{{Language["on sale"]}} {%elif product.is_featured  %}{{Language["special"]}}{% endif %} </h3> </span>
-
-              </div>
-
-            </div>
-          </div>
-
-          <span class="badge badge-pill badge-info  badge-on-card"><h3>{{ settings['project_title'].value }}</h3> </span>
-
-        </div>
 
 
 

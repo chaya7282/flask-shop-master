@@ -11,7 +11,8 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product, Category
 from .models import Page
 from .search import Item
-
+import numpy as np
+import random
 from flaskshop.product.forms import AddCartForm
 impl = HookimplMarker("flaskshop")
 
@@ -25,9 +26,12 @@ def load_user(user_id):
 def home():
     products= Product.query.all()
     categories= Category.query.all()
-
-
-    return render_template("public/shopHomePage.html", products= products,categories=categories)
+    categories_2= list(categories)
+    random.shuffle(categories_2)
+    categories_3 = list(categories)
+    random.shuffle(categories_3)
+    categories_two_columns= list(zip(categories,categories_2,categories_3 ))
+    return render_template("public/shopHomePage.html", products= products,categories=categories,categories_two_columns=categories_two_columns)
 
 
 def style():
