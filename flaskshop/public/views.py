@@ -24,14 +24,13 @@ def load_user(user_id):
 
 
 def home():
-    products= Product.query.all()
-    categories= Category.query.all()
-    categories_2= list(categories)
-    random.shuffle(categories_2)
-    categories_3 = list(categories)
-    random.shuffle(categories_3)
-    categories_two_columns= list(zip(categories,categories_2,categories_3 ))
-    return render_template("public/shopHomePage.html", products= products,categories=categories,categories_two_columns=categories_two_columns)
+    products = Product.query.all()
+    categories = Category.query.all()
+    indices = np.random.randint(0, len(categories)-1, size=(len(categories), 5))
+    for i in range(len(categories)):
+        indices[i][0]= i
+
+    return render_template("public/index.html", products= products,categories=categories,indices=indices)
 
 
 def style():
