@@ -147,7 +147,8 @@
 					<div class="search-by-cat">
                         <a href="#" class="single-cat">
                             <div class="icon">
-								<img src="images/category/icon-1.svg" alt="">
+
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-1.svg') }}"  >
                             </div>
                             <div class="text">
                                 Fruits and Vegetables
@@ -155,49 +156,50 @@
                         </a>
 						<a href="#" class="single-cat">
 							<div class="icon">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-2.svg') }}"  >
 								<img src="images/category/icon-2.svg" alt="">
 							</div>
 							<div class="text"> Grocery & Staples </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-3.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-3.svg') }}"  >
 							</div>
 							<div class="text"> Dairy & Eggs </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-4.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-4.svg') }}"  >
 							</div>
 							<div class="text"> Beverages </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-5.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-5.svg') }}"  >
 							</div>
 							<div class="text"> Snacks </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-6.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-6.svg') }}"  >
 							</div>
 							<div class="text"> Home Care </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-7.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-7.svg') }}"  >
 							</div>
 							<div class="text"> Noodles & Sauces </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-8.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-8.svg') }}"  >
 							</div>
 							<div class="text"> Personal Care </div>
 						</a>
 						<a href="#" class="single-cat">
 							<div class="icon">
-								<img src="images/category/icon-9.svg" alt="">
+								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-9.svg') }}"  >
 							</div>
 							<div class="text"> Pet Care </div>
 						</a>
@@ -227,7 +229,8 @@
 			<div class="side-cart-items">
 				<div class="cart-item">
 					<div class="cart-product-img">
-						<img src="images/product/img-1.jpg" alt="">
+						<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/product/img-1.jpg') }}"  >
+
 						<div class="offer-badge">6% OFF</div>
 					</div>
 					<div class="cart-text">
@@ -266,7 +269,9 @@
 				</div>
 				<div class="cart-item">
 					<div class="cart-product-img">
-						<img src="images/product/img-2.jpg" alt="">
+							<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/product/img-2.jpg') }}"  >
+
+
 						<div class="offer-badge">6% OFF</div>
 					</div>
 					<div class="cart-text">
@@ -321,11 +326,12 @@
 		<div class="top-header-group">
 			<div class="top-header">
 				<div class="res_main_logo">
-					<a href="index.html"><img src="images/dark-logo-1.svg" alt=""></a>
+					<a href="index.html"><img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/dark-logo-1.svg') }}"  >
+
 				</div>
 				<div class="main_logo" id="logo">
-					<a href="index.html"><img src="images/logo.svg" alt=""></a>
-					<a href="index.html"><img class="logo-inverse" src="images/dark-logo.svg" alt=""></a>
+					<a href="index.html"><img  src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/logo.svg') }}"   src="images/logo.svg" alt=""></a>
+					<a href="index.html"><img class="logo-inverse"  src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/dark-logo.svg') }}"  alt=""></a>
 				</div>
 				<div class="select_location">
 					<div class="ui inline dropdown loc-title">
@@ -394,7 +400,8 @@
 						</li>
 						<li class="ui dropdown">
 							<a href="#" class="opts_account">
-								<img src="images/avatar/img-5.jpg" alt="">
+
+								<img  src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/avatar/img-5.jpg') }}"  >
 								<span class="user__name">John Doe</span>
 								<i class="uil uil-angle-down"></i>
 							</a>
