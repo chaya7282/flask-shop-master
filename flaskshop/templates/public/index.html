@@ -17,10 +17,6 @@
 
 	<!-- Stylesheets -->
 		<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		<link href='vendor/unicons-2.0.1/css/unicons.css' rel='stylesheet'>
-		<link href="css/style.css" rel="stylesheet">
-		<link href="css/responsive.css" rel="stylesheet">
-		<link href="css/night-mode.css" rel="stylesheet">
 
 
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/unicons-2.0.1/css/unicons.css') }}">
@@ -58,7 +54,7 @@
 						<li>
 							<a href="#" class="single-cat-item">
 								<div class="icon">
-									<img src="images/category/icon-1.svg" alt="">
+									<img   src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-1.svg') }}"  alt="">
 								</div>
 								<div class="text"> Fruits and Vegetables </div>
 							</a>
