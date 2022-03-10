@@ -54,10 +54,14 @@ def update_cart(id):
 def Cart_Checkout():
 
     if request.method == "POST":
-        cart = Cart.get_current_user_cart()
+
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
         payment_method = request.form["payment_method"]
-
+        cart = Cart.get_current_user_cart()
+        for line in cart.lines:
+            qty = request.form.get(f"qty_{line.id}")
+            line.quantity = int(qty)
+            line.save()
         cart.update(
             shipping_method_id=shipping_method.id,
             payment_method=payment_method

@@ -1,0 +1,29 @@
+<head>
+	 <style>
+        .thumbnail2 {
+			height: 350px;
+			width: 350px;
+			border: 2px solid #e97117;
+			background-color: #f8f8ec;
+			padding: 2em;
+}
+    </style>
+</head>
+
+<div class="offer-item">
+									<div class="offer-item-img">
+										<div class="gambo-overlay"></div>
+										 <div class="thumbnail2">
+										<img  src={{ product.image_url() }} width="250px" height="250px">
+										</div>
+
+									</div>
+									<div class="offer-text-dt">
+										<div class="offer-top-text-banner">
+											<p>6% Off</p>
+											<div class="top-text-1">Buy More & Save More</div>
+											<span>{{product.category.title}}</span>
+										</div>
+										<a href="{{ product.category.get_absolute_url()}}"  class="Offer-shop-btn hover-btn">Shop Now</a>
+									</div>
+								</div>

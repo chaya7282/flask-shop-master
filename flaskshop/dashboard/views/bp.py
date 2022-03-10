@@ -11,7 +11,7 @@ from flaskshop.account.models import User
 from flaskshop.account.utils import permission_required
 from flaskshop.settings import Config
 from flaskshop.constant import Permission, OrderStatusKinds, OrderEvents
-
+from.bussiness import manage_bussiness
 from .user import users, user, user_edit, address_edit, user_del
 from .site import (
     shipping_methods,
@@ -232,6 +232,9 @@ def flaskshop_load_blueprints(app):
         "/products/create/step2",view_func=product_manage, methods=["GET", "POST"],
     )
     bp.add_url_rule(
+        "/bussiness/manage_bussiness", view_func=manage_bussiness, methods=["GET", "POST"],
+    )
+    bp.add_url_rule(
         "/products/<id>/edit", view_func= product_manage, methods=["GET", "POST"]
     )
     bp.add_url_rule(
@@ -258,4 +261,5 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/sales", view_func=sales)
     bp.add_url_rule("/sales/create", view_func=sales_manage, methods=["GET", "POST"])
     bp.add_url_rule("/sales/<id>/edit", view_func=sales_manage, methods=["GET", "POST"])
+
     app.register_blueprint(bp, url_prefix="/dashboard")

@@ -8,7 +8,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from flaskshop.database import Column, Model, db
 from flaskshop.extensions import bcrypt
 from flaskshop.constant import Permission
-
+from flaskshop.resources.resources import get_presigned_url
 
 class User(Model, UserMixin):
     __tablename__ = "account_user"
@@ -92,6 +92,25 @@ class User(Model, UserMixin):
 
     def can_edit(self):
         return self.can(Permission.EDITOR)
+
+
+class Business(Model):
+    __tablename__ = "business_details"
+    address = Column(db.String(255), nullable=False)
+    phone = Column(db.String(20), nullable=False)
+    name= Column(db.String(80), unique=True)
+    email = Column(db.String(80), nullable=True)
+    email_password= Column(db.String(80), nullable=True)
+    image= Column(db.String(255), nullable=True, default=None)
+
+    def __str__(self):
+        return self.name
+
+    def get_image(self):
+        url = None
+        if self.image:
+            url = get_presigned_url(self.image)
+        return url
 
 
 class UserAddress(Model):

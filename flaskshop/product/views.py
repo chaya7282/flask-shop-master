@@ -83,6 +83,21 @@ def show_category(id):
 
     return render_template("category/index.html", **ctx)
 
+def show_on_sale():
+    page = request.args.get("page", type=int,default=1)
+    ctx = {}
+    query=Product.query.filter_by(on_sale=True)
+    pagination = query.paginate(page, per_page=10)
+    ctx.update(title="on_sale", pagination=pagination, products=pagination.items)
+    return render_template("products/special_groups.html", **ctx)
+def show_featured():
+    page = request.args.get("page", type=int,default=1)
+    ctx = {}
+    query=Product.query.filter_by(is_featured=True)
+    pagination = query.paginate(page, per_page=10)
+    ctx.update(title="Featured ", pagination=pagination, products=pagination.items)
+    return render_template("products/special_groups.html", **ctx)
+
 
 def show_collection(id):
     page = request.args.get("page", 1, type=int)
@@ -110,8 +125,9 @@ def product_search():
 def flaskshop_load_blueprints(app):
     bp = Blueprint("product", __name__)
     bp.add_url_rule("/<int:id>", view_func=show)
-
-    bp.add_url_rule("/show_single/<int:id>", view_func=show_single)
+    bp.add_url_rule("/show_on_sale", view_func= show_on_sale)
+    bp.add_url_rule("/show_on_sale", view_func=show_on_sale)
+    bp.add_url_rule("/show_featured", view_func=show_featured)
     bp.add_url_rule("/api/variant_price/<int:id>", view_func=variant_price)
     bp.add_url_rule("/<int:id>/add", view_func=product_add_to_cart, methods=["POST"])
     bp.add_url_rule("/category/<int:id>", view_func=show_category)

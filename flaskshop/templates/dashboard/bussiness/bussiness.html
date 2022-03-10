@@ -1,0 +1,59 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% extends 'dashboard/dashboard_layout.html' %}
+
+
+{% block content %}
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
+</head>
+
+
+                    <div class="container-fluid">
+                    {% if form.name.data %}
+                         <h2 class="mt-30 page-title">{{ form.name.data}}</h2>
+                    {%  else %}
+                        <h2 class="mt-30 page-title">{{Language[" Add New Product"]}} </h2>
+                    {% endif %}
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+
+									</div>
+									 <form method="POST" action="" enctype='multipart/form-data'>
+
+
+											{{macros.render_input_field(form.name,"text")}}
+
+											{{macros.render_input_field(form.address,"text")}}
+                                            {{macros.render_input_field(form.phone,"text")}}
+                                            {{macros.render_input_field(form.email,"text")}}
+                                            {{macros.render_input_field(form.email_password,"text")}}
+                                            {{ macros.render_file_field(form.image, form.image.data) }}
+
+                                            <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+                                            <button class="save-btn hover-btn" type="submit">{{Language["Submit"]}} </button>
+
+
+							        </form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+
+{% endblock %}
+

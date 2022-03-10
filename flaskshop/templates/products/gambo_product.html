@@ -1,0 +1,41 @@
+<head>
+ <style>
+        .thumbnail {
+			height: 200px;
+			width: 200px;
+			border: 2px solid #e97117;
+			background-color: #f8f8ec;
+			padding: 2em;
+}
+    </style>
+</head>
+
+<div class="product-item">
+     <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
+
+         <div class="thumbnail">
+         <img src={{ product.image_url() }} width="150px" height="auto">
+         </div>
+ {% if product.on_sale or product.is_featured %}
+        <div class="product-absolute-options">
+
+            <span class="offer-badge-1">{% if product.on_sale %}Sale {% elif  product.is_featured %} Featured {% endif %}</span>
+            <span class="like-icon" title="wishlist"></span>
+        </div>
+   {% endif %}
+    <div class="product-text-dt">
+        <p>Available<span>(In Stock)</span></p>
+        <h4>{{product.title}}</h4>
+        <div class="product-price">{{product.discount_price}} <span>$ {{product.basic_price}} </span></div>
+        <div class="qty-cart">
+            <div class="quantity buttons_added">
+                <input type="button" value="-" class="minus minus-btn">
+                <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
+                <input type="button" value="+" class="plus plus-btn">
+            </div>
+            <span class="cart-icon"><button><i class="uil uil-shopping-cart-alt"></i></button></span>
+        </div>
+    </div>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+ </form>
+</div>

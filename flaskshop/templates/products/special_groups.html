@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% import 'dashboard/_vendor.html' as vendor %}
 {% block content %}
 <div class="wrapper">
     <div class="gambo-Breadcrumb">
@@ -9,15 +8,10 @@
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="{{url_for('public.home')}}">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">{{object.title}}</li>
+								<li class="breadcrumb-item active" aria-current="page">{{title}}</li>
 							</ol>
 						</nav>
 					</div>
-				</div>
-				<div class="row">
-					{% if pagination %}
-           				 <p class="mb-0"><span class="text-muted">{{vendor.render_pagination(pagination, size='sm', align='right')}}</span></a></p>
-					{%endif %}
 				</div>
 			</div>
 		</div>
@@ -28,11 +22,7 @@
 							{% include('products/gambo_product.html') %}
 						</div>
 					    {% endfor %}
-						<div class="col-md-12">
-							<div class="more-product-btn">
-								<button class="show-more-btn hover-btn" onclick="window.location.href = '#';">Show More</button>
-							</div>
-						</div>
+
 					</div>
 				</div>
 </div>

@@ -9,12 +9,14 @@ from flask import flash, request, current_app
 from urllib.parse import urlencode
 
 from flaskshop.public.models import MenuItem
-from flaskshop.checkout.models import Cart
+from flaskshop.checkout.models import Cart,ShippingMethod
+
 from flaskshop.dashboard.models import Setting
 from flaskshop.plugin.utils import template_hook
 from flaskshop.constant import SiteDefaultSettings
 from flaskshop.create_menus import create_menus
 from flaskshop.constant import Language
+from flaskshop.account.models import Business
 
 def flash_errors(form, category="warning"):
     """Flash all errors for a form."""
@@ -64,6 +66,16 @@ def jinja_global_varibles(app):
     @app.context_processor
     def inject_Language():
         return dict(Language=Language)
+
+    @app.context_processor
+    def inject_shipping_methods():
+        shipping_methods = ShippingMethod.query.all()
+        return dict(shipping_methods=shipping_methods)
+
+    @app.context_processor
+    def inject_business():
+        business = Business.query.first()
+        return dict(business=business)
 
     @app.context_processor
     def inject_menus():

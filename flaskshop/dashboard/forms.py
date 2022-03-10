@@ -43,6 +43,13 @@ class FlaskForm(_FlaskForm):
                 success = False
         return success
 
+class BussinessForm(FlaskForm):
+    address = StringField(validators=[DataRequired()])
+    phone =StringField(validators=[DataRequired()])
+    name = StringField(validators=[DataRequired()])
+    email = StringField()
+    email_password = StringField()
+    image = StringField(validators=[DataRequired()])
 
 class DashboardMenuForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
