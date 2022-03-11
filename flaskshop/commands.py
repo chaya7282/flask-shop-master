@@ -26,6 +26,7 @@ from flaskshop.random_data import (
     create_vouchers,
     create_dashboard_menus,
     create_roles,
+    create_bussiness,
 )
 from flaskshop.extensions import db
 from flaskshop.corelib.db import rdb
@@ -297,7 +298,7 @@ def seed(type):
 
             create_roles(),
             create_admin(),
-
+            create_bussiness(),
             create_shipping_methods(),
             create_dashboard_menus(),
 

@@ -21,16 +21,16 @@ def show(id):
     pagination = None
     print(" pagination--")
     category = Category.query.filter_by(id=product.category_id).first()
-    categories = Category.query.all()
-    ctx.update(object=category, pagination=pagination, products=[product], categories=categories)
+
+    ctx.update(object=category, pagination=pagination, products=[product])
 
     return render_template("products/product_list_base.html",**ctx)
 
 
 def show_single(id):
     product = Product.query.filter_by(id=id).first()
-    categories = Category.query.all()
-    return render_template("products/single_product_view.html",product=product,categories=categories)
+
+    return render_template("products/single_product_view.html",product=product)
 
 
 def product_add_to_cart(id):
@@ -74,12 +74,12 @@ def show_category(id):
     ctx = {}
 
     query=Product.query.filter_by(category_id= id)
-    print("product--")
+
     pagination = query.paginate(page, per_page=10)
-    print(" pagination--")
+
     category= Category.query.filter_by(id=id).first()
-    categories = Category.query.all()
-    ctx.update(object=category, pagination=pagination, products=pagination.items,categories=  categories)
+
+    ctx.update(object=category, pagination=pagination, products=pagination.items)
 
     return render_template("category/index.html", **ctx)
 
@@ -115,7 +115,7 @@ def product_search():
     print(" pagination--")
     category =None
     categories = Category.query.all()
-    ctx.update(object=category, pagination=pagination, products=searchResult, categories=categories)
+    ctx.update(object=category, pagination=pagination, products=searchResult)
 
     return render_template("products/product_list_base.html", **ctx)
 

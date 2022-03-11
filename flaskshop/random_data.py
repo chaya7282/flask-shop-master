@@ -6,7 +6,7 @@ from uuid import uuid4
 from faker.providers import BaseProvider
 from sqlalchemy.sql.expression import func
 from faker import Factory
-
+from flaskshop.account.models import Business
 from flaskshop.product.models import (
     Category,
     ProductType,
@@ -569,6 +569,9 @@ def create_roles():
         Role.create(name=name, permissions=permissions)
         yield f"Role {name} created"
 
+def create_bussiness():
+    bussiness= Business.create(name="Pls. add",address="Pls. add", phone="+972..." )
+    yield f"Admin {bussiness.name} created"
 
 # step17
 def create_admin():

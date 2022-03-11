@@ -23,7 +23,7 @@ def cart_index():
 
     shipping_methods = ShippingMethod.query.all()
     categories = Category.query.all()
-    return render_template("checkout/cart.html",shipping_methods=shipping_methods,categories=categories)
+    return render_template("checkout/cart.html",shipping_methods=shipping_methods)
 
 
 def update_cart(id):
@@ -84,7 +84,7 @@ def Create_An_Order(address_data):
         return render_template("checkout/order_placed.html", order=order,user_address=user_address)
     else:
         flash(msg, "warning")
-        return render_template("errors/out_of_stock.html", Language=Language)
+        return render_template("errors/out_of_stock.html")
 
 
 def shipment_details():

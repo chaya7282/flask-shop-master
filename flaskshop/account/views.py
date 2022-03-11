@@ -15,7 +15,7 @@ impl = HookimplMarker("flaskshop")
 def user_orders():
     orders = Order.get_current_user_orders()
     categories = Category.query.all()
-    return render_template("account/dashboard_my_orders.html", orders=orders, categories =categories )
+    return render_template("account/dashboard_my_orders.html", orders=orders )
 
 
 def index():
@@ -23,13 +23,13 @@ def index():
     form = ChangePasswordForm(request.form)
     orders = Order.get_current_user_orders()
     categories = Category.query.all()
-    return render_template("account/details.html", form=form, orders=orders, categories =categories)
+    return render_template("account/details.html", form=form, orders=orders)
 
 def index_by_user(user_id):
     form = ChangePasswordForm(request.form)
     orders = Order.get_current_user_orders()
     categories = Category.query.all()
-    return render_template("account/details.html", form=form,  categories = categories , orders=orders)
+    return render_template("account/details.html", form=form,  orders=orders)
 
 def login():
     """login page."""
@@ -45,7 +45,7 @@ def login():
            return redirect(url_for("account.edit_address", show_cart= False))
     else:
         flash_errors(form)
-    return render_template("account/login.html", categories =categories, form=form)
+    return render_template("account/login.html", form=form)
 
 
 @login_required
@@ -72,7 +72,7 @@ def signup():
         return redirect(url_for("account.edit_address", show_cart=False))
     else:
         flash_errors(form)
-    return render_template("account/signup.html", form=form,categories=categories)
+    return render_template("account/signup.html", form=form)
 
 
 def set_password():
@@ -85,14 +85,14 @@ def set_password():
             return redirect(url_for("account.index") )
         else:
             flash("You have not changed password.", "failure")
-    return render_template("account/forgot_password.html", form=form,categories=categories)
+    return render_template("account/forgot_password.html", form=form)
 
 
 def addresses():
     """List addresses."""
     categories = Category.query.all()
     addresses = current_user.addresses
-    return render_template("account/dashboard_my_addresses.html", addresses=addresses,categories=categories)
+    return render_template("account/dashboard_my_addresses.html", addresses=addresses)
 
 
 def edit_address():
@@ -128,7 +128,7 @@ def edit_address():
 
         return redirect(url_for("public.home"))
 
-    return render_template("account/address_edit.html", form=form, address_id=address_id,categories=categories,show_cart=False)
+    return render_template("account/address_edit.html", form=form, address_id=address_id,show_cart=False)
 
 
 def delete_address(id):

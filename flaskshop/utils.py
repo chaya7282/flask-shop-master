@@ -7,7 +7,7 @@ from logging.handlers import RotatingFileHandler
 from flask_sqlalchemy import get_debug_queries
 from flask import flash, request, current_app
 from urllib.parse import urlencode
-
+from flaskshop.product.models import Category
 from flaskshop.public.models import MenuItem
 from flaskshop.checkout.models import Cart,ShippingMethod
 
@@ -76,6 +76,11 @@ def jinja_global_varibles(app):
     def inject_business():
         business = Business.query.first()
         return dict(business=business)
+
+    @app.context_processor
+    def inject_categories():
+        categories = Category.query.all()
+        return dict(categories=categories)
 
     @app.context_processor
     def inject_menus():

@@ -157,7 +157,9 @@
 		<div class="bs-canvas-body">
 			<div class="cart-top-total">
 				<div class="cart-total-dil">
+					{% if business %}
 					<h4>{{ business.name }}</h4>
+					{% endif %}
 					<span>${{ current_user_cart.subtotal }}</span>
 				</div>
 
@@ -233,7 +235,9 @@
 		<div class="top-header-group">
 			<div class="top-header">
 				<div class="res_main_logo">
+
 					<a href="index.html"><img src={{ business.get_image() }}  ></a>
+
 
 				</div>
 				<div class="main_logo" id="logo">
