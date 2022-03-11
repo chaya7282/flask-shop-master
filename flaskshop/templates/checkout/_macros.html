@@ -9,10 +9,8 @@
 {% endif %}
 <form action = "" method = "POST" enctype = "multipart/form-data">
 <div class="form-group">
-    <label  class="form-label"  for="{{label_id}}">{{ field.label.text }}</label>
-    <input type="{{type}}" class="form-control" id="{{label_id}}" name="{{label_id}}"
-       111
-        value="{% if field.data %}{{ field.data }}{% elif field.default is not none %}{{field.default}}{% endif %}">
+    <label  class="control-label"  for="{{label_id}}">{{ field.label.text }}</label>
+    <input type="{{type}}" class="form-control input-md" id="{{label_id}}" name="{{label_id}}" value="{% if field.data %}{{ field.data }}{% elif field.default is not none %}{{field.default}}{% endif %}">
       {% if field.errors %}
     <div class="invalid-feedback" style="display:block">
         {{ field.errors[0] }}

@@ -125,12 +125,15 @@ def get_Shipping_address():
             "email": form.email.data,
             "pincode": form.pincode.data
         }
-        return  Create_An_Order(address_data)
+        return redirect(url_for("checkout.delivery_time_date"))
 
-    return render_template("account/address_edit.html", form=form, address_id=address_id,show_cart=True)
+    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id,show_cart=True)
 
-
-
+def delivery_time_date():
+    if request.method == "POST":
+      i=6
+    else:
+        return render_template("checkout/delivery_time_date.html")
 
 
 def checkout_shipping():
@@ -178,7 +181,7 @@ def checkout_note():
         address=address,
         voucher_form=voucher_form,
         shipping_method=shipping_method,
-        Language=Language
+
 
     )
 
@@ -237,6 +240,7 @@ def flaskshop_load_blueprints(app):
     )
     bp.add_url_rule(
         "/get_Shipping_address", view_func=get_Shipping_address, methods=["GET", "POST"])
-
+    bp.add_url_rule(
+        "/delivery_time_date", view_func=delivery_time_date, methods=["GET", "POST"])
 
     app.register_blueprint(bp, url_prefix="/checkout")

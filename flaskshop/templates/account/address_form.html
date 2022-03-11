@@ -1,0 +1,54 @@
+{% import 'dashboard/_macros.html' as macros%}
+{% import 'dashboard/_vendor.html' as vendor%}
+<form method="POST" action="" enctype='multipart/form-data'>
+<div class="address-fieldset">
+	<div class="row">
+		<div class="col-lg-6 col-md-12">
+			<div class="form-group">
+				 {{ macros.render_input_field(form.contact_name) }}
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-12">
+			<div class="form-group">
+				 {{macros.render_input_field(form.city) }}
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12">
+			<div class="form-group">
+				{{macros.render_input_field(form.address) }}
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12">
+			<div class="form-group">
+				{{ macros.render_input_field(form.email) }}
+			</div>
+		</div>
+		<div class="col-lg-12 col-md-12">
+			<div class="form-group">
+				{{macros.render_input_field(form.contact_phone) }}
+
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-12">
+			<div class="form-group">
+				 {{ macros.render_input_field(form.pincode) }}
+			</div>
+		</div>
+
+		<div class="col-lg-12 col-md-12">
+			<div class="form-group">
+				<div class="address-btns">
+					<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
+
+					<button type="submit"  class="collapsed ml-auto next-btn16 hover-btn" > Next </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+
+
+
+

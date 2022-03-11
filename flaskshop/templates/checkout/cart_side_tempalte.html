@@ -1,0 +1,41 @@
+
+						<div class="pdpt-bg mt-0">
+							<div class="pdpt-title">
+								<h4>{{Language["Order Summary"]}} </h4>
+							</div>
+							<div class="right-cart-dt-body">
+                                  {% for line in current_user_cart.lines %}
+								<div class="cart-item border_radius">
+									<div class="cart-product-img">
+										 {%if line.product.image_url() %}
+											 <img class="lazyload lazypreload" src={{ line.product.image_url() }} width="60" />
+										{% endif %}
+										<div class="offer-badge"></div>
+									</div>
+									<div class="cart-text">
+										<h4>{{ line.product }}</h4>
+										<div >{{ line.quantity }}-items  <span>${{ line.subtotal }}</span></div>
+
+									</div>
+								</div>
+                                {% endfor %}
+							</div>
+							<div class="total-checkout-group">
+								<div class="cart-total-dil">
+									<h4>{{Language["Sub-total"]}} </h4>
+									<span>${{ current_user_cart.subtotal }}</span>
+								</div>
+								<div class="cart-total-dil pt-3">
+									<h4>{{Language["Delivery Charges"]}} </h4>
+									<span>${{current_user_cart.shipping_method.price}}</span>
+								</div>
+							</div>
+
+							<div class="main-total-cart">
+								<h2>{{Language[" Total"]}}</h2>
+								<span>${{current_user_cart.total}}</span>
+							</div>
+
+						</div>
+
+
