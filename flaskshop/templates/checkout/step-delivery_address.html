@@ -1,149 +1,152 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
-  <style>
-    .checkout-wrap {
-    font-family: 'PT Sans Caption', sans-serif;
-    margin: 30px auto 100px;
-    z-index: 0;
-}
-ul.checkout-bar li {
-    color: #ccc;
-    font-size: 16px;
-    font-weight: 600;
-    position: relative;
-    display: inline-block;
-    margin: 50px auto;
-    padding: 0;
-    text-align: center;
-    width: 24.5%;
-}
-ul.checkout-bar li:before {
-    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    background: #ddd;
-    border: 2px solid #FFF;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
-    height: 34px;
-    left: 40%;
-    line-height: 34px;
-    position: absolute;
-    top: -60px;
-    width: 34px;
-    z-index: 99999;
-}
-ul.checkout-bar li.active {
-  color: #A6447A;
-  font-weight: bold;
-}
-ul.checkout-bar li.active:before {
-  background: #A6447A;
-}
-ul.checkout-bar li.visited {
-  color: #036c99;
-  z-index: 99999;
-  background: none;
-}
-ul.checkout-bar li.visited:before {
-  background: #036c99;
-  z-index: 99999;
-}
-ul.checkout-bar li:nth-child(1):before {
-  content: "1";
-}
-ul.checkout-bar li:nth-child(2):before {
-  content: "2";
-}
-ul.checkout-bar li:nth-child(3):before {
-  content: "3";
-}
-ul.checkout-bar li:nth-child(4):before {
-  content: "4";
-}
-ul.checkout-bar li:nth-child(5):before {
-  content: "5";
-}
-ul.checkout-bar li:nth-child(6):before {
-  content: "6";
-}
-ul.checkout-bar a {
-  color: #ccc;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-}
-ul.checkout-bar li.active a {
-  color: #A6447A;
-}
-ul.checkout-bar li.visited a {
-  color: #036c99;
-}
-.checkout-bar li.active:after {
-    -webkit-animation: myanimation 3s 0;
-    background-size: 35px 35px;
-    background-color: #A6447A;
-    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    content: "";
-    height: 15px;
-    width: 100%;
-    left: 50%;
-    position: absolute;
-    top: -50px;
-    z-index: 0;
-  }
-ul.checkout-bar {
-    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    background-size: 35px 35px;
-    background-color: #EcEcEc;
-    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
-    border-radius: 15px;
-    height: 15px;
-    margin: 0 -15px 0;
-    padding: 0;
-    position: absolute;
-    width: 100%;
-  }
-ul.checkout-bar:before {
-    background-size: 35px 35px;
-    background-color: #036c99;
-    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    content: " ";
-    height: 15px;
-    left: 0;
-    position: absolute;
-    width: 14%;
-  }
-  ul.checkout-bar li.visited:after {
-    background-size: 35px 35px;
-    background-color: #036c99;
-    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    content: "";
-    height: 15px;
-    left: 50%;
-    position: absolute;
-    top: -50px;
-    width: 100%;
-    z-index: 99;
-  }
-  </style>
 
+<style>
+	*{
+    margin: 0;
+    padding: 0
+}
+
+html {
+    height: 100%
+}
+
+h2{
+    color: #2F8D46;
+}
+#form {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+.finish {
+    text-align: center
+}
+
+#form fieldset:not(:first-of-type) {
+    display: none
+}
+
+#form .previous-step, .next-step {
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+
+.form, .previous-step {
+    background: #616161;
+}
+
+.form, .next-step {
+    background: #2F8D46;
+}
+
+#form .previous-step:hover,
+#form .previous-step:focus {
+    background-color: #000000
+}
+
+#form .next-step:hover,
+#form .next-step:focus {
+    background-color: #2F8D46
+}
+
+.text {
+    color: #2F8D46;
+    font-weight: normal
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #2F8D46
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar #step1:before {
+    content: "1"
+}
+
+#progressbar #step2:before {
+    content: "2"
+}
+
+#progressbar #step3:before {
+    content: "3"
+}
+
+#progressbar #step4:before {
+    content: "4"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #2F8D46
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: #2F8D46
+}
+</style>
 </head>
 <div class="wrapper">
 		<div class="gambo-Breadcrumb">
@@ -153,12 +156,14 @@ ul.checkout-bar:before {
 						<nav aria-label="breadcrumb">
 							 <h1 class="col-md-5 col-sm-12 col-xs-12">Checkout</h1>
 								  <div class="checkout-wrap col-md-7 col-sm-12 col-xs-12 pull-right">
-									<ul class="checkout-bar">
-									   <li class="active"><a href="#get-started" data-toggle="tab">Delivery Address</a></li>
-									   <li class=""><a href="#about-you" data-toggle="tab">Delivery Time & Date</a></li>
-									   <li class=""><a href="#looking-for" data-toggle="tab">Payment</a></li>
-									  <li class=""><a href="#">Receipt</a></li>
-									</ul>
+									   <ul id="progressbar">
+                            <li class="active" id="step1">
+                                <strong>Step 1</strong>
+                            </li>
+                            <li id="step2"><strong>Step 2</strong></li>
+                            <li id="step3"><strong>Step 3</strong></li>
+                            <li id="step4"><strong>Step 4</strong></li>
+                        </ul>
 								  </div>
 						</nav>
 					</div>
