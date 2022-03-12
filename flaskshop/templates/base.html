@@ -76,72 +76,16 @@
                     </button>
                 </div>
                 <div class="category-model-content modal-content">
+					<form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
 					<div class="search-header">
-						 	<input   type="search" placeholder="Search for ...">
-							<button type="submit">search</button>
-							  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+						<input class="prompt srch10" type="search"  name="keyword" id="keyword"  placeholder="Search for products..">
+						<button type="submit"><i class="uil uil-search"></i></button>
+						  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 					</div>
-					<div class="search-by-cat">
-                        <a href="#" class="single-cat">
-                            <div class="icon">
+					</form>
 
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-1.svg') }}"  >
-                            </div>
-                            <div class="text">
-                                Fruits and Vegetables
-                            </div>
-                        </a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-2.svg') }}"  >
-								<img src="images/category/icon-2.svg" alt="">
-							</div>
-							<div class="text"> Grocery & Staples </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-3.svg') }}"  >
-							</div>
-							<div class="text"> Dairy & Eggs </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-4.svg') }}"  >
-							</div>
-							<div class="text"> Beverages </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-5.svg') }}"  >
-							</div>
-							<div class="text"> Snacks </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-6.svg') }}"  >
-							</div>
-							<div class="text"> Home Care </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-7.svg') }}"  >
-							</div>
-							<div class="text"> Noodles & Sauces </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-8.svg') }}"  >
-							</div>
-							<div class="text"> Personal Care </div>
-						</a>
-						<a href="#" class="single-cat">
-							<div class="icon">
-								<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/category/icon-9.svg') }}"  >
-							</div>
-							<div class="text"> Pet Care </div>
-						</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -245,13 +189,22 @@
 				</div>
 
 				<div class="search120">
+					<form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
+
 					<div class="ui search">
 					  <div class="ui left icon input swdh10">
-						<input class="prompt srch10" type="text" placeholder="Search for products..">
-						<i class='uil uil-search-alt icon icon1'></i>
+						<div class="search-header">
+							<input class="prompt srch10" type="search"  name="keyword" id="keyword"  placeholder="Search for products..">
+						<button type="submit"><i class="uil uil-search"></i></button>
+						  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+						</div>
+
 					  </div>
 					</div>
-				</div>
+					</form>
+					</div>
 				<div class="header_right">
 					<ul>
 						<li>
