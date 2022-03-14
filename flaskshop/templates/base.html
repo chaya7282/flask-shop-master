@@ -30,6 +30,9 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/semantic/semantic.min.css') }}">
+
+
+
 		<style>
 	*{
     margin: 0;
@@ -308,11 +311,11 @@ h2{
 		<div class="top-header-group">
 			<div class="top-header">
 				<div class="res_main_logo">
-					<a href="index.html"><img src="images/dark-logo-1.svg" alt=""></a>
+					<a href="index.html"><img src={{ business.get_image() }} alt=""></a>
 				</div>
 				<div class="main_logo" id="logo">
-					<a href="index.html"><img src="images/logo.svg" alt=""></a>
-					<a href="index.html"><img class="logo-inverse" src="images/dark-logo.svg" alt=""></a>
+					<a href="index.html"><img src={{ business.get_image() }} alt=""></a>
+					<a href="index.html"><img class="logo-inverse" src={{ business.get_image() }} alt=""></a>
 				</div>
 				<div class="select_location">
 					<div class="ui inline dropdown loc-title">
@@ -322,67 +325,44 @@ h2{
 						</div>
 						<i class="uil uil-angle-down icon__14"></i>
 						<div class="menu dropdown_loc">
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Gurugram
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								New Delhi
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Bangaluru
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Mumbai
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Hyderabad
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Kolkata
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Ludhiana
-							</div>
-							<div class="item channel_item">
-								<i class="uil uil-location-point"></i>
-								Chandigrah
-							</div>
+
 						</div>
 					</div>
 				</div>
 				<div class="search120">
+					<form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_search') }}"  enctype="multipart/form-data">
+
+
 					<div class="ui search">
 					  <div class="ui left icon input swdh10">
-						<input class="prompt srch10" type="text" placeholder="Search for products..">
-						<i class='uil uil-search-alt icon icon1'></i>
+						<div class="search-header">
+							<input class="prompt srch10" type="search"  name="keyword" id="keyword"  placeholder="Search for products..">
+						<button type="submit"><i class="uil uil-search"></i></button>
+						  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+						</div>
+
 					  </div>
 					</div>
-				</div>
+					</form>
+					</div>
+
 				<div class="header_right">
 					<ul>
 						<li>
-							<a href="#" class="offer-link"><i class="uil uil-phone-alt"></i>1800-000-000</a>
+							<a href="#" class="offer-link"><i class="uil uil-phone-alt"></i>{{business.phone}}</a>
 						</li>
+
 						<li>
-							<a href="offers.html" class="offer-link"><i class="uil uil-gift"></i>Offers</a>
-						</li>
-						<li>
-							<a href="faq.html" class="offer-link"><i class="uil uil-question-circle"></i>Help</a>
+							<a href="{{ url_for('public.home') }}" class="offer-link"><i class="fa fa-home"></i>Help</a>
 						</li>
 						<li>
 							<a href="dashboard_my_wishlist.html" class="option_links" title="Wishlist"><i class='uil uil-heart icon_wishlist'></i><span class="noti_count1">3</span></a>
 						</li>
 						<li class="ui dropdown">
 							<a href="#" class="opts_account">
-								<img src="images/avatar/img-5.jpg" alt="">
-								<span class="user__name">John Doe</span>
+								<img  src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/avatar/img-21.jpg') }}"   alt="">
+								<span class="user__name">{{current_user.username}}</span>
 								<i class="uil uil-angle-down"></i>
 							</a>
 							<div class="menu dropdown_account">
@@ -394,15 +374,21 @@ h2{
 										</span>
 									</a>
 								</div>
-								<a href="dashboard_overview.html" class="item channel_item"><i class="uil uil-apps icon__1"></i>Dashbaord</a>
-								<a href="dashboard_my_orders.html" class="item channel_item"><i class="uil uil-box icon__1"></i>My Orders</a>
-								<a href="dashboard_my_wishlist.html" class="item channel_item"><i class="uil uil-heart icon__1"></i>My Wishlist</a>
-								<a href="dashboard_my_wallet.html" class="item channel_item"><i class="uil uil-usd-circle icon__1"></i>My Wallet</a>
-								<a href="dashboard_my_addresses.html" class="item channel_item"><i class="uil uil-location-point icon__1"></i>My Address</a>
-								<a href="offers.html" class="item channel_item"><i class="uil uil-gift icon__1"></i>Offers</a>
-								<a href="faq.html" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Faq</a>
-								<a href="sign_in.html" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Logout</a>
-							</div>
+								{% if current_user.is_authenticated %}
+								{% if current_user.can_edit() %}
+								<a href="{{ url_for('dashboard.index') }}" class="item channel_item"><i class="uil uil-apps icon__1"></i>Dashbaord</a>
+								{% endif %}
+								<a href="{{ url_for('account.user_orders') }}" class="item channel_item"><i class="uil uil-box icon__1"></i>My Orders</a>
+								<a href="{{ url_for('account.edit_address',show_cart=False ) }}" class="item channel_item"><i class="uil uil-location-point icon__1"></i>My Address</a>
+								<a href="{{ url_for('public.home') }}" class="item channel_item"> <i class="fa fa-home  icon__1" aria-hidden="true"></i>Home</a>
+								<a href="{{ url_for('account.set_password') }}" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Password</a>
+								{% endif %}
+								{% if current_user.is_authenticated %}
+								<a href="{{ url_for('account.logout') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Logout</a>
+								{% else %}
+									<a href="{{ url_for('account.login') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Login</a>
+								{% endif %}
+									</div>
 						</li>
 					</ul>
 				</div>
