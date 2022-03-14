@@ -23,6 +23,8 @@ class Cart(Model):
     contact_name = Column(db.String(80))
     contact_phone = Column(db.String(80))
     payment_method = Column(db.String(50))
+    shipping_address = Column(db.String(255))
+    shipping_time_date = Column(db.String(20))
 
     @property
     def subtotal(self):
@@ -48,6 +50,7 @@ class Cart(Model):
         carts= cls.query.all()
         for cart in carts:
             cart.update_quantity()
+
 
 
 
@@ -92,7 +95,8 @@ class Cart(Model):
 
 
 
-        i=8
+
+
     def get_product_price(self, product_id):
         price = 0
         for line in self:

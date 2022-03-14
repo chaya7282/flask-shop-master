@@ -30,7 +30,135 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/OwlCarousel/assets/owl.theme.default.min.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/bootstrap/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Gambo/HTML/Frontend/vendor/semantic/semantic.min.css') }}">
+		<style>
+	*{
+    margin: 0;
+    padding: 0
+}
 
+html {
+    height: 100%
+}
+
+h2{
+    color: #2F8D46;
+}
+#form {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#form fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+.finish {
+    text-align: center
+}
+
+#form fieldset:not(:first-of-type) {
+    display: none
+}
+
+#form .previous-step, .next-step {
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+
+
+
+#form .previous-step:hover,
+#form .previous-step:focus {
+    background-color: #000000
+}
+
+
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar #step1:before {
+    content: "1"
+}
+
+#progressbar #step2:before {
+    content: "2"
+}
+
+#progressbar #step3:before {
+    content: "3"
+}
+
+#progressbar #step4:before {
+    content: "4"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #fff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background:#f55d2c;
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: #2F8D46
+}
+</style>
 	</head>
 
 
@@ -95,41 +223,55 @@
 	<form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.Cart_Checkout') }}"   enctype="multipart/form-data">
              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
-	<div class="bs-canvas bs-canvas-left position-fixed bg-cart h-100">
+		<div class="bs-canvas bs-canvas-left position-fixed bg-cart h-100">
 		<div class="bs-canvas-header side-cart-header p-3 ">
-			<div class="d-inline-block  main-cart-title">My Cart <span>({{ current_user_cart.quantity }} Items)</span></div>
-			<button type="submit" class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
+			<div class="d-inline-block  main-cart-title">My Cart <span>(2 Items)</span></div>
+			<button type="button" class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
 		</div>
 		<div class="bs-canvas-body">
 			<div class="cart-top-total">
 				<div class="cart-total-dil">
 					{% if business %}
-					<h4>{{ business.name }}</h4>
+					<h4>--{{ business.name }}</h4>
 					{% endif %}
 					<span>${{ current_user_cart.subtotal }}</span>
 				</div>
 
 			</div>
-			{% if current_user_cart.lines %}
 			<div class="side-cart-items">
-				 {% for line in current_user_cart.lines %}
-			     {% include('checkout/cart_item.html') %}
-				{%endfor %}
-
+				{% for line in current_user_cart.lines %}
+				  {% include('checkout/cart_item.html') %}
+				{% endfor %}
 			</div>
-			{% endif %}
 		</div>
 		<div class="bs-canvas-footer">
-
-			<div class="main-total-cart">
-				<h2>Total</h2>
-				<span class="total">{{ current_user_cart.subtotal }}</span>
+			<div class="cart-total-dil saving-total ">
+				<h4>Total</h4>
+				<span>{{ current_user_cart.subtotal }}</span>
 			</div>
 
-			<div class="checkout-cart">
-				<h4> payment method:   </h4>
-				<div class="cart-radio">
+			<div class="main-total-cart">
+
+
+					<div class="cart-radio">
+						<h4> Delivery:   </h4>
 							<ul class="kggrm-now">
+
+								 {% for method in shipping_methods %}
+								  <li>
+
+									  <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}" {% if loop.first %}checked{%endif%}>
+										<label for="shipping_{{ method.id }}">{{ method.title }}:{{method.price}}</label>
+
+								  </li>
+								  {% endfor %}
+							</ul>
+
+					</div>
+
+					<div class="cart-radio">
+						<h4> Payment:   </h4>
+					<ul class="kggrm-now">
 								<li>
 									<input type="radio" name="payment_method" value="Cash" id="payment_method_1" >
 									<label for="payment_method_1"> {{Language["Cash"]}}</label>
@@ -147,24 +289,9 @@
 								</li>
 
 							</ul>
-						</div>
-			</div>
-			<div class="checkout-cart">
-				<h4> Delivery:   </h4>
-					<div class="cart-radio">
-							<ul class="kggrm-now">
+					</div>
+				</div>
 
-								 {% for method in shipping_methods %}
-								  <li>
-
-									  <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}" {% if loop.first %}checked{%endif%}>
-										<label for="shipping_{{ method.id }}">{{ method.title }}:{{method.price}}</label>
-
-								  </li>
-								  {% endfor %}
-							</ul>
-						</div>
-			</div>
 			<div class="checkout-cart">
 				<button type="submit"  class="Offer-shop-btn hover-btn">{{Language["Proceed to Checkout"]}} </button>
 			</div>
@@ -208,21 +335,16 @@
 				<div class="header_right">
 					<ul>
 						<li>
-							<a href="#" class="offer-link"><i class="uil uil-phone-alt"></i>1800-000-000</a>
+							<a href="#" class="offer-link"><i class="uil uil-phone-alt"></i>{{business.phone}}</a>
 						</li>
+
 						<li>
-							<a href="offers.html" class="offer-link"><i class="uil uil-gift"></i>Offers</a>
-						</li>
-						<li>
-							<a href="faq.html" class="offer-link"><i class="uil uil-question-circle"></i>Help</a>
-						</li>
-						<li>
-							<a href="dashboard_my_wishlist.html" class="option_links" title="Wishlist"><i class='uil uil-heart icon_wishlist'></i><span class="noti_count1">3</span></a>
+							<a href="dashboard_my_wishlist.html" class="option_links" title="Wishlist"><i class='uil uil-heart icon_wishlist'></i><span class="noti_count1"></span></a>
 						</li>
 						<li class="ui dropdown">
 							<a href="#" class="opts_account">
 								<img src="images/avatar/img-5.jpg" alt="">
-								<span class="user__name">John Doe</span>
+								<span class="user__name">{{business.name}}</span>
 								<i class="uil uil-angle-down"></i>
 							</a>
 							<div class="menu dropdown_account">
@@ -308,7 +430,7 @@
 					<a href="#" class="cate__btn" data-toggle="modal" data-target="#category_model" title="Categories"><i class="uil uil-apps"></i></a>
 				</div>
 				<div class="header_cart order-1">
-					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>Cart</span><ins>2</ins><i class="uil uil-angle-down"></i></a>
+					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>Cart</span><ins>{{ current_user_cart.quantity }}</ins><i class="uil uil-angle-down"></i></a>
 				</div>
 				<div class="search__icon order-1">
 					<a href="#" class="search__btn hover-btn" data-toggle="modal" data-target="#search_model" title="Search"><i class="uil uil-search"></i></a>

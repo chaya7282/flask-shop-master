@@ -34,11 +34,11 @@ class Order(Model):
     contact_name=Column(db.String(100))
     contact_phone= Column(db.String(100))
     payment_method=Column(db.String(50))
-
+    shipping_time_date=Column(db.String(20))
     def __str__(self):
         return f"#{self.identity}"
     @classmethod
-    def create_whole_order(cls, cart, shippment_address):
+    def create_whole_order(cls, cart, shipping_address):
         note= None
         # Step1, certify stock, voucher
         to_update_variants = []
@@ -60,7 +60,9 @@ class Order(Model):
                 unit_price_net=variant.price,
                 is_shipping_required=variant.is_shipping_required,
 
+
             )
+
             to_update_orderlines.append(orderline)
             total_net += orderline.get_total()
 
@@ -77,7 +79,6 @@ class Order(Model):
             shipping_method_id = None
             shipping_method_title = None
             shipping_method_price = 0
-            shipping_address = None
 
             if cart.shipping_method_id:
                 shipping_method = ShippingMethod.get_by_id(cart.shipping_method_id)
@@ -85,7 +86,7 @@ class Order(Model):
                 shipping_method_title = shipping_method.title
                 shipping_method_price = shipping_method.price
 
-                shipping_address= ShippingAddress.create(**shippment_address)
+
 
             order = cls.create(
                 user_id=current_user.id,
@@ -98,6 +99,7 @@ class Order(Model):
                 shipping_method_name=shipping_method_title,
                 shipping_price_net=shipping_method_price,
                 shipping_address=shipping_address.id,
+                shipping_time_date=cart.shipping_time_date,
                 status=OrderStatusKinds.unfulfilled.value,
                 total_net=total_net,
             )
@@ -281,7 +283,9 @@ class Order(Model):
         shipment_address= ShippingAddress.get_by_id(self.shipping_address_id)
         return shipment_address
 
-
+class Shipping_time_date(Model):
+    day=  Column(db.String(15))
+    time= Column(db.String(20))
 
 class ShippingAddress(Model):
     __tablename__ = "delivery_address"

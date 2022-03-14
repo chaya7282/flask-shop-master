@@ -1,15 +1,24 @@
-
+<head>
+	 <style>
+        .thumbnail {
+			height: 50px;
+			width: 50px;
+			border: 2px solid #e97117;
+			background-color: #f8f8ec;
+			padding: 2em;
+}
+    </style>
+</head>
 
 {% if line.product %}
 
 <div class="cart-item">
-	{% if line.product.image_url() %}
-        <div class="cart-product-img">
+					<div class="cart-product-img">
+						<img src="{{ url_for('static', filename='Gambo/HTML/Frontend/images/product/img-1.jpg')}}">
 
-			      <img src={{ line.product.image_url() }}>
-        </div>
-		{% endif %}
-		<div class="cart-text">
+						<div class="offer-badge">6% OFF</div>
+					</div>
+					<div class="cart-text">
 						<h4>{{line.product.title}}
                          {% if line.variant.attribute_map %}
                          {% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
@@ -21,13 +30,13 @@
 								<input type="number" step="1" onchange="update_amounts()" name="qty_{{line.id}}" id="qty_{{line.id}}" value="{{ line.quantity }}" class="input-text qty text">
 								<input type="button" value="+" class="plus plus-btn">
 							</div>
-							  <input type="hidden" value={{line.variant.product.price}} class="price" >
-								<div class="cart-item-price" id="amount" name="amount">{{ line.subtotal }} </div>
-                           		</div>
+								<div class="cart-item-price">{{line.product.basic_price}} <span>{{line.product.on_sale}}</span></div>
+
+						</div>
+
+						<button type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
+					</div>
+				</div>
 
 
-                    </div>
-	 				<a class="click_me_class" href="javascript:void(0)"><i class="uil uil-multiply"></i></a>
-
-</div>
 {% endif %}

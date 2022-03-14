@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, jsonify, flash
 from flask_login import current_user, login_required
 from pluggy import HookimplMarker
-
+from flaskshop.order.models import ShippingAddress,  Shipping_time_date
 from .models import CartLine, Cart, ShippingMethod
 from .forms import NoteForm, VoucherForm, CheckoutForm, PaymentDeliveryForm
 from flaskshop.account.forms import AddressForm
@@ -61,12 +61,14 @@ def Cart_Checkout():
         for line in cart.lines:
             qty = request.form.get(f"qty_{line.id}")
             line.quantity = int(qty)
+
+
             line.save()
         cart.update(
             shipping_method_id=shipping_method.id,
             payment_method=payment_method
         )
-    return redirect(url_for("checkout.get_Shipping_address"))
+    return redirect(url_for("checkout.step_1_delivery_address"))
 
 
 
@@ -101,10 +103,31 @@ def shipment_details():
             "email": current_user.addresses.email
         }
 
+def step_1_delivery_address():
+    form = AddressForm(request.form)
+    address_id = current_user.addresses_id
+    cart = Cart.get_current_user_cart()
+    if address_id:
+        user_address = UserAddress.get_by_id(address_id)
+        form = AddressForm(request.form, obj=user_address)
+    if request.method == "POST" and form.validate_on_submit():
+        shippment_address = {
 
+            "province": form.province.data,
+            "city": form.city.data,
+            "district": form.district.data,
+            "address": form.address.data,
+            "contact_name": form.contact_name.data,
+            "contact_phone": form.contact_phone.data,
+            "email": form.email.data,
+            "pincode": form.pincode.data
+        }
+        shipping_address = ShippingAddress.create(**shippment_address)
+        cart.shipping_address_id = shipping_address.id
+        cart.save()
+        return redirect(url_for("checkout.delivery_time_date"))
 
-
-
+    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id, show_cart=True)
 
 
 def get_Shipping_address():
@@ -130,10 +153,40 @@ def get_Shipping_address():
     return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id,show_cart=True)
 
 def delivery_time_date():
+    cart = Cart.get_current_user_cart()
     if request.method == "POST":
-      i=6
+        day = request.form["address1"]
+        hours= request.form["fruit"]
+        cart.Shipping_time_date= day+hours
+        cart.save()
+        return redirect(url_for("checkout.payment_details"))
     else:
         return render_template("checkout/delivery_time_date.html")
+
+
+def payment_details():
+    cart = Cart.get_current_user_cart()
+
+    if request.method == "POST":
+
+        if cart.shipping_method_id == "Credit Card":
+             holdername= request.form["holdername"]
+             cardnumber= request.form["cardnumber"]
+             expiremonth = request.form["card[expire-month]"]
+             expireyear = request.form["card[expire-year]"]
+             cvc= request.form["card[cvc]"]
+        shippment_address= ShippingAddress.get_by_id(cart.shipping_address_id)
+
+        order, msg = Order.create_whole_order(cart,shipping_address=shippment_address)
+
+        if order:
+
+            return render_template("checkout/order_placed.html", order=order, user_address=shippment_address)
+        else:
+            flash(msg, "warning")
+            return render_template("errors/out_of_stock.html", )
+
+    return render_template("checkout/payment_details.html", paymentmethod=cart.payment_method )
 
 
 def checkout_shipping():
@@ -242,5 +295,9 @@ def flaskshop_load_blueprints(app):
         "/get_Shipping_address", view_func=get_Shipping_address, methods=["GET", "POST"])
     bp.add_url_rule(
         "/delivery_time_date", view_func=delivery_time_date, methods=["GET", "POST"])
+    bp.add_url_rule(
+        "/step_1_delivery_address", view_func=step_1_delivery_address, methods=["GET", "POST"])
+    bp.add_url_rule("/payment_details", view_func= payment_details, methods=["GET", "POST"])
+
 
     app.register_blueprint(bp, url_prefix="/checkout")
