@@ -34,11 +34,11 @@ class Order(Model):
     contact_name=Column(db.String(100))
     contact_phone= Column(db.String(100))
     payment_method=Column(db.String(50))
-    shipping_time_date=Column(db.String(20))
+    shipping_time_date=Column(db.String(50))
     def __str__(self):
         return f"#{self.identity}"
     @classmethod
-    def create_whole_order(cls, cart, shipping_address):
+    def create_whole_order(cls, cart):
         note= None
         # Step1, certify stock, voucher
         to_update_variants = []
@@ -95,10 +95,10 @@ class Order(Model):
                 payment_method=cart.payment_method,
                 contact_phone=cart.contact_phone,
                 shipping_method_id=shipping_method_id,
-                shipping_address_id=shipping_address.id,
+                shipping_address_id=cart.shipping_address_id,
                 shipping_method_name=shipping_method_title,
                 shipping_price_net=shipping_method_price,
-                shipping_address=shipping_address.id,
+
                 shipping_time_date=cart.shipping_time_date,
                 status=OrderStatusKinds.unfulfilled.value,
                 total_net=total_net,

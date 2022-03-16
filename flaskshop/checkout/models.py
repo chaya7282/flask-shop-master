@@ -24,7 +24,7 @@ class Cart(Model):
     contact_phone = Column(db.String(80))
     payment_method = Column(db.String(50))
     shipping_address = Column(db.String(255))
-    shipping_time_date = Column(db.String(20))
+    shipping_time_date = Column(db.String(50))
 
     @property
     def subtotal(self):

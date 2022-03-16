@@ -157,7 +157,7 @@ def delivery_time_date():
     if request.method == "POST":
         day = request.form["address1"]
         hours= request.form["fruit"]
-        cart.Shipping_time_date= day+hours
+        cart.shipping_time_date= day+hours
         cart.save()
         return redirect(url_for("checkout.payment_details"))
     else:
@@ -177,7 +177,7 @@ def payment_details():
              cvc= request.form["card[cvc]"]
         shippment_address= ShippingAddress.get_by_id(cart.shipping_address_id)
 
-        order, msg = Order.create_whole_order(cart,shipping_address=shippment_address)
+        order, msg = Order.create_whole_order(cart)
 
         if order:
 

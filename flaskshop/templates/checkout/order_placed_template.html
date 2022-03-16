@@ -13,7 +13,7 @@
 
                  <div class="col-sm-6 ">
                      <h5 class="mb-3">{{Language["Costumer Details"]}}</h5>
-                     <h5 class="mb-3"> {{user_address.contact_name}}</h5>
+                     <h5 class="mb-3"> {% if user_address %}{{user_address.contact_name}} {% else %} {{current_user.username}} {% endif %}</h5>
                      <h3 class="text-dark mb-1"></h3>
                      <div>{{user_address.address}} </div>
                      <div> {{user_address.city}}</div>
