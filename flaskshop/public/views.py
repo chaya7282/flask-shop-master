@@ -11,10 +11,6 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product, Category
 from .models import Page
 from .search import Item
-import  pdfkit
-from datetime import datetime, date, timedelta
-from twilio.rest import Client
-import smtplib
 
 import numpy as np
 import random
