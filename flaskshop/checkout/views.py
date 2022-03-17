@@ -11,11 +11,12 @@ from flaskshop.order.models import Order
 from flaskshop.discount.models import Voucher
 from flask_mail import Message
 from flaskshop.settings import Config
+from flaskshop.Media.emails import send_receipt
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
 import pywhatkit
 from flaskshop.product.models import Product, Category
-
+from flaskshop.account.models import Business
 impl = HookimplMarker("flaskshop")
 from flask import  current_app
 
@@ -180,6 +181,10 @@ def payment_details():
         order, msg = Order.create_whole_order(cart)
 
         if order:
+            html= render_template("checkout/order_placed_template.html", order=order, user_address=shippment_address)
+            business = Business.query.first()
+            send_receipt(mail_to= shippment_address.email, title='Thanks for buying from ' + business.name,html=html)
+            send_receipt(mail_to=business.email, title='Order number'+ order.token, html=html)
 
             return render_template("checkout/order_placed.html", order=order, user_address=shippment_address)
         else:

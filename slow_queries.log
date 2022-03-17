@@ -6493,3 +6493,499 @@ Traceback (most recent call last):
   File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\socket.py", line 831, in create_connection
     sock.connect(sa)
 ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+[2022-03-17 15:29:57,467]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x0000023F487C0BF0 (otid=0x0000023F487D1E80) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 31, in home
+    products = Product.query.all()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 519, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3309, in __call__
+    return self.class_(**local_kw)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 138, in __init__
+    bind = options.pop('bind', None) or db.engine
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 937, in engine
+    return self.get_engine()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 956, in get_engine
+    return connector.get_engine()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 560, in get_engine
+    options = self.get_options(sa_url, echo)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 575, in get_options
+    self._sa.apply_driver_hacks(self._app, sa_url, options)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\extensions.py", line 147, in apply_driver_hacks
+    return super().apply_driver_hacks(app, info, options)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_sqlalchemy\__init__.py", line 877, in apply_driver_hacks
+    if sa_url.drivername.startswith('mysql'):
+AttributeError: 'NoneType' object has no attribute 'drivername'
+[2022-03-17 15:32:39,754]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 38, in home
+    message = client.messages.create(from_ ="+17252158551",to='+972524534533', body='zz' )
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\twilio\rest\api\v2010\account\message\__init__.py", line 95, in create
+    payload = self._version.create(method='POST', uri=self._uri, data=data, )
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\twilio\base\version.py", line 205, in create
+    raise self.exception(method, uri, response, 'Unable to create record')
+twilio.base.exceptions.TwilioRestException: HTTP 401 error: Unable to create record: Authenticate
+[2022-03-17 15:34:49,090]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 185, in payment_details
+    send_receipt(user_address,html)
+NameError: name 'user_address' is not defined
+[2022-03-17 15:36:04,731]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 185, in payment_details
+    send_receipt(shippment_address,html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 5, in send_receipt
+    msg = Message('Thanks for buying from ' + {{business.name}},
+NameError: name 'Message' is not defined
+[2022-03-17 15:39:08,426]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 185, in payment_details
+    send_receipt(shippment_address,html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 5, in send_receipt
+    msg = Message('Thanks for buying from ' + {{business.name}},
+NameError: name 'business' is not defined
+[2022-03-17 15:42:25,964]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 185, in payment_details
+    send_receipt(shippment_address,html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 5, in send_receipt
+    msg = Message('Thanks for buying from ' + business.name,
+NameError: name 'business' is not defined
+[2022-03-17 15:47:06,498]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 186, in payment_details
+    business = Business.query.first()
+NameError: name 'Business' is not defined
+[2022-03-17 15:48:14,832]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 6, in send_receipt
+    sender=current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
+NameError: name 'current_app' is not defined
+[2022-03-17 15:50:11,472]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 7, in send_receipt
+    sender=current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
+NameError: name 'current_app' is not defined
+[2022-03-17 15:51:08,909]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 8, in send_receipt
+    sender=current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
+NameError: name 'current_app' is not defined
+[2022-03-17 15:52:13,124]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 8, in send_receipt
+    sender=current_app.config["MAIL_USERNAME"], recipients=[address_data['email']])
+TypeError: 'ShippingAddress' object is not subscriptable
+[2022-03-17 16:09:39,327]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 11, in send_receipt
+    mail.send(msg)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\smtplib.py", line 745, in login
+    raise last_exception
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\smtplib.py", line 734, in login
+    (code, resp) = self.auth(
+  File "C:\Users\User\AppData\Local\Programs\Python\Python39\lib\smtplib.py", line 657, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials u4-20020adfdb84000000b001e8d8ac5394sm4398486wri.110 - gsmtp')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 13, in send_receipt
+    flash("email could not be sent", "warning")
+NameError: name 'flash' is not defined
+[2022-03-17 19:24:36,535]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 10, in send_receipt
+    pdf= pdfkit.from_file('html', 'receipt.pdf')
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\api.py", line 48, in from_file
+    r = PDFKit(input, 'file', options=options, toc=toc, cover=cover, css=css,
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\pdfkit.py", line 44, in __init__
+    self.source = Source(url_or_file, type_)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\source.py", line 20, in __init__
+    self.checkFiles()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\source.py", line 40, in checkFiles
+    raise IOError('No such file: %s' % self.source)
+OSError: No such file: html
+[2022-03-17 19:44:19,140]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\configuration.py", line 35, in __init__
+    with open(self.wkhtmltopdf) as f:
+FileNotFoundError: [Errno 2] No such file or directory: b''
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(address_data=shippment_address,bussiness_name= business.name,html=html)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\Media\emails.py", line 12, in send_receipt
+    pdf= pdfkit.from_string(html, 'receipt.pdf')
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\api.py", line 72, in from_string
+    r = PDFKit(input, 'string', options=options, toc=toc, cover=cover, css=css,
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\pdfkit.py", line 45, in __init__
+    self.configuration = (Configuration() if configuration is None
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\configuration.py", line 38, in __init__
+    raise IOError('No wkhtmltopdf executable found: "%s"\n'
+OSError: No wkhtmltopdf executable found: "b''"
+If this file exists please check that this process can read it or you can pass path to it manually in method call, check README. Otherwise please install wkhtmltopdf - https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf
+[2022-03-17 19:52:45,791]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\configuration.py", line 35, in __init__
+    with open(self.wkhtmltopdf) as f:
+FileNotFoundError: [Errno 2] No such file or directory: b''
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 33, in home
+    pdfkit.from_url(render_template("public/index.html", products= products),'pdftmp.pdf')
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\api.py", line 24, in from_url
+    r = PDFKit(url, 'url', options=options, toc=toc, cover=cover,
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\pdfkit.py", line 45, in __init__
+    self.configuration = (Configuration() if configuration is None
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\configuration.py", line 38, in __init__
+    raise IOError('No wkhtmltopdf executable found: "%s"\n'
+OSError: No wkhtmltopdf executable found: "b''"
+If this file exists please check that this process can read it or you can pass path to it manually in method call, check README. Otherwise please install wkhtmltopdf - https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf
+[2022-03-17 19:59:48,240]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\configuration.py", line 35, in __init__
+    with open(self.wkhtmltopdf) as f:
+FileNotFoundError: [Errno 2] No such file or directory: b''
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 33, in home
+    pdfkit.from_url(render_template("public/index.html", products= products))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\api.py", line 24, in from_url
+    r = PDFKit(url, 'url', options=options, toc=toc, cover=cover,
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\pdfkit.py", line 45, in __init__
+    self.configuration = (Configuration() if configuration is None
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\pdfkit\configuration.py", line 38, in __init__
+    raise IOError('No wkhtmltopdf executable found: "%s"\n'
+OSError: No wkhtmltopdf executable found: "b''"
+If this file exists please check that this process can read it or you can pass path to it manually in method call, check README. Otherwise please install wkhtmltopdf - https://github.com/JazzCore/python-pdfkit/wiki/Installing-wkhtmltopdf
+[2022-03-17 20:02:57,488]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 184, in payment_details
+    html= render_template("checkout/order_placed_template", order=order, user_address=shippment_address)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\loaders.py", line 117, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: checkout/order_placed_template
+[2022-03-17 21:00:28,228]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 187, in payment_details
+    send_receipt(mail_to=business.email, title='Order number'+ order.token(), html=html)
+TypeError: 'str' object is not callable

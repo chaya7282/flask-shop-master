@@ -11,6 +11,7 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product, Category
 from .models import Page
 from .search import Item
+import  pdfkit
 from datetime import datetime, date, timedelta
 from twilio.rest import Client
 import smtplib
@@ -29,33 +30,6 @@ def load_user(user_id):
 
 def home():
     products = Product.query.all()
-    init_time = datetime.now()
-    msg_time = init_time + timedelta(seconds=59)
-    account_sid = 'ACed43da2e3a902ae5a72f5c22b8b0ac55'
-    auth_token = '3cf059ad933a35352c56e54f0ad4ed16'
-    client = Client(account_sid, auth_token)
-
-    message = client.messages.create(from_ ="+17252158551",to='+972524534533', body='zz' )
-
-    print(message.sid)
-
-    message = """From: From Person <from@fromdomain.com>
-    To: To Person <to@todomain.com>
-    MIME-Version: 1.0
-    Content-type: text/html
-    Subject: SMTP HTML e-mail test
-
-    This is an e-mail message to be sent in HTML format
-
-    <b>This is HTML message.</b>
-    <h1>This is headline.</h1>
-    """
-    sender = 'from@fromdomain.com'
-    receivers = ['chaya.zilberstein@gmail.com']
-
-    smtpObj = smtplib.SMTP('localhost')
-    smtpObj.sendmail(sender, receivers, message)
-
 
     return render_template("public/index.html", products= products)
 
