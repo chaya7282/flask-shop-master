@@ -14,7 +14,7 @@ from flaskshop.settings import Config
 from flaskshop.Media.emails import send_receipt
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
-import pywhatkit
+
 from flaskshop.product.models import Product, Category
 from flaskshop.account.models import Business
 impl = HookimplMarker("flaskshop")
