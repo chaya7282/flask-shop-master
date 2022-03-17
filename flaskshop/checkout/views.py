@@ -13,7 +13,7 @@ from flask_mail import Message
 from flaskshop.settings import Config
 from flaskshop.extensions import mail
 from flaskshop.constant import SiteDefaultSettings
-
+import pywhatkit
 from flaskshop.product.models import Product, Category
 
 impl = HookimplMarker("flaskshop")
@@ -226,7 +226,7 @@ def checkout_note():
         if not order:
             flash(msg, "warning")
         else:
-            return render_template("checkout/order_placed.html", order=order, Language=Language)
+            return render_template("checkout/order_placed.html", order=order)
 
     return render_template(
         "checkout/note.html",
