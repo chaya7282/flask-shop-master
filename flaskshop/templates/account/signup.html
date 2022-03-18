@@ -3,53 +3,54 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<div class="col-lg-10 col-sm-12 m-auto">
-  <div class="row login">
-    <div class="col-md-6 login__register">
-      <div class="login__register-link">
-        <h3>{{Language["Already have an account?"]}} </h3>
-        <img class="signup-img lazyload lazypreload" data-src="{{ url_for('static', filename='img/login-bg.png') }}">
-        <p><a rel="nofollow" href="{{ url_for('account.login') }}" class="btn secondary narrow">
-           <u>Log in</u>
-          </a></p>
-      </div>
-    </div>
-    <div class="col-md-6 login__form">
-      <form method="post" action="" id="registerForm">
-        <fieldset>
-          <h3>Create an account</h3>
-          {{ form.csrf_token }}
-          <h4>{{Language["user name"]}}</h4>
-          {{ render_field(form.username) }}
-         <h4>{{Language["email"]}}</h4>
-          {{ render_field(form.email) }}
-            <h4>{{Language["password"]}}</h4>
-          {{ render_field(form.password) }}
-           <h4>{{Language["verify password"]}}</h4>
-          {{ render_field(form.confirm) }}
-          <input type="checkbox" onclick="myFunction()">{{Language["Show Password"]}}
-        </fieldset>
-        <button type="submit" class="btn btn-primary narrow">
-          {{Language["Create an account"]}}
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
+<div class="sign-inup">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="sign-form">
+						<div class="sign-inner">
+							<div class="sign-logo" id="logo">
+								<a href="index.html"><img src="images/logo.svg" alt=""></a>
+								<a href="index.html"><img class="logo-inverse" src="images/dark-logo.svg" alt=""></a>
+							</div>
+							<div class="form-dt">
+								<div class="form-inpts checout-address-step">
+									<form method="post" action="" id="registerForm">
+										{{ form.csrf_token }}
+										<div class="form-title"><h6>Sign Up</h6></div>
+										<div class="form-group pos_rel">
+											{{ render_field(form.username) }}
 
-<script>
-function myFunction() {
+										</div>
+										<div class="form-group pos_rel">
+											 {{ render_field(form.email) }}
 
-  var x = document.getElementById("password");
-  var y=  document.getElementById("confirm");
-  if (x.type == "password") {
-    x.type = "text";
-    y.type = "text";
-  } else {
-    x.type = "password";
-     y.type = "password";
-  }
-}
-</script>
+
+										</div>
+										<div class="form-group pos_rel">
+
+											{{ render_field(form.contact_phone) }}
+										</div>
+
+										<div class="form-group pos_rel">
+											{{ render_field(form.password) }}
+										</div>
+										<div class="form-group pos_rel">
+										 {{ render_field(form.confirm) }}
+										</div>
+									<button class="login-btn hover-btn" type="submit">Sign Up Now</button>
+									</form>
+								</div>
+								<div class="signup-link">
+									<p>I have an account? - <a href="{{ url_for('account.login') }}">Sign In Now</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}

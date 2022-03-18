@@ -45,7 +45,7 @@ def login():
            return redirect(url_for("account.edit_address", show_cart= False))
     else:
         flash_errors(form)
-    return render_template("account/login.html", form=form)
+    return render_template("account/sign_in.html", form=form)
 
 
 @login_required
@@ -59,7 +59,7 @@ def logout():
 def signup():
     """Register new user."""
     form = RegisterForm(request.form)
-    categories = Category.query.all()
+
     if form.validate_on_submit():
         user = User.create(
             username=form.username.data,
@@ -69,7 +69,7 @@ def signup():
         )
         login_user(user)
         flash("You are signed up.", "success")
-        return redirect(url_for("account.edit_address", show_cart=False))
+        return redirect( url_for('public.home'))
     else:
         flash_errors(form)
     return render_template("account/signup.html", form=form)

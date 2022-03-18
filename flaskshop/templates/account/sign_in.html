@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% from 'bootstrap/form.html' import render_field %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+<body>
+	<div class="sign-inup">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="sign-form">
+						<div class="sign-inner">
+
+
+							<div class="form-dt">
+								<div class="form-inpts checout-address-step">
+									<form method="post" action="" id="loginForm" novalidate>
+										<div class="form-title"><h6>Sign In</h6></div>
+										<div class="form-group pos_rel">
+											{% set label_id = form.username.label.field_id %}
+											<input id="{{label_id}}" name="{{label_id}}"  name="phone" type="text" placeholder="Enter User name" class="form-control lgn_input" required="">
+											<i class="uil uil-mobile-android-alt lgn_icon"></i>
+										</div>
+										<div class="form-group pos_rel">
+											{% set label_id = form.password.label.field_id %}
+											<input id="{{label_id}}" name="{{label_id}}" type="password" placeholder="Enter Password" class="form-control lgn_input" required="">
+											<i class="uil uil-padlock lgn_icon"></i>
+										</div>
+
+										<button class="login-btn hover-btn" type="submit">Sign In Now</button>
+										{{ form.csrf_token }}
+									</form>
+								</div>
+
+								<div class="signup-link">
+									<p>Don't have an account? - <a href="{{ url_for('account.signup') }}">Sign Up Now</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Javascripts -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/OwlCarousel/owl.carousel.js"></script>
+	<script src="vendor/semantic/semantic.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/product.thumbnail.slider.js"></script>
+	<script src="js/offset_overlay.js"></script>
+	<script src="js/night-mode.js"></script>
+
+
+</body>
+{% endblock %}

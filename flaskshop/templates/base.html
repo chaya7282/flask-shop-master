@@ -303,6 +303,86 @@ h2{
 	</div>
 </form>
 
+	<div id="address_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+        <div class="modal-dialog category-area" role="document">
+            <div class="category-area-inner">
+                <div class="modal-header">
+                    <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="uil uil-multiply"></i>
+                    </button>
+                </div>
+                <div class="category-model-content modal-content">
+					<div class="cate-header">
+						<h4>Add New Address</h4>
+					</div>
+					<div class="add-address-form">
+						<div class="checout-address-step">
+							<div class="row">
+								<div class="col-lg-12">
+									<form class="">
+										<!-- Multiple Radios (inline) -->
+										<div class="form-group">
+											<div class="product-radio">
+												<ul class="product-now">
+													<li>
+														<input type="radio" id="ad1" name="address1" checked>
+														<label for="ad1">Home</label>
+													</li>
+													<li>
+														<input type="radio" id="ad2" name="address1">
+														<label for="ad2">Office</label>
+													</li>
+													<li>
+														<input type="radio" id="ad3" name="address1">
+														<label for="ad3">Other</label>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="address-fieldset">
+											<div class="row">
+												<div class="col-lg-12 col-md-12">
+													<div class="form-group">
+														<label class="control-label">Flat / House / Office No.*</label>
+														<input id="flat" name="flat" type="text" placeholder="Address" class="form-control input-md" required="">
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-12">
+													<div class="form-group">
+														<label class="control-label">Street / Society / Office Name*</label>
+														<input id="street" name="street" type="text" placeholder="Street Address" class="form-control input-md">
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-12">
+													<div class="form-group">
+														<label class="control-label">Pincode*</label>
+														<input id="pincode" name="pincode" type="text" placeholder="Pincode" class="form-control input-md" required="">
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-12">
+													<div class="form-group">
+														<label class="control-label">Locality*</label>
+														<input id="Locality" name="locality" type="text" placeholder="Enter City" class="form-control input-md" required="">
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-12">
+													<div class="form-group mb-0">
+														<div class="address-btns">
+															<button class="save-btn14 hover-btn">Save</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 	<!-- Cart Sidebar Offsetl End-->
@@ -346,7 +426,7 @@ h2{
 							<a href="{{ url_for('public.home') }}" class="offer-link"><i class="fa fa-home"></i>Home</a>
 						</li>
 						<li>
-							<a href="dashboard_my_wishlist.html" class="option_links" title="Wishlist"><i class='uil uil-heart icon_wishlist'></i><span class="noti_count1"></span></a>
+							<a href="{{ url_for('account.edit_address') }}" class="option_links" title="Wishlist"><i class="fa fa-address-card" aria-hidden="true"></i><span ></span></a>
 						</li>
 						<li class="ui dropdown">
 							<a href="#" class="opts_account">

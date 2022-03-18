@@ -28,6 +28,10 @@ class RegisterForm(FlaskForm):
     password = PasswordField(
         "Password", validators=[DataRequired(), Length(min=6, max=40)],widget=PasswordInput(hide_value=True)
     )
+    contact_phone = StringField(
+        "Contact Phone 0524534555 *", validators=[DataRequired(), Length(min=10, max=10)]
+    )
+
     confirm = PasswordField(
         "Verify password",
         [DataRequired(), EqualTo("password", message="Passwords must match")],widget=PasswordInput(hide_value=False)
