@@ -275,28 +275,22 @@ h2{
 					<div class="cart-radio">
 						<h4> Payment:   </h4>
 					<ul class="kggrm-now">
-								<li>
-									<input type="radio" name="payment_method" value="Cash" id="payment_method_1" >
-									<label for="payment_method_1"> {{Language["Cash"]}}</label>
 
-								</li>
 								<li>
 									<input type="radio" name="payment_method" value="Credit Card" id="payment_method_2" checked>
 									<label for="payment_method_2">{{Language["Credit Card"]}}  </label>
 
 								</li>
-								<li>
-									<input type="radio" name="payment_method" value=" Bit or Pay-Pal " id="payment_method_3" >
-									<label for="payment_method_3">{{Language["Bit or Pay-Pal"]}}  </label>
 
-								</li>
 
 							</ul>
 					</div>
 				</div>
 
 			<div class="checkout-cart">
+				{% if current_user_cart.lines %}
 				<button type="submit"  class="Offer-shop-btn hover-btn">{{Language["Proceed to Checkout"]}} </button>
+				{% endif %}
 			</div>
 
 		</div>

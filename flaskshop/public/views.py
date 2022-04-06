@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
-from flask import Blueprint, render_template, request, send_from_directory
+from flask import Blueprint, render_template, request, send_from_directory, jsonify, redirect,url_for
 from sqlalchemy.sql import or_
 import os
 from pluggy import HookimplMarker
@@ -11,7 +11,7 @@ from flaskshop.account.models import User
 from flaskshop.product.models import Product, Category
 from .models import Page
 from .search import Item
-
+from flaskshop.extensions import csrf_protect
 import numpy as np
 import random
 from flaskshop.product.forms import AddCartForm
@@ -62,5 +62,6 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/style", view_func=style)
     bp.add_url_rule("/favicon.ico", view_func=favicon)
     bp.add_url_rule("/search", view_func=search)
+
     bp.add_url_rule("/page/<identity>", view_func=show_page)
     app.register_blueprint(bp)

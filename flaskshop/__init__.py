@@ -6,7 +6,7 @@ from flaskshop import configuration
 from flaskshop.plugin.models import PluginRegistry
 from flaskshop.settings import Config
 from flaskshop.plugin import spec, manager
-
+import paypalrestsdk
 import pandas as pd
 import os
 def create_app():

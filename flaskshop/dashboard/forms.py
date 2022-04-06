@@ -49,6 +49,12 @@ class BussinessForm(FlaskForm):
     name = StringField(validators=[DataRequired()])
     email = StringField()
     email_password = StringField()
+    account_sid =  StringField("Twilo account sid")
+    auth_token = StringField("Twilo auth token")
+    Twilo_phone_Number =StringField("Twilo_phone_Number")
+    payPal_SID = StringField("Pay Pal SID")
+    payPal_Secret =StringField("Pay Pal Secret")
+
     image = StringField(validators=[DataRequired()])
 
 class DashboardMenuForm(FlaskForm):

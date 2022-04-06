@@ -1,5 +1,8 @@
 import time
 from datetime import datetime
+from flaskshop.Media.emails import send_receipt
+from flaskshop.account.models import Business
+from flask import Flask, render_template, jsonify, request, redirect, Blueprint
 from flaskshop.order.models import ShippingAddress,  Shipping_time_date
 from flask import (
     Blueprint,
@@ -19,7 +22,8 @@ from flaskshop.product.models import Category
 from .payment import zhifubao
 from flaskshop.extensions import csrf_protect
 from flaskshop.constant import ShipStatusKinds, PaymentStatusKinds, OrderStatusKinds
-
+import paypalrestsdk
+from flaskshop.checkout.models import Cart
 impl = HookimplMarker("flaskshop")
 
 
@@ -115,8 +119,91 @@ def receive(token):
         ship_status=ShipStatusKinds.received.value,
     )
     return redirect(url_for('dashboard.order_edit', id=order.id))
+@csrf_protect.exempt
+def payment():
+    print("hell")
+    paypalrestsdk.configure({
+        "mode": "sandbox",  # sandbox or live
+        "client_id": "AWXiT6_4d9XWj60PtnrwO7RsqKcZ5-hfD6h0jE6NM7_0XSQUWjR8oPP-npFJqaby-AmwPj1wYfac0d78",
+        "client_secret": "EPCFDnaorPq44s5oMw52OaxLwbWkINBP1WsSyvdDMqP4SXvDNL502cdhgVRXH87t0RqwNT5ozxVn5qCn"})
 
+    cart = Cart.get_current_user_cart()
 
+    items= cart.pay_pal_items()
+    payment_arguments = {
+        'intent': 'sale',
+        'payer': {
+            'payment_method': 'paypal'
+        },
+        'redirect_urls': {
+            'return_url': url_for('order.execute'),
+
+            'cancel_url': url_for('order.cancel')
+        },
+        'transactions': [{
+            'item_list': {
+                'items': items
+            },
+            'amount': {
+                'total': str(cart.total),
+                'currency': "ILS"
+            },
+            'description': 'Make sure to include'
+        }]
+    }
+    payment = paypalrestsdk.Payment( payment_arguments)
+
+    if payment.create():
+        cart.paymentID = payment.id
+        cart.save()
+        print('Payment success!')
+    else:
+        print(payment.error)
+
+    return jsonify({'paymentID': payment.id})
+
+@csrf_protect.exempt
+def execute():
+    success = False
+
+    payment = paypalrestsdk.Payment.find(request.form['paymentID'])
+    cart= Cart.query.filter_by(paymentID=payment.id).first()
+    if payment.execute({'payer_id' : request.form['payerID']}):
+        order, msg = Order.create_whole_order(cart)
+        order.paymentID=payment.id
+        order.save()
+        success = True
+    else:
+        print('Execute error!')
+    return jsonify(success)
+@csrf_protect.exempt
+def cancel():
+    payment = paypalrestsdk.Payment.find(request.form['paymentID'])
+    order = Order.query.filter_by(paymentID=payment.id).all()
+    if order:
+        order.delete()
+    return True
+
+@csrf_protect.exempt
+def create_reception(paymentID):
+    address_id = current_user.addresses_id
+    user_address = None
+    if address_id:
+        user_address = UserAddress.get_by_id(address_id)
+
+    order = Order.query.filter_by(paymentID=paymentID).first()
+    if order:
+        shippment_address = ShippingAddress.get_by_id(order.shipping_address_id)
+        html = render_template("checkout/order_placed_template.html", order=order, user_address=shippment_address)
+
+        business = Business.query.first()
+        send_receipt(mail_to=shippment_address.email, title='Thanks for buying from ' + business.name, html=html)
+        send_receipt(mail_to=business.email, title='Order number' + order.token, html=html)
+
+        return render_template("checkout/order_placed.html", order=order, user_address=shippment_address)
+    else:
+
+        return render_template("errors/out_of_stock.html", )
 @impl
 def flaskshop_load_blueprints(app):
     bp = Blueprint("order", __name__)
@@ -129,6 +216,9 @@ def flaskshop_load_blueprints(app):
 
     bp.add_url_rule("/cancel/<string:token>", view_func=cancel_order)
     bp.add_url_rule("/receive/<string:token>", view_func=receive)
+    bp.add_url_rule("/payment", view_func=payment, methods=["POST"])
+    bp.add_url_rule("/execute", view_func=execute, methods=["POST"])
+    bp.add_url_rule("/create_reception/<string:paymentID>", view_func=create_reception, methods=["POST","GET"])
 
-
+    bp.add_url_rule("/cancel", view_func=cancel, methods=["POST"])
     app.register_blueprint(bp, url_prefix="/orders")

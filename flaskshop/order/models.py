@@ -35,6 +35,8 @@ class Order(Model):
     contact_phone= Column(db.String(100))
     payment_method=Column(db.String(50))
     shipping_time_date=Column(db.String(50))
+    paymentID= Column(db.String(50))
+    paymentStatus= Column(db.Integer(),default=0)
     def __str__(self):
         return f"#{self.identity}"
     @classmethod
@@ -132,7 +134,17 @@ class Order(Model):
 
         return order, "success"
 
-
+    def pay_pal_items(self):
+        items=[]
+        for line in self.lines:
+            item={
+                "name": line.product_name,
+                "sku": line.product_sku,
+                "price": str(line.get_total()) ,
+                "currency": "USD",
+                "quantity": str(line.quantity)}
+            items.append(item)
+        return items
     @property
     def shipping_method(self):
         return ShippingMethod.get_by_id(self.shipping_method_id)

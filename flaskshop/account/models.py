@@ -102,7 +102,11 @@ class Business(Model):
     email = Column(db.String(80), nullable=True)
     email_password= Column(db.String(80), nullable=True)
     image= Column(db.String(255), nullable=True, default=None)
-
+    account_sid  = Column(db.String(20), nullable=True)
+    auth_token=Column(db.String(20), nullable=True)
+    payPal_SID=Column(db.String(100), nullable=True)
+    payPal_Secret = Column(db.String(100), nullable=True)
+    Twilo_phone_Number=Column(db.String(20), nullable=True)
     def __str__(self):
         return self.name
 

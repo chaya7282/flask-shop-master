@@ -655,7 +655,7 @@ def generate_menu_items(category: Category, menu_id=None, parent_id=None):
 # step21
 def create_shipping_methods():
 
-    shipping_method = ShippingMethod.create(title="Self picking", price=0,address_needed=False)
+    shipping_method = ShippingMethod.create(title="Self picking", price=0,address_needed=True)
     yield f"Shipping method #{shipping_method.id}"
     shipping_method = ShippingMethod.create(title="Delivery", price=150,address_needed=True)
 

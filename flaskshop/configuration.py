@@ -32,7 +32,7 @@ from .api import api as api_view
 from .dashboard_api.api_app import dashboard_api
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
-
+import paypalrestsdk
 
 def register_extensions(app):
     bcrypt.init_app(app)
@@ -52,6 +52,7 @@ def jinja_global_varibles(app):
 
 def register_blueprints(app):
     app.pluggy.hook.flaskshop_load_blueprints(app=app)
+
 
 
 def register_errorhandlers(app):

@@ -25,7 +25,7 @@ class Cart(Model):
     payment_method = Column(db.String(50))
     shipping_address = Column(db.String(255))
     shipping_time_date = Column(db.String(50))
-
+    paymentID= Column(db.String(50))
     @property
     def subtotal(self):
         return sum(line.subtotal for line in self)
@@ -51,7 +51,17 @@ class Cart(Model):
         for cart in carts:
             cart.update_quantity()
 
-
+    def pay_pal_items(self):
+        items=[]
+        for line in self.lines:
+            item={
+                "name": line.product.title,
+                "sku": line.product.title,
+                "price": str(line.variant.price),
+                "currency": "ILS",
+                "quantity": str(line.quantity)}
+            items.append(item)
+        return items
 
 
     @classmethod

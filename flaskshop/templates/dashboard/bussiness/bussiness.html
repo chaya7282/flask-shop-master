@@ -34,7 +34,12 @@
                                             {{macros.render_input_field(form.phone,"text")}}
                                             {{macros.render_input_field(form.email,"text")}}
                                             {{macros.render_input_field(form.email_password,"text")}}
-                                            {{ macros.render_file_field(form.image, form.image.data) }}
+                                             {{macros.render_input_field(form.account_sid,"text")}}
+                                            {{macros.render_input_field(form.auth_token,"text")}}
+                                             {{macros.render_input_field(form.Twilo_phone_Number,"text")}}
+                                             {{ macros.render_file_field(form.image, form.image.data) }}
+                                                {{macros.render_input_field(form.payPal_SID,"text")}}
+                                             {{macros.render_input_field(form.payPal_Secret,"text")}}
 
                                             <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
                                             <button class="save-btn hover-btn" type="submit">{{Language["Submit"]}} </button>

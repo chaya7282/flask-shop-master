@@ -1,9 +1,8 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 {% block content %}
 
-
 <div class="wrapper">
-	<div class="gambo-Breadcrumb">
+		<div class="gambo-Breadcrumb">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -15,7 +14,7 @@
                                 <strong>Delivery Address</strong>
                             </li>
                             <li  id="step2"><strong>Select Date and Time</strong></li>
-                            <li  class="active" id="step3"><strong>Payment</strong></li>
+                            <li class="active" id="step3"><strong>Payment</strong></li>
 
                         </ul>
 								  </div>
@@ -24,95 +23,60 @@
 				</div>
 			</div>
 		</div>
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 	<div class="all-product-grid">
 			<div class="container">
-			<form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.payment_details') }}"  enctype="multipart/form-data">
-				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 				<div class="row">
-						<div class="col-lg-12">
-							<div class="pymnt_title mb-4">
-								<h4>{{paymentmethod}}</h4>
-							</div>
+					<div class="col-lg-8 col-md-7">
+						<div id="checkout_wizard" class="checkout accordion left-chck145">
+						   <div class="form-group">
+									<label class="control-label">Pay with all credit cards</label>
+										 <div id="paypal-button"></div>
+
+										</div>
 						</div>
-						{% if paymentmethod == "Credit Card" %}
-						<div class="col-lg-6">
-						<div class="form-group mt-1">
-																	<label class="control-label">Holder Name*</label>
-																	<div class="ui search focus">
-																		<div class="ui left icon input swdh11 swdh19">
-																			<input class="prompt srch_explore" type="text" name="holdername" value="" id="holder[name]" required="" maxlength="64" placeholder="Holder Name">
-																		</div>
-																	</div>
-																</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group mt-1">
-								<label class="control-label">Card Number*</label>
-								<div class="ui search focus">
-									<div class="ui left icon input swdh11 swdh19">
-										<input class="prompt srch_explore" type="text" name="cardnumber" value="" id="card[number]" required="" maxlength="64" placeholder="Card Number">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="form-group mt-1">
-								<label class="control-label">Expiration Month*</label>
-								<select class="ui fluid search dropdown form-dropdown" name="card[expire-month]">
-									<option value="">Month</option>
-									<option value="1">January</option>
-									<option value="2">February</option>
-									<option value="3">March</option>
-									<option value="4">April</option>
-									<option value="5">May</option>
-									<option value="6">June</option>
-									<option value="7">July</option>
-									<option value="8">August</option>
-									<option value="9">September</option>
-									<option value="10">October</option>
-									<option value="11">November</option>
-									<option value="12">December</option>
-								  </select>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="form-group mt-1">
-								<label class="control-label">Expiration Year*</label>
-								<div class="ui search focus">
-									<div class="ui left icon input swdh11 swdh19">
-										<input class="prompt srch_explore" type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="form-group mt-1">
-								<label class="control-label">CVV*</label>
-								<div class="ui search focus">
-									<div class="ui left icon input swdh11 swdh19">
-										<input class="prompt srch_explore" name="card[cvc]" maxlength="3" placeholder="CVV">
-									</div>
-								</div>
-							</div>
-						</div>
-						{% endif %}
-						<button  type="submit" class="next-btn16 hover-btn">Place Order</button>
 					</div>
-		</form>
+					{% include "checkout/cart_side_tempalte.html" %}
+				</div>
 			</div>
-
 		</div>
- </div>
+
+	</div>
 
 
- <script>
-    $(document).ready(function () {
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    if (".nav-tabs") hasClass(".active"); {
-      $(".checkout-bar li").addClass("active");
-    }
-  });
-});
-  </script>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+<script>
+
+
+    var CREATE_PAYMENT_URL  =  "{{ url_for('order.payment') }}";
+    var EXECUTE_PAYMENT_URL =  "{{ url_for('order.execute') }}";
+
+    paypal.Button.render({
+
+        env: 'sandbox', // Or 'sandbox'
+
+        commit: true, // Show a 'Pay Now' button
+       payment: function() {
+            return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                return data.paymentID;
+            });
+        },
+
+        onAuthorize: function(data) {
+        	var paymentIDD= data.paymentID
+            return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                paymentID: data.paymentID,
+                payerID:   data.payerID
+            }).then(function(data) {
+            	window.location.href = "{{ url_for('order.create_reception',paymentID='ADDSHARE2') }}".replace("ADDSHARE2", paymentIDD)
+
+
+			});
+
+        }
+
+    }, '#paypal-button');
+</script>
 {% endblock content %}
