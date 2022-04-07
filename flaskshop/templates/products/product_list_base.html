@@ -8,7 +8,7 @@
 					<div class="col-md-12">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="{{url_for('public.home')}}">Home</a></li>
+								<li class="breadcrumb-item"><a href="{{url_for('public.home')}}">{{Language["Home"]}}</a></li>
 								<li class="breadcrumb-item active" aria-current="page">{{object.title}}</li>
 							</ol>
 						</nav>
@@ -24,15 +24,13 @@
 	<div class="product-list-view">
 					<div class="row">
                         {% for product in products %}
+						{% if product.is_active %}
 						<div class="col-lg-3 col-md-6">
 							{% include('products/gambo_product.html') %}
 						</div>
+						{% endif %}
 					    {% endfor %}
-						<div class="col-md-12">
-							<div class="more-product-btn">
-								<button class="show-more-btn hover-btn" onclick="window.location.href = '#';">Show More</button>
-							</div>
-						</div>
+
 					</div>
 				</div>
 </div>

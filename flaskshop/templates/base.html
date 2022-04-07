@@ -180,7 +180,7 @@ h2{
                 </div>
                 <div class="category-model-content modal-content">
 					<div class="cate-header">
-						<h4>Select Category</h4>
+						<h4> {{Language["Select Category"]}} </h4>
 					</div>
                     <ul class="category-by-cat">
 						{% for item in categories %}
@@ -195,7 +195,7 @@ h2{
 						{% endfor %}
 
                     </ul>
-					<a href="#" class="morecate-btn"><i class="uil uil-apps"></i>More Categories</a>
+
                 </div>
             </div>
         </div>
@@ -232,16 +232,16 @@ h2{
 
 		<div class="bs-canvas bs-canvas-left position-fixed bg-cart h-100">
 		<div class="bs-canvas-header side-cart-header p-3 ">
-			<div class="d-inline-block  main-cart-title">My Cart <span>( {{current_user_cart.quantity}} Items)</span></div>
+			<div class="d-inline-block  main-cart-title">{{Language["My Cart"]}}  <span>( {{current_user_cart.quantity}} {{Language["Items"]}}  )</span></div>
 			<button type="button" class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
 		</div>
 		<div class="bs-canvas-body">
 			<div class="cart-top-total">
 				<div class="cart-total-dil">
 					{% if business %}
-					<h4>--{{ business.name }}</h4>
+					<h4>{{ business.name }}</h4>
 					{% endif %}
-					<span >${{ current_user_cart.subtotal }}</span>
+					<span >{{Language["$"]}}  {{ current_user_cart.subtotal }}</span>
 				</div>
 
 			</div>
@@ -253,15 +253,13 @@ h2{
 		</div>
 		<div class="bs-canvas-footer">
 			<div class="cart-total-dil saving-total ">
-				<h4>Total</h4>
-				<span class="total">{{ current_user_cart.subtotal }}</span>
+				<h4>{{Language["Total"]}} </h4>
+				<span class="total">{{ current_user_cart.subtotal }}{{Language["$"]}} </span>
 			</div>
 
 			<div class="main-total-cart">
-
-
-					<div class="cart-radio">
-						<h4> Delivery:   </h4>
+				<div class="cart-radio">
+						<h4>{{Language["collention"]}}   </h4>
 							<ul class="kggrm-now">
 
 								 {% for method in shipping_methods %}
@@ -275,9 +273,10 @@ h2{
 							</ul>
 
 					</div>
-
+			</div>
+			<div class="main-total-cart">
 					<div class="cart-radio">
-						<h4> Payment:   </h4>
+						<h4> {{Language["Payment"]}}   </h4>
 					<ul class="kggrm-now">
 
 								<li>
@@ -324,7 +323,7 @@ h2{
 												<ul class="product-now">
 													<li>
 														<input type="radio" id="ad1" name="address1" checked>
-														<label for="ad1">Home</label>
+														<label for="ad1">{{Language["Home"]}}  </label>
 													</li>
 													<li>
 														<input type="radio" id="ad2" name="address1">
@@ -421,7 +420,7 @@ h2{
 						</li>
 
 						<li>
-							<a href="{{ url_for('public.home') }}" class="offer-link"><i class="fa fa-home"></i>Home</a>
+							<a href="{{ url_for('public.home') }}" class="offer-link"><i class="fa fa-home"></i>{{Language["Home"]}}   </a>
 						</li>
 						<li>
 							<a href="{{ url_for('account.edit_address') }}" class="option_links" title="Wishlist"><i class="fa fa-address-card" aria-hidden="true"></i><span ></span></a>
@@ -443,17 +442,17 @@ h2{
 								</div>
 								{% if current_user.is_authenticated %}
 								{% if current_user.can_edit() %}
-								<a href="{{ url_for('dashboard.index') }}" class="item channel_item"><i class="uil uil-apps icon__1"></i>Dashbaord</a>
+								<a href="{{ url_for('dashboard.index') }}" class="item channel_item"><i class="uil uil-apps icon__1"></i>{{Language["Dashboard"]}}  </a>
 								{% endif %}
-								<a href="{{ url_for('account.user_orders') }}" class="item channel_item"><i class="uil uil-box icon__1"></i>My Orders</a>
-								<a href="{{ url_for('account.edit_address',show_cart=False ) }}" class="item channel_item"><i class="uil uil-location-point icon__1"></i>My Address</a>
-								<a href="{{ url_for('public.home') }}" class="item channel_item"> <i class="fa fa-home  icon__1" aria-hidden="true"></i>Home</a>
-								<a href="{{ url_for('account.set_password') }}" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Password</a>
+								<a href="{{ url_for('account.user_orders') }}" class="item channel_item"><i class="uil uil-box icon__1"></i>{{Language["My Orders"]}} </a>
+								<a href="{{ url_for('account.edit_address',show_cart=False ) }}" class="item channel_item"><i class="uil uil-location-point icon__1"></i>{{Language["My Addresses"]}}  </a>
+								<a href="{{ url_for('public.home') }}" class="item channel_item"> <i class="fa fa-home  icon__1" aria-hidden="true"></i>{{Language["Home"]}}  </a>
+								<a href="{{ url_for('account.set_password') }}" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>{{Language["Your Password"]}}  </a>
 								{% endif %}
 								{% if current_user.is_authenticated %}
-								<a href="{{ url_for('account.logout') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Logout</a>
+								<a href="{{ url_for('account.logout') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>{{Language["Log out"]}}</a>
 								{% else %}
-									<a href="{{ url_for('account.login') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Login</a>
+									<a href="{{ url_for('account.login') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>{{Language["Log in"]}} </a>
 								{% endif %}
 									</div>
 						</li>
@@ -464,37 +463,18 @@ h2{
 		<div class="sub-header-group">
 			<div class="sub-header">
 				<div class="ui dropdown">
-					<a href="#" class="category_drop hover-btn" data-toggle="modal" data-target="#category_model" title="Categories"><i class="uil uil-apps"></i><span class="cate__icon">Select Category</span></a>
+					<a href="#" class="category_drop hover-btn" data-toggle="modal" data-target="#category_model" title="Categories"><i class="uil uil-apps"></i><span class="cate__icon">{{Language["Select Category"]}} </span></a>
 				</div>
 				<nav class="navbar navbar-expand-lg navbar-light py-3">
 					<div class="container-fluid">
 						<button class="navbar-toggler menu_toggle_btn" type="button" data-target="#navbarSupportedContent"><i class="uil uil-bars"></i></button>
 						<div class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-end bg-dark1 p-3 p-lg-0 mt1-5 mt-lg-0 mobileMenu" id="navbarSupportedContent">
 							<ul class="navbar-nav main_nav align-self-stretch">
-								<li class="nav-item"><a href="index.html" class="nav-link active" title="Home">Home</a></li>
-								<li class="nav-item"><a href="shop_grid.html" class="nav-link new_item" title="New Products">New Products</a></li>
-								<li class="nav-item"><a href="shop_grid.html" class="nav-link" title="Featured Products">Featured Products</a></li>
-								<li class="nav-item">
-									<div class="ui icon top left dropdown nav__menu">
-										<a class="nav-link" title="Pages">Pages <i class="uil uil-angle-down"></i></a>
-										<div class="menu dropdown_page">
-										</div>
-									</div>
-								</li>
-								<li class="nav-item">
-									<div class="ui icon top left dropdown nav__menu">
-										<a class="nav-link" title="Blog">Blog <i class="uil uil-angle-down"></i></a>
-										<div class="menu dropdown_page">
-											<a href="our_blog.html" class="item channel_item page__links">Our Blog</a>
-											<a href="blog_no_sidebar.html" class="item channel_item page__links">Our Blog Two No Sidebar</a>
-											<a href="blog_left_sidebar.html" class="item channel_item page__links">Our Blog with Left Sidebar</a>
-											<a href="blog_right_sidebar.html" class="item channel_item page__links">Our Blog with Right Sidebar</a>
-											<a href="blog_detail_view.html" class="item channel_item page__links">Blog Detail View</a>
-											<a href="blog_left_sidebar_single_view.html" class="item channel_item page__links">Blog Detail View with Sidebar</a>
-										</div>
-									</div>
-								</li>
-								<li class="nav-item"><a href="contact_us.html" class="nav-link" title="Contact">Contact Us</a></li>
+								<li class="nav-item"><a href="{{url_for('public.home')}}" class="nav-link active" title="Home">{{Language["Home"]}} </a></li>
+								<li class="nav-item"><a href="{{url_for('product.show_on_sale')}}" class="nav-link new_item" title="New Products">{{Language["New Products"]}}  </a></li>
+								<li class="nav-item"><a href="{{url_for('product.show_featured')}}" class="nav-link" title="Featured Products">{{Language["Featured Products"]}} </a></li>
+
+
 							</ul>
 						</div>
 					</div>
@@ -503,7 +483,7 @@ h2{
 					<a href="#" class="cate__btn" data-toggle="modal" data-target="#category_model" title="Categories"><i class="uil uil-apps"></i></a>
 				</div>
 				<div class="header_cart order-1">
-					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>Cart</span><ins>{{ current_user_cart.quantity }}</ins><i class="uil uil-angle-down"></i></a>
+					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>{{Language["Cart"]}} </span><ins>{{ current_user_cart.quantity }}</ins><i class="uil uil-angle-down"></i></a>
 				</div>
 				<div class="search__icon order-1">
 					<a href="#" class="search__btn hover-btn" data-toggle="modal" data-target="#search_model" title="Search"><i class="uil uil-search"></i></a>
@@ -541,7 +521,7 @@ h2{
 				<div class="row">
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="second-row-item">
-							<h4>Contact Information</h4>
+							<h4> {{Language["Contact Information"]}} </h4>
 							<ul>
 								<li><i class="uil uil-dialpad-alt"></i>{{business.phone}}</a></li>
 								<li>{{business.address}}</li>
@@ -551,32 +531,32 @@ h2{
 					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="second-row-item">
-							<h4>Site Navigation</h4>
+							<h4> {{Language["Site Navigation"]}} </h4>
 							<ul>
 								{% if current_user.is_authenticated %}
 								{% if current_user.can_edit() %}
-								<li><a href="{{ url_for('dashboard.index') }}" class="item channel_item"><i class="uil uil-apps icon__1"></i>Dashbaord</a></li>
+								<li><a href="{{ url_for('dashboard.index') }}" class="item channel_item"><i class="uil uil-apps icon__1"></i> {{Language["Dashboard"]}}  </a></li>
 								{% endif %}
-								<li><a href="{{ url_for('account.user_orders') }}" class="item channel_item"><i class="uil uil-box icon__1"></i>My Orders</a></li>
-								<li><a href="{{ url_for('account.edit_address',show_cart=False ) }}" class="item channel_item"><i class="uil uil-location-point icon__1"></i>My Address</a></li>
-								<li><a href="{{ url_for('public.home') }}" class="item channel_item"> <i class="fa fa-home  icon__1" aria-hidden="true"></i>Home</a></li>
-								<li><a href="{{ url_for('account.set_password') }}" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Password</a></li>
+								<li><a href="{{ url_for('account.user_orders') }}" class="item channel_item"><i class="uil uil-box icon__1"></i>{{Language["My Orders"]}}   </a></li>
+								<li><a href="{{ url_for('account.edit_address',show_cart=False ) }}" class="item channel_item"><i class="uil uil-location-point icon__1"></i>{{Language["My Addresses"]}} </a></li>
+								<li><a href="{{ url_for('public.home') }}" class="item channel_item"> <i class="fa fa-home  icon__1" aria-hidden="true"></i>{{Language["Home"]}} </a></li>
+								<li><a href="{{ url_for('account.set_password') }}" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>{{Language["Your Password"]}} </a></li>
 								{% endif %}
 								{% if current_user.is_authenticated %}
-								<li><a href="{{ url_for('account.logout') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Logout</a></li>
+								<li><a href="{{ url_for('account.logout') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>{{Language["Log out"]}} </a></li>
 								{% else %}
-									<li><a href="{{ url_for('account.login') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Login</a></li>
+									<li><a href="{{ url_for('account.login') }}" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>{{Language["Log in"]}} </a></li>
 								{% endif %}
 							</ul>
 						</div>
 					</div>
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="second-row-item">
-							<h4>Connections</h4>
+							<h4> {{Language["Connections"]}} </h4>
 							<ul>
-								<li class="nav-item"><a href="index.html" class="nav-link active" title="Home">Home</a></li>
-								<li class="nav-item"><a href="shop_grid.html" class="nav-link new_item" title="New Products">Sale Products</a></li>
-								<li class="nav-item"><a href="shop_grid.html" class="nav-link" title="Featured Products">Featured Products</a></li>
+								<li class="nav-item"><a href="{{url_for('public.home')}}" class="nav-link active" title="Home">{{Language["Home"]}} </a></li>
+								<li class="nav-item"><a href="{{url_for('product.show_on_sale')}}" class="nav-link new_item" title="New Products">{{Language["New Products"]}}  </a></li>
+								<li class="nav-item"><a href="{{url_for('product.show_featured')}}" class="nav-link" title="Featured Products">{{Language["Featured Products"]}} </a></li>
 
 							</ul>
 						</div>
@@ -585,26 +565,7 @@ h2{
 				</div>
 			</div>
 		</div>
-		<div class="footer-last-row">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="footer-bottom-links">
-							<ul>
-								<li><a href="about_us.html">About</a></li>
-								<li><a href="contact_us.html">Contact</a></li>
-								<li><a href="privacy_policy.html">Privacy Policy</a></li>
-								<li><a href="term_and_conditions.html">Term & Conditions</a></li>
-								<li><a href="refund_and_return_policy.html">Refund & Return Policy</a></li>
-							</ul>
-						</div>
-						<div class="copyright-text">
-							<i class="uil uil-copyright"></i>Copyright 2020 <b>Gambolthemes</b> . All rights reserved
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</footer>
 	<!-- Footer End -->
 

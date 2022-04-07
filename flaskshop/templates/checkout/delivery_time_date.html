@@ -9,14 +9,14 @@
 				<div class="row">
 					<div class="col-md-12">
 						<nav aria-label="breadcrumb">
-							 <h1 class="col-md-5 col-sm-12 col-xs-12">Checkout</h1>
+							 <h1 class="col-md-5 col-sm-12 col-xs-12">{{Language["Checkout"]}}</h1>
 								  <div class="checkout-wrap col-md-7 col-sm-12 col-xs-12 pull-right">
 									   <ul id="progressbar">
                             <li  id="step1">
-                                <strong>Delivery Address</strong>
+                                <strong>{{Language["Delivery Address"]}} </strong>
                             </li>
-                            <li class="active" id="step2"><strong>Select Date and Time</strong></li>
-                            <li id="step3"><strong>Payment</strong></li>
+                            <li class="active" id="step2"><strong>{{Language["Select Date and Time"]}}</strong></li>
+                            <li id="step3"><strong>{{Language["Payment"]}}</strong></li>
 
                         </ul>
 								  </div>
@@ -33,51 +33,46 @@
 					<div class="col-lg-8 col-md-7">
 						<div id="checkout_wizard" class="checkout accordion left-chck145">
 						   <div class="form-group">
-									<label class="control-label">Select Date and Time*</label>
+									<label class="control-label">{{Language["Select Date and Time"]}} </label>
 											<div class="date-slider-group">
 												<div class="owl-carousel date-slider owl-theme">
 													<div class="item">
 														<div class="date-now">
 															<input type="radio" id="dd1"  value= "Sunday"name="address1" checked="">
-															<label for="dd1">Sunday</label>
+															<label for="dd1">{{Language["Sunday"]}}</label>
 														</div>
 													</div>
 													<div class="item">
 														<div class="date-now">
 															<input type="radio" id="dd2" value= "Monday" name="address1">
-															<label for="dd2">Monday</label>
+															<label for="dd2">{{Language["Monday"]}}</label>
 														</div>
 													</div>
 													<div class="item">
 														<div class="date-now">
 															<input type="radio" id="dd3" value= "Tuesday" name="address1">
-															<label for="dd3">Tuesday</label>
+															<label for="dd3">{{Language["Tuesday"]}}</label>
 														</div>
 													</div>
 													<div class="item">
 														<div class="date-now">
 															<input type="radio" id="dd4" value= "wendsday" name="address1">
-															<label for="dd4">wendsday</label>
+															<label for="dd4">{{Language["wendsday"]}}</label>
 														</div>
 													</div>
 													<div class="item">
 														<div class="date-now">
 															<input type="radio" id="dd5" value= "Thursday" name="address1">
-															<label for="dd5">Thursday</label>
+															<label for="dd5">{{Language["Thursday"]}}</label>
 														</div>
 													</div>
 													<div class="item">
 														<div class="date-now">
 															<input type="radio" id="dd6" value= "Friday" name="address1">
-															<label for="dd6">Friday</label>
+															<label for="dd6">{{Language["Friday"]}}</label>
 														</div>
 													</div>
-													<div class="item">
-														<div class="date-now">
-															<input type="radio" value= "Saturday" id="dd7" name="address1">
-															<label for="dd7">Saturday</label>
-														</div>
-													</div>
+
 
 												</div>
 											</div>
@@ -120,7 +115,7 @@
 
 										</div>
 						</div>
-						<button type="submit" class="collapsed next-btn16 hover-btn"> Proccess to payment </button>
+						<button type="submit" class="collapsed next-btn16 hover-btn"> {{Language["Proccess to payment"]}} </button>
 					</div>
 					{% include "checkout/cart_side_tempalte.html" %}
 				</div>

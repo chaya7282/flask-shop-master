@@ -11,7 +11,7 @@
 					<div class="col-md-12">
 						<div class="owl-carousel offers-banner owl-theme">
 							{% for product in products %}
-							{% if product.in_front_banner %}
+							{% if product.in_front_banner  and product.is_active%}
 							<div class="item">
 								 {% include('products/gambo_front_banner.html') %}
 							</div>
@@ -30,8 +30,8 @@
 					<div class="col-md-12">
 						<div class="main-title-tt">
 							<div class="main-title-left">
-								<span>Shop By</span>
-								<h2>Categories</h2>
+								<span>{{Language["Shop By"]}}</span>
+								<h2>{{Language["Categories"]}}</h2>
 
 							</div>
 						</div>
@@ -62,20 +62,21 @@
 					<div class="col-md-12">
 						<div class="main-title-tt">
 							<div class="main-title-left">
-								<span>For You</span>
-								<h2>Top Featured Products</h2>
+								<span>{{Language["For You"]}}</span>
+								<h2>{{Language["Featured Products"]}}</h2>
 							</div>
-							<a href="#" class="see-more-btn">See All</a>
+
 						</div>
 					</div>
 					<div class="col-md-12">
 						<div class="owl-carousel featured-slider owl-theme">
 						{% for product in products %}
-
+							{% if product.is_featured  and product.is_active%}
 							<div class="item">
 								 {% include('products/gambo_product.html') %}
-							</div>
 
+							</div>
+							{% endif %}
 							{% endfor %}
 
 						</div>
@@ -94,16 +95,16 @@
 					<div class="col-md-12">
 						<div class="main-title-tt">
 							<div class="main-title-left">
-								<span>For You</span>
-								<h2>On Sale Products</h2>
+								<span>{{Language["For You"]}}</span>
+								<h2> {{Language["On Sale Products"]}} </h2>
 							</div>
-							<a href="#" class="see-more-btn">See All</a>
+
 						</div>
 					</div>
 					<div class="col-md-12">
 						<div class="owl-carousel featured-slider owl-theme">
 							{% for product in products %}
-							{% if product.on_sale %}
+							{% if product.on_sale   and product.is_active%}
 							<div class="item">
 								 {% include('products/gambo_product.html') %}
 							</div>

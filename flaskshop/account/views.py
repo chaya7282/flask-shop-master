@@ -38,11 +38,8 @@ def login():
     if form.validate_on_submit():
         login_user(form.user)
 
-        address_id=current_user.addresses_id
-        if address_id:
-            return redirect(url_for("public.home"))
-        else:
-           return redirect(url_for("account.edit_address", show_cart= False))
+        return redirect(url_for("public.home"))
+
     else:
         flash_errors(form)
     return render_template("account/sign_in.html", form=form)

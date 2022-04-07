@@ -19,14 +19,16 @@
  {% if product.on_sale or product.is_featured %}
         <div class="product-absolute-options">
 
-            <span class="offer-badge-1">{% if product.on_sale %}Sale {% elif  product.is_featured %} Featured {% endif %}</span>
+            <span class="offer-badge-1">{% if product.on_sale %}{{Language["sale"]}}  {% elif  product.is_featured %}{{Language["Featured"]}} {% endif %}</span>
             <span class="like-icon" title="wishlist"></span>
         </div>
    {% endif %}
     <div class="product-text-dt">
-        <p>Available<span>(In Stock)</span></p>
+
         <h4>{{product.title}}</h4>
-        <div class="product-price">{{product.discount_price}} <span>$ {{product.basic_price}} </span></div>
+        <div class="product-price"> {{product.basic_price}}</div>
+         <div class="product-price">{{Language["$"]}}</div>
+
         <div class="qty-cart">
             <div class="quantity buttons_added">
                 <input type="button" value="-" class="minus minus-btn">

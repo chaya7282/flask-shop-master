@@ -5,33 +5,33 @@
 	<div class="row">
 		<div class="col-lg-6 col-md-12">
 			<div class="form-group">
-				 {{ macros.render_input_field(form.contact_name) }}
+				 {{ macros.render_input_field2(form.contact_name,Language) }}
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-12">
 			<div class="form-group">
-				 {{macros.render_input_field(form.city) }}
+				 {{macros.render_input_field2(form.city,Language) }}
 			</div>
 		</div>
 		<div class="col-lg-12 col-md-12">
 			<div class="form-group">
-				{{macros.render_input_field(form.address) }}
+				{{macros.render_input_field2(form.address,Language) }}
 			</div>
 		</div>
 		<div class="col-lg-12 col-md-12">
 			<div class="form-group">
-				{{ macros.render_input_field(form.email) }}
+				{{ macros.render_input_field2(form.email,Language) }}
 			</div>
 		</div>
 		<div class="col-lg-12 col-md-12">
 			<div class="form-group">
-				{{macros.render_input_field(form.contact_phone) }}
+				{{macros.render_input_field2(form.contact_phone,Language) }}
 
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-12">
 			<div class="form-group">
-				 {{ macros.render_input_field(form.pincode) }}
+				 {{ macros.render_input_field2(form.pincode,Language) }}
 			</div>
 		</div>
 
@@ -40,7 +40,7 @@
 				<div class="address-btns">
 					<input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
 
-					<button type="submit"  class="collapsed ml-auto next-btn16 hover-btn" > Next </button>
+					<button type="submit"  class="collapsed ml-auto next-btn16 hover-btn" >{{Language["send"]}}</button>
 				</div>
 			</div>
 		</div>
