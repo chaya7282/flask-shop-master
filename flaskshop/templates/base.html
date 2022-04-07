@@ -165,6 +165,16 @@ h2{
     margin-left: 5px !important;
 	width: 210px !important;
 }
+
+.thumbnail {
+	height: 200px;
+	width: 200px;
+	border: 2px solid #e97117;
+	background-color: #f8f8ec;
+	padding: 2em;
+}
+
+
 </style>
 	</head>
 
@@ -386,13 +396,10 @@ h2{
 	<!-- Header Start -->
 <header class="header clearfix">
 		<div class="top-header-group">
-			<div class="top-header">
-				<div class="res_main_logo">
-					<a href="index.html"><img src={{ business.get_image() }} alt=""></a>
-				</div>
-				<div class="main_logo" id="logo">
-					<a href="index.html"><img src={{ business.get_image() }} alt=""></a>
-					<a href="index.html"><img class="logo-inverse" src={{ business.get_image() }} alt=""></a>
+
+				<div class="select_location">
+					<a href="index.html"><img src={{ business.get_image() }} height="60px" width ="auto"></a>
+
 				</div>
 
 				<div class="search120">
@@ -459,7 +466,7 @@ h2{
 					</ul>
 				</div>
 			</div>
-		</div>
+
 		<div class="sub-header-group">
 			<div class="sub-header">
 				<div class="ui dropdown">
