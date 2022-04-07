@@ -45,8 +45,8 @@ class FlaskForm(_FlaskForm):
 
 class BussinessForm(FlaskForm):
     address = StringField(validators=[DataRequired()])
-    phone =StringField(validators=[DataRequired()])
-    name = StringField(validators=[DataRequired()])
+    phone = StringField(validators=[DataRequired()])
+    name =  StringField(validators=[DataRequired()])
     email = StringField()
     email_password = StringField()
     account_sid =  StringField("Twilo account sid")
