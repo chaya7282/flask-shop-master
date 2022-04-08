@@ -10086,3 +10086,267 @@ Traceback (most recent call last):
   File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\delivery_time_date.html", line 54, in template
     <label for="dd3">{{Language["Tuesday"]}</label>
 jinja2.exceptions.TemplateSyntaxError: unexpected '}'
+[2022-04-08 18:41:41,058]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /account/signup [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\views.py", line 72, in signup
+    return render_template("account/signup.html", form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\signup.html", line 2, in top-level template code
+    {% import 'dashboard/_macros.html' as macros%}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 501, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\signup.html", line 22, in block "content"
+    {{ render_field(form.username) }}
+jinja2.exceptions.UndefinedError: 'render_field' is undefined
+[2022-04-08 18:43:34,107]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /account/signup [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\views.py", line 72, in signup
+    return render_template("account/signup.html", form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\signup.html", line 2, in top-level template code
+    {% import 'dashboard/_macros.html' as macros%}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 501, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\signup.html", line 22, in block "content"
+    {{ macros.render_field2(form.username) }}
+jinja2.exceptions.UndefinedError: 'jinja2.environment.TemplateModule object' has no attribute 'render_field2'
+[2022-04-08 18:45:17,511]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /account/signup [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\views.py", line 72, in signup
+    return render_template("account/signup.html", form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\signup.html", line 2, in top-level template code
+    {% import 'dashboard/_macros.html' as macros%}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 501, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\signup.html", line 22, in block "content"
+    {{ macros.render_input_field2(form.username) }}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\_macros.html", line 10, in template
+    <label  class="form-label"  for="{{label_id}}">{{Language[field.label.text]}}</label>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 452, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: parameter 'Language' was not provided
+[2022-04-08 19:30:11,594]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/step_1_delivery_address [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 139, in step_1_delivery_address
+    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id, show_cart=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\step-delivery_address.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 502, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\step-delivery_address.html", line 34, in block "content"
+    {% include "account/address_form.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\account\address_form.html", line 28, in top-level template code
+    {{macros.render_input_field2(form.contact_phone,Language) }}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\_macros.html", line 2, in template
+    {% set label_id = field.label.field_id %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'str object' has no attribute 'label'
+[2022-04-08 19:54:35,985]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/step_1_delivery_address [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 139, in step_1_delivery_address
+    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id, show_cart=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\step-delivery_address.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 502, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\step-delivery_address.html", line 38, in block "content"
+    {% include "checkout/cart_side_tempalte.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\cart_side_tempalte.html", line 25, in template
+    <h4>{{Language[""cost without delivery""]}} </h4>
+jinja2.exceptions.TemplateSyntaxError: expected token ',', got 'cost'
+[2022-04-08 19:55:02,128]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/step_1_delivery_address [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 139, in step_1_delivery_address
+    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id, show_cart=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\step-delivery_address.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 502, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\step-delivery_address.html", line 38, in block "content"
+    {% include "checkout/cart_side_tempalte.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\cart_side_tempalte.html", line 26, in template
+    </span><span>{{ current_user_cart.subtotal }}-</span><span>{{Language["$"]}}</span>
+jinja2.exceptions.TemplateSyntaxError: unexpected char '$' at 1055
+[2022-04-08 20:37:17,286]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/payment [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 132, in payment
+    items= cart.pay_pal_items()
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\models.py", line 67, in pay_pal_items
+    "price": str(self.shipping_method_price()),
+TypeError: 'decimal.Decimal' object is not callable

@@ -114,6 +114,11 @@ def step_1_delivery_address():
     if address_id:
         user_address = UserAddress.get_by_id(address_id)
         form = AddressForm(request.form, obj=user_address)
+    else:
+        form.contact_name.data = current_user.username
+        form.email.data = current_user.email
+        form.contact_phone.data=current_user.contact_phone
+
     if request.method == "POST" and form.validate_on_submit():
         shippment_address = {
 

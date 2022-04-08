@@ -20,6 +20,7 @@ class User(Model, UserMixin):
     is_active = Column(db.Boolean(), default=False)
     open_id = Column(db.String(80), index=True)
     session_key = Column(db.String(80), index=True)
+    contact_phone = Column(db.String(80),nullable=False)
 
     def __init__(self, username, email, password, **kwargs):
         super().__init__(username=username, email=email, password=password, **kwargs)

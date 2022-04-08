@@ -30,7 +30,12 @@
  <div class="container maincontent">
    <div class="content-wrapper mb-2">
 
-        <section class="content">
+
+
+            {% block content %}
+
+           {% endblock %}
+         <section class="content">
             {% for message in get_flashed_messages(with_categories=True) %}
             <div class="alert alert-{{ message[0] }}">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -38,10 +43,6 @@
             </div>
             {% endfor %}
         </section>
-
-            {% block content %}
-
-           {% endblock %}
         </div>
  </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

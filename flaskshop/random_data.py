@@ -544,6 +544,7 @@ def create_fake_user():
         username=fake.first_name() + fake.last_name(),
         email=email,
         password="password",
+        contact_phone="0525333888",
         is_active=True,
     )
     return user
@@ -577,7 +578,7 @@ def create_bussiness():
 def create_admin():
 
     user = User.create(
-        username="admin", email="admin@163.com", password="admin", is_active=True
+        username="admin", email="admin@163.com", password="admin",contact_phone="0525333888", is_active=True
     )
 
 

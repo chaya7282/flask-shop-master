@@ -237,6 +237,8 @@ h2{
     </div>
 	<!-- Search Model End-->
 	<!-- Cart Sidebar Offset Start-->
+	<!-- Search Model End-->
+	<!-- Cart Sidebar Offset Start-->
 	<form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.Cart_Checkout') }}"   enctype="multipart/form-data">
              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
@@ -268,7 +270,7 @@ h2{
 			</div>
 
 			<div class="main-total-cart">
-				<div class="cart-radio">
+				<div class="cart-radio m4-4">
 						<h4>{{Language["collention"]}}   </h4>
 							<ul >
 
@@ -283,9 +285,8 @@ h2{
 							</ul>
 
 					</div>
-			</div>
-			<div class="main-total-cart">
-					<div class="cart-radio">
+
+					<div class="cart-radio ml-9">
 						<h4> {{Language["Payment"]}}   </h4>
 					<ul class="kggrm-now">
 

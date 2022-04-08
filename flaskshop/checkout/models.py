@@ -61,6 +61,14 @@ class Cart(Model):
                 "currency": "ILS",
                 "quantity": str(line.quantity)}
             items.append(item)
+            item={
+                "name": "delivery",
+                "sku": "delivery",
+                "price": str(self.shipping_method_price),
+                "currency": "ILS",
+                "quantity": str(1)}
+
+            items.append(item)
         return items
 
 

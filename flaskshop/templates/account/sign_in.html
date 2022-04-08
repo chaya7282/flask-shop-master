@@ -16,7 +16,7 @@
 							<div class="form-dt">
 								<div class="form-inpts checout-address-step">
 									<form method="post" action="" id="loginForm" novalidate>
-										<div class="form-title"><h6>Sign In</h6></div>
+										<div class="form-title"><h6>{{Language["welcome"]}}</h6></div>
 										<div class="form-group pos_rel">
 											{% set label_id = form.username.label.field_id %}
 											<input id="{{label_id}}" name="{{label_id}}"  name="phone" type="text" placeholder="Enter User name" class="form-control lgn_input" required="">
@@ -28,13 +28,13 @@
 											<i class="uil uil-padlock lgn_icon"></i>
 										</div>
 
-										<button class="login-btn hover-btn" type="submit">Sign In Now</button>
+										<button class="login-btn hover-btn" type="submit">{{Language["Sign In Now"]}}</button>
 										{{ form.csrf_token }}
 									</form>
 								</div>
 
 								<div class="signup-link">
-									<p>Don't have an account? - <a href="{{ url_for('account.signup') }}">Sign Up Now</a></p>
+									<p> {{Language["Don't have an account?"]}}  - <a href="{{ url_for('account.signup') }}">{{Language["Sign Up Now"]}}</a></p>
 								</div>
 							</div>
 						</div>

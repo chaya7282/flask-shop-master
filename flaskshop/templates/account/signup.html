@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from 'bootstrap/form.html' import render_field %}
+{% import 'dashboard/_macros.html' as macros%}
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
@@ -19,25 +19,23 @@
 										{{ form.csrf_token }}
 										<div class="form-title"><h6>Sign Up</h6></div>
 										<div class="form-group pos_rel">
-											{{ render_field(form.username) }}
+											{{ macros.render_input_field2(form.username,Language) }}
 
 										</div>
 										<div class="form-group pos_rel">
-											 {{ render_field(form.email) }}
+											 {{ macros.render_input_field2(form.email,Language) }}
 
 
 										</div>
 										<div class="form-group pos_rel">
 
-											{{ render_field(form.contact_phone) }}
+											{{ macros.render_input_field2(form.contact_phone,Language) }}
 										</div>
 
 										<div class="form-group pos_rel">
-											{{ render_field(form.password) }}
+											{{macros.render_input_field2(form.password,Language) }}
 										</div>
-										<div class="form-group pos_rel">
-										 {{ render_field(form.confirm) }}
-										</div>
+
 									<button class="login-btn hover-btn" type="submit">Sign Up Now</button>
 									</form>
 								</div>

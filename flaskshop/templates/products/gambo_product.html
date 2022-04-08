@@ -12,10 +12,11 @@
 
 <div class="product-item">
      <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
-
+        <div class="d-flex justify-content-center">
          <div class="thumbnail">
          <img src={{ product.image_url() }} width="150px" height="auto">
          </div>
+        </div>
  {% if product.on_sale or product.is_featured %}
         <div class="product-absolute-options">
 
@@ -25,18 +26,21 @@
    {% endif %}
     <div class="product-text-dt">
 
-        <h4>{{product.title}}</h4>
+        <h3>{{product.title}}</h3>
         <div class="product-price"> {{product.basic_price}}</div>
          <div class="product-price">{{Language["$"]}}</div>
 
         <div class="qty-cart">
+
             <div class="quantity buttons_added">
                 <input type="button" value="-" class="minus minus-btn">
                 <input type="number" step="1" name="id_quantity" value="1" class="input-text qty text">
                 <input type="button" value="+" class="plus plus-btn">
             </div>
+
             <span class="cart-icon"><button><i class="uil uil-shopping-cart-alt"></i></button></span>
         </div>
+
     </div>
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
  </form>
