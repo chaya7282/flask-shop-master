@@ -62,7 +62,7 @@ def signup():
             username=form.username.data,
             email=form.email.data.lower(),
             password=form.password.data,
-            contact_phone=form.contact_phone,
+            contact_phone=form.contact_phone.data,
             is_active=True,
         )
         login_user(user)
