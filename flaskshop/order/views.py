@@ -4,6 +4,7 @@ from flaskshop.Media.emails import send_receipt
 from flaskshop.account.models import Business
 from flask import Flask, render_template, jsonify, request, redirect, Blueprint
 from flaskshop.order.models import ShippingAddress,  Shipping_time_date
+from flask import flash, abort
 from flask import (
     Blueprint,
     render_template,
@@ -173,13 +174,16 @@ def execute():
         order.paymentID=payment.id
         order.save()
         success = True
+        print("execution sucess")
     else:
+        flash("Sorry, Payment was not acceptes.", "failure")
         print('Execute error!')
     return jsonify(success)
 @csrf_protect.exempt
 def cancel():
     payment = paypalrestsdk.Payment.find(request.form['paymentID'])
     order = Order.query.filter_by(paymentID=payment.id).all()
+    print("got here")
     if order:
         order.delete()
     return True

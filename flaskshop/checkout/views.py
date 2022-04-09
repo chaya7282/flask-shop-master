@@ -56,23 +56,31 @@ def update_cart(id):
     return redirect(url_for("checkout.cart_index"))
 
 def Cart_Checkout():
-
+    print("hell")
     if request.method == "POST":
 
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
         payment_method = request.form["payment_method"]
         cart = Cart.get_current_user_cart()
-        for line in cart.lines:
-            qty = request.form.get(f"qty_{line.id}")
-            line.quantity = int(qty)
-
-
-            line.save()
+        print("ok")
         cart.update(
             shipping_method_id=shipping_method.id,
             payment_method=payment_method
         )
-    return redirect(url_for("checkout.step_1_delivery_address"))
+
+        for line in cart.lines:
+            qty = request.form.get(f"qty_{line.id}")
+            line.quantity = int(qty)
+            line.save()
+        cart.clean_lines()
+        cart.update_quantity()
+
+    next_operation= request.form["submitom"]
+
+    if cart and next_operation == "checkout":
+        return redirect(url_for("checkout.step_1_delivery_address"))
+    else:
+        return redirect(url_for("public.home"))
 
 
 

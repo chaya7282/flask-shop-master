@@ -245,7 +245,7 @@ h2{
 		<div class="bs-canvas bs-canvas-left position-fixed bg-cart h-100">
 		<div class="bs-canvas-header side-cart-header p-3 ">
 			<div class="d-inline-block  main-cart-title">{{Language["My Cart"]}}  <span>( {{current_user_cart.quantity}} {{Language["Items"]}}  )</span></div>
-			<button type="button" class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
+			<button  type="button"  class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
 		</div>
 		<div class="bs-canvas-body">
 			<div class="cart-top-total">
@@ -303,9 +303,13 @@ h2{
 
 			<div class="checkout-cart">
 				{% if current_user_cart.lines %}
-				<button type="submit"  class="Offer-shop-btn hover-btn">{{Language["Proceed to Checkout"]}} </button>
+				<div><button  type="submit" name="submitom" value="checkout" class="Offer-shop-btn hover-btn">{{Language["Proceed to Checkout"]}} </button>
+			</div>
+					<div><button  type="submit" name="submitom" value="Home" class="collapsed next-btn16 hover-btn">{{Language["Save changes"]}} </button></div>
+
 				{% endif %}
 			</div>
+
 
 		</div>
 	</div>
@@ -498,10 +502,21 @@ h2{
 				</div>
 			</div>
 		</div>
-	</header>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for category, message in messages %}
+		  <li class="{{ category }}">{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+
+</header>
+<div class="wrapper">
 	{% block content %}
 	{% endblock content %}
-
+</div>
 	<footer class="footer">
 		<div class="footer-first-row">
 			<div class="container">
@@ -587,6 +602,18 @@ h2{
     <script   src="{{ url_for('static',  filename='Gambo/HTML/Frontend/js/offset_overlay.js') }}" ></script>
 	<script   src="{{ url_for('static',  filename='Gambo/HTML/Frontend/js/night-mode.js') }}" ></script>
 <script>
+function remove_object(obj)
+{
+	 const vir = $(obj).closest(".cart-text").find('.input-text').val(0);
+    $(obj).closest(".cart-item").hide()
+
+
+}
+function do_that()
+{
+	alert("helo")
+}
+
 
 function update_amounts()
 {

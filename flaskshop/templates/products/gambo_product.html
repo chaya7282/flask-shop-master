@@ -14,7 +14,7 @@
      <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
         <div class="d-flex justify-content-center">
          <div class="thumbnail">
-         <img src={{ product.image_url() }} width="150px" height="auto">
+         <img src={{ product.image_url() }} width="150px" height="auto" max-heigh="200px">
          </div>
         </div>
  {% if product.on_sale or product.is_featured %}

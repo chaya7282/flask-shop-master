@@ -31,6 +31,7 @@
 							<div class="quantity buttons_added">
 								<input type="button" value="-" class="minus minus-btn">
 								<input type="number" step="1" onchange="update_amounts()" name="qty_{{line.id}}" id="qty_{{line.id}}" value="{{ line.quantity }}" class="input-text qty text">
+
 								<input type="button" value="+" class="plus plus-btn">
 							</div>
 							<input type="hidden"  value="{{ line.product.price }}" class="price">
@@ -39,7 +40,8 @@
 
 						</div>
 
-						<button type="button" class="cart-close-btn"><i class="uil uil-multiply"></i></button>
+
+						<button type="button" onclick='remove_object(this)' class="cart-close-btn"><i class="uil uil-multiply"></i></button>
 					</div>
 				</div>
 

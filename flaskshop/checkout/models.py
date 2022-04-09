@@ -42,6 +42,7 @@ class Cart(Model):
     def lines(self):
         return CartLine.query.filter(CartLine.cart_id == self.id).all()
 
+
     @classmethod
     def del_product(cls, product_id):
         lines_= CartLine.query.filter(product_id == product_id).all()
@@ -162,6 +163,11 @@ class Cart(Model):
 
     def __len__(self):
         return len(self.lines)
+
+    def clean_lines(self):
+        for line in self.lines:
+            if not int(line.quantity):
+                line.delete()
 
     def update_quantity(self):
         self.quantity = sum(line.quantity for line in self)

@@ -1,11 +1,12 @@
 
-<div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
+        <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
      <div class="card">
          <div class="card-header p-4">
-
+          <h1></h1>
              <div class="float-right">
-                 <h3 class="mb-0"> {{order.token}}: {{Language["Invoice"]}}</h3>
-                 {{Language["Date"]}}: {{ order.created_at}}
+                 <h3 class="mb-0">  {{Language["Your order has been accepted payment succed"]}}</h3>
+                 <div> {{Language["order Number"]}}- {{order.token}}</div>
+                 <div>{{Language["Date"]}}: {{ order.created_at}}</div>
              </div>
          </div>
          <div class="card-body">
