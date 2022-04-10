@@ -7,6 +7,14 @@
 			background-color: #f8f8ec;
 			padding: 2em;
 }
+img.gambo_img {
+  max-height: 150px;;
+  height:auto;
+  width:150px;
+
+}
+
+
     </style>
 </head>
 
@@ -14,7 +22,7 @@
      <form  id="product-form" role="form" class="product-form1 clearfix needs-validation"  method="post"  action="{{ url_for('product.product_add_to_cart', id=product.id) }}"  enctype="multipart/form-data">
         <div class="d-flex justify-content-center">
          <div class="thumbnail">
-         <img src={{ product.image_url() }} width="150px" height="auto" max-heigh="200px">
+         <img src={{ product.image_url() }} class="gambo_img">
          </div>
         </div>
  {% if product.on_sale or product.is_featured %}
