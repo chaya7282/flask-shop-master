@@ -2,12 +2,44 @@
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
      <div class="card">
          <div class="card-header p-4">
-          <h1></h1>
-             <div class="float-right">
-                 <h3 class="mb-0">  {{Language["Your order has been accepted payment succed"]}}</h3>
-                 <div> {{Language["order Number"]}}- {{order.token}}</div>
-                 <div>{{Language["Date"]}}: {{ order.created_at}}</div>
-             </div>
+        <h3 class="mb-0">  {{Language["Your order has been accepted payment succed"]}}</h3>
+              <div class="float-left">
+                  <table class="table table-striped">
+                 <tr>
+
+                             <td class="left strong">{{Language["order Number"]}}</td>
+                             <td class="right">{{order.token}}</td>
+                 </tr>
+                 <tr>
+
+                             <td class="left strong">{{Language["Date"]}}</td>
+                             <td class="right">{{ order.created_at}}</td>
+                 </tr>
+                 {% with delivery_address=order.get_shipment_address() %}
+                  <tr>
+
+                             <td class="left strong">{{Language["contact-name"]}}</td>
+                             <td class="right">{{delivery_address.contact_name}}</td>
+                 </tr>
+                   <tr>
+
+                             <td class="left strong">{{Language["contact-phone"]}}</td>
+                             <td class="right">{{delivery_address.contact_phone}}</td>
+                 </tr>
+                     <tr>
+                       <td class="left strong">{{Language["Delivery"]}}</td>
+                       <td class="right">{{delivery_address.address}},{{delivery_address.city}}</td>
+                 </tr>
+                  {% endwith %}
+                      <tr>
+
+                             <td class="left strong">{{Language["Date and time"]}}</td>
+                             <td class="right">{{order.shipping_time_date}}</td>
+                 </tr>
+
+
+                  </table>
+         </div>
          </div>
          <div class="card-body">
              <div class="row mb-4">
@@ -20,7 +52,7 @@
                      <div> {{user_address.city}}</div>
                      <div>Email: {{user_address.email}}</div>
                     <div>Phone:  {{user_address.contact_phone}}</div>
-                    <div> Day and Time= {{order.shipping_time_date}}</div>
+
                  </div>
 
 

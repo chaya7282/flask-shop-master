@@ -37,7 +37,7 @@
 										</div>
 						</div>
 					</div>
-					{% include "checkout/cart_side_tempalte.html" %}
+
 				</div>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 
     var CREATE_PAYMENT_URL  =  "{{ url_for('order.payment') }}";
     var EXECUTE_PAYMENT_URL =  "{{ url_for('order.execute') }}";
-
+	var CANCEL_PAYMENT_URL =  "{{ url_for('order.cancel') }}";
     paypal.Button.render({
 
         env: 'sandbox', // Or 'sandbox'
@@ -76,6 +76,7 @@
 			});
 
         }
+
 
     }, '#paypal-button');
 </script>

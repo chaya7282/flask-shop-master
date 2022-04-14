@@ -17,7 +17,7 @@ from flask import (
 from flask_login import login_required, current_user
 from pluggy import HookimplMarker
 
-from .models import Order, OrderPayment,UserAddress
+from .models import Order, OrderPayment,UserAddress,Order_Temporary
 from flaskshop.product.models import Category
 
 from .payment import zhifubao
@@ -26,7 +26,7 @@ from flaskshop.constant import ShipStatusKinds, PaymentStatusKinds, OrderStatusK
 import paypalrestsdk
 from flaskshop.checkout.models import Cart
 impl = HookimplMarker("flaskshop")
-
+from datetime import datetime
 
 @login_required
 def index():
@@ -43,32 +43,30 @@ def show(token):
 
     return render_template("checkout/order_placed.html", order = order,user_address= user_address )
 
-
-def create_payment(token, payment_method):
+@csrf_protect.exempt
+def create_payment(token,payment_no):
     order = Order.query.filter_by(token=token).first()
     if order.status != OrderStatusKinds.unfulfilled.value:
         abort(403, "This Order Can Not Pay")
-    payment_no = str(int(time.time())) + str(current_user.id)
+    payment_no = payment_no
     customer_ip_address = request.headers.get("X-Forwarded-For", request.remote_addr)
     payment = OrderPayment.query.filter_by(order_id=order.id).first()
     if payment:
         payment.update(
-            payment_method=payment_method,
+            payment_method=order.payment_method,
             payment_no=payment_no,
             customer_ip_address=customer_ip_address,
         )
     else:
         payment = OrderPayment.create(
             order_id=order.id,
-            payment_method=payment_method,
+            payment_method=order.payment_method,
             payment_no=payment_no,
             status=PaymentStatusKinds.waiting.value,
             total=order.total,
             customer_ip_address=customer_ip_address,
         )
-    if payment_method == "alipay":
-        order_string = zhifubao.send_order(order.token, payment_no, order.total)
-        payment.order_string = order_string
+
     return payment
 
 
@@ -100,17 +98,11 @@ def test_pay(token):
 
 
 @login_required
-def payment_success():
-    return render_template("orders/checkout_success.html")
+def payment_success(paymentID):
+    order = Order.query.filter_by(paymentID=paymentID).first()
+    return redirect(url_for("order.show",token=order.token))
 
 
-@login_required
-def cancel_order(token):
-    order = Order.query.filter_by(token=token).first()
-    if not order.is_self_order:
-        abort(403, "This is not your order!")
-    order.cancel()
-    return redirect(url_for('dashboard.order_edit',id=order.id))
 
 @login_required
 def receive(token):
@@ -128,9 +120,8 @@ def payment():
         "client_id": "AWXiT6_4d9XWj60PtnrwO7RsqKcZ5-hfD6h0jE6NM7_0XSQUWjR8oPP-npFJqaby-AmwPj1wYfac0d78",
         "client_secret": "EPCFDnaorPq44s5oMw52OaxLwbWkINBP1WsSyvdDMqP4SXvDNL502cdhgVRXH87t0RqwNT5ozxVn5qCn"})
 
-    cart = Cart.get_current_user_cart()
-
-    items= cart.pay_pal_items()
+    order = Order_Temporary.get_by_id(current_user.order_id)
+    items= order.pay_pal_items()
     payment_arguments = {
         'intent': 'sale',
         'payer': {
@@ -146,39 +137,64 @@ def payment():
                 'items': items
             },
             'amount': {
-                'total': str(cart.total),
+                'total': str(order.total),
                 'currency': "ILS"
             },
             'description': 'Make sure to include'
         }]
     }
-    payment = paypalrestsdk.Payment( payment_arguments)
+    pay_pal_payment = paypalrestsdk.Payment( payment_arguments)
 
-    if payment.create():
-        cart.paymentID = payment.id
-        cart.save()
+    if pay_pal_payment.create():
+
+        order.paymentID = pay_pal_payment.id
+        order.save()
+        payment = OrderPayment.query.filter_by(order_id=order.id).first()
+        if payment:
+            payment.update(
+                payment_method=order.payment_method,
+                payment_no=pay_pal_payment.id,
+
+            )
+        else:
+            payment = OrderPayment.create(
+                order_id=order.id,
+                payment_method=order.payment_method,
+                payment_no=pay_pal_payment.id,
+                status=PaymentStatusKinds.waiting.value,
+                total=order.total)
+
         print('Payment success!')
     else:
-        print(payment.error)
+        print(pay_pal_payment.error)
 
-    return jsonify({'paymentID': payment.id})
+    return jsonify({'paymentID': pay_pal_payment.id})
 
 @csrf_protect.exempt
 def execute():
     success = False
 
     payment = paypalrestsdk.Payment.find(request.form['paymentID'])
-    cart= Cart.query.filter_by(paymentID=payment.id).first()
+
     if payment.execute({'payer_id' : request.form['payerID']}):
-        order, msg = Order.create_whole_order(cart)
+        tmp_order= Order_Temporary.query.filter_by(paymentID=payment.id).first()
+        order, msg = Order.create_whole_order(tmp_order)
+        tmp_order.delete()
+        order_payment = OrderPayment.query.filter_by(
+            payment_no= payment.id,
+        ).first()
+        order_payment.order_id=order.id
         order.paymentID=payment.id
-        order.save()
+        order_payment.pay_success(paid_at=datetime.now())
         success = True
+        order.save()
+        order_payment.save()
         print("execution sucess")
     else:
         flash("Sorry, Payment was not acceptes.", "failure")
         print('Execute error!')
     return jsonify(success)
+
 @csrf_protect.exempt
 def cancel():
     payment = paypalrestsdk.Payment.find(request.form['paymentID'])
@@ -218,7 +234,7 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/pay/<string:token>/testpay", view_func=test_pay)
     bp.add_url_rule("/payment_success", view_func=payment_success)
 
-    bp.add_url_rule("/cancel/<string:token>", view_func=cancel_order)
+
     bp.add_url_rule("/receive/<string:token>", view_func=receive)
     bp.add_url_rule("/payment", view_func=payment, methods=["POST"])
     bp.add_url_rule("/execute", view_func=execute, methods=["POST"])

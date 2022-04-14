@@ -7,7 +7,7 @@ from .forms import NoteForm, VoucherForm, CheckoutForm, PaymentDeliveryForm
 from flaskshop.account.forms import AddressForm
 from flaskshop.account.models import UserAddress
 from flaskshop.utils import flash_errors
-from flaskshop.order.models import Order
+from flaskshop.order.models import Order, Order_Temporary
 from flaskshop.discount.models import Voucher
 from flask_mail import Message
 from flaskshop.settings import Config
@@ -20,7 +20,7 @@ from flaskshop.account.models import Business
 from flaskshop.extensions import csrf_protect
 impl = HookimplMarker("flaskshop")
 from flask import  current_app
-
+from flaskshop.constant import OrderStatusKinds
 
 
 def cart_index():
@@ -62,7 +62,7 @@ def Cart_Checkout():
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
         payment_method = request.form["payment_method"]
         cart = Cart.get_current_user_cart()
-        print("ok")
+
         cart.update(
             shipping_method_id=shipping_method.id,
             payment_method=payment_method
@@ -75,50 +75,29 @@ def Cart_Checkout():
         cart.clean_lines()
         cart.update_quantity()
 
-    next_operation= request.form["submitom"]
+        next_operation= request.form["submitom"]
 
-    if cart and next_operation == "checkout":
-        return redirect(url_for("checkout.step_1_delivery_address"))
-    else:
-        return redirect(url_for("public.home"))
+        if cart and next_operation == "checkout":
 
-
-
-def Create_An_Order(address_data):
-    cart = Cart.get_current_user_cart()
-    address_id = current_user.addresses_id
-    user_address= None
-    if address_id:
-        user_address = UserAddress.get_by_id(address_id)
-
-    order, msg = Order.create_whole_order(cart, shippment_address=address_data)
-
-    if order:
-
-        return render_template("checkout/order_placed.html", order=order,user_address=user_address)
-    else:
-        flash(msg, "warning")
-        return render_template("errors/out_of_stock.html")
+            order, msg = Order_Temporary.create_whole_order(cart)
+            order.paymentStatus = OrderStatusKinds.unfulfilled.value
+            current_user.order_id = order.id
+            order.save()
+            current_user.save()
+            cart.delete()
+            return redirect(url_for("checkout.step_1_delivery_address"))
+        else:
+            return redirect(url_for("public.home"))
 
 
-def shipment_details():
-    address_data = {}
-    if  current_user.addresses:
-        address_data = {
-            "province": current_user.addresses.province,
-            "city": current_user.addresses.city,
-            "district": current_user.addresses.district,
-            "address": current_user.addresses.address,
-            "contact_name": current_user.addresses.contact_name,
-            "contact_phone": current_user.addresses.contact_phone,
-            "pincode": current_user.addresses.pincode,
-            "email": current_user.addresses.email
-        }
+
+
 
 def step_1_delivery_address():
+    order = Order_Temporary.get_by_id(current_user.order_id)
     form = AddressForm(request.form)
     address_id = current_user.addresses_id
-    cart = Cart.get_current_user_cart()
+
     if address_id:
         user_address = UserAddress.get_by_id(address_id)
         form = AddressForm(request.form, obj=user_address)
@@ -140,11 +119,11 @@ def step_1_delivery_address():
             "pincode": form.pincode.data
         }
         shipping_address = ShippingAddress.create(**shippment_address)
-        cart.shipping_address_id = shipping_address.id
-        cart.save()
+        order.shipping_address_id = shipping_address.id
+        order.save()
         return redirect(url_for("checkout.delivery_time_date"))
 
-    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id, show_cart=True)
+    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id)
 
 
 def get_Shipping_address():
@@ -170,21 +149,21 @@ def get_Shipping_address():
     return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id,show_cart=True)
 
 def delivery_time_date():
-    cart = Cart.get_current_user_cart()
+    order = Order_Temporary.get_by_id(current_user.order_id)
     if request.method == "POST":
         day = request.form["address1"]
         hours= request.form["fruit"]
-        cart.shipping_time_date= day+hours
-        cart.save()
+        order.shipping_time_date= day+hours
+        order.save()
         return redirect(url_for("checkout.payment_details"))
     else:
         return render_template("checkout/delivery_time_date.html")
 
 
 def payment_details():
-    cart = Cart.get_current_user_cart()
+    order = Order_Temporary.get_by_id(current_user.order_id)
 
-    return render_template("checkout/payment_details.html", paymentmethod=cart.payment_method )
+    return render_template("checkout/payment_details.html", paymentmethod=order.payment_method )
 
 
 def checkout_shipping():
@@ -220,7 +199,7 @@ def checkout_note():
         else None
     )
     if form.validate_on_submit():
-        order, msg = Order.create_whole_order(cart,shippment_address=address, )
+        order, msg = Order_Temporary.create_whole_order(cart,shippment_address=address, )
         if not order:
             flash(msg, "warning")
         else:
@@ -282,7 +261,7 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule(
         "/update_cart/<int:id>", view_func=update_cart, methods=["POST"]
     )
-    bp.add_url_rule("/details", view_func=shipment_details, methods=["GET", "POST"])
+
     bp.add_url_rule("/shipping", view_func=checkout_shipping, methods=["GET", "POST"])
     bp.add_url_rule("/note", view_func=checkout_note, methods=["GET", "POST"])
     bp.add_url_rule("/delivery_type", view_func=Cart_Checkout, methods=["POST"])

@@ -239,15 +239,17 @@ h2{
 	<!-- Cart Sidebar Offset Start-->
 	<!-- Search Model End-->
 	<!-- Cart Sidebar Offset Start-->
+
 	<form method = "post" role="form" class="product-form1 clearfix needs-validation" action="{{ url_for('checkout.Cart_Checkout') }}"   enctype="multipart/form-data">
              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 
 		<div class="bs-canvas bs-canvas-left position-fixed bg-cart h-100">
-		<div class="bs-canvas-header side-cart-header p-3 ">
+		 {% if current_user_cart.lines %}
+			<div class="bs-canvas-header side-cart-header p-3 ">
 			<div class="d-inline-block  main-cart-title">{{Language["My Cart"]}}  <span>( {{current_user_cart.quantity}} {{Language["Items"]}}  )</span></div>
 			<button  type="button"  class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
 		</div>
-		<div class="bs-canvas-body">
+			<div class="bs-canvas-body">
 			<div class="cart-top-total">
 				<div class="cart-total-dil">
 					{% if business %}
@@ -263,7 +265,7 @@ h2{
 				{% endfor %}
 			</div>
 		</div>
-		<div class="bs-canvas-footer">
+			<div class="bs-canvas-footer">
 			<div class="cart-total-dil saving-total ">
 				<h4>{{Language["Total"]}} </h4>
 				<span class="total">{{ current_user_cart.subtotal }}{{Language["$"]}} </span>
@@ -312,9 +314,18 @@ h2{
 
 
 		</div>
-	</div>
-</form>
+	    {% else %}
+		 <div class="cart__empty">
+			<img src="{{ url_for('static', filename='img/empty-cart-bg.png') }}">
+			<h2>There are no products in your shopping cart.</h2>
 
+		 </div>
+		{% endif %}
+
+		</div>
+
+
+</form>
 	<div id="address_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
         <div class="modal-dialog category-area" role="document">
             <div class="category-area-inner">
