@@ -13,6 +13,7 @@ from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
 import arrow
 from flask_mail import Mail
 from flaskshop.corelib.db import PropsItem, PropsMixin
+import pytz
 
 bcrypt = Bcrypt()
 csrf_protect = CSRFProtect()
@@ -25,8 +26,8 @@ mail= Mail()
 class BaseModel(PropsMixin, Model):
     __table_args__ = {"mysql_charset": "utf8mb4", "extend_existing": True}
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.utcnow())
-    updated_at = Column(DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
+    created_at = Column(DateTime, default=datetime.now(tz=pytz.timezone('Asia/Jerusalem')))
+    updated_at = Column(DateTime, default=datetime.now(tz=pytz.timezone('Asia/Jerusalem')), onupdate=datetime.now(tz=pytz.timezone('Asia/Jerusalem')))
 
     def __repr__(self):
         return f"<{self.__class__.__name__} id:{self.id}>"

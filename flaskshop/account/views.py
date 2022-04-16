@@ -37,7 +37,9 @@ def login():
     categories = Category.query.all()
     if form.validate_on_submit():
         login_user(form.user)
-
+        address_id = current_user.addresses_id
+        if not address_id:
+            flash("You miss an address pls go on and fill it.", 'error')
         return redirect(url_for("public.home"))
 
     else:
@@ -67,6 +69,7 @@ def signup():
         )
         login_user(user)
         flash("You are signed up.", "success")
+        flash("Please add address.", "success")
         return redirect( url_for('public.home'))
     else:
         flash_errors(form)

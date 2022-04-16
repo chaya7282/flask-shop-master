@@ -521,18 +521,20 @@ h2{
 
 
 <div class="wrapper">
-	<div class="container">
-	{% with messages = get_flashed_messages(with_categories=true) %}
-  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <!-- <strong>Title</strong> --> {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
+		<div class="container">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endwith %}
+
 </div>
 	{% block content %}
 	{% endblock content %}
@@ -547,7 +549,9 @@ h2{
 					<div class="col-md-6 col-sm-6">
 						<div class="social-links-footer">
 							<ul>
-								<li><i class="uil uil-dialpad-alt"></i>{{business.phone}}</a></li>
+
+
+								<li><i class="uil uil-phone-alt"></i>{{business.phone}}</a></li>
 								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
 								<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
@@ -566,7 +570,7 @@ h2{
 						<div class="second-row-item">
 							<h4> {{Language["Contact Information"]}} </h4>
 							<ul>
-								<li><i class="uil uil-dialpad-alt"></i>{{business.phone}}</a></li>
+								<li><i class="uil uil-phone-alt"></i>{{business.phone}}</a></li>
 								<li>{{business.address}}</li>
 
 							</ul>

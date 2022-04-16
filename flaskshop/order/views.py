@@ -24,6 +24,7 @@ from .payment import zhifubao
 from flaskshop.extensions import csrf_protect
 from flaskshop.constant import ShipStatusKinds, PaymentStatusKinds, OrderStatusKinds
 import paypalrestsdk
+import pytz
 from flaskshop.checkout.models import Cart
 impl = HookimplMarker("flaskshop")
 from datetime import datetime
@@ -185,7 +186,8 @@ def execute():
         ).first()
         order_payment.order_id=order.id
         order.paymentID=payment.id
-        order_payment.pay_success(paid_at=datetime.now())
+
+        order_payment.pay_success(paid_at=datetime.now(tz=pytz.timezone('Asia/Jerusalem')))
         success = True
         order.save()
         order_payment.save()

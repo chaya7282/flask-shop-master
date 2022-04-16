@@ -2,8 +2,13 @@
         <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
      <div class="card">
          <div class="card-header p-4">
-        <h3 class="mb-0">  {{Language["Your order has been accepted payment succed"]}}</h3>
-              <div class="float-left">
+         <div class="float-center">
+             <h3 class="mb-0">  {{Language["Your order has been accepted payment succed"]}}</h3>
+         </div>
+         </div>
+         <div class="card-body">
+
+            <div class="float-left">
                   <table class="table table-striped">
                  <tr>
 
@@ -15,6 +20,17 @@
                              <td class="left strong">{{Language["Date"]}}</td>
                              <td class="right">{{ order.created_at}}</td>
                  </tr>
+               {% with shipment_method= order.shipping_method %}
+                      {% if shipment_method.address_needed %}
+
+                <tr>
+
+                             <td class="left strong">{{Language["Delivery to costumer"]}}</td>
+                             <td class="right">{{Language[shipment_method.title]}}</td>
+                 </tr>
+
+                 {% endif %}
+                   {% endwith %}
                  {% with delivery_address=order.get_shipment_address() %}
                   <tr>
 
@@ -27,7 +43,7 @@
                              <td class="right">{{delivery_address.contact_phone}}</td>
                  </tr>
                      <tr>
-                       <td class="left strong">{{Language["Delivery"]}}</td>
+                       <td class="left strong">{{Language["address"]}}</td>
                        <td class="right">{{delivery_address.address}},{{delivery_address.city}}</td>
                  </tr>
                   {% endwith %}
@@ -36,27 +52,15 @@
                              <td class="left strong">{{Language["Date and time"]}}</td>
                              <td class="right">{{order.shipping_time_date}}</td>
                  </tr>
+                      <tr>
 
+                             <td class="left strong">{{Language["Payment"]}}</td>
+                             <td class="right">{{Language[order.payment_method]}} {{order.payment_method}}</td>
+                 </tr>
 
                   </table>
          </div>
-         </div>
-         <div class="card-body">
-             <div class="row mb-4">
-
-                 <div class="col-sm-6 ">
-                     <h5 class="mb-3">{{Language["Costumer Details"]}}</h5>
-                     <h5 class="mb-3"> {% if user_address %}{{user_address.contact_name}} {% else %} {{current_user.username}} {% endif %}</h5>
-                     <h3 class="text-dark mb-1"></h3>
-                     <div>{{user_address.address}} </div>
-                     <div> {{user_address.city}}</div>
-                     <div>Email: {{user_address.email}}</div>
-                    <div>Phone:  {{user_address.contact_phone}}</div>
-
-                 </div>
-
-
-             </div>
+             <div class="row"></div>
              <div class="table-responsive-sm">
                  <table class="table table-striped">
                      <thead>
@@ -123,34 +127,7 @@
              </div>
               <div class="row mb-4">
 
-                 <div class="col-sm-6 ">
-                     <h5 class="mb-3">{{Language["Payment"]}}</h5>
-                     <h5 class="mb-3"> {{Language[order.payment_method]}} {{order.payment_method}}</h5>
-                </div>
 
-                <div class="col-sm-6 ">
-                 {% with delivery_address=order.get_shipment_address() %}
-                 {% with shipment_method= order.shipping_method %}
-                 {% if shipment_method.address_needed %}
-
-                    <h3 class="mb-3">{{Language["Delivery needed"]}} </h3>
-
-
-                     <h6 >{{Language["contact person and delivery address"]}}</h6>
-                     <h6 > {{delivery_address.contact_name}}</h6>
-
-                     <div>{{delivery_address.address}} </div>
-                     <div> {{delivery_address.city}}</div>
-                     <div>Email: {{delivery_address.email}}</div>
-                     <div>Phone:  {{delivery_address.contact_phone}}</div>
-
-                 {% else %}
-                    <h3 class="mb-3">{{Language["No delivery"]}} </h3>
-                     <h6 >{{Language[shipment_method.title]}}</h6>
-                 {% endif %}
-                 {% endwith %}
-                 {% endwith %}
-                 </div>
              </div>
          </div>
 

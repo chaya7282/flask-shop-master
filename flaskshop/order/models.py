@@ -13,7 +13,10 @@ from flaskshop.constant import (
     ShipStatusKinds,
 )
 from flaskshop.checkout.models import ShippingMethod
+from datetime import datetime
+from sqlalchemy import  DateTime
 from flaskshop.discount.models import Voucher
+import pytz
 class Order(Model):
     __tablename__ = "order_order"
     token = Column(db.String(100), unique=True)
@@ -35,6 +38,8 @@ class Order(Model):
     shipping_time_date=Column(db.String(50))
     paymentID= Column(db.String(50))
     paymentStatus= Column(db.Integer(),default=0)
+    createt_at= Column('date', DateTime(), default=datetime.now(tz=pytz.timezone('Asia/Jerusalem')))
+
     def __str__(self):
         return f"#{self.identity}"
     @classmethod

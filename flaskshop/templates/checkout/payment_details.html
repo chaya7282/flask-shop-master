@@ -31,7 +31,7 @@
 					<div class="col-lg-8 col-md-7">
 						<div id="checkout_wizard" class="checkout accordion left-chck145">
 						   <div class="form-group">
-									<h2>{{Language["Pay with all credit cards"]}}</h2>  </label>
+									<h2 id="pay-pal">{{Language["Pay with all credit cards"]}}</h2>  </label>
 										 <div id="paypal-button"></div>
 
 										</div>
@@ -47,37 +47,60 @@
 
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 
-<script>
-
-
-    var CREATE_PAYMENT_URL  =  "{{ url_for('order.payment') }}";
+  <script>
+     var CREATE_PAYMENT_URL  =  "{{ url_for('order.payment') }}";
     var EXECUTE_PAYMENT_URL =  "{{ url_for('order.execute') }}";
 	var CANCEL_PAYMENT_URL =  "{{ url_for('order.cancel') }}";
-    paypal.Button.render({
 
-        env: 'sandbox', // Or 'sandbox'
+paypal.Button.render({
+   env: 'sandbox',
+   payment: function(resolve, reject) {
 
-        commit: true, // Show a 'Pay Now' button
-       payment: function() {
-            return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
-                return data.paymentID;
-            });
-        },
-
-        onAuthorize: function(data) {
-        	var paymentIDD= data.paymentID
-            return paypal.request.post(EXECUTE_PAYMENT_URL, {
-                paymentID: data.paymentID,
-                payerID:   data.payerID
-            }).then(function(data) {
-            	window.location.href = "{{ url_for('order.create_reception',paymentID='ADDSHARE2') }}".replace("ADDSHARE2", paymentIDD)
+     paypal.request.post(CREATE_PAYMENT_URL, {
 
 
-			});
+ // js object used to create payment
+     }).then(function(data) {
+         resolve(data.paymentID);
+
+     }).catch(function(err) {
+         reject(err);
+         var elem = document.getElementById('pay-pal').innerHTML=err;
+
+     });
+   },
+   onAuthorize: function(data) {
+	var paymentIDD= data.paymentID
+     paypal.request.post(EXECUTE_PAYMENT_URL, {
+      paymentID: data.paymentID,
+      payerID:   data.payerID
+     }).then(function(res) {
+        alert(res)
+        if (res) {
+           var elem = document.getElementById('pay-pal').innerHTML="Your payment is accepted Order is placed";
+           	window.location.href = "{{ url_for('order.create_reception',paymentID='ADDSHARE2') }}".replace("ADDSHARE2", paymentIDD)
+
+         } else {
+            var elem = document.getElementById('pay-pal').innerHTML="Your payment was declined Order is Not placed";
+         }
+
+        if (res) {
 
         }
 
+      }).catch(function(err) { var elem = document.getElementById('pay-pal').innerHTML=err;});
+   },
+   onCancel: function(data) {
+         alert(" in here")
+         var elem = document.getElementById('pay-pal').innerHTML="Your payment was canceled";
+   }
 
-    }, '#paypal-button');
-</script>
+ }, '#paypal-button');
+
+
+  </script>
+
+
+
+
 {% endblock content %}
