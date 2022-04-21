@@ -29,6 +29,12 @@ from flaskshop.checkout.models import Cart
 impl = HookimplMarker("flaskshop")
 from datetime import datetime
 
+paypalrestsdk.configure({
+    "mode": "sandbox",  # sandbox or live
+    "client_id": "AWXiT6_4d9XWj60PtnrwO7RsqKcZ5-hfD6h0jE6NM7_0XSQUWjR8oPP-npFJqaby-AmwPj1wYfac0d78",
+    "client_secret": "EPCFDnaorPq44s5oMw52OaxLwbWkINBP1WsSyvdDMqP4SXvDNL502cdhgVRXH87t0RqwNT5ozxVn5qCn"})
+
+
 @login_required
 def index():
     return redirect(url_for("account.index"))
@@ -115,11 +121,7 @@ def receive(token):
     return redirect(url_for('dashboard.order_edit', id=order.id))
 @csrf_protect.exempt
 def payment():
-    print("hell")
-    paypalrestsdk.configure({
-        "mode": "sandbox",  # sandbox or live
-        "client_id": "AWXiT6_4d9XWj60PtnrwO7RsqKcZ5-hfD6h0jE6NM7_0XSQUWjR8oPP-npFJqaby-AmwPj1wYfac0d78",
-        "client_secret": "EPCFDnaorPq44s5oMw52OaxLwbWkINBP1WsSyvdDMqP4SXvDNL502cdhgVRXH87t0RqwNT5ozxVn5qCn"})
+
 
     order = Order_Temporary.get_by_id(current_user.order_id)
     items= order.pay_pal_items()

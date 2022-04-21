@@ -72,6 +72,7 @@ paypal.Button.render({
    onAuthorize: function(data) {
 
      paypal.request.post(EXECUTE_PAYMENT_URL, {
+      var paymentIDD=  data.paymentID,
       paymentID: data.paymentID,
       payerID:   data.payerID
      }).then(function(res) {
