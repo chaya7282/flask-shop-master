@@ -70,12 +70,12 @@ paypal.Button.render({
      });
    },
    onAuthorize: function(data) {
-	var paymentIDD= data.paymentID
+
      paypal.request.post(EXECUTE_PAYMENT_URL, {
       paymentID: data.paymentID,
       payerID:   data.payerID
      }).then(function(res) {
-        alert(res)
+
         if (res) {
            var elem = document.getElementById('pay-pal').innerHTML="Your payment is accepted Order is placed";
            	window.location.href = "{{ url_for('order.create_reception',paymentID='ADDSHARE2') }}".replace("ADDSHARE2", paymentIDD)
@@ -84,14 +84,12 @@ paypal.Button.render({
             var elem = document.getElementById('pay-pal').innerHTML="Your payment was declined Order is Not placed";
          }
 
-        if (res) {
 
-        }
 
       }).catch(function(err) { var elem = document.getElementById('pay-pal').innerHTML=err;});
    },
    onCancel: function(data) {
-         alert(" in here")
+
          var elem = document.getElementById('pay-pal').innerHTML="Your payment was canceled";
    }
 
