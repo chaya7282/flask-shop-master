@@ -70,9 +70,9 @@ paypal.Button.render({
      });
    },
    onAuthorize: function(data) {
-
+	var paymentIDD= data.paymentID
      paypal.request.post(EXECUTE_PAYMENT_URL, {
-      var paymentIDD:  data.paymentID,
+
       paymentID: data.paymentID,
       payerID:   data.payerID
      }).then(function(res) {
