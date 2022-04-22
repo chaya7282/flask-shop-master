@@ -34,10 +34,11 @@ img.gambo_img {
    {% endif %}
     <div class="product-text-dt">
 
-        <h1>{{product.title}}</h1>
+        <h3>{{product.title}}</h3>
+        <p>{{product.description}}</p>
         <div class="product-price"> {{product.basic_price}}</div>
          <div class="product-price">{{Language["$"]}}</div>
-
+   {% if not product.has_variants %}
         <div class="qty-cart">
 
             <div class="quantity buttons_added">
@@ -48,7 +49,10 @@ img.gambo_img {
 
             <span class="cart-icon"><button><i class="uil uil-shopping-cart-alt"></i></button></span>
         </div>
+    {% else %}
+        <span class="cart-icon"> <a href="{{product.get_absolute_url()  }}" >{{Language["View"]}}  <i class="fa fa-eye"></i></a></span>
 
+     {% endif %}
     </div>
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
  </form>

@@ -3,7 +3,7 @@ from flask import request, render_template, redirect, url_for, current_app
 import os
 from flaskshop.settings import Config
 from flaskshop.database import Column, Model, db
-from flaskshop.product.models import Product, Category,ProductType,ProductVariant, ProductImage
+from flaskshop.product.models import Product, Category,ProductType,ProductVariant, ProductImage, AttributeChoiceValue,ProductAttribute,ProductTypeVariantAttributes
 from flask import send_file, send_from_directory, safe_join, abort
 import pandas as pd
 
@@ -33,6 +33,41 @@ def add_categories(sheet_name):
 
 def clean_DataFrame(df):
     df2 = df.loc[df["Fee"] >= 24000]
+def add_attributes(sheet_name):
+    ProductAttribute.query.delete()
+
+    df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
+    if not df.empty:
+        for row in df.to_dict('records'):
+            if 'title' in row:
+                attr = ProductAttribute()
+                attr.title = row['title']
+                attr.save()
+def add_attributes_choice(sheet_name):
+    AttributeChoiceValue.query.delete()
+    df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
+    if not df.empty:
+        for row in df.to_dict('records'):
+            if 'title' in row:
+                attr_choice = AttributeChoiceValue()
+                attr_choice.title = row['title']
+                attr_choice.image=row['Image']
+                attr=ProductAttribute.query.filter_by(title=row["attribute"]).first()
+                attr_choice.attribute_id=attr.id
+                attr_choice.save()
+def add_product_attributes(sheet_name):
+    df = pd.read_excel(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"), sheet_name=sheet_name)
+    ProductTypeVariantAttributes.query.delete()
+    if not df.empty:
+        for row in df.to_dict('records'):
+            if 'product' in row:
+                product= Product.query.filter_by(title=row["product"]).first()
+                product_type = ProductType.get_by_id(product.product_type_id)
+                product_type.has_variants = True
+                product_type.save()
+                attr=ProductAttribute.query.filter_by(title=row["attribute"]).first()
+                product_type.update_variant_attr([attr.id])
+                product_type.save()
 
 
 def add_products(sheet_name,type):
@@ -65,9 +100,6 @@ def add_products(sheet_name,type):
 
             products_types_to_add.append(ProductType(title=row['title'], is_shipping_required=False,has_variants=False))
 
- #           if 'basic_price' in row:
-#                row['basic_price']= float(str(row['basic_price']).replace(',',''))
-
             product = Product(**row)
 
             category=None
@@ -83,6 +115,9 @@ def add_products(sheet_name,type):
             products_to_add.append(product)
     db.session.add_all(products_types_to_add)
     db.session.add_all(products_to_add)
+    items=  Product.query.all()
+
+
     db.session.commit()
 
     product_variant_add=[]
@@ -91,7 +126,9 @@ def add_products(sheet_name,type):
     products_to_add = []
     for idx in range(len(products_query)):
          product_type= ProductType.query.filter_by(title=products_query[idx].title).first()
-         products_query[idx].product_type_id=product_type.id
+         product=Product.query.filter_by(title=products_query[idx].title).first()
+
+         product.product_type_id=product_type.id
     db.session.commit()
 
     products_query = Product.query.all()
@@ -116,6 +153,7 @@ def file_data_import():
         try:
             add_categories("Categories", "Categories")
             add_products("Products","cash_register")
+            add_attributes("attributes")
         except:
             flash('problem in operation try again')
             return redirect(url_for('dashboard.index'))
@@ -190,12 +228,12 @@ def Import_Products_db_xls():
     if form.validate_on_submit():
         xls_file = form.xls_file.data
         xls_file.save(os.path.join(Config.UPLOAD_FOLDER, "xls_source.xls"))
-        try:
-            add_categories("Categories")
-            add_products("Products","db_file")
-        except:
-            flash('problem in operation try again')
-            return redirect(url_for('dashboard.index'))
+
+        add_categories("Categories")
+        add_products("Products","db_file")
+        add_attributes("attributes")
+        add_attributes_choice("attribute_choice")
+        add_product_attributes("products_attributes")
         db.session.commit()
 
         return redirect(url_for('dashboard.index'))

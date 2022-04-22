@@ -29,7 +29,7 @@ def cart_index():
     categories = Category.query.all()
     return render_template("checkout/cart.html",shipping_methods=shipping_methods)
 
-
+@login_required
 def update_cart(id):
     # TODO when not enough stock, response ajax error
     line = CartLine.get_by_id(id)
@@ -55,8 +55,9 @@ def update_cart(id):
     jsonify(response)
     return redirect(url_for("checkout.cart_index"))
 
+@login_required
 def Cart_Checkout():
-    print("hell")
+
     if request.method == "POST":
 
         shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
@@ -92,7 +93,7 @@ def Cart_Checkout():
 
 
 
-
+@login_required
 def step_1_delivery_address():
     order = Order_Temporary.get_by_id(current_user.order_id)
     form = AddressForm(request.form)
@@ -121,32 +122,13 @@ def step_1_delivery_address():
         shipping_address = ShippingAddress.create(**shippment_address)
         order.shipping_address_id = shipping_address.id
         order.save()
-        return redirect(url_for("checkout.delivery_time_date"))
+        return redirect(url_for("checkout.payment_details"))
 
     return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id)
 
 
-def get_Shipping_address():
-    form = AddressForm(request.form)
-    address_id = current_user.addresses_id
-    if address_id:
-        user_address = UserAddress.get_by_id(address_id)
-        form = AddressForm(request.form, obj=user_address)
-    if request.method == "POST" and form.validate_on_submit():
-        address_data = {
 
-            "province": form.province.data,
-            "city": form.city.data,
-            "district": form.district.data,
-            "address": form.address.data,
-            "contact_name": form.contact_name.data,
-            "contact_phone": form.contact_phone.data,
-            "email": form.email.data,
-            "pincode": form.pincode.data
-        }
-        return redirect(url_for("checkout.delivery_time_date"))
-
-    return render_template("checkout/step-delivery_address.html", form=form, address_id=address_id,show_cart=True)
+@login_required
 
 def delivery_time_date():
     order = Order_Temporary.get_by_id(current_user.order_id)
@@ -166,84 +148,18 @@ def payment_details():
     return render_template("checkout/payment_details.html", paymentmethod=order.payment_method )
 
 
-def checkout_shipping():
-
-    user_address = current_user.addresses[0]
-
-    shipping_method = ShippingMethod.get_by_id(request.form["shipping_method"])
-
-    if user_address and shipping_method:
-        cart = Cart.get_current_user_cart()
-        cart.update(
-            shipping_address_id=user_address.id,
-            shipping_method_id=shipping_method.id,
-        )
-    return redirect(url_for("checkout.checkout_note"))
 
 
 
 
-def checkout_note():
-    form = NoteForm(request.form)
-    voucher_form = VoucherForm(request.form)
-    cart = Cart.get_current_user_cart()
-
-    address = (
-        UserAddress.get_by_id(cart.shipping_address_id)
-        if cart.shipping_address_id
-        else None
-    )
-    shipping_method = (
-        ShippingMethod.get_by_id(cart.shipping_method_id)
-        if cart.shipping_method_id
-        else None
-    )
-    if form.validate_on_submit():
-        order, msg = Order_Temporary.create_whole_order(cart,shippment_address=address, )
-        if not order:
-            flash(msg, "warning")
-        else:
-            return render_template("checkout/order_placed.html", order=order)
-
-    return render_template(
-        "checkout/note.html",
-        form=form,
-        address=address,
-        voucher_form=voucher_form,
-        shipping_method=shipping_method,
 
 
-    )
 
 
-def checkout_voucher():
-    voucher_form = VoucherForm(request.form)
-    if voucher_form.validate_on_submit():
-        voucher = Voucher.get_by_code(voucher_form.code.data)
-        cart = Cart.get_current_user_cart()
-        err_msg = None
-        if voucher:
-            try:
-                voucher.check_available(cart)
-            except Exception as e:
-                err_msg = str(e)
-        else:
-            err_msg = "Your code is not correct"
-        if err_msg:
-            flash(err_msg, "warning")
-        else:
-            cart.voucher_code = voucher.code
-            cart.save()
-        return redirect(url_for("checkout.checkout_note"))
 
 
-def checkout_voucher_remove():
-    voucher_form = VoucherForm(request.form)
-    if voucher_form.validate_on_submit():
-        cart = Cart.get_current_user_cart()
-        cart.voucher_code = None
-        cart.save()
-        return redirect(url_for("checkout.checkout_note"))
+
+
 
 
 
@@ -262,15 +178,9 @@ def flaskshop_load_blueprints(app):
         "/update_cart/<int:id>", view_func=update_cart, methods=["POST"]
     )
 
-    bp.add_url_rule("/shipping", view_func=checkout_shipping, methods=["GET", "POST"])
-    bp.add_url_rule("/note", view_func=checkout_note, methods=["GET", "POST"])
+
     bp.add_url_rule("/delivery_type", view_func=Cart_Checkout, methods=["POST"])
-    bp.add_url_rule("/voucher", view_func=checkout_voucher, methods=["POST"])
-    bp.add_url_rule(
-        "/voucher/remove", view_func=checkout_voucher_remove, methods=["POST"]
-    )
-    bp.add_url_rule(
-        "/get_Shipping_address", view_func=get_Shipping_address, methods=["GET", "POST"])
+
     bp.add_url_rule(
         "/delivery_time_date", view_func=delivery_time_date, methods=["GET", "POST"])
     bp.add_url_rule(

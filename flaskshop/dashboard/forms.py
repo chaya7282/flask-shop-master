@@ -168,7 +168,7 @@ class ProductTypeForm(FlaskForm):
 class ProductForm(FlaskForm):
     title = StringField("title",validators=[DataRequired(), Length(min=6, max=100)])
     discount_price = DecimalField("Before Sale",default=0.00, validators=[NumberRange(min=0, max=10000)])
-    basic_price = DecimalField("Product Price",default=0.00, validators=[NumberRange(min=0, max=10000)])
+    basic_price = DecimalField("Product Price",default=0.00, validators=[DataRequired(), NumberRange(min=0, max=10000)])
 
     on_sale = BooleanField("On Sale",default=False)
     is_active = BooleanField("Is-Active",default=True)
@@ -199,7 +199,7 @@ class ProductForm(FlaskForm):
             return False
 
         if self.category_id.data == "None":
-            flash("Try To add categories First")
+            flash("Try To add categories First",'danger')
             return False
         return True
 

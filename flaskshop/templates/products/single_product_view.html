@@ -93,9 +93,9 @@
 										<h2>{{ product.title }}</h2>
 										<div class="no-stock">
 											   {%  if product.is_in_stock or not product.need_check_stock%}
-											    <p class="stock-qty">Available<span>(Instock)</span></p>
+
                                                {% else %}
-                                               <p class="stock-qty">Not Available<span>(Not Instock)</span></p>
+
                                                {% endif %}
 										</div>
 

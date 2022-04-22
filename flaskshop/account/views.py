@@ -39,7 +39,7 @@ def login():
         login_user(form.user)
         address_id = current_user.addresses_id
         if not address_id:
-            flash("You miss an address pls go on and fill it.", 'error')
+            flash("You miss an address pls go on and fill it.", 'danger')
         return redirect(url_for("public.home"))
 
     else:
@@ -75,17 +75,17 @@ def signup():
         flash_errors(form)
     return render_template("account/signup.html", form=form)
 
-
+@login_required
 def set_password():
     form = ChangePasswordForm(request.form)
     categories = Category.query.all()
     if request.method == "POST":
         if form.validate_on_submit():
             current_user.update(password=form.password.data)
-            flash("You have changed password.", "success")
+            flash("You have succesfuly changed password.", "success")
             return redirect(url_for("account.index") )
         else:
-            flash("You have not changed password.", "failure")
+            flash("You have not changed password.", "danger")
     return render_template("account/forgot_password.html", form=form)
 
 
@@ -95,7 +95,7 @@ def addresses():
     addresses = current_user.addresses
     return render_template("account/dashboard_my_addresses.html", addresses=addresses)
 
-
+@login_required
 def edit_address():
     """Create and edit an address."""
     categories = Category.query.all()
@@ -131,7 +131,7 @@ def edit_address():
 
     return render_template("account/address_edit.html", form=form, address_id=address_id,show_cart=False)
 
-
+@login_required
 def delete_address(id):
     user_address = UserAddress.get_by_id(id)
     if user_address in current_user.addresses:

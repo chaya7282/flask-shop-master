@@ -125,7 +125,7 @@ def product_search():
 def flaskshop_load_blueprints(app):
     bp = Blueprint("product", __name__)
     bp.add_url_rule("/<int:id>", view_func=show)
-    bp.add_url_rule("/show_on_sale", view_func= show_on_sale)
+    bp.add_url_rule("/<int:id>/show_single", view_func= show_single)
     bp.add_url_rule("/show_on_sale", view_func=show_on_sale)
     bp.add_url_rule("/show_featured", view_func=show_featured)
     bp.add_url_rule("/api/variant_price/<int:id>", view_func=variant_price)

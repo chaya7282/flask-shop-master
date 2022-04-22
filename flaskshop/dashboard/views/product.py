@@ -391,6 +391,7 @@ def product_create_step1(id=None):
 
 
 def product_manage(id= None):
+
     image_path= None
     if id:
         product= Product.get_by_id(id)
@@ -406,7 +407,7 @@ def product_manage(id= None):
             product = Product(product_type_id=product_type.id)
             product.title= product_type.title
         else:
-            product_type= product.product_type
+            product_type= ProductType.get_by_id(product.product_type_id)
         image= form.images.data
         product = _save_product(product, form)
         if image:
