@@ -68,7 +68,9 @@ def add_product_attributes(sheet_name):
                 attr=ProductAttribute.query.filter_by(title=row["attribute"]).first()
                 product_type.update_variant_attr([attr.id])
                 product_type.save()
-
+                product.delete_variants()
+                product.generate_variants()
+                product.save()
 
 def add_products(sheet_name,type):
     Product.query.delete()
