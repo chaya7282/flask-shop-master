@@ -247,6 +247,7 @@ class cartlineVariantAttributes(Model):
 
 
 
+
 class ShippingMethod(Model):
     __tablename__ = "checkout_shippingmethod"
     title = Column(db.String(255), nullable=False)

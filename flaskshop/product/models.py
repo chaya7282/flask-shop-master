@@ -718,13 +718,14 @@ class ProductAttribute(Model):
         return ",".join([t.title for t in self.types])
 
     def update_values(self, new_values):
-        origin_values = AttributeChoiceValue.query.filter_by(attribute_id=self.id).all()
-        for value in origin_values:
-            value.delete(commit=False)
-        for key in new_values.keys():
-            new = AttributeChoiceValue(title=key, image=new_values[key], attribute_id=self.id)
-            db.session.add(new)
-        db.session.commit()
+           for key in new_values.keys():
+            origin_value = AttributeChoiceValue.query.filter_by(attribute_id=self.id, title=key).first()
+            if origin_value:
+                origin_value.update(title=key, image=new_values[key][0], is_active=new_values[key][1] )
+            else:
+                new = AttributeChoiceValue(title=key, image=new_values[key][0], is_active=new_values[key][1] ,attribute_id=self.id)
+                db.session.add(new)
+            db.session.commit()
 
 
     def update_values_(self, new_values):
@@ -799,6 +800,7 @@ class AttributeChoiceValue(Model):
     __tablename__ = "product_attribute_value"
     title = Column(db.String(255), nullable=False)
     image = Column(db.String(255), nullable=False)
+    is_active= Column(db.Boolean(), default=False)
     attribute_id = Column(db.Integer())
 
     def __str__(self):

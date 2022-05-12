@@ -42,7 +42,7 @@ from .product import (
     products,
     product_detail,
     product_manage,
-    product_create_step1,
+    add_product,
     categories_del,
     categories_detail,
     variant_manage,
@@ -211,8 +211,6 @@ def flaskshop_load_blueprints(app):
     bp.add_url_rule("/categories/<id>", view_func=categories_detail )
     bp.add_url_rule("/product_del/<id>", view_func=product_del)
     bp.add_url_rule("/category_del/<id>", view_func= categories_del)
-    bp.add_url_rule( "/products/create/step1",view_func=product_create_step1,methods=["GET", "POST"],
-    )
 
     bp.add_url_rule(
         "/Import_Cash_Registe_xls", view_func=Import_Cash_Registe_xls, methods=["GET", "POST"],
@@ -236,6 +234,10 @@ def flaskshop_load_blueprints(app):
     )
     bp.add_url_rule(
         "/products/<id>/edit", view_func= product_manage, methods=["GET", "POST"]
+    )
+
+    bp.add_url_rule(
+        "/products/add_product", view_func=add_product, methods=["GET", "POST"]
     )
     bp.add_url_rule(
         "/products/variant/create", view_func=variant_manage, methods=["GET", "POST"]

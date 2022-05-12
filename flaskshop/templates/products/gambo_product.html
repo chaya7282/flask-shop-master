@@ -35,9 +35,10 @@ img.gambo_img {
     <div class="product-text-dt">
 
         <h3>{{product.title}}</h3>
-        <p>{{product.description}}</p>
+        <h4>{{product.description}}</h4>
         <div class="product-price"> {{product.basic_price}}</div>
          <div class="product-price">{{Language["$"]}}</div>
+
    {% if not product.has_variants %}
         <div class="qty-cart">
 
@@ -50,7 +51,7 @@ img.gambo_img {
             <span class="cart-icon"><button><i class="uil uil-shopping-cart-alt"></i></button></span>
         </div>
     {% else %}
-        <span class="cart-icon"> <a href="{{product.get_absolute_url()  }}" >{{Language["View"]}}  <i class="fa fa-eye"></i></a></span>
+        <span class="cart-icon"> <a href="{{product.get_absolute_url()  }}" >{{Language["Continue to product"]}}  <i class="fa fa-eye"></i></a></span>
 
      {% endif %}
     </div>

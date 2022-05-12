@@ -286,7 +286,7 @@ h2{
 								  <li>
 
 									  <input type="radio" name="shipping_method" value="{{ method.id }}" id="shipping_{{ method.id }}" {% if loop.first %}checked{%endif%}>
-										<label for="shipping_{{ method.id }}"> {{Language[method.title]}}:{{method.price}}{{Language["$"]}}</label>
+										<label for="shipping_{{ method.id }}"> {{method.title}}:{{method.price}}{{Language["$"]}}</label>
 
 								  </li>
 								  {% endfor %}

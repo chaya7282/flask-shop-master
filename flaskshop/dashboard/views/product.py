@@ -69,8 +69,9 @@ def attributes_del(id=None):
 
     return redirect(url_for("dashboard.attributes"))
 
+
 def attributes_manage(id=None):
-    attr=None
+    attr = None
     if id:
         attr = ProductAttribute.get_by_id(id)
         form = AttributeForm(obj=attr)
@@ -82,32 +83,41 @@ def attributes_manage(id=None):
         attr.title = form.title.data
         attr.save()
         keys = form.values.data
-        current_values= attr.values
-        values= []
+        current_values = attr.values
+        values = []
+
         for index in range(len(keys)):
-            key= keys[index]
-            curr_value= [x for x in attr.values if x.title == key]
+            key = keys[index]
+            curr_value = [x for x in attr.values if x.title == key]
             new_image = form.background_imgs.data[index]
+            is_active = False
+            selected = request.form.getlist('check')
+
+            if key in selected:
+                is_active = True
+
             if new_image:
-                image=upload_file(new_image)
+                image = upload_file(new_image)
             else:
                 if curr_value:
                     if curr_value[0].image:
-                        image=curr_value[0].image
+                        image = curr_value[0].image
                 else:
-                     image= "tmp_file.jpg"
-            values.append(image)
+                    image = "tmp_file.jpg"
+            values.append([image, is_active])
 
         dictionary = dict(zip(keys, values))
 
         attr.update_values(dictionary)
         attr.save()
+        # update relevant products
+
+
         return redirect(url_for("dashboard.attributes"))
 
     return render_template(
-        "product/attribute.html",attribute=attr, form=form,
+        "product/attribute.html", attribute=attr, form=form,
     )
-
 
 def collections():
     page = request.args.get("page", type=int, default=1)
@@ -329,85 +339,49 @@ def product_del(id):
         product.delete()
     return redirect(url_for('dashboard.products'))
 
-def product_manage_(id):
+def product_manage(id= None):
+    image_path = None
+
     product = Product.get_by_id(id)
     form = ProductForm(obj=product)
+    form.current_img.data = product.image_url();
 
     if form.validate_on_submit():
-        f = request.files['imgdata']
-        if f:
-            image_name= upload_file(f.filename)
-            new_img= ProductImage.get_or_create(image=image_name, product_id=product.id)
-            Product.update_images([new_img[0].id],product.id)
 
+        product_type = ProductType.get_by_id(product.product_type_id)
+        image = form.images.data
 
-        _save_product(product, form)
+        if image:
+            filename = upload_file(image)
+            ProductImage.del_product_imgs(product.id)
+            ProductImage.get_or_create(image=filename, product_id=product.id)
+        product.basic_price = form.basic_price.data
+        product.title=form.title.data
+        product.on_sale = form.on_sale.data
+        product.is_active = form.is_active.data
+        product.is_featured = form.is_featured.data
+        product.in_front_banner = form.in_front_banner.data
+
+        product.save()
         return redirect(url_for("dashboard.product_detail", id=product.id))
+
     categories = Category.query.all()
-    context = {"form": form, "categories": categories, "product": product }
-    return render_template("product/product_edit.html", **context)
-
-
-
-
-def product_create_step1(id=None):
-    if id:
-        product_type = ProductType.get_by_id(id)
-        form = ProductTypeForm(obj=product_type)
-    else:
-        form = ProductTypeForm()
-    if form.validate_on_submit():
-        if not id:
-            request.form.getlist('usergroups')
-            isChecked = request.form.getlist("HasAttributes")
-            has_attributes = False
-            if isChecked:
-                has_attributes= True
-            isChecked = request.form.getlist("HasVariants")
-            has_variants = False
-            if isChecked:
-                has_variants = True
-
-
-            product_type = ProductType.get_or_create(
-                has_attributes=has_attributes, title=form.title.data, is_shipping_required=form.is_shipping_required.data, has_variants = has_variants)[0]
-
-            if product_type.has_attributes:
-                for attr in form.product_attributes.data:
-                    ProductTypeAttributes.get_or_create(
-                        product_type_id=product_type.id, product_attribute_id=int(attr)
-                    )
-
-
-            product_type.save()
-            return  redirect(url_for(
-                    "dashboard.product_create_step2",
-                    product_type_id=product_type.id
-                ))
-    attributes = ProductAttribute.query.all()
+    attributes = product.product_type.variant_attributes
     return render_template(
-        "product/product_create_step1.html", form=form, attributes=attributes
-    )
+        "product/manage_product.html",
+        form=form,categories=categories, attributes=attributes)
+
+def add_product():
 
 
-def product_manage(id= None):
-
-    image_path= None
-    if id:
-        product= Product.get_by_id(id)
-        form = ProductForm(obj=product)
-        form.current_img.data=product.image_url();
-
-    else:
-        form = ProductForm()
+    form = ProductForm()
     if form.validate_on_submit():
-        if not id:
-            product_type = ProductType.get_or_create(
-                has_attributes=None, title=form.title.data, is_shipping_required=None,has_variants=None)[0]
-            product = Product(product_type_id=product_type.id)
-            product.title= product_type.title
-        else:
-            product_type= ProductType.get_by_id(product.product_type_id)
+
+        product_type = ProductType.get_or_create(
+            has_attributes=None, title=form.title.data, is_shipping_required=None,has_variants=None)[0]
+        product = Product(product_type_id=product_type.id)
+        product.title= product_type.title
+
         image= form.images.data
         product = _save_product(product, form)
         if image:

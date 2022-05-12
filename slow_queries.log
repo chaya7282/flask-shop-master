@@ -13733,3 +13733,984 @@ Traceback (most recent call last):
   File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\file_import.py", line 65, in add_product_attributes
     product_type = ProductType.get_by_id(product.product_type_id)
 AttributeError: 'NoneType' object has no attribute 'product_type_id'
+[2022-04-25 11:18:13,913]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'product_attribute_value.is_active' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 58, in attributes
+    return render_template("list.html", **context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\list.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\list.html", line 69, in block "content"
+    <td>{{ item | attr(prop) }}</td>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\filters.py", line 1062, in do_attr
+    value = getattr(obj, name)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 703, in values_label
+    return ",".join([value.title for value in self.values])
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\corelib\mc.py", line 43, in _
+    return f(*a, **kw)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 697, in values
+    return AttributeChoiceValue.query.filter(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3373, in all
+    return list(self)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3535, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3560, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (1054, "Unknown column 'product_attribute_value.is_active' in 'field list'")
+[SQL: SELECT product_attribute_value.id AS product_attribute_value_id, product_attribute_value.created_at AS product_attribute_value_created_at, product_attribute_value.updated_at AS product_attribute_value_updated_at, product_attribute_value.title AS product_attribute_value_title, product_attribute_value.image AS product_attribute_value_image, product_attribute_value.is_active AS product_attribute_value_is_active, product_attribute_value.attribute_id AS product_attribute_value_attribute_id 
+FROM product_attribute_value 
+WHERE product_attribute_value.attribute_id = %s]
+[parameters: (33,)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+[2022-04-25 11:54:19,881]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes/1/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 91, in attributes_manage
+    new_is_active= form.is_active.data[index]
+TypeError: 'bool' object is not subscriptable
+[2022-04-25 12:08:06,332]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes/1/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 91, in attributes_manage
+    new_is_active= form.is_active.data[index]
+IndexError: list index out of range
+[2022-04-25 12:19:47,189]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes/1/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 91, in attributes_manage
+    new_is_active= form.is_active.data[index]
+IndexError: list index out of range
+[2022-04-25 13:04:08,032]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes/1/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 92, in attributes_manage
+    new_is_active= form.is_active.data[index]
+IndexError: list index out of range
+[2022-04-25 15:47:48,223]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes/1/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 88, in attributes_manage
+    any_selected = bool(selected)
+UnboundLocalError: local variable 'selected' referenced before assignment
+[2022-04-25 19:52:14,781]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /products/104/show_single [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\views.py", line 33, in show_single
+    return render_template("products/single_product_view.html",product=product)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\products\single_product_view.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 545, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\products\single_product_view.html", line 53, in block "content"
+    {% include "checkout/cart_side_tempalte.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\cart_side_tempalte.html", line 30, in top-level template code
+    <span>{{current_user_cart.shipping_method.price}}{{Language["$"]}}</span>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'shipping_method'
+[2022-04-25 20:10:03,915]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /products/104/add [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\views.py", line 49, in product_add_to_cart
+    variant_id = variant.id
+AttributeError: 'NoneType' object has no attribute 'id'
+[2022-04-25 20:11:29,429]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /products/104/add [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\views.py", line 49, in product_add_to_cart
+    variant_id = variant.id
+AttributeError: 'NoneType' object has no attribute 'id'
+[2022-04-26 09:08:07,982]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/Admin/vendor/fontawesome-free/css/all.min.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1925, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1907, in raise_routing_exception
+    raise request.routing_exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\werkzeug\routing.py", line 1799, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 206, in top-level template code
+    <img  src={{item.get_background_img_AWS ()}}  width="100px" height="auto">
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 358, in get_background_img_AWS
+    url= get_presigned_url(self.background_img)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\resources\resources.py", line 28, in get_presigned_url
+    s3_client = boto3.client("s3", aws_access_key_id=current_app.config["S3_KEY"],
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\boto3\__init__.py", line 93, in client
+    return _get_default_session().client(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\boto3\session.py", line 270, in client
+    return self._session.create_client(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 834, in create_client
+    endpoint_resolver = self._get_internal_component('endpoint_resolver')
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 707, in _get_internal_component
+    return self._internal_components.get_component(name)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 948, in get_component
+    del self._deferred[name]
+KeyError: 'endpoint_resolver'
+[2022-04-26 09:16:54,406]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/delivery_type [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 74, in Cart_Checkout
+    line.quantity = int(qty)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2022-04-26 09:58:45,464]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/Import_Products_db_xls [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\file_import.py", line 238, in Import_Products_db_xls
+    add_product_attributes("products_attributes")
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\file_import.py", line 71, in add_product_attributes
+    product.delete_variants()
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 263, in delete_variants
+    self.variant
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\corelib\mc.py", line 43, in _
+    return f(*a, **kw)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 163, in variant
+    return ProductVariant.query.filter(ProductVariant.product_id == self.id).all()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\attributes.py", line 294, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\attributes.py", line 725, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\loading.py", line 1016, in load_scalar_attributes
+    raise orm_exc.ObjectDeletedError(state)
+sqlalchemy.orm.exc.ObjectDeletedError: Instance '<Product at 0x1b487d826a0>' has been deleted, or its row is otherwise not present.
+[2022-04-26 09:58:51,686]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/Admin/vendor/fontawesome-free/css/all.min.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1925, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1907, in raise_routing_exception
+    raise request.routing_exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\werkzeug\routing.py", line 1799, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 206, in top-level template code
+    <img  src={{item.get_background_img_AWS ()}}  width="100px" height="auto">
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 358, in get_background_img_AWS
+    url= get_presigned_url(self.background_img)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\resources\resources.py", line 28, in get_presigned_url
+    s3_client = boto3.client("s3", aws_access_key_id=current_app.config["S3_KEY"],
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\boto3\__init__.py", line 93, in client
+    return _get_default_session().client(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\boto3\session.py", line 270, in client
+    return self._session.create_client(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 834, in create_client
+    endpoint_resolver = self._get_internal_component('endpoint_resolver')
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 707, in _get_internal_component
+    return self._internal_components.get_component(name)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 948, in get_component
+    del self._deferred[name]
+KeyError: 'endpoint_resolver'
+[2022-04-26 10:02:10,760]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/attributes/3/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '35-1337' for key 'product_variant.sku'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 117, in attributes_manage
+    product.generate_variants()
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 245, in generate_variants
+    variant=ProductVariant.create(
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\database.py", line 15, in create
+    obj.save()
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\database.py", line 29, in save
+    db.session.commit()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\scoping.py", line 163, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 1046, in commit
+    self.transaction.commit()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 504, in commit
+    self._prepare_impl()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 483, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2540, in flush
+    self._flush(objects)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2682, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.raise_(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\session.py", line 2642, in _flush
+    flush_context.execute()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 586, in execute
+    persistence.save_obj(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\persistence.py", line 239, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\persistence.py", line 1135, in _emit_insert_statements
+    result = cached_connections[connection].execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.IntegrityError: (MySQLdb._exceptions.IntegrityError) (1062, "Duplicate entry '35-1337' for key 'product_variant.sku'")
+[SQL: INSERT INTO product_variant (created_at, updated_at, sku, title, price_override, quantity, quantity_allocated, product_id, attributes) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)]
+[parameters: (datetime.datetime(2022, 4, 26, 10, 1, 1, 162931, tzinfo=<DstTzInfo 'Asia/Jerusalem' IDT+3:00:00 DST>), datetime.datetime(2022, 4, 26, 10, 1, 1, 162931, tzinfo=<DstTzInfo 'Asia/Jerusalem' IDT+3:00:00 DST>), '35-1337', '', 0.0, 0, 0, 35, '{"3": "31"}')]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+[2022-04-26 19:43:19,153]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 314, in products
+    return render_template("product/shop_products.html", **context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\shop_products.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\shop_products.html", line 16, in block "content"
+    <a href="{{url_for('dashboard.add_product')}}" class="add-btn hover-btn">Add product</a>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\werkzeug\routing.py", line 2020, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'dashboard.add_product'. Did you forget to specify values ['id']?
+[2022-04-26 19:46:40,098]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 314, in products
+    return render_template("product/shop_products.html", **context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\shop_products.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\shop_products.html", line 16, in block "content"
+    <a href="{{url_for('dashboard.add_product')}}" class="add-btn hover-btn">Add product</a>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\werkzeug\routing.py", line 2020, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'dashboard.add_product'. Did you forget to specify values ['id']?
+[2022-04-26 19:55:07,832]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/36/edit [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 367, in product_manage
+    return render_template(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\manage_product.html", line 80, in template
+    {% item.title %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'item'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+[2022-04-26 19:55:53,466]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/35/edit [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 367, in product_manage
+    return render_template(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\manage_product.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\manage_product.html", line 79, in block "content"
+    {% for item in product.variant_attributes() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'product' is undefined
+[2022-04-26 19:58:16,268]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/35/edit [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 366, in product_manage
+    attributes = product.attributes()
+TypeError: 'NoneType' object is not callable
+[2022-04-26 20:04:12,434]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/35/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 367, in product_manage
+    return render_template(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\manage_product.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\product\manage_product.html", line 57, in block "content"
+    {{ macros.render_file_field(form.images, form.images.data) }}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\_macros.html", line 189, in template
+    {% set label_id = file_field.label.field_id %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'label'
+[2022-04-26 20:07:50,034]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/create/step2 [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 351, in product_manage
+    form.current_img.data = product.image_url();
+AttributeError: 'NoneType' object has no attribute 'image_url'
+[2022-04-26 20:24:19,284]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/35/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 358, in product_manage
+    product.price=form.basic_price.data
+AttributeError: can't set attribute
+[2022-04-26 20:28:17,399]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/35/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 357, in product_manage
+    form.populate_obj(product)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\wtforms\form.py", line 96, in populate_obj
+    field.populate_obj(obj, name)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\wtforms\fields\core.py", line 330, in populate_obj
+    setattr(obj, name, self.data)
+AttributeError: can't set attribute
+[2022-04-26 20:36:05,132]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/35/edit [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 351, in product_manage
+    form = ProductManage(obj=product)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\wtforms\form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\forms.py", line 192, in __init__
+    super(ProductForm, self).__init__(*args, **kwargs)
+TypeError: super(type, obj): obj must be an instance or subtype of type
+[2022-04-26 20:40:18,466]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /products/35/add [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\views.py", line 49, in product_add_to_cart
+    variant_id = variant.id
+AttributeError: 'NoneType' object has no attribute 'id'
+[2022-04-26 20:45:19,415]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /products/36/add [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\views.py", line 49, in product_add_to_cart
+    variant_id = variant.id
+AttributeError: 'NoneType' object has no attribute 'id'
+[2022-04-26 20:47:22,452]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/Admin/vendor/fontawesome-free/css/all.min.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1925, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1907, in raise_routing_exception
+    raise request.routing_exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\werkzeug\routing.py", line 1799, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 206, in top-level template code
+    <img  src={{item.get_background_img_AWS ()}}  width="100px" height="auto">
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\product\models.py", line 358, in get_background_img_AWS
+    url= get_presigned_url(self.background_img)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\resources\resources.py", line 28, in get_presigned_url
+    s3_client = boto3.client("s3", aws_access_key_id=current_app.config["S3_KEY"],
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\boto3\__init__.py", line 93, in client
+    return _get_default_session().client(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\boto3\session.py", line 270, in client
+    return self._session.create_client(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 834, in create_client
+    endpoint_resolver = self._get_internal_component('endpoint_resolver')
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 707, in _get_internal_component
+    return self._internal_components.get_component(name)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\botocore\session.py", line 948, in get_component
+    del self._deferred[name]
+KeyError: 'endpoint_resolver'
+[2022-04-26 21:05:18,030]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/products/1/edit [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\product.py", line 362, in product_manage
+    form.populate_obj(product)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\wtforms\form.py", line 96, in populate_obj
+    field.populate_obj(obj, name)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\wtforms\fields\core.py", line 330, in populate_obj
+    setattr(obj, name, self.data)
+AttributeError: can't set attribute

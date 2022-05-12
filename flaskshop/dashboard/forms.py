@@ -130,7 +130,8 @@ class UserAddressForm(FlaskForm):
 class AttributeForm(FlaskForm):
     title = StringField(validators=[DataRequired()])
     values = FieldList(StringField("Value"))
-    types = SelectMultipleField("Product Types")
+    types = SelectMultipleField("Product Types--")
+    is_active= FieldList(BooleanField("is active",default=False))
     background_imgs = FieldList(FileField('file'))
 
     submit = SubmitField()
@@ -163,6 +164,7 @@ class ProductTypeForm(FlaskForm):
 
     variant_attr_id = SelectField("Variant Attributes")
     submit = SubmitField()
+
 
 
 class ProductForm(FlaskForm):

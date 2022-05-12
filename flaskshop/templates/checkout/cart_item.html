@@ -22,10 +22,12 @@
 
 					</div>
 					<div class="cart-text">
-						<h4>{{line.product.title}}
+						<h4>{{line.product.title}}</h4>
                          {% if line.variant.attribute_map %}
-                         {% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}
-                        {% endif %} </h4>
+                         <div>
+							 <h5>{% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}</h5>
+                        </div>
+							 {% endif %}
 
 						<div class="qty-group">
 							<div class="quantity buttons_added">

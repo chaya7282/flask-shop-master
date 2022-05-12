@@ -9,8 +9,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
-<script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
+    <script>
 
 $( document ).ready(function() {
 
@@ -22,14 +23,17 @@ $('#field_list').on('click', '#item_del', function () {
     $(this).parent().parent().remove();
 });
  add_btn.click(function () {
-
+    alert("hello")
     var index_field = field + '-' + index;
     var index_field2 = "background_imgs" + '-' + index;
+    var index_field3=  "is_active" + '-' + index;
     var html= '    <div class="form-group form-inline mb-3">'
 
     html+=  ' <div class="col-sm-2">  Attribute: </div>'
     html+= ' <div class="col-sm-4"> <label for="' + index_field + '">Name</label>  <input type="text" class="form-control" id="' + index_field + '" name="' + index_field + '" ></div>'
-     html+= ' <div class="col-sm-4"> <label for="' + index_field2 + '">Image</label>  <input type="file" class="form-control" id="' + index_field2 + '" name="' + index_field2 + '" ></div>'
+    html+= ' <div class="col-sm-4"> <label for="' + index_field2 + '">Image</label>  <input type="file" class="form-control" id="' + index_field2 + '" name="' + index_field2 + '" ></div>'
+    html+= ' <div class="col-sm-4"> <label for="' + index_field3 + '">Is active</label>  <input type="radio" class="form-control" id="' + index_field3 + '" name="' + index_field3 + '" ></div>'
+
     html+= '<div class="col-sm-2">'
     html+= '<button type="button" class="save-btn hover-btn" id="item_del">Remove Entry</button>'
     html+= '</div>'
@@ -82,11 +86,13 @@ $('#field_list').on('click', '#item_del', function () {
                                                             <div class="form-group form-inline mb-3">
 
 
-                                                                         <span> <img src="{{attr.image_url() }}" width="40" height="40"></span>
-                                                                        </span><input type="text" class="form-control" value={{ attr.title }} id="values-{{attr.id}}" name="values-{{attr.id}}" value="attr.title" ></span>
-                                                                       <span><input type="file" class="form-control"  id="background_imgs-{{attr.id}}" name="background_imgs-{{attr.id}}"></span>
+                                                                <span> <img src="{{attr.image_url() }}" width="40" height="40"></span>
+                                                                <span class="mr-1"><input type="text" class="form-control"  id="values-{{attr.id}}" name="values-{{attr.id}}"  value={{ attr.title }} ></span>
 
-                                                               <span><button type="button" class="save-btn hover-btn" id="item_del">Remove Entry</button></span>
+                                                                <span class="mr-1"><input type="file" class="form-control"  id="background_imgs-{{attr.id}}" name="background_imgs-{{attr.id}}"></span>
+                                                                 <span class="mr-1"><label>Is active</label><input type="checkbox" class="form-control"  value={{ attr.title }} name=check {% if attr.is_active %} checked {% endif %} ></span>
+
+
                                                             </div>
 
 
@@ -96,7 +102,6 @@ $('#field_list').on('click', '#item_del', function () {
                                                         {% endif %}
                                                        </div>
 
-											    <button type="button" onclick="addEntry()" class="save-btn hover-btn" id="add_entry"  data-index="{{attribute.values | length}}"  data-field="values">Add entry</button>
 
                                                 <button class="save-btn hover-btn" type="submit">Submit</button>
                                             </div>
