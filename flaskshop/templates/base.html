@@ -416,6 +416,8 @@ h2{
 
 	<!-- Cart Sidebar Offsetl End-->
 	<!-- Header Start -->
+
+
 <header class="header clearfix">
 		<div class="top-header-group">
 
@@ -511,9 +513,11 @@ h2{
 				<div class="catey__icon">
 					<a href="#" class="cate__btn" data-toggle="modal" data-target="#category_model" title="Categories"><i class="uil uil-apps"></i></a>
 				</div>
+				{% if business.is_working_now() %}
 				<div class="header_cart order-1">
-					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>{{Language["Cart"]}} </span><ins>{{ current_user_cart.quantity }}</ins><i class="uil uil-angle-down"></i></a>
+					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>{{Language["Cart"]}}</span><ins>{{ current_user_cart.quantity }}</ins><i class="uil uil-angle-down"></i></a>
 				</div>
+				{% endif %}
 				<div class="search__icon order-1">
 					<a href="#" class="search__btn hover-btn" data-toggle="modal" data-target="#search_model" title="Search"><i class="uil uil-search"></i></a>
 				</div>
@@ -542,9 +546,15 @@ h2{
 {% endwith %}
 
 </div>
+	{% if business.is_working_now() %}
 	{% block content %}
 	{% endblock content %}
+	{% else%}
+	<div class="d-flex justify-content-center"><h1>{{Language["Shop Closed"]}} </h1></div>
+
+	{% endif %}
 </div>
+
 	<footer class="footer">
 		<div class="footer-first-row">
 			<div class="container">

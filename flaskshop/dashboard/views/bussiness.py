@@ -24,3 +24,5 @@ def manage_bussiness():
         return redirect(url_for('dashboard.index'))
 
     return render_template("bussiness/bussiness.html",form=form)
+
+

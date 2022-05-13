@@ -1,7 +1,7 @@
 {% import 'dashboard/_macros.html' as macros%}
 {% extends 'dashboard/dashboard_layout.html' %}
-
-
+{% from 'bootstrap/form.html' import render_field %}
+{% from 'bootstrap/form.html' import render_file_field %}
 {% block content %}
 <head>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -28,18 +28,24 @@
 									 <form method="POST" action="" enctype='multipart/form-data'>
 
 
-											{{macros.render_input_field(form.name,"text")}}
+											{{render_field(form.name)}}
 
-											{{macros.render_input_field(form.address,"text")}}
-                                            {{macros.render_input_field(form.phone,"text")}}
-                                            {{macros.render_input_field(form.email,"text")}}
-                                            {{macros.render_input_field(form.email_password,"text")}}
-                                             {{macros.render_input_field(form.account_sid,"text")}}
-                                            {{macros.render_input_field(form.auth_token,"text")}}
-                                             {{macros.render_input_field(form.Twilo_phone_Number,"text")}}
-                                             {{ macros.render_file_field(form.image, form.image.data) }}
-                                                {{macros.render_input_field(form.payPal_SID,"text")}}
-                                             {{macros.render_input_field(form.payPal_Secret,"text")}}
+											{{render_field(form.address,"text")}}
+                                            {{render_field(form.phone,"text")}}
+                                            {{render_field(form.email,"text")}}
+                                            {{render_field(form.email_password,"text")}}
+                                             {{render_field(form.account_sid,"text")}}
+                                            {{render_field(form.auth_token,"text")}}
+                                             {{render_field(form.Twilo_phone_Number,"text")}}
+                                        {%if form.image.errors %}
+                                         <div class="text-danger">{{form.image.errors[0]}}**</div>
+                                         {% endif %}
+                                         {{ macros.render_file_field(form.image, form.image.data) }}
+
+
+                                         {{render_field(form.payPal_SID,"text")}}
+                                         {{render_field(form.payPal_Secret,"text")}}
+                                         {{ macros.render_boolean_field(form.store_open) }}
 
                                             <input type="hidden" name="csrf_token" value="{{csrf_token()}}" />
                                             <button class="save-btn hover-btn" type="submit">{{Language["Submit"]}} </button>

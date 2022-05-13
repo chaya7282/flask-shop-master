@@ -14714,3 +14714,1533 @@ Traceback (most recent call last):
   File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\wtforms\fields\core.py", line 330, in populate_obj
     setattr(obj, name, self.data)
 AttributeError: can't set attribute
+[2022-05-12 20:13:09,988]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 43, in block "content"
+    <label  class="form-label"  for="{{label_id}}">{{field.label.text}}</label>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'field' is undefined
+[2022-05-12 20:51:09,086]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 46, in block "content"
+    {{form.close_hour("form-control")}}
+TypeError: __call__() takes 1 positional argument but 2 were given
+[2022-05-12 21:01:11,035]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 31, in block "content"
+    {{macros.render_input_field(form.name(class='form-control'),"text")}}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\runtime.py", line 679, in _invoke
+    rv = self._func(*arguments)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\_macros.html", line 36, in template
+    {% set label_id = field.label.field_id %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'wtforms.widgets.core.HTMLString object' has no attribute 'label'
+[2022-05-12 21:23:17,335]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 40, in block "content"
+    {{render_file_field(form.image) }}
+jinja2.exceptions.UndefinedError: the template 'bootstrap/form.html' (imported on line 4 in 'bussiness/bussiness.html') does not export the requested name 'render_file_field'
+[2022-05-12 21:33:28,537]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 43, in block "content"
+    {% for error in form.title.errors %}
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'flaskshop.dashboard.forms.BussinessForm object' has no attribute 'title'
+[2022-05-12 21:51:14,637]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 41, in template
+    {{form.image.errors[0]**}}
+jinja2.exceptions.TemplateSyntaxError: unexpected 'end of print statement'
+[2022-05-12 22:00:48,398]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Admin/css/dashboard/bootstrap-select.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,400]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/Admin/vendor/fontawesome-free/css/all.min.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1925, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1907, in raise_routing_exception
+    raise request.routing_exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\werkzeug\routing.py", line 1799, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,422]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/froala_editor.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,440]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/froala_style.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,457]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/code_view.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,467]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/colors.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,588]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/emoticons.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,639]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/image.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,640]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/image_manager.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,689]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/line_breaker.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,723]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/table.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,730]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/char_counter.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,782]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/video.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,808]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/fullscreen.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,839]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/file.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,945]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Admin/vendor/OwlCarousel/owl.carousel.js [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,960]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Admin/vendor/semantic/semantic.min.js [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,963]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Admin/js/shopHomePage/jquery.countdown.min.js [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,967]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Admin/js/shopHomePage/custom.js [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:48,984]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /static/Frontend/vendor/froala_editor_3.1.1/css/plugins/file.css [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 1081, in send_static_file
+    return send_from_directory(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\helpers.py", line 767, in send_from_directory
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\configuration.py", line 65, in render_error
+    return render_template(f"errors/{error_code}.html",Language=Language), error_code
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\errors\404.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:00:50,599]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 30, in home
+    return render_template("public/index.html", products= products)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\public\index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:02:12,551]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 30, in home
+    return render_template("public/index.html", products= products)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\public\index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-12 22:02:35,654]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 30, in home
+    return render_template("public/index.html", products= products)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\public\index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 547, in top-level template code
+    {% if business.is_working_now() %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\account\models.py", line 128, in is_working_now
+    closing= dt(dt.now(tz).year, dt.now(tz).month, dt.now(tz).day, self.close_hour)
+ValueError: hour must be in 0..23
+[2022-05-13 17:01:23,242]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'business_details.store_open' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\public\views.py", line 30, in home
+    return render_template("public/index.html", products= products)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 136, in render_template
+    ctx.app.update_template_context(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 838, in update_template_context
+    context.update(func())
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\utils.py", line 77, in inject_business
+    business = Business.query.first()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3429, in first
+    ret = list(self[0:1])
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3203, in __getitem__
+    return list(res)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3535, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3560, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1124, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1316, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1510, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1276, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\sqlalchemy\engine\default.py", line 608, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 206, in execute
+    res = self._query(query)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\cursors.py", line 319, in _query
+    db.query(q)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (1054, "Unknown column 'business_details.store_open' in 'field list'")
+[SQL: SELECT business_details.id AS business_details_id, business_details.created_at AS business_details_created_at, business_details.updated_at AS business_details_updated_at, business_details.address AS business_details_address, business_details.phone AS business_details_phone, business_details.name AS business_details_name, business_details.email AS business_details_email, business_details.email_password AS business_details_email_password, business_details.image AS business_details_image, business_details.account_sid AS business_details_account_sid, business_details.auth_token AS business_details_auth_token, business_details.`payPal_SID` AS `business_details_payPal_SID`, business_details.`payPal_Secret` AS `business_details_payPal_Secret`, business_details.`Twilo_phone_Number` AS `business_details_Twilo_phone_Number`, business_details.open_hour AS business_details_open_hour, business_details.close_hour AS business_details_close_hour, business_details.store_open AS business_details_store_open 
+FROM business_details 
+ LIMIT %s]
+[parameters: (1,)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+[2022-05-13 17:02:00,577]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
+    {{ macros.render_boolean_field(form.store_open, 'Store open') }}
+TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)
+[2022-05-13 17:02:00,618]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
+    {{ macros.render_boolean_field(form.store_open, 'Store open') }}
+TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)
+[2022-05-13 17:02:00,717]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
+    {{ macros.render_boolean_field(form.store_open, 'Store open') }}
+TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)
+[2022-05-13 17:02:00,878]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
+    {{ macros.render_boolean_field(form.store_open, 'Store open') }}
+TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)
+[2022-05-13 17:02:01,070]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
+    {{ macros.render_boolean_field(form.store_open, 'Store open') }}
+TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)
+[2022-05-13 17:02:26,194]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/bussiness/manage_bussiness [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\bussiness.py", line 26, in manage_bussiness
+    return render_template("bussiness/bussiness.html",form=form)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 4, in top-level template code
+    {% from 'bootstrap/form.html' import render_file_field %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
+    {{ macros.render_boolean_field(form.store_open, 'Store open') }}
+TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)

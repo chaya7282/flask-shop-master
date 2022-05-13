@@ -44,7 +44,8 @@ class FlaskForm(_FlaskForm):
         return success
 
 class BussinessForm(FlaskForm):
-    address = StringField(validators=[DataRequired()])
+
+    address = StringField("Address",validators=[DataRequired()])
     phone = StringField(validators=[DataRequired()])
     name =  StringField(validators=[DataRequired()])
     email = StringField()
@@ -55,7 +56,8 @@ class BussinessForm(FlaskForm):
     payPal_SID = StringField("Pay Pal SID")
     payPal_Secret =StringField("Pay Pal Secret")
 
-    image = StringField(validators=[DataRequired()])
+    image = StringField("please add image")
+    store_open = BooleanField("Store Open",default=True )
 
 class DashboardMenuForm(FlaskForm):
     title = StringField(validators=[DataRequired()])

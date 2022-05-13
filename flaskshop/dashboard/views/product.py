@@ -206,7 +206,7 @@ def categories_del(id):
 
 def categories_manage(id=None):
     image_path = None
-    פ=5
+
     if id:
         category = Category.get_by_id(id)
         form = CategoryForm(obj=category)

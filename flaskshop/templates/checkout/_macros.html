@@ -153,13 +153,21 @@
 {% macro render_file_field(file_field, path_field) %}
 {% set label_id = file_field.label.field_id %}
 <div class="form-group">
-
+ <label>{{ file_field.label.text }}</label>
+    {{file_field.errors}}
+    {% if file_field.errors %}
+    {% for error in file_field.errors %}
+     <label>{{ error }}</label>
+    {% endfor %}
+{% endif %}
     <label>{{ file_field.label.text }}</label>
 
     <div class="custom-file mb-3">
     <input type="file" class="custom-file-input" id="{{ label_id }}" name="{{ label_id }}">
-    <label class="custom-file-label" for="{{ label_id }}"></label>
-  </div>
+
+
+
+    </div>
 </div>
 
 

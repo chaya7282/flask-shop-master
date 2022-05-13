@@ -1,10 +1,11 @@
 from operator import or_
 from functools import reduce
-
+import time
+from datetime import datetime as dt
 from flask_login import UserMixin
 from libgravatar import Gravatar
 from sqlalchemy.ext.hybrid import hybrid_property
-
+import pytz
 from flaskshop.database import Column, Model, db
 from flaskshop.extensions import bcrypt
 from flaskshop.constant import Permission
@@ -108,6 +109,9 @@ class Business(Model):
     payPal_SID=Column(db.String(100), nullable=True)
     payPal_Secret = Column(db.String(100), nullable=True)
     Twilo_phone_Number=Column(db.String(20), nullable=True)
+    open_hour= Column(db.Integer(),default=8)
+    close_hour = Column(db.Integer(), default=0)
+    store_open=  Column(db.Boolean(), default=True)
     def __str__(self):
         return self.name
 
@@ -117,6 +121,8 @@ class Business(Model):
             url = get_presigned_url(self.image)
         return url
 
+    def is_working_now(self):
+        return self.store_open
 
 class UserAddress(Model):
     __tablename__ = "account_address"
