@@ -11,15 +11,16 @@ def manage_bussiness():
     if form.validate_on_submit():
         if not bussines:
             bussines=  Business()
-
+        curr_image= form.image.data
         form.populate_obj(bussines)
 
         image= form.image.data
 
         if image:
-
             filename= upload_file(image)
             bussines.image = filename
+        else:
+            bussines.image = curr_image
         bussines.save()
         return redirect(url_for('dashboard.index'))
 
