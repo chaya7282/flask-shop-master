@@ -11,7 +11,7 @@ def manage_bussiness():
     if form.validate_on_submit():
         if not bussines:
             bussines=  Business()
-        curr_image= form.image.data
+        curr_image= bussines.image
         form.populate_obj(bussines)
 
         image= form.image.data
