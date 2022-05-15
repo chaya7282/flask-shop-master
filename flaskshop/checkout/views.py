@@ -7,7 +7,7 @@ from .forms import NoteForm, VoucherForm, CheckoutForm, PaymentDeliveryForm
 from flaskshop.account.forms import AddressForm
 from flaskshop.account.models import UserAddress
 from flaskshop.utils import flash_errors
-from flaskshop.order.models import Order, Order_Temporary
+from flaskshop.order.models import Order
 from flaskshop.discount.models import Voucher
 from flask_mail import Message
 from flaskshop.settings import Config
@@ -80,8 +80,9 @@ def Cart_Checkout():
 
         if cart and next_operation == "checkout":
 
-            order, msg = Order_Temporary.create_whole_order(cart)
+            order, msg = Order.create_whole_order(cart)
             order.paymentStatus = OrderStatusKinds.unfulfilled.value
+            order.status='unfulfilled'
             current_user.order_id = order.id
             order.save()
             current_user.save()
@@ -95,7 +96,7 @@ def Cart_Checkout():
 
 @login_required
 def step_1_delivery_address():
-    order = Order_Temporary.get_by_id(current_user.order_id)
+    order = Order.get_by_id(current_user.order_id)
     form = AddressForm(request.form)
     address_id = current_user.addresses_id
 
@@ -143,7 +144,7 @@ def delivery_time_date():
 
 
 def payment_details():
-    order = Order_Temporary.get_by_id(current_user.order_id)
+    order = Order.get_by_id(current_user.order_id)
 
     return render_template("checkout/payment_details.html", paymentmethod=order.payment_method )
 

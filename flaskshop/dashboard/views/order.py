@@ -25,6 +25,7 @@ def orders(query=None):
             "contact_name": "contact",
             "contact_phone": "contact-phone ",
             "created_at": "Created At",
+
         }
         context = {
             "items": pagination.items,

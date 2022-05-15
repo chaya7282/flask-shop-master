@@ -590,7 +590,7 @@ class ProductVariant(Model):
 
 
     def display_product(self):
-        return f"{self.product} ({str(self)})"
+        return f"{self.product} "
 
     @property
     def sku_id(self):

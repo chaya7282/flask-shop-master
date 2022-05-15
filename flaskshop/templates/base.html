@@ -659,14 +659,14 @@ function update_amounts()
 {
     var sum = 0.0;
 
-    $('.qty-group').each(function() {
+    $('.cart-item').each(function() {
         var qty = $(this).find('.input-text').val();
 	    var price = $(this).find('.price').val();
         var amount = (qty*price)
 
 
 		sum+= amount;
-        $(this).find('.cart-item-price').html(amount);
+        $(this).find('.cart-item-price').html(amount+'-' +'{{Language["$"]}}');
     });
 	$('.total').html(sum);
 	//just update the total to sum

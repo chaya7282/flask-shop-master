@@ -17,7 +17,7 @@ from flask import (
 from flask_login import login_required, current_user
 from pluggy import HookimplMarker
 
-from .models import Order, OrderPayment,UserAddress,Order_Temporary
+from .models import Order, OrderPayment,UserAddress
 from flaskshop.product.models import Category
 
 from .payment import zhifubao
@@ -123,7 +123,7 @@ def receive(token):
 def payment():
 
 
-    order = Order_Temporary.get_by_id(current_user.order_id)
+    order = Order.get_by_id(current_user.order_id)
     items= order.pay_pal_items()
     payment_arguments = {
         'intent': 'sale',
@@ -180,15 +180,15 @@ def execute():
     payment = paypalrestsdk.Payment.find(request.form['paymentID'])
 
     if payment.execute({'payer_id' : request.form['payerID']}):
-        tmp_order= Order_Temporary.query.filter_by(paymentID=payment.id).first()
-        order, msg = Order.create_whole_order(tmp_order)
-        tmp_order.delete()
+        order= Order.query.filter_by(paymentID=payment.id).first()
+
         order_payment = OrderPayment.query.filter_by(
             payment_no= payment.id,
         ).first()
         order_payment.order_id=order.id
         order.paymentID=payment.id
-
+        order.paymentStatus = OrderStatusKinds.fulfilled.value
+        order.status='fulfilled'
         order_payment.pay_success(paid_at=datetime.now(tz=pytz.timezone('Asia/Jerusalem')))
         success = True
         order.save()

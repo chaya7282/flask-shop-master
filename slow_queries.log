@@ -16244,3 +16244,391 @@ Traceback (most recent call last):
   File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\bussiness\bussiness.html", line 48, in block "content"
     {{ macros.render_boolean_field(form.store_open, 'Store open') }}
 TypeError: macro 'render_boolean_field' takes not more than 1 argument(s)
+[2022-05-15 19:19:36,066]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/step_1_delivery_address [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 123, in step_1_delivery_address
+    order.shipping_address_id = shipping_address.id
+AttributeError: 'NoneType' object has no attribute 'shipping_address_id'
+[2022-05-15 19:20:51,749]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/step_1_delivery_address [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 123, in step_1_delivery_address
+    order.shipping_address_id = shipping_address.id
+AttributeError: 'NoneType' object has no attribute 'shipping_address_id'
+[2022-05-15 19:24:01,600]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /checkout/payment_details [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\checkout\views.py", line 148, in payment_details
+    return render_template("checkout/payment_details.html", paymentmethod=order.payment_method )
+AttributeError: 'NoneType' object has no attribute 'payment_method'
+[2022-05-15 19:28:40,319]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 19:30:07,572]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 19:35:26,807]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 19:41:21,236]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/6be9633f-1791-48b1-b0f4-9daf1084caf6 [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 51, in show
+    return render_template("checkout/order_placed.html", order = order,user_address= user_address )
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\order_placed.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\base.html", line 550, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\order_placed.html", line 7, in block "content"
+    {% include('checkout/order_placed_template.html') %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\checkout\order_placed_template.html", line 85, in top-level template code
+    <td class="left strong">{{item.variant.display_product()}} - <h5>{% for attribute, value in line.variant.attribute_map.items() %} {{ attribute }}:{{value  }}{% endfor %}</h5>  </td>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'line' is undefined
+[2022-05-15 19:42:42,622]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 19:44:17,767]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 20:09:47,717]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /dashboard/orders [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\dashboard\views\order.py", line 35, in orders
+    return render_template("order/list.html", **context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\order\list.html", line 2, in top-level template code
+    {% extends 'dashboard/dashboard_layout.html' %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\dashboard_layout.html", line 173, in top-level template code
+    {% block content %}
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\templates\dashboard\order\list.html", line 60, in block "content"
+    <td>{{ item | attr(prop) }}</td>
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\jinja2\filters.py", line 1062, in do_attr
+    value = getattr(obj, name)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\models.py", line 167, in status_human
+    return OrderStatusKinds(int(self.status)).name
+ValueError: invalid literal for int() with base 10: 'unfulfilled'
+[2022-05-15 20:24:04,489]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 20:28:20,027]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 20:28:39,286]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 20:29:09,348]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 20:29:55,260]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
+[2022-05-15 20:30:46,006]{C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py:1890}
+ERROR - Exception on /orders/orders/None [GET]
+Traceback (most recent call last):
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_restplus\api.py", line 584, in error_router
+    return original_handler(e)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\User\PycharmProjects\flask-shop\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\User\PycharmProjects\flask-shop\flask-shop-master\flaskshop\order\views.py", line 46, in show
+    user_id = order.user_id
+AttributeError: 'NoneType' object has no attribute 'user_id'
