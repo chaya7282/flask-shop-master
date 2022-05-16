@@ -118,10 +118,11 @@ def step_1_delivery_address():
             "contact_name": form.contact_name.data,
             "contact_phone": form.contact_phone.data,
             "email": form.email.data,
-            "pincode": form.pincode.data
+            "company_name": form.company_name.data
         }
         shipping_address = ShippingAddress.create(**shippment_address)
         order.shipping_address_id = shipping_address.id
+        order.set_contact()
         order.save()
         return redirect(url_for("checkout.payment_details"))
 
@@ -132,7 +133,7 @@ def step_1_delivery_address():
 @login_required
 
 def delivery_time_date():
-    order = Order_Temporary.get_by_id(current_user.order_id)
+    order = Order.get_by_id(current_user.order_id)
     if request.method == "POST":
         day = request.form["address1"]
         hours= request.form["fruit"]

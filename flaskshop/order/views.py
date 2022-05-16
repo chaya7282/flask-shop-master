@@ -189,7 +189,7 @@ def execute():
         order.paymentID=payment.id
         order.paymentStatus = OrderStatusKinds.fulfilled.value
         order.status='fulfilled'
-        order_payment.pay_success(paid_at=datetime.now(tz=pytz.timezone('Asia/Jerusalem')))
+        order_payment.paid_at=datetime.now(tz=pytz.timezone('Asia/Jerusalem'))
         success = True
         order.save()
         order_payment.save()

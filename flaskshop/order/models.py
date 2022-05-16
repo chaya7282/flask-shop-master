@@ -120,7 +120,7 @@ class Order(Model):
         for line in cart.lines:
             db.session.delete(line)
         db.session.delete(cart)
-        order.set_contact()
+
         db.session.commit()
 
         return order, "success"
@@ -314,7 +314,7 @@ class ShippingAddress(Model):
     address = Column(db.String(255))
     contact_name = Column(db.String(255))
     contact_phone = Column(db.String(80))
-    pincode = Column(db.String(80))
+    company_name = Column(db.String(80))
     email = Column(db.String(80))
 
     @property

@@ -26,7 +26,7 @@
                 <tr>
 
                              <td class="left strong">{{Language["Delivery to costumer"]}}</td>
-                             <td class="right">{{Language[shipment_method.title]}}</td>
+                             <td class="right">{{shipment_method.title}}</td>
                  </tr>
 
                  {% endif %}
@@ -46,6 +46,10 @@
                        <td class="left strong">{{Language["address"]}}</td>
                        <td class="right">{{delivery_address.address}},{{delivery_address.city}}</td>
                  </tr>
+                        <tr>
+                       <td class="left strong">{{Language["Company"]}}</td>
+                       <td class="right">{{delivery_address.company_name}}</td>
+                 </tr>
                   {% endwith %}
                       <tr>
 
@@ -60,7 +64,7 @@
                       <tr>
 
                              <td class="left strong">{{Language["Payment status"]}}</td>
-                             <td class="right">{{Language[order.status]}}</td>
+                             <td class="right"><h2>{{Language[order.status]}}</h2></td>
                  </tr>
                       <tr>
 

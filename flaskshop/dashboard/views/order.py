@@ -20,7 +20,7 @@ def orders(query=None):
         props = {
             "id": "ID",
             "identity": "Identity",
-            "status_human": "Status",
+            "status": "status",
             "total_human": "Total",
             "contact_name": "contact",
             "contact_phone": "contact-phone ",

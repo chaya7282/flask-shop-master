@@ -136,8 +136,8 @@ class AddressForm(FlaskForm):
         "Email-Adress *", validators=[DataRequired(),Email(), Length(min=6, max=100)]
     )
 
-    pincode= StringField(
-        "pincode"
+    company_name= StringField(
+        "Company name"
     )
     save = BooleanField("Save address",default=True)
     def __init__(self, *args, **kwargs):

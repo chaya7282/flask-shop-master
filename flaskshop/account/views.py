@@ -117,7 +117,7 @@ def edit_address():
             "contact_name": form.contact_name.data,
             "contact_phone": form.contact_phone.data,
             "email": form.email.data,
-            "pincode": form.pincode.data
+            "company_name": form.company_name.data
         }
 
         if address_id:

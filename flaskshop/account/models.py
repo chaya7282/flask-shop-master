@@ -133,7 +133,7 @@ class UserAddress(Model):
     address = Column(db.String(255),nullable=False)
     contact_name = Column(db.String(255),nullable=False)
     contact_phone = Column(db.String(80),nullable=False)
-    pincode = Column(db.String(80),nullable=True)
+    company_name = Column(db.String(80),nullable=True)
     email = Column(db.String(80),nullable=True)
 
     @property
