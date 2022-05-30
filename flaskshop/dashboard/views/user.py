@@ -49,12 +49,14 @@ def user(user_id):
 def user_edit(user_id):
     user = User.get_by_id(user_id)
     form = UserForm(obj=user)
+
     if form.validate_on_submit():
-        if not form.password.data:
-            del form.password
+
         form.populate_obj(user)
         new_role_id= int(form.role.data)
         user.add_a_role(new_role_id)
+        if form.password.data:
+            user.update(password=form.password.data)
         return redirect(url_for("dashboard.user", user_id=user_id))
     roles = user.roles
     return render_template("user/edit.html", form=form, roles=roles)

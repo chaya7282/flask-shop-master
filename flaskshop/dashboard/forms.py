@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm as _FlaskForm
 from flask_wtf import validators
 from flask_wtf.file import FileField, FileAllowed,  FileRequired
+from wtforms.widgets import PasswordInput
 from wtforms import (
     StringField,
     IntegerField,
@@ -101,7 +102,9 @@ class SiteConfigForm(FlaskForm):
 class UserForm(FlaskForm):
     username = StringField(validators=[DataRequired()])
     email = StringField(validators=[DataRequired()])
-    password = PasswordField()
+    password = PasswordField(
+        "password", validators=[ Length(min=6, max=40)], widget=PasswordInput(hide_value=True)
+    )
     is_active = BooleanField()
     created_at = DateTimeField()
     updated_at = DateTimeField()
