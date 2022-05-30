@@ -17,6 +17,7 @@ from flaskshop.constant import SiteDefaultSettings
 from flaskshop.create_menus import create_menus
 from flaskshop.constant import Language
 from flaskshop.account.models import Business
+from flaskshop.order.models import Order
 
 def flash_errors(form, category="warning"):
     """Flash all errors for a form."""
@@ -76,6 +77,11 @@ def jinja_global_varibles(app):
     def inject_business():
         business = Business.query.first()
         return dict(business=business)
+
+    @app.context_processor
+    def inject_order_number():
+        order_number = len(Order.query.all())
+        return dict(order_number=order_number)
 
     @app.context_processor
     def inject_categories():

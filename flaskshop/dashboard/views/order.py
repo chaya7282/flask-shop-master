@@ -61,3 +61,4 @@ def order_del(id):
     if order:
         order.cancel()
     return redirect(url_for('dashboard.orders'))
+

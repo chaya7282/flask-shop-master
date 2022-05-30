@@ -513,7 +513,7 @@ h2{
 				<div class="catey__icon">
 					<a href="#" class="cate__btn" data-toggle="modal" data-target="#category_model" title="Categories"><i class="uil uil-apps"></i></a>
 				</div>
-				{% if business.is_working_now() %}
+				{% if business.is_working_now(order_number) %}
 				<div class="header_cart order-1">
 					<a href="#" class="cart__btn hover-btn pull-bs-canvas-left" title="Cart"><i class="uil uil-shopping-cart-alt"></i><span>{{Language["Cart"]}}</span><ins>{{ current_user_cart.quantity }}</ins><i class="uil uil-angle-down"></i></a>
 				</div>
@@ -546,7 +546,7 @@ h2{
 {% endwith %}
 
 </div>
-	{% if business.is_working_now() %}
+	{% if business.is_working_now(order_number) %}
 	{% block content %}
 	{% endblock content %}
 	{% else%}

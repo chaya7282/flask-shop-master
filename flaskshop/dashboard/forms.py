@@ -53,6 +53,7 @@ class BussinessForm(FlaskForm):
     account_sid =  StringField("Twilo account sid")
     auth_token = StringField("Twilo auth token")
     Twilo_phone_Number =StringField("Twilo_phone_Number")
+    Limit_orders= IntegerField("Num Orders Allowed", default=15)
     payPal_SID = StringField("Pay Pal SID")
     payPal_Secret =StringField("Pay Pal Secret")
 

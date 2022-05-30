@@ -109,6 +109,7 @@ class Business(Model):
     payPal_SID=Column(db.String(100), nullable=True)
     payPal_Secret = Column(db.String(100), nullable=True)
     Twilo_phone_Number=Column(db.String(20), nullable=True)
+    Limit_orders=Column(db.Integer(), nullable=True,default=15)
     open_hour= Column(db.Integer(),default=8)
     close_hour = Column(db.Integer(), default=0)
     store_open=  Column(db.Boolean(), default=True)
@@ -121,8 +122,9 @@ class Business(Model):
             url = get_presigned_url(self.image)
         return url
 
-    def is_working_now(self):
-        return self.store_open
+    def is_working_now(self,order_num):
+        print(order_num)
+        return self.store_open and order_num < self.Limit_orders
 
 class UserAddress(Model):
     __tablename__ = "account_address"
